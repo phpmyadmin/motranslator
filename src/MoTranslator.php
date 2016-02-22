@@ -43,10 +43,7 @@ class MoTranslator {
   var $BYTEORDER = 'V';        // 'V': low endian, 'N': big endian
   var $STREAM = NULL;
   var $short_circuit = false;
-  var $originals = NULL;      // offset of original table
-  var $translations = NULL;    // offset of translation table
   var $pluralheader = NULL;    // cache header field for plural forms
-  var $total = 0;          // total string count
   var $cache_translations = NULL;  // original -> translation mapping
 
 
@@ -103,17 +100,17 @@ class MoTranslator {
     // FIXME: Do we care about revision? We should.
     $revision = $this->readint(4);
 
-    $this->total = $this->readint(8);
-    $this->originals = $this->readint(12);
-    $this->translations = $this->readint(16);
+    $total = $this->readint(8);
+    $originals = $this->readint(12);
+    $translations = $this->readint(16);
 
     /* get original and translations tables */
-      $table_originals = $this->readintarray($this->originals, $this->total * 2);
-      $table_translations = $this->readintarray($this->translations, $this->total * 2);
+      $table_originals = $this->readintarray($originals, $total * 2);
+      $table_translations = $this->readintarray($translations, $total * 2);
 
       $this->cache_translations = array ();
       /* read all strings in the cache */
-      for ($i = 0; $i < $this->total; $i++) {
+      for ($i = 0; $i < $total; $i++) {
         $original = $this->STREAM->read($table_originals[$i * 2 + 2], $table_originals[$i * 2 + 1]);
         $translation = $this->STREAM->read($table_translations[$i * 2 + 2], $table_translations[$i * 2 + 1]);
         $this->cache_translations[$original] = $translation;

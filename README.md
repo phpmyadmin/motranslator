@@ -12,3 +12,4 @@ PHP Gettext mo files translator
 | Remove attribs | 4.5297479629517 |
 | String reader  | 1.8148958683014 |
 | No offset      | 1.2436759471893 |
+| Less attribs   | 1.1722540855408 |
