@@ -22,14 +22,32 @@
 */
 namespace MoTranslator;
 
+/**
+ * Simple wrapper around string buffer for
+ * random access and values parsing.
+ */
 class StringReader {
-  var $_str;
 
-  public function __construct($filename) {
-    $this->_str = file_get_contents($filename);
-  }
+    var $_str;
 
-  function read($pos, $bytes) {
-    return substr($this->_str, $pos, $bytes);
-  }
+    /**
+     * Constructor
+     *
+     * @param string $filename Name of file to load
+     */
+    public function __construct($filename) {
+        $this->_str = file_get_contents($filename);
+    }
+
+    /**
+     * Read number of bytes from given offset
+     *
+     * @param int $pos   Offset
+     * @param int $bytes Number of bytes to read
+     *
+     * @return string
+     */
+    function read($pos, $bytes) {
+        return substr($this->_str, $pos, $bytes);
+    }
 }
