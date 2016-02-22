@@ -56,7 +56,7 @@ class MoTranslator {
    * @access private
    * @return Integer from the Stream
    */
-  function readint($pos) {
+  private function readint($pos) {
         $input=unpack($this->BYTEORDER, $this->STREAM->read($pos, 4));
         return array_shift($input);
     }
@@ -67,7 +67,7 @@ class MoTranslator {
    * @param int count How many elements should be read
    * @return Array of Integers
    */
-  function readintarray($pos, $count) {
+  private function readintarray($pos, $count) {
         return unpack($this->BYTEORDER.$count, $this->STREAM->read($pos, 4 * $count));
   }
 
@@ -119,11 +119,10 @@ class MoTranslator {
   /**
    * Translates a string
    *
-   * @access public
    * @param string string to be translated
    * @return string translated string (or original, if not found)
    */
-  function translate($string) {
+  public function translate($string) {
     if ($this->short_circuit)
       return $string;
 
@@ -137,10 +136,9 @@ class MoTranslator {
   /**
    * Sanitize plural form expression for use in PHP eval call.
    *
-   * @access private
    * @return string sanitized plural form expression
    */
-  function sanitize_plural_expression($expr) {
+  private function sanitize_plural_expression($expr) {
     // Get rid of disallowed characters.
     $expr = preg_replace('@[^a-zA-Z0-9_:;\(\)\?\|\&=!<>+*/\%-]@', '', $expr);
 
@@ -172,10 +170,9 @@ class MoTranslator {
   /**
    * Parse full PO header and extract only plural forms line.
    *
-   * @access private
    * @return string verbatim plural form header field
    */
-  static function extract_plural_forms_header_from_po_header($header) {
+  public static function extract_plural_forms_header_from_po_header($header) {
     if (preg_match("/(^|\n)plural-forms: ([^\n]*)\n/i", $header, $regs))
       $expr = $regs[2];
     else
@@ -186,10 +183,9 @@ class MoTranslator {
   /**
    * Get possible plural forms from MO header
    *
-   * @access private
    * @return string plural form header
    */
-  function get_plural_forms() {
+  private function get_plural_forms() {
     // lets assume message number 0 is header
     // this is true, right?
 
@@ -205,11 +201,10 @@ class MoTranslator {
   /**
    * Detects which plural form to take
    *
-   * @access private
    * @param n count
    * @return int array index of the right plural form
    */
-  function select_string($n) {
+  private function select_string($n) {
     $string = $this->get_plural_forms();
     $string = str_replace('nplurals',"\$total",$string);
     $string = str_replace("n",$n,$string);
@@ -226,13 +221,12 @@ class MoTranslator {
   /**
    * Plural version of gettext
    *
-   * @access public
    * @param string single
    * @param string plural
    * @param string number
    * @return translated plural form
    */
-  function ngettext($single, $plural, $number) {
+  public function ngettext($single, $plural, $number) {
     if ($this->short_circuit) {
       if ($number != 1)
         return $plural;
@@ -256,7 +250,7 @@ class MoTranslator {
       }
   }
 
-  function pgettext($context, $msgid) {
+  public function pgettext($context, $msgid) {
     $key = $context . chr(4) . $msgid;
     $ret = $this->translate($key);
     if (strpos($ret, chr(4)) !== FALSE) {
@@ -266,7 +260,7 @@ class MoTranslator {
     }
   }
 
-  function npgettext($context, $singular, $plural, $number) {
+  public function npgettext($context, $singular, $plural, $number) {
     $key = $context . chr(4) . $singular;
     $ret = $this->ngettext($key, $plural, $number);
     if (strpos($ret, chr(4)) !== FALSE) {
