@@ -260,7 +260,7 @@ class MoTranslator {
   function pgettext($context, $msgid) {
     $key = $context . chr(4) . $msgid;
     $ret = $this->translate($key);
-    if (strpos($ret, "\004") !== FALSE) {
+    if (strpos($ret, chr(4)) !== FALSE) {
       return $msgid;
     } else {
       return $ret;
@@ -270,7 +270,7 @@ class MoTranslator {
   function npgettext($context, $singular, $plural, $number) {
     $key = $context . chr(4) . $singular;
     $ret = $this->ngettext($key, $plural, $number);
-    if (strpos($ret, "\004") !== FALSE) {
+    if (strpos($ret, chr(4)) !== FALSE) {
       return $singular;
     } else {
       return $ret;
