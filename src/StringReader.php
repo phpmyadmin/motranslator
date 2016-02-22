@@ -47,7 +47,7 @@ class StringReader {
      *
      * @return string
      */
-    function read($pos, $bytes) {
+    public function read($pos, $bytes) {
         return substr($this->_str, $pos, $bytes);
     }
 }
