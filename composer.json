@@ -1,0 +1,30 @@
+{
+    "name": "nijel/motranslator",
+    "description": "Gettext mo files translator",
+    "license": "GPL-2.0+",
+    "keywords": ["gettext", "mo", "translator", "i18n"],
+    "homepage": "https://github.com/nijel/motranslator",
+    "authors": [
+        {
+            "name": "The phpMyAdmin Team",
+            "email": "developers@phpmyadmin.net",
+            "homepage": "https://www.phpmyadmin.net/team/"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/nijel/motranslator/issues",
+        "source": "https://github.com/nijel/motranslator"
+    },
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "phpunit/php-code-coverage": "~2.0 || ~3.0",
+        "phpunit/phpunit": "~4.8 || ~5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "MoTranslator\\": "src"
+        }
+    }
+}

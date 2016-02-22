@@ -1,2 +1,2 @@
 # motranslator
-PHP Gettex mo files translator
+PHP Gettext mo files translator
