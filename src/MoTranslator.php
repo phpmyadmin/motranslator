@@ -59,14 +59,10 @@ class MoTranslator {
    * @access private
    * @return Integer from the Stream
    */
-  function readint() {
-        $input=unpack($this->BYTEORDER, $this->STREAM->read(4));
+  function readint($pos) {
+        $input=unpack($this->BYTEORDER, $this->STREAM->read($pos, 4));
         return array_shift($input);
     }
-
-  function read($bytes) {
-    return $this->STREAM->read($bytes);
-  }
 
   /**
    * Reads an array of Integers from the Stream
@@ -74,8 +70,8 @@ class MoTranslator {
    * @param int count How many elements should be read
    * @return Array of Integers
    */
-  function readintarray($count) {
-        return unpack($this->BYTEORDER.$count, $this->STREAM->read(4 * $count));
+  function readintarray($pos, $count) {
+        return unpack($this->BYTEORDER.$count, $this->STREAM->read($pos, 4 * $count));
   }
 
   /**
@@ -94,7 +90,7 @@ class MoTranslator {
     $MAGIC2 = "\xde\x12\x04\x95";
 
     $this->STREAM = new StringReader($filename);
-    $magic = $this->read(4);
+    $magic = $this->STREAM->read(0, 4);
     if ($magic == $MAGIC1) {
       $this->BYTEORDER = 'N';
     } elseif ($magic == $MAGIC2) {
@@ -105,25 +101,21 @@ class MoTranslator {
     }
 
     // FIXME: Do we care about revision? We should.
-    $revision = $this->readint();
+    $revision = $this->readint(4);
 
-    $this->total = $this->readint();
-    $this->originals = $this->readint();
-    $this->translations = $this->readint();
+    $this->total = $this->readint(8);
+    $this->originals = $this->readint(12);
+    $this->translations = $this->readint(16);
 
     /* get original and translations tables */
-      $this->STREAM->seekto($this->originals);
-      $table_originals = $this->readintarray($this->total * 2);
-      $this->STREAM->seekto($this->translations);
-      $table_translations = $this->readintarray($this->total * 2);
+      $table_originals = $this->readintarray($this->originals, $this->total * 2);
+      $table_translations = $this->readintarray($this->translations, $this->total * 2);
 
       $this->cache_translations = array ();
       /* read all strings in the cache */
       for ($i = 0; $i < $this->total; $i++) {
-        $this->STREAM->seekto($table_originals[$i * 2 + 2]);
-        $original = $this->STREAM->read($table_originals[$i * 2 + 1]);
-        $this->STREAM->seekto($table_translations[$i * 2 + 2]);
-        $translation = $this->STREAM->read($table_translations[$i * 2 + 1]);
+        $original = $this->STREAM->read($table_originals[$i * 2 + 2], $table_originals[$i * 2 + 1]);
+        $translation = $this->STREAM->read($table_translations[$i * 2 + 2], $table_translations[$i * 2 + 1]);
         $this->cache_translations[$original] = $translation;
       }
   }
