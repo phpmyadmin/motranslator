@@ -39,7 +39,6 @@ if (!defined('LC_MESSAGES')) {
 }
 
 require('streams.php');
-require('gettext.php');
 
 
 // Variables
@@ -137,7 +136,7 @@ function _get_reader($domain=null, $category=5, $enable_cache=true) {
           // Initialize an empty domain object.
           $text_domains[$domain] = new domain();
         }
-        $text_domains[$domain]->l10n = new gettext_reader($input,
+        $text_domains[$domain]->l10n = new MoTranslator\MoTranslator($input,
                                                           $enable_cache);
     }
     return $text_domains[$domain]->l10n;

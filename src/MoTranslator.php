@@ -21,11 +21,13 @@
 
 */
 
+namespace MoTranslator;
+
 /**
  * Provides a simple gettext replacement that works independently from
  * the system's gettext abilities.
  * It can read MO files and use them for translating strings.
- * The files are passed to gettext_reader as a Stream (see streams.php)
+ * The files are passed to MoTranslator as a Stream (see streams.php)
  *
  * This version has the ability to cache all strings and translations to
  * speed up the string lookup.
@@ -33,7 +35,7 @@
  * second parameter in the constructor (e.g. whenusing very large MO files
  * that you don't want to keep in memory)
  */
-class gettext_reader {
+class MoTranslator {
   //public:
    var $error = 0; // public variable that holds error code (0 if no error)
 

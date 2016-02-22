@@ -16,7 +16,7 @@ class ParsingTest extends PHPUnit_Framework_TestCase
      */
     public function test_extract_plural_forms_header_from_po_header()
     {
-        $parser = new gettext_reader(null);
+        $parser = new MoTranslator\MoTranslator(null);
         // It defaults to a "Western-style" plural header.
         $this->assertEquals(
             'nplurals=2; plural=n == 1 ? 0 : 1;',
@@ -64,7 +64,7 @@ class ParsingTest extends PHPUnit_Framework_TestCase
      */
     public function test_npgettext($number, $expected)
     {
-        $parser = new gettext_reader(null);
+        $parser = new MoTranslator\MoTranslator(null);
         $result = $parser->npgettext(
             "context",
             "%d pig went to the market\n",
