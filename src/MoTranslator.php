@@ -94,6 +94,7 @@ class MoTranslator {
       $this->BYTEORDER = 'V';
     } else {
       $this->error = 1; // not MO file
+      $this->short_circuit = true;
       return false;
     }
 
