@@ -47,8 +47,6 @@ class MoTranslator {
   var $translations = NULL;    // offset of translation table
   var $pluralheader = NULL;    // cache header field for plural forms
   var $total = 0;          // total string count
-  var $table_originals = NULL;  // table for original strings (offsets)
-  var $table_translations = NULL;  // table for translated strings (offsets)
   var $cache_translations = NULL;  // original -> translation mapping
 
 
@@ -122,28 +120,22 @@ class MoTranslator {
    * @access private
    */
   function load_tables() {
-    if (is_array($this->cache_translations) &&
-      is_array($this->table_originals) &&
-      is_array($this->table_translations))
+    if (is_array($this->cache_translations))
       return;
 
     /* get original and translations tables */
-    if (!is_array($this->table_originals)) {
       $this->STREAM->seekto($this->originals);
-      $this->table_originals = $this->readintarray($this->total * 2);
-    }
-    if (!is_array($this->table_translations)) {
+      $table_originals = $this->readintarray($this->total * 2);
       $this->STREAM->seekto($this->translations);
-      $this->table_translations = $this->readintarray($this->total * 2);
-    }
+      $table_translations = $this->readintarray($this->total * 2);
 
       $this->cache_translations = array ();
       /* read all strings in the cache */
       for ($i = 0; $i < $this->total; $i++) {
-        $this->STREAM->seekto($this->table_originals[$i * 2 + 2]);
-        $original = $this->STREAM->read($this->table_originals[$i * 2 + 1]);
-        $this->STREAM->seekto($this->table_translations[$i * 2 + 2]);
-        $translation = $this->STREAM->read($this->table_translations[$i * 2 + 1]);
+        $this->STREAM->seekto($table_originals[$i * 2 + 2]);
+        $original = $this->STREAM->read($table_originals[$i * 2 + 1]);
+        $this->STREAM->seekto($table_translations[$i * 2 + 2]);
+        $translation = $this->STREAM->read($table_translations[$i * 2 + 1]);
         $this->cache_translations[$original] = $translation;
       }
   }
