@@ -96,7 +96,7 @@ class MoTranslator {
     } else {
       $this->error = 1; // not MO file
       $this->short_circuit = true;
-      return false;
+      return;
     }
 
     $total = $this->readint(8);
