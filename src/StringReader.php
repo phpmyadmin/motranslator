@@ -28,7 +28,7 @@ namespace MoTranslator;
  */
 class StringReader {
 
-    var $_str;
+    private $_str;
 
     /**
      * Constructor
