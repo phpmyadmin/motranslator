@@ -110,18 +110,6 @@ class MoTranslator {
     $this->total = $this->readint();
     $this->originals = $this->readint();
     $this->translations = $this->readint();
-  }
-
-  /**
-   * Loads the translation tables from the MO file into the cache
-   * If caching is enabled, also loads all strings into a cache
-   * to speed up translation lookups
-   *
-   * @access private
-   */
-  function load_tables() {
-    if (is_array($this->cache_translations))
-      return;
 
     /* get original and translations tables */
       $this->STREAM->seekto($this->originals);
@@ -150,7 +138,6 @@ class MoTranslator {
   function translate($string) {
     if ($this->short_circuit)
       return $string;
-    $this->load_tables();
 
       // Caching enabled, get translated string from cache
       if (array_key_exists($string, $this->cache_translations))
@@ -217,7 +204,6 @@ class MoTranslator {
   function get_plural_forms() {
     // lets assume message number 0 is header
     // this is true, right?
-    $this->load_tables();
 
     // cache header field for plural forms
     if (! is_string($this->pluralheader)) {

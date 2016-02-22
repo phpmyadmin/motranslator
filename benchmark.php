@@ -11,7 +11,6 @@ for ($i = 0; $i < 200; $i++) {
     foreach ($files as $filename) {
         $reader = new FileReader($filename);
         $parser = new MoTranslator\MoTranslator($reader);
-        $parser->load_tables();
         $parser->translate('Column');
     }
 }

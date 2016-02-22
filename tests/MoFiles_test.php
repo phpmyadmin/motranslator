@@ -17,7 +17,6 @@ class MoFileTest extends PHPUnit_Framework_TestCase
     {
         $reader = new FileReader($filename);
         $parser = new MoTranslator\MoTranslator($reader);
-        $parser->load_tables();
         $this->assertEquals(
             $parser->translate('Column'),
             'Pole'
