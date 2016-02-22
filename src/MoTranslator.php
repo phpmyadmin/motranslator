@@ -43,7 +43,6 @@ class MoTranslator {
   var $BYTEORDER = 0;        // 0: low endian, 1: big endian
   var $STREAM = NULL;
   var $short_circuit = false;
-  var $enable_cache = false;
   var $originals = NULL;      // offset of original table
   var $translations = NULL;    // offset of translation table
   var $pluralheader = NULL;    // cache header field for plural forms
@@ -98,17 +97,13 @@ class MoTranslator {
    * Constructor
    *
    * @param object Reader the StreamReader object
-   * @param boolean enable_cache Enable or disable caching of strings (default on)
    */
-  public function __construct($Reader, $enable_cache = true) {
+  public function __construct($Reader) {
     // If there isn't a StreamReader, turn on short circuit mode.
     if (! $Reader || isset($Reader->error) ) {
       $this->short_circuit = true;
       return;
     }
-
-    // Caching can be turned off
-    $this->enable_cache = $enable_cache;
 
     $MAGIC1 = "\x95\x04\x12\xde";
     $MAGIC2 = "\xde\x12\x04\x95";
@@ -155,7 +150,6 @@ class MoTranslator {
       $this->table_translations = $this->readintarray($this->total * 2);
     }
 
-    if ($this->enable_cache) {
       $this->cache_translations = array ();
       /* read all strings in the cache */
       for ($i = 0; $i < $this->total; $i++) {
@@ -165,7 +159,6 @@ class MoTranslator {
         $translation = $this->STREAM->read($this->table_translations[$i * 2 + 1]);
         $this->cache_translations[$original] = $translation;
       }
-    }
   }
 
   /**
@@ -255,20 +248,11 @@ class MoTranslator {
       return $string;
     $this->load_tables();
 
-    if ($this->enable_cache) {
       // Caching enabled, get translated string from cache
       if (array_key_exists($string, $this->cache_translations))
         return $this->cache_translations[$string];
       else
         return $string;
-    } else {
-      // Caching not enabled, try to find string
-      $num = $this->find_string($string);
-      if ($num == -1)
-        return $string;
-      else
-        return $this->get_translation_string($num);
-    }
   }
 
   /**
@@ -333,11 +317,7 @@ class MoTranslator {
 
     // cache header field for plural forms
     if (! is_string($this->pluralheader)) {
-      if ($this->enable_cache) {
         $header = $this->cache_translations[""];
-      } else {
-        $header = $this->get_translation_string(0);
-      }
       $expr = $this->extract_plural_forms_header_from_po_header($header);
       $this->pluralheader = $this->sanitize_plural_expression($expr);
     }
@@ -389,7 +369,6 @@ class MoTranslator {
     $key = $single . chr(0) . $plural;
 
 
-    if ($this->enable_cache) {
       if (! array_key_exists($key, $this->cache_translations)) {
         return ($number != 1) ? $plural : $single;
       } else {
@@ -397,16 +376,6 @@ class MoTranslator {
         $list = explode(chr(0), $result);
         return $list[$select];
       }
-    } else {
-      $num = $this->find_string($key);
-      if ($num == -1) {
-        return ($number != 1) ? $plural : $single;
-      } else {
-        $result = $this->get_translation_string($num);
-        $list = explode(chr(0), $result);
-        return $list[$select];
-      }
-    }
   }
 
   function pgettext($context, $msgid) {

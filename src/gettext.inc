@@ -112,7 +112,7 @@ function get_list_of_locales($locale) {
 /**
  * Utility function to get a StreamReader for the given text domain.
  */
-function _get_reader($domain=null, $category=5, $enable_cache=true) {
+function _get_reader($domain=null, $category=5) {
     global $text_domains, $default_domain, $LC_CATEGORIES;
     if (!isset($domain)) $domain = $default_domain;
     if (!isset($text_domains[$domain]->l10n)) {
@@ -136,8 +136,7 @@ function _get_reader($domain=null, $category=5, $enable_cache=true) {
           // Initialize an empty domain object.
           $text_domains[$domain] = new domain();
         }
-        $text_domains[$domain]->l10n = new MoTranslator\MoTranslator($input,
-                                                          $enable_cache);
+        $text_domains[$domain]->l10n = new MoTranslator\MoTranslator($input);
     }
     return $text_domains[$domain]->l10n;
 }
