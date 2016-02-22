@@ -46,15 +46,4 @@ class StringReader {
       $this->_pos = strlen($this->_str);
     return $this->_pos;
   }
-
-  function currentpos() {
-    return $this->_pos;
-  }
-
-  function length() {
-    return strlen($this->_str);
-  }
-
 };
-
-
