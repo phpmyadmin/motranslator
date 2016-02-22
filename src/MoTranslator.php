@@ -187,7 +187,7 @@ class MoTranslator {
    * @access private
    * @return string verbatim plural form header field
    */
-  function extract_plural_forms_header_from_po_header($header) {
+  static function extract_plural_forms_header_from_po_header($header) {
     if (preg_match("/(^|\n)plural-forms: ([^\n]*)\n/i", $header, $regs))
       $expr = $regs[2];
     else
