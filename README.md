@@ -4,6 +4,13 @@ PHP Gettext mo files translator
 
 ## Performance
 
+This library was tweaked for best performance for single use - translating
+application with many strings using mo file.
+
+Current benchmarks show it's about four times faster than original php-gettext.
+
+The performance improvements based on individual changes in the code:
+
 | Stage          | Seconds         |
 | -------------- | --------------- |
 | Original code  | 4.7929680347443 |
