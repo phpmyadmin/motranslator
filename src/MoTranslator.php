@@ -93,7 +93,7 @@ class MoTranslator {
     $MAGIC1 = "\x95\x04\x12\xde";
     $MAGIC2 = "\xde\x12\x04\x95";
 
-    $this->STREAM = new StringReader(file_get_contents($filename));
+    $this->STREAM = new StringReader($filename);
     $magic = $this->read(4);
     if ($magic == $MAGIC1) {
       $this->BYTEORDER = 'N';

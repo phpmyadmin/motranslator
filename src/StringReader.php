@@ -5,8 +5,8 @@ class StringReader {
   var $_pos;
   var $_str;
 
-  public function __construct($str='') {
-    $this->_str = $str;
+  public function __construct($filename) {
+    $this->_str = file_get_contents($filename);
     $this->_pos = 0;
   }
 
