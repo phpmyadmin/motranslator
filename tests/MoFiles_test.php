@@ -11,7 +11,7 @@ class MoFileTest extends PHPUnit_Framework_TestCase
     /**
      * @dataProvider provideMoFiles
      */
-    public function testMoFile($filename)
+    public function testMoFileTranslate($filename)
     {
         $parser = new MoTranslator\MoTranslator($filename);
         $this->assertEquals(
@@ -56,6 +56,21 @@ class MoFileTest extends PHPUnit_Framework_TestCase
                 '%d second',
                 '%d seconds',
                 10
+            )
+        );
+    }
+
+    /**
+     * @dataProvider provideMoFiles
+     */
+    public function testMoFileContext($filename)
+    {
+        $parser = new MoTranslator\MoTranslator($filename);
+        $this->assertEquals(
+            'Tabulka',
+            $parser->pgettext(
+                'Display format',
+                'Table'
             )
         );
     }
