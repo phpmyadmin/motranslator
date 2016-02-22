@@ -20,6 +20,46 @@ class MoFileTest extends PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @dataProvider provideMoFiles
+     */
+    public function testMoFilePlurals($filename)
+    {
+        $parser = new MoTranslator\MoTranslator($filename);
+        $this->assertEquals(
+            '%d sekund',
+            $parser->ngettext(
+                '%d second',
+                '%d seconds',
+                0
+            )
+        );
+        $this->assertEquals(
+            '%d sekunda',
+            $parser->ngettext(
+                '%d second',
+                '%d seconds',
+                1
+            )
+        );
+        $this->assertEquals(
+            '%d sekund',
+            $parser->ngettext(
+                '%d second',
+                '%d seconds',
+                5
+            )
+        );
+        $this->assertEquals(
+            '%d sekund',
+            $parser->ngettext(
+                '%d second',
+                '%d seconds',
+                10
+            )
+        );
+    }
+
     public function provideMoFiles()
     {
         $result = array();
