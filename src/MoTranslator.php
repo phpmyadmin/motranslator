@@ -79,6 +79,7 @@ class MoTranslator {
   public function __construct($filename) {
 
     if (! is_readable($filename)) {
+      $this->error = 2; // file does not exist
       $this->short_circuit = true;
       return;
     }
