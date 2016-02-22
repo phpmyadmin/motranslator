@@ -81,11 +81,11 @@ class MoTranslator {
   /**
    * Constructor
    *
-   * @param object Reader the StreamReader object
+   * @param string $filename Name of mo file to load
    */
-  public function __construct($Reader) {
-    // If there isn't a StreamReader, turn on short circuit mode.
-    if (! $Reader || isset($Reader->error) ) {
+  public function __construct($filename) {
+
+    if (! is_readable($filename)) {
       $this->short_circuit = true;
       return;
     }
@@ -93,7 +93,7 @@ class MoTranslator {
     $MAGIC1 = "\x95\x04\x12\xde";
     $MAGIC2 = "\xde\x12\x04\x95";
 
-    $this->STREAM = $Reader;
+    $this->STREAM = new StringReader(file_get_contents($filename));
     $magic = $this->read(4);
     if ($magic == $MAGIC1) {
       $this->BYTEORDER = 'N';

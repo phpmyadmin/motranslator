@@ -6,8 +6,6 @@
  * @package PhpMyAdmin-test
  */
 
-require_once 'src/streams.php';
-
 class MoFileTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -15,8 +13,7 @@ class MoFileTest extends PHPUnit_Framework_TestCase
      */
     public function testMoFile($filename)
     {
-        $reader = new FileReader($filename);
-        $parser = new MoTranslator\MoTranslator($reader);
+        $parser = new MoTranslator\MoTranslator($filename);
         $this->assertEquals(
             $parser->translate('Column'),
             'Pole'
