@@ -40,7 +40,7 @@ class MoTranslator {
    var $error = 0; // public variable that holds error code (0 if no error)
 
    //private:
-  var $BYTEORDER = 0;        // 0: low endian, 1: big endian
+  var $BYTEORDER = 'V';        // 'V': low endian, 'N': big endian
   var $STREAM = NULL;
   var $short_circuit = false;
   var $originals = NULL;      // offset of original table
@@ -62,15 +62,8 @@ class MoTranslator {
    * @return Integer from the Stream
    */
   function readint() {
-      if ($this->BYTEORDER == 0) {
-        // low endian
-        $input=unpack('V', $this->STREAM->read(4));
+        $input=unpack($this->BYTEORDER, $this->STREAM->read(4));
         return array_shift($input);
-      } else {
-        // big endian
-        $input=unpack('N', $this->STREAM->read(4));
-        return array_shift($input);
-      }
     }
 
   function read($bytes) {
@@ -84,13 +77,7 @@ class MoTranslator {
    * @return Array of Integers
    */
   function readintarray($count) {
-    if ($this->BYTEORDER == 0) {
-        // low endian
-        return unpack('V'.$count, $this->STREAM->read(4 * $count));
-      } else {
-        // big endian
-        return unpack('N'.$count, $this->STREAM->read(4 * $count));
-      }
+        return unpack($this->BYTEORDER.$count, $this->STREAM->read(4 * $count));
   }
 
   /**
@@ -111,9 +98,9 @@ class MoTranslator {
     $this->STREAM = $Reader;
     $magic = $this->read(4);
     if ($magic == $MAGIC1) {
-      $this->BYTEORDER = 1;
+      $this->BYTEORDER = 'N';
     } elseif ($magic == $MAGIC2) {
-      $this->BYTEORDER = 0;
+      $this->BYTEORDER = 'V';
     } else {
       $this->error = 1; // not MO file
       return false;
