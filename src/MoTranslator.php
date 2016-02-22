@@ -99,9 +99,6 @@ class MoTranslator {
       return false;
     }
 
-    // FIXME: Do we care about revision? We should.
-    $revision = $this->readint(4);
-
     $total = $this->readint(8);
     $originals = $this->readint(12);
     $translations = $this->readint(16);
