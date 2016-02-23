@@ -48,7 +48,7 @@ class MoLoader {
      *
      * @return array list of locales to try for any POSIX-style locale specification.
      */
-    public function list_locales($locale) {
+    static public function list_locales($locale) {
         $locale_names = array();
 
         $lang = NULL;
