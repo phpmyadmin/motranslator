@@ -150,10 +150,13 @@ class MoTranslator {
      */
     public static function extract_plural_forms_header_from_po_header($header)
     {
-        if (preg_match("/(^|\n)plural-forms: ([^\n]*)\n/i", $header, $regs))
-            $expr = $regs[2];
-        else
-            $expr = "nplurals=2; plural=n == 1 ? 0 : 1;";
+        $headers = explode("\n", $header);
+        $expr = "nplurals=2; plural=n == 1 ? 0 : 1;";
+        foreach ($headers as $header) {
+            if (stripos($header, 'Plural-Forms:') === 0) {
+                $expr = substr($header, 13);
+            }
+        }
         return $expr;
     }
 

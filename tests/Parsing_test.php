@@ -24,7 +24,7 @@ class ParsingTest extends PHPUnit_Framework_TestCase
 
         // Extracting it from the middle of the header works.
         $this->assertEquals(
-            'nplurals=1; plural=0;',
+            ' nplurals=1; plural=0;',
             MoTranslator\MoTranslator::extract_plural_forms_header_from_po_header(
                 "Content-type: text/html; charset=UTF-8\n"
                 . "Plural-Forms: nplurals=1; plural=0;\n"
@@ -34,7 +34,7 @@ class ParsingTest extends PHPUnit_Framework_TestCase
 
         // It's also case-insensitive.
         $this->assertEquals(
-            'nplurals=1; plural=0;',
+            ' nplurals=1; plural=0;',
             MoTranslator\MoTranslator::extract_plural_forms_header_from_po_header(
                 "PLURAL-forms: nplurals=1; plural=0;\n"
             )
