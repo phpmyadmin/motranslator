@@ -143,5 +143,9 @@ class MoLoader {
     public function setlocale($locale)
     {
         $this->locale = $locale;
+        // Set system locales as well
+        if (function_exists('setlocale')) {
+            setlocale(LC_MESSAGES, $locale);
+        }
     }
 }
