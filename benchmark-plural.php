@@ -2,7 +2,7 @@
 
 require './vendor/autoload.php';
 
-$files = glob('./tests/data/*.mo');
+$files = array('./tests/data/big.mo', './tests/data/little.mo');
 
 $start = microtime(true);
 
