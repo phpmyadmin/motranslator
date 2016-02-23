@@ -23,13 +23,13 @@
 
 namespace MoTranslator;
 
-class MoLoader {
+class Loader {
     /**
      * Loader instance
      *
      * @access private
      * @static
-     * @var MoLoader
+     * @var Loader
      */
     private static $_instance;
 
@@ -62,14 +62,14 @@ class MoLoader {
     private $paths = array('' => './');
 
     /**
-     * Returns the singleton MoLoader object
+     * Returns the singleton Loader object
      *
-     * @return MoLoader object
+     * @return Loader object
      */
     public static function getInstance()
     {
         if (empty(self::$_instance)) {
-            self::$_instance = new MoLoader();
+            self::$_instance = new Loader();
         }
         return self::$_instance;
     }
@@ -141,11 +141,11 @@ class MoLoader {
     }
 
     /**
-     * Returns MoTranslator object for domain or for default domain
+     * Returns Translator object for domain or for default domain
      *
      * @param string $domain Translation domain
      *
-     * @return MoTranslator
+     * @return Translator
      */
     public function get_translator($domain = '')
     {
@@ -173,7 +173,7 @@ class MoLoader {
 
             // We don't care about invalid path, we will get fallback
             // translator here
-            $this->domains[$domain] = new MoTranslator($filename);
+            $this->domains[$domain] = new Translator($filename);
         }
 
         return $this->domains[$domain];

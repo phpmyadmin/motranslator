@@ -20,7 +20,7 @@ class PluralTest extends PHPUnit_Framework_TestCase
      */
     public function test_npgettext($number, $expected)
     {
-        $parser = new MoTranslator\MoTranslator(null);
+        $parser = new MoTranslator\Translator(null);
         $result = $parser->npgettext(
             "context",
             "%d pig went to the market\n",

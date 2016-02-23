@@ -15,7 +15,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $expected,
-            MoTranslator\MoLoader::list_locales($locale)
+            MoTranslator\Loader::list_locales($locale)
         );
     }
 
@@ -99,7 +99,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
 
     private function get_loader($domain, $locale)
     {
-        $loader = new MoTranslator\MoLoader();
+        $loader = new MoTranslator\Loader();
         $loader->setlocale($locale);
         $loader->textdomain($domain);
         $loader->bindtextdomain($domain, __DIR__ . '/data/locale/');
@@ -163,7 +163,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
 
     public function test_instance()
     {
-        $loader = MoTranslator\MoLoader::getInstance();
+        $loader = MoTranslator\Loader::getInstance();
         $loader->setlocale('cs');
         $loader->textdomain('phpmyadmin');
         $loader->bindtextdomain('phpmyadmin', __DIR__ . '/data/locale/');
@@ -175,7 +175,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
         );
 
         /* Ensure the object survives */
-        $loader = MoTranslator\MoLoader::getInstance();
+        $loader = MoTranslator\Loader::getInstance();
         $translator = $loader->get_translator();
         $this->assertEquals(
             'Typ',

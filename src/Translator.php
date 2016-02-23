@@ -33,7 +33,7 @@ define('MO_MAGIC_LE', "\xde\x12\x04\x95");
  *
  * It caches ll strings and translations to speed up the string lookup.
  */
-class MoTranslator {
+class Translator {
     /**
      * Parse error code (0 if no error)
      *

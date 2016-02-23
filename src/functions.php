@@ -21,7 +21,7 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-use MoTranslator\MoLoader;
+use MoTranslator\Loader;
 
 /**
  * Sets a requested locale
@@ -33,7 +33,7 @@ use MoTranslator\MoLoader;
  */
 function _setlocale($category, $locale)
 {
-    return MoLoader::getInstance()->setlocale($locale);
+    return Loader::getInstance()->setlocale($locale);
 }
 
 /**
@@ -46,7 +46,7 @@ function _setlocale($category, $locale)
  */
 function _bindtextdomain($domain, $path)
 {
-    MoLoader::getInstance()->bindtextdomain($domain, $path);
+    Loader::getInstance()->bindtextdomain($domain, $path);
 }
 
 /**
@@ -68,7 +68,7 @@ function _bind_textdomain_codeset($domain, $codeset) {
  */
 function _textdomain($domain)
 {
-    MoLoader::getInstance()->textdomain($domain);
+    Loader::getInstance()->textdomain($domain);
 }
 
 /**
@@ -80,7 +80,7 @@ function _textdomain($domain)
  */
 function _gettext($msgid)
 {
-    return MoLoader::getInstance()->get_translator()->gettext(
+    return Loader::getInstance()->get_translator()->gettext(
         $msgid
     );
 }
@@ -94,7 +94,7 @@ function _gettext($msgid)
  */
 function __($msgid)
 {
-    return MoLoader::getInstance()->get_translator()->gettext(
+    return Loader::getInstance()->get_translator()->gettext(
         $msgid
     );
 }
@@ -110,7 +110,7 @@ function __($msgid)
  */
 function _ngettext($msgid, $msgid_plural, $number)
 {
-    return MoLoader::getInstance()->get_translator()->ngettext(
+    return Loader::getInstance()->get_translator()->ngettext(
         $msgid, $msgid_plural, $number
     );
 }
@@ -125,7 +125,7 @@ function _ngettext($msgid, $msgid_plural, $number)
  */
 function _pgettext($msgctxt, $msgid)
 {
-    return MoLoader::getInstance()->get_translator()->pgettext(
+    return Loader::getInstance()->get_translator()->pgettext(
         $msgctxt, $msgid
     );
 }
@@ -142,7 +142,7 @@ function _pgettext($msgctxt, $msgid)
  */
 function _npgettext($msgctxt, $msgid, $msgid_plural, $number)
 {
-    return MoLoader::getInstance()->get_translator()->npgettext(
+    return Loader::getInstance()->get_translator()->npgettext(
         $msgctxt, $msgid, $msgid_plural, $number
     );
 }
@@ -157,7 +157,7 @@ function _npgettext($msgctxt, $msgid, $msgid_plural, $number)
  */
 function _dgettext($domain, $msgid)
 {
-    return MoLoader::getInstance()->get_translator($domain)->gettext(
+    return Loader::getInstance()->get_translator($domain)->gettext(
         $msgid
     );
 }
@@ -174,7 +174,7 @@ function _dgettext($domain, $msgid)
  */
 function _dngettext($domain, $msgid, $msgid_plural, $number)
 {
-    return MoLoader::getInstance()->get_translator($domain)->ngettext(
+    return Loader::getInstance()->get_translator($domain)->ngettext(
         $msgid, $msgid_plural, $number
     );
 }
@@ -190,7 +190,7 @@ function _dngettext($domain, $msgid, $msgid_plural, $number)
  */
 function _dpgettext($domain, $msgctxt, $msgid)
 {
-    return MoLoader::getInstance()->get_translator($domain)->pgettext(
+    return Loader::getInstance()->get_translator($domain)->pgettext(
         $msgctxt, $msgid
     );
 }
@@ -208,7 +208,7 @@ function _dpgettext($domain, $msgctxt, $msgid)
  */
 function _dnpgettext($domain, $msgctxt, $msgid, $msgid_plural, $number)
 {
-    return MoLoader::getInstance()->get_translator($domain)->npgettext(
+    return Loader::getInstance()->get_translator($domain)->npgettext(
         $msgctxt, $msgid, $msgid_plural, $number
     );
 }

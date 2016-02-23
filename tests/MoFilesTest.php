@@ -13,7 +13,7 @@ class MoFilesTest extends PHPUnit_Framework_TestCase
      */
     public function testMoFileTranslate($filename)
     {
-        $parser = new MoTranslator\MoTranslator($filename);
+        $parser = new MoTranslator\Translator($filename);
         $this->assertEquals(
             'Pole',
             $parser->gettext('Column')
@@ -30,7 +30,7 @@ class MoFilesTest extends PHPUnit_Framework_TestCase
      */
     public function testMoFilePlurals($filename)
     {
-        $parser = new MoTranslator\MoTranslator($filename);
+        $parser = new MoTranslator\Translator($filename);
         if (strpos($filename, 'plurals.mo') !== false) {
             $expected = '%d sekundy';
         } else {
@@ -92,7 +92,7 @@ class MoFilesTest extends PHPUnit_Framework_TestCase
      */
     public function testMoFileContext($filename)
     {
-        $parser = new MoTranslator\MoTranslator($filename);
+        $parser = new MoTranslator\Translator($filename);
         $this->assertEquals(
             'Tabulka',
             $parser->pgettext(
@@ -113,7 +113,7 @@ class MoFilesTest extends PHPUnit_Framework_TestCase
 
     public function testEmptyMoFile()
     {
-        $parser = new MoTranslator\MoTranslator('./tests/data/mo.empty');
+        $parser = new MoTranslator\Translator('./tests/data/mo.empty');
         $this->assertEquals(
             'Table',
             $parser->pgettext(

@@ -30,7 +30,7 @@ composer require phpmyadmin/motranslator
 
 ```php
 // Create loader object
-$loader = new MoTranslator\MoLoader();
+$loader = new Translator\Loader();
 
 // Set locale
 $loader->setlocale('cs');
@@ -51,7 +51,7 @@ $translator = $loader->get_translator();
 
 ```php
 // Directly load the mo file
-$translator = new MoTranslator\MoTranslator('./path/to/file.mo');
+$translator = new Translator\Translator('./path/to/file.mo');
 
 // Now you can use Translator API (see below)
 ```
@@ -76,7 +76,7 @@ echo $translator->npgettext('Context', 'String', 'Plural string', $count);
 
 ```php
 // Load compatibility layer
-MoTranslator\MoLoader::load_functions();
+Translator\Loader::load_functions();
 
 // Configure
 _setlocale(LC_MESSAGES, 'cs');

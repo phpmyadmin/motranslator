@@ -19,7 +19,7 @@ class PluralFormlulaTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $expected,
-            MoTranslator\MoTranslator::extract_plurals_forms($header)
+            MoTranslator\Translator::extract_plurals_forms($header)
         );
     }
 
@@ -60,7 +60,7 @@ class PluralFormlulaTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $expected,
-            MoTranslator\MoTranslator::extract_plural_count($expr)
+            MoTranslator\Translator::extract_plural_count($expr)
         );
     }
 
@@ -82,7 +82,7 @@ class PluralFormlulaTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $expected,
-            MoTranslator\MoTranslator::sanitize_plural_expression($expr)
+            MoTranslator\Translator::sanitize_plural_expression($expr)
         );
     }
 
