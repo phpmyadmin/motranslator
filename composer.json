@@ -1,6 +1,6 @@
 {
     "name": "phpmyadmin/motranslator",
-    "description": "Gettext mo files translator",
+    "description": "Traslation API for PHP using Gettext MO files",
     "license": "GPL-2.0+",
     "keywords": ["gettext", "mo", "translator", "i18n"],
     "homepage": "https://github.com/phpmyadmin/motranslator",
