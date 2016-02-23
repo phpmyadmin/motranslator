@@ -36,4 +36,13 @@ class LoadingTest extends PHPUnit_Framework_TestCase
             ),
         );
     }
+
+    public function test_get_translator()
+    {
+        $loader = new MoTranslator\MoLoader();
+        $this->assertEquals(
+            '',
+            $loader->get_translator()
+        );
+    }
 }

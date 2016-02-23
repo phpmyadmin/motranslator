@@ -25,6 +25,21 @@ namespace MoTranslator;
 
 class MoLoader {
     /**
+     * @var string Default gettext domain to use.
+     */
+    private $default_domain = '';
+
+    /**
+     * @var array Loaded domains
+     */
+    private $domains = array();
+
+    /**
+     * @var array Bound paths for domains
+     */
+    private $paths = array('' => './');
+
+    /**
      * Figure out all possible locale names and start with the most
      * specific ones.  I.e. for sr_CS.UTF-8@latin, look through all of
      * sr_CS.UTF-8@latin, sr_CS@latin, sr@latin, sr_CS.UTF-8, sr_CS, sr.
@@ -77,5 +92,30 @@ class MoLoader {
             }
         }
         return $locale_names;
+    }
+
+    public function get_translator($domain='')
+    {
+        if (empty($domain)) {
+            $domain = $this->default_domain;
+        }
+
+        if (isset($this->paths[$domain])) {
+            $base = $this->paths[$domain];
+        } else {
+            $base = './';
+        }
+
+        return '';
+    }
+
+    public function bind_domain($domain, $path)
+    {
+        $this->paths[$domain] = $path;
+    }
+
+    public function set_default_domain($domain)
+    {
+        $this->default_domain = $domain;
     }
 }
