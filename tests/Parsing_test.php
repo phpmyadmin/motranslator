@@ -52,4 +52,65 @@ class ParsingTest extends PHPUnit_Framework_TestCase
             ),
         );
     }
+
+    /**
+     * @dataProvider plural_counts
+     */
+    public function test_plural_counts($expr, $expected)
+    {
+        $this->assertEquals(
+            $expected,
+            MoTranslator\MoTranslator::extract_plural_count($expr)
+        );
+    }
+
+    public function plural_counts()
+    {
+        return array(
+            array('', 1),
+            array('foo=2; expr', 1),
+            array('nplurals=2; epxr', 2),
+            array(' nplurals = 3 ; epxr', 3),
+            array(' nplurals = 4 ; epxr ; ', 4),
+        );
+    }
+
+    /**
+     * @dataProvider plural_expressions
+     */
+    public function test_plural_expression($expr, $expected)
+    {
+        $this->assertEquals(
+            $expected,
+            MoTranslator\MoTranslator::sanitize_plural_expression($expr)
+        );
+    }
+
+    public function plural_expressions()
+    {
+        return array(
+            array('', ';'),
+            array(
+                'nplurals=2; plural=n == 1 ? 0 : 1;',
+                '$plural=$n==1 ? (0) : (1);;',
+            ),
+            array(
+                ' nplurals=1; plural=0;',
+                '$plural=0;;',
+            ),
+            array(
+                "nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n",
+                '$plural=$n==0 ? (0) : ($n==1 ? (1) : ($n==2 ? (2) : ($n%100>=3&&$n%100<=10 ? (3) : ($n%100>=11 ? (4) : (5)))));;'
+            ),
+            array(
+                ' nplurals=1; plural=baz(n);',
+                '$plural=baz($n);;',
+            ),
+            array(
+                ' plural=n',
+                '$plural=$n;',
+            ),
+        );
+    }
+
 }

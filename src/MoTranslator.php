@@ -119,7 +119,12 @@ class MoTranslator {
     public static function sanitize_plural_expression($expr)
     {
         // Get rid of disallowed characters.
-        $expr = explode(';', $expr, 2)[1];
+        $expr = explode(';', $expr, 2);
+        if (count($expr) == 2) {
+            $expr = $expr[1];
+        } else{
+            $expr = $expr[0];
+        }
         $expr = preg_replace('@[^a-zA-Z0-9_:;\(\)\?\|\&=!<>+*/\%-]@', '', $expr);
 
         // Add parenthesis for tertiary '?' operator.
