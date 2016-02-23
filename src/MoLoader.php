@@ -180,7 +180,7 @@ class MoLoader {
             $this->locale = $locale;
             // Set system locales as well
             if (function_exists('setlocale')) {
-                setlocale(LC_MESSAGES, $locale);
+                setlocale(0, $locale);
             }
         }
         return $this->locale;
