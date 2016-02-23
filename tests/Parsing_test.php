@@ -12,41 +12,44 @@ class ParsingTest extends PHPUnit_Framework_TestCase
      * Test for extract_plurals_forms
      *
      * @return void
+     *
+     * @dataProvider plural_extraction_data
      */
-    public function test_extract_plurals_forms()
+    public function test_extract_plurals_forms($header, $expected)
     {
-        // It defaults to a "Western-style" plural header.
         $this->assertEquals(
-            'nplurals=2; plural=n == 1 ? 0 : 1;',
-            MoTranslator\MoTranslator::extract_plurals_forms("")
+            $expected,
+            MoTranslator\MoTranslator::extract_plurals_forms($header)
         );
+    }
 
-        // Extracting it from the middle of the header works.
-        $this->assertEquals(
-            ' nplurals=1; plural=0;',
-            MoTranslator\MoTranslator::extract_plurals_forms(
+    public function plural_extraction_data()
+    {
+        return array(
+            // It defaults to a "Western-style" plural header.
+            array(
+                '',
+                'nplurals=2; plural=n == 1 ? 0 : 1;',
+            ),
+            // Extracting it from the middle of the header works.
+            array(
                 "Content-type: text/html; charset=UTF-8\n"
                 . "Plural-Forms: nplurals=1; plural=0;\n"
-                . "Last-Translator: nobody\n"
-            )
-        );
-
-        // It's also case-insensitive.
-        $this->assertEquals(
-            ' nplurals=1; plural=0;',
-            MoTranslator\MoTranslator::extract_plurals_forms(
-                "PLURAL-forms: nplurals=1; plural=0;\n"
-            )
-        );
-
-        // It falls back to default if it's not on a separate line.
-        $this->assertEquals(
-            'nplurals=2; plural=n == 1 ? 0 : 1;',
-            MoTranslator\MoTranslator::extract_plurals_forms(
+                . "Last-Translator: nobody\n",
+                ' nplurals=1; plural=0;',
+            ),
+            // It's also case-insensitive.
+            array(
+                "PLURAL-forms: nplurals=1; plural=0;\n",
+                ' nplurals=1; plural=0;',
+            ),
+            // It falls back to default if it's not on a separate line.
+            array(
                 "Content-type: text/html; charset=UTF-8" // note the missing \n here
                 . "Plural-Forms: nplurals=1; plural=0;\n"
-                . "Last-Translator: nobody\n"
-            )
+                . "Last-Translator: nobody\n",
+                'nplurals=2; plural=n == 1 ? 0 : 1;',
+            ),
         );
     }
 
