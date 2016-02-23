@@ -1,7 +1,6 @@
 <?php
 /*
-    Copyright (c) 2003, 2009 Danilo Segan <danilo@kvota.net>.
-    Copyright (c) 2005 Nico Kaiser <nico@siriux.net>
+    Copyright (c) 2003, 2005, 2006, 2009 Danilo Segan <danilo@kvota.net>.
     Copyright (c) 2016 Michal Čihař <michal@cihar.com>
 
     This file is part of MoTranslator.
