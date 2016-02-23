@@ -59,7 +59,7 @@ class MoTranslator {
      */
     public function __construct($filename)
     {
-        if (! is_readable($filename)) {
+        if (!is_readable($filename)) {
             $this->error = 2; // file does not exist
             return;
         }
@@ -122,7 +122,7 @@ class MoTranslator {
         $expr = explode(';', $expr, 2);
         if (count($expr) == 2) {
             $expr = $expr[1];
-        } else{
+        } else {
             $expr = $expr[0];
         }
         $expr = preg_replace('@[^a-zA-Z0-9_:;\(\)\?\|\&=!<>+*/\%-]@', '', $expr);
@@ -142,15 +142,15 @@ class MoTranslator {
                     $res .= ') : (';
                     break;
                 case ';':
-                    $res .= str_repeat( ')', $p) . ';';
+                    $res .= str_repeat(')', $p) . ';';
                     $p = 0;
                     break;
                 default:
                     $res .= $ch;
             }
         }
-        $res = str_replace('n','$n',$res);
-        $res = str_replace('plural','$plural',$res);
+        $res = str_replace('n', '$n', $res);
+        $res = str_replace('plural', '$plural', $res);
         return $res;
     }
 
@@ -243,7 +243,7 @@ class MoTranslator {
     {
         // this should contains all strings separated by NULLs
         $key = implode(chr(0), array($msgid, $msgid_plural));
-        if (! array_key_exists($key, $this->cache_translations)) {
+        if (!array_key_exists($key, $this->cache_translations)) {
             return ($number != 1) ? $msgid_plural : $msgid;
         }
 
