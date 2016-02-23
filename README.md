@@ -12,6 +12,7 @@ Traslation API for PHP using Gettext MO files.
 * All strings are stored in memory for fast lookup
 * Fast loading of MO files
 * Low level API for reading MO files
+* Emulation of Gettext API
 
 ## Limitations
 
