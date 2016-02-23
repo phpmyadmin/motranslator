@@ -7,6 +7,14 @@ memory for effective strings lookup.
 [![codecov.io](https://codecov.io/github/phpmyadmin/motranslator/coverage.svg?branch=master)](https://codecov.io/github/phpmyadmin/motranslator?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/phpmyadmin/motranslator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/phpmyadmin/motranslator/?branch=master)
 
+## Installation
+
+Please use [Composer][1] to install:
+
+```
+composer require phpmyadmin/motranslator
+```
+
 ## Usage
 
 ```php
@@ -26,3 +34,9 @@ echo $translator->pgettext('Context', 'String');
 echo $translator->npgettext('Context', 'String', 'Plural string', $count);
 ```
 
+## History
+
+This library is based on [php-gettext](https://launchpad.net/php-gettext). It
+adds some performance improvements and ability to install using [Composer][1].
+
+[1]:https://getcomposer.org/
