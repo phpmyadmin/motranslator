@@ -108,5 +108,13 @@ class MoFileTest extends PHPUnit_Framework_TestCase
                 'Table'
             )
         );
+        $this->assertEquals(
+            '"%d" seconds',
+            $parser->ngettext(
+                '"%d" second',
+                '"%d" seconds',
+                10
+            )
+        );
     }
 }
