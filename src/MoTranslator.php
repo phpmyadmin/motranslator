@@ -116,7 +116,7 @@ class MoTranslator {
      *
      * @return string sanitized plural form expression
      */
-    private static function sanitize_plural_expression($expr)
+    public static function sanitize_plural_expression($expr)
     {
         // Get rid of disallowed characters.
         $expr = explode(';', $expr, 2)[1];
@@ -156,7 +156,7 @@ class MoTranslator {
      *
      * @return int Total number of plurals
      */
-    private static function extract_plural_count($expr)
+    public static function extract_plural_count($expr)
     {
         $parts = explode(';', $expr, 2);
         $nplurals = explode('=', trim($parts[0]), 2);
