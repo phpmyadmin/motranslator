@@ -85,7 +85,7 @@ class MoLoader {
      *
      * @return array list of locales to try for any POSIX-style locale specification.
      */
-    static public function list_locales($locale) {
+    public static function list_locales($locale) {
         $locale_names = array();
 
         $lang = NULL;
@@ -148,16 +148,17 @@ class MoLoader {
 
             $locale_names = $this->list_locales($this->locale);
 
+            $filename = '';
             foreach ($locale_names as $locale) {
-                $full_path = "$base/$locale/LC_MESSAGES/$domain.mo";
-                if (file_exists($full_path)) {
+                $filename = "$base/$locale/LC_MESSAGES/$domain.mo";
+                if (file_exists($filename)) {
                     break;
                 }
             }
 
             // We don't care about invalid path, we will get fallback
             // translator here
-            $this->domains[$domain] = new MoTranslator($full_path);
+            $this->domains[$domain] = new MoTranslator($filename);
         }
 
         return $this->domains[$domain];
