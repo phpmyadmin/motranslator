@@ -262,7 +262,7 @@ class MoTranslator {
     {
         $key = implode(chr(4), array($context, $msgid));
         $ret = $this->gettext($key);
-        if (strpos($ret, chr(4)) !== FALSE) {
+        if (strpos($ret, chr(4)) !== false) {
             return $msgid;
         } else {
             return $ret;
@@ -283,7 +283,7 @@ class MoTranslator {
     {
         $key = implode(chr(4), array($context, $singular));
         $ret = $this->ngettext($key, $plural, $number);
-        if (strpos($ret, chr(4)) !== FALSE) {
+        if (strpos($ret, chr(4)) !== false) {
             return $singular;
         } else {
             return $ret;
