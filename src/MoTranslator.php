@@ -91,12 +91,12 @@ class MoTranslator {
      * @param string string to be translated
      * @return string translated string (or original, if not found)
      */
-    public function translate($string)
+    public function gettext($msgid)
     {
-        if (array_key_exists($string, $this->cache_translations)) {
-            return $this->cache_translations[$string];
+        if (array_key_exists($msgid, $this->cache_translations)) {
+            return $this->cache_translations[$msgid];
         } else {
-            return $string;
+            return $msgid;
         }
     }
 
@@ -218,7 +218,7 @@ class MoTranslator {
     public function pgettext($context, $msgid)
     {
         $key = $context . chr(4) . $msgid;
-        $ret = $this->translate($key);
+        $ret = $this->gettext($key);
         if (strpos($ret, chr(4)) !== FALSE) {
             return $msgid;
         } else {

@@ -9,7 +9,7 @@ $start = microtime(true);
 for ($i = 0; $i < 200; $i++) {
     foreach ($files as $filename) {
         $parser = new MoTranslator\MoTranslator($filename);
-        $parser->translate('Column');
+        $parser->gettext('Column');
     }
 }
 

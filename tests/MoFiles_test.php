@@ -16,12 +16,12 @@ class MoFileTest extends PHPUnit_Framework_TestCase
         $parser = new MoTranslator\MoTranslator($filename);
         $this->assertEquals(
             'Pole',
-            $parser->translate('Column')
+            $parser->gettext('Column')
         );
         // Non existing string
         $this->assertEquals(
             'Column parser',
-            $parser->translate('Column parser')
+            $parser->gettext('Column parser')
         );
     }
 
