@@ -6,7 +6,7 @@
  * @package PhpMyAdmin-test
  */
 
-class MoFileTest extends PHPUnit_Framework_TestCase
+class MoFilesTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider provideMoFiles

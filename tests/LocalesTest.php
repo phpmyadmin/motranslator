@@ -7,7 +7,7 @@
  */
 require_once './src/gettext.inc';
 
-class LocaleTest extends PHPUnit_Framework_TestCase
+class LocalesTest extends PHPUnit_Framework_TestCase
 {
 
     public function test_setlocale_system()

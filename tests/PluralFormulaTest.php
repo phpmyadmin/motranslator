@@ -6,7 +6,7 @@
  * @package PhpMyAdmin-test
  */
 
-class ParsingTest extends PHPUnit_Framework_TestCase
+class PluralFormlulaTest extends PHPUnit_Framework_TestCase
 {
     /**
      * Test for extract_plurals_forms

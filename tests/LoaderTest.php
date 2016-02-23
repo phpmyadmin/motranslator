@@ -6,7 +6,7 @@
  * @package PhpMyAdmin-test
  */
 
-class LoadingTest extends PHPUnit_Framework_TestCase
+class LoaderTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider locale_list
