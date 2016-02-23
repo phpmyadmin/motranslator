@@ -6,6 +6,7 @@ four times faster than original php-gettext.
 
 There are two benchmark scripts in the code:
 
+* ``benchmark-context.php`` - benchmarks context usage
 * ``benchmark-plural.php`` - benchmarks plural evaluation
 * ``benchmark.php`` - benchmarks file parsing
 
