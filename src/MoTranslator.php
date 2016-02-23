@@ -40,7 +40,6 @@ class MoTranslator {
     public $error = 0;
 
     //private:
-    private $short_circuit = false;
     private $pluralheader = NULL;    // cache header field for plural forms
     private $cache_translations = array();  // original -> translation mapping
 
@@ -54,7 +53,6 @@ class MoTranslator {
 
     if (! is_readable($filename)) {
       $this->error = 2; // file does not exist
-      $this->short_circuit = true;
       return;
     }
 
@@ -66,7 +64,6 @@ class MoTranslator {
       $unpack = 'N';
     } else {
       $this->error = 1; // not MO file
-      $this->short_circuit = true;
       return;
     }
 
@@ -93,9 +90,6 @@ class MoTranslator {
    * @return string translated string (or original, if not found)
    */
   public function translate($string) {
-    if ($this->short_circuit)
-      return $string;
-
       // Caching enabled, get translated string from cache
       if (array_key_exists($string, $this->cache_translations))
         return $this->cache_translations[$string];
@@ -197,27 +191,21 @@ class MoTranslator {
    * @return translated plural form
    */
   public function ngettext($single, $plural, $number) {
-    if ($this->short_circuit) {
-      if ($number != 1)
-        return $plural;
-      else
-        return $single;
-    }
+    // this should contains all strings separated by NULLs
+    $key = $single . chr(0) . $plural;
+      if (! array_key_exists($key, $this->cache_translations)) {
+        return ($number != 1) ? $plural : $single;
+      }
+
 
     // find out the appropriate form
     $select = $this->select_string($number);
 
-    // this should contains all strings separated by NULLs
-    $key = $single . chr(0) . $plural;
 
 
-      if (! array_key_exists($key, $this->cache_translations)) {
-        return ($number != 1) ? $plural : $single;
-      } else {
         $result = $this->cache_translations[$key];
         $list = explode(chr(0), $result);
         return $list[$select];
-      }
   }
 
   public function pgettext($context, $msgid) {
