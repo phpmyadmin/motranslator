@@ -25,6 +25,15 @@ namespace MoTranslator;
 
 class MoLoader {
     /**
+     * Loader instance
+     *
+     * @access private
+     * @static
+     * @var MoLoader
+     */
+    private static $_instance;
+
+    /**
      * @var string Default gettext domain to use.
      */
     private $default_domain = '';
@@ -43,6 +52,19 @@ class MoLoader {
      * @var array Bound paths for domains
      */
     private $paths = array('' => './');
+
+    /**
+     * Returns the singleton Response object
+     *
+     * @return Response object
+     */
+    public static function getInstance()
+    {
+        if (empty(self::$_instance)) {
+            self::$_instance = new MoLoader();
+        }
+        return self::$_instance;
+    }
 
     /**
      * Figure out all possible locale names and start with the most

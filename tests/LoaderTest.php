@@ -100,4 +100,26 @@ class LoaderTest extends PHPUnit_Framework_TestCase
             ),
         );
     }
+
+    public function test_instance()
+    {
+        $loader = MoTranslator\MoLoader::getInstance();
+        $loader->setlocale('cs');
+        $loader->textdomain('phpmyadmin');
+        $loader->bindtextdomain('phpmyadmin', __DIR__ . '/data/locale/');
+
+        $translator = $loader->get_translator();
+        $this->assertEquals(
+            'Typ',
+            $translator->gettext('Type')
+        );
+
+        /* Ensure the object survives */
+        $loader = MoTranslator\MoLoader::getInstance();
+        $translator = $loader->get_translator();
+        $this->assertEquals(
+            'Typ',
+            $translator->gettext('Type')
+        );
+    }
 }
