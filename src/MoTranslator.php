@@ -237,7 +237,7 @@ class MoTranslator {
     public function ngettext($single, $plural, $number)
     {
         // this should contains all strings separated by NULLs
-        $key = $single . chr(0) . $plural;
+        $key = implode(chr(0), array($single, $plural));
         if (! array_key_exists($key, $this->cache_translations)) {
             return ($number != 1) ? $plural : $single;
         }
@@ -260,7 +260,7 @@ class MoTranslator {
      */
     public function pgettext($context, $msgid)
     {
-        $key = $context . chr(4) . $msgid;
+        $key = implode(chr(4), array($context, $msgid));
         $ret = $this->gettext($key);
         if (strpos($ret, chr(4)) !== FALSE) {
             return $msgid;
@@ -281,7 +281,7 @@ class MoTranslator {
      */
     public function npgettext($context, $singular, $plural, $number)
     {
-        $key = $context . chr(4) . $singular;
+        $key = implode(chr(4), array($context, $singular));
         $ret = $this->ngettext($key, $plural, $number);
         if (strpos($ret, chr(4)) !== FALSE) {
             return $singular;
