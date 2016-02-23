@@ -64,8 +64,10 @@ class LoaderTest extends PHPUnit_Framework_TestCase
             // There is support for @modifier in locale names as well.
             array(
                 'sr_RS.UTF-8@latin',
-                array('sr_RS.UTF-8@latin', 'sr_RS@latin', 'sr@latin',
-                    'sr_RS.UTF-8', 'sr_RS', 'sr'),
+                array(
+                    'sr_RS.UTF-8@latin', 'sr_RS@latin', 'sr@latin',
+                    'sr_RS.UTF-8', 'sr_RS', 'sr'
+                ),
             ),
 
             // We can pass in only language and modifier.

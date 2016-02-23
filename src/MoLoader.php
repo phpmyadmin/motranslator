@@ -108,10 +108,11 @@ class MoLoader {
                             array_push($locale_names, "${lang}_$country.$charset@$modifier");
                         }
                         array_push($locale_names, "${lang}_$country@$modifier");
-                    } elseif ($charset)
+                    } elseif ($charset) {
                         array_push($locale_names, "${lang}.$charset@$modifier");
-                        array_push($locale_names, "$lang@$modifier");
                     }
+                    array_push($locale_names, "$lang@$modifier");
+                }
                 if ($country) {
                     if ($charset) {
                         array_push($locale_names, "${lang}_$country.$charset");
