@@ -24,7 +24,12 @@
 use MoTranslator\MoLoader;
 
 /**
- * Sets a requested locale, if needed emulates it.
+ * Sets a requested locale
+ *
+ * @param int    $category Locale category, ignored
+ * @param string $locale   Locale name
+ *
+ * @return string Set or current locale
  */
 function _setlocale($category, $locale)
 {
@@ -33,6 +38,11 @@ function _setlocale($category, $locale)
 
 /**
  * Sets the path for a domain.
+ *
+ * @param string $domain Domain name
+ * @param string $path   Path where to find locales
+ *
+ * @return void
  */
 function _bindtextdomain($domain, $path)
 {
@@ -40,7 +50,10 @@ function _bindtextdomain($domain, $path)
 }
 
 /**
- * Specify the character encoding in which the messages from the DOMAIN message catalog will be returned.
+ * Dummy compatibility function, MoTranslator assumes
+ * everything is UTF-8
+ *
+ * @return void
  */
 function _bind_textdomain_codeset($domain, $codeset) {
     return;
@@ -48,6 +61,10 @@ function _bind_textdomain_codeset($domain, $codeset) {
 
 /**
  * Sets the default domain.
+ *
+ * @param string $domain Domain name
+ *
+ * @return void
  */
 function _textdomain($domain)
 {

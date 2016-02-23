@@ -34,22 +34,30 @@ class MoLoader {
     private static $_instance;
 
     /**
-     * @var string Default gettext domain to use.
+     * Default gettext domain to use.
+     *
+     * @var string
      */
     private $default_domain = '';
 
     /**
-     * @var string Configured locale.
+     * Configured locale.
+     *
+     * @var string
      */
     private $locale = '';
 
     /**
-     * @var array Loaded domains
+     * Loaded domains
+     *
+     * @var array
      */
     private $domains = array();
 
     /**
-     * @var array Bound paths for domains
+     * Bound paths for domains
+     *
+     * @var array
      */
     private $paths = array('' => './');
 
@@ -132,6 +140,13 @@ class MoLoader {
         return $locale_names;
     }
 
+    /**
+     * Returns MoTranslator object for domain or for default domain
+     *
+     * @param string $domain Translation domain
+     *
+     * @return MoTranslator
+     */
     public function get_translator($domain = '')
     {
         if (empty($domain)) {
@@ -164,16 +179,38 @@ class MoLoader {
         return $this->domains[$domain];
     }
 
+    /**
+     * Sets the path for a domain.
+     *
+     * @param string $domain Domain name
+     * @param string $path   Path where to find locales
+     *
+     * @return void
+     */
     public function bindtextdomain($domain, $path)
     {
         $this->paths[$domain] = $path;
     }
 
+    /**
+     * Sets the default domain.
+     *
+     * @param string $domain Domain name
+     *
+     * @return void
+     */
     public function textdomain($domain)
     {
         $this->default_domain = $domain;
     }
 
+    /**
+     * Sets a requested locale
+     *
+     * @param string $locale Locale name
+     *
+     * @return string Set or current locale
+     */
     public function setlocale($locale)
     {
         if (!empty($locale)) {
