@@ -16,6 +16,7 @@ class FunctionsTest extends PHPUnit_Framework_TestCase
         _setlocale(LC_MESSAGES, 'cs');
         _textdomain('phpmyadmin');
         _bindtextdomain('phpmyadmin', __DIR__ . '/data/locale/');
+        _bind_textdomain_codeset('phpmyadmin', 'UTF-8');
     }
 
     public function test_gettext()
