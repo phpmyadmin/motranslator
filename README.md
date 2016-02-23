@@ -15,7 +15,7 @@ Traslation API for PHP using Gettext MO files.
 
 ## Limitations
 
-* Not suitable for huge MO files which you don't want to store in memor
+* Not suitable for huge MO files which you don't want to store in memory
 * Input and output encoding has to match (preferably UTF-8)
 
 ## Installation
