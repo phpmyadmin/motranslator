@@ -15,7 +15,7 @@ Please use [Composer][1] to install:
 composer require phpmyadmin/motranslator
 ```
 
-## Usage
+## Low level API usage
 
 ```php
 // Load the mo file
