@@ -54,8 +54,7 @@ class MoTranslator {
    * @return Integer from the Stream
    */
   private function readint($pos) {
-        $input=unpack($this->BYTEORDER, $this->STREAM->read($pos, 4));
-        return array_shift($input);
+        return unpack($this->BYTEORDER, $this->STREAM->read($pos, 4))[1];
     }
 
   /**
