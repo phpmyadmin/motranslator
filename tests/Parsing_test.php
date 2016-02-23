@@ -5,7 +5,6 @@
  *
  * @package PhpMyAdmin-test
  */
-require_once './src/gettext.inc';
 
 class ParsingTest extends PHPUnit_Framework_TestCase
 {
