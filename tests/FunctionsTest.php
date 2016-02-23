@@ -57,4 +57,42 @@ class FunctionsTest extends PHPUnit_Framework_TestCase
             )
         );
     }
+
+    public function test_domain()
+    {
+        $this->assertEquals(
+            'Typ',
+            _dgettext('phpmyadmin', 'Type')
+        );
+
+        $this->assertEquals(
+            '%d sekundy',
+            _dngettext(
+                'phpmyadmin',
+                '%d second',
+                '%d seconds',
+                2
+            )
+        );
+
+        $this->assertEquals(
+            '%d seconds',
+            _dnpgettext(
+                'phpmyadmin',
+                'context',
+                '%d second',
+                '%d seconds',
+                2
+            )
+        );
+
+        $this->assertEquals(
+            'Tabulka',
+            _dpgettext(
+                'phpmyadmin',
+                'Display format',
+                'Table'
+            )
+        );
+    }
 }
