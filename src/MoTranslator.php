@@ -235,7 +235,7 @@ class MoTranslator {
      * @param string $context Context
      * @param string $msgid   String to be translated
      *
-     * @return translated plural form
+     * @return string translated plural form
      */
     public function pgettext($context, $msgid)
     {
@@ -256,7 +256,7 @@ class MoTranslator {
      * @param string $plural  Plural form
      * @param string $number  Number of objects
      *
-     * @return translated plural form
+     * @return string translated plural form
      */
     public function npgettext($context, $singular, $plural, $number)
     {
