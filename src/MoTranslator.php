@@ -173,7 +173,7 @@ class MoTranslator {
      *
      * @return string verbatim plural form header field
      */
-    public static function extract_plural_forms_header_from_po_header($header)
+    public static function extract_plurals_forms($header)
     {
         $headers = explode("\n", $header);
         $expr = "nplurals=2; plural=n == 1 ? 0 : 1;";
@@ -198,7 +198,7 @@ class MoTranslator {
         // cache header field for plural forms
         if (is_null($this->pluralheader)) {
             $header = $this->cache_translations[""];
-            $expr = $this->extract_plural_forms_header_from_po_header($header);
+            $expr = $this->extract_plurals_forms($header);
             $this->pluralheader = $this->sanitize_plural_expression($expr);
             $this->pluralcount = $this->extract_plural_count($expr);
         }

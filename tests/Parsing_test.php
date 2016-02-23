@@ -9,22 +9,22 @@
 class ParsingTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * Test for extract_plural_forms_header_from_po_header
+     * Test for extract_plurals_forms
      *
      * @return void
      */
-    public function test_extract_plural_forms_header_from_po_header()
+    public function test_extract_plurals_forms()
     {
         // It defaults to a "Western-style" plural header.
         $this->assertEquals(
             'nplurals=2; plural=n == 1 ? 0 : 1;',
-            MoTranslator\MoTranslator::extract_plural_forms_header_from_po_header("")
+            MoTranslator\MoTranslator::extract_plurals_forms("")
         );
 
         // Extracting it from the middle of the header works.
         $this->assertEquals(
             ' nplurals=1; plural=0;',
-            MoTranslator\MoTranslator::extract_plural_forms_header_from_po_header(
+            MoTranslator\MoTranslator::extract_plurals_forms(
                 "Content-type: text/html; charset=UTF-8\n"
                 . "Plural-Forms: nplurals=1; plural=0;\n"
                 . "Last-Translator: nobody\n"
@@ -34,7 +34,7 @@ class ParsingTest extends PHPUnit_Framework_TestCase
         // It's also case-insensitive.
         $this->assertEquals(
             ' nplurals=1; plural=0;',
-            MoTranslator\MoTranslator::extract_plural_forms_header_from_po_header(
+            MoTranslator\MoTranslator::extract_plurals_forms(
                 "PLURAL-forms: nplurals=1; plural=0;\n"
             )
         );
@@ -42,7 +42,7 @@ class ParsingTest extends PHPUnit_Framework_TestCase
         // It falls back to default if it's not on a separate line.
         $this->assertEquals(
             'nplurals=2; plural=n == 1 ? 0 : 1;',
-            MoTranslator\MoTranslator::extract_plural_forms_header_from_po_header(
+            MoTranslator\MoTranslator::extract_plurals_forms(
                 "Content-type: text/html; charset=UTF-8" // note the missing \n here
                 . "Plural-Forms: nplurals=1; plural=0;\n"
                 . "Last-Translator: nobody\n"
