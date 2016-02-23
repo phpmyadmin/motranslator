@@ -26,12 +26,39 @@ Please use [Composer][1] to install:
 composer require phpmyadmin/motranslator
 ```
 
+## Object API usage
+
+```php
+// Create loader object
+$loader = new MoTranslator\MoLoader();
+
+// Set locale
+$loader->setlocale('cs');
+
+// Set default text domain
+$loader->textdomain('domain');
+
+// Set path where to look for a domain
+$loader->bindtextdomain('domain', __DIR__ . '/data/locale/');
+
+// Get translator
+$translator = $loader->get_translator();
+
+// Now you can use Translator API (see below)
+```
+
 ## Low level API usage
 
 ```php
-// Load the mo file
+// Directly load the mo file
 $translator = new MoTranslator\MoTranslator('./path/to/file.mo');
 
+// Now you can use Translator API (see below)
+```
+
+## Translator API usage
+
+```php
 // Translate string
 echo $translator->gettext('String');
 
@@ -43,6 +70,23 @@ echo $translator->pgettext('Context', 'String');
 
 // Translate plural string with context
 echo $translator->npgettext('Context', 'String', 'Plural string', $count);
+```
+
+## Gettext compatibility usage
+
+```php
+// Load compatibility layer
+MoTranslator\MoLoader::load_functions();
+
+// Configure
+_setlocale(LC_MESSAGES, 'cs');
+_textdomain('phpmyadmin');
+_bindtextdomain('phpmyadmin', __DIR__ . '/data/locale/');
+_bind_textdomain_codeset('phpmyadmin', 'UTF-8');
+
+// Use functions
+echo _gettext('Type');
+echo __('Type');
 ```
 
 ## History
