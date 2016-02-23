@@ -31,8 +31,13 @@ class MoFileTest extends PHPUnit_Framework_TestCase
     public function testMoFilePlurals($filename)
     {
         $parser = new MoTranslator\MoTranslator($filename);
+        if (strpos($filename, 'plurals.mo') !== false) {
+            $expected = '%d sekundy';
+        } else {
+            $expected = '%d sekund';
+        }
         $this->assertEquals(
-            '%d sekund',
+            $expected,
             $parser->ngettext(
                 '%d second',
                 '%d seconds',
@@ -48,7 +53,15 @@ class MoFileTest extends PHPUnit_Framework_TestCase
             )
         );
         $this->assertEquals(
-            '%d sekund',
+            '%d sekundy',
+            $parser->ngettext(
+                '%d second',
+                '%d seconds',
+                2
+            )
+        );
+        $this->assertEquals(
+            $expected,
             $parser->ngettext(
                 '%d second',
                 '%d seconds',
@@ -56,7 +69,7 @@ class MoFileTest extends PHPUnit_Framework_TestCase
             )
         );
         $this->assertEquals(
-            '%d sekund',
+            $expected,
             $parser->ngettext(
                 '%d second',
                 '%d seconds',
