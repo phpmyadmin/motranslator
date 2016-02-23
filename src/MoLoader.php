@@ -67,6 +67,16 @@ class MoLoader {
     }
 
     /**
+     * Loads global localizaton functions.
+     *
+     * @return void
+     */
+    public static function load_functions()
+    {
+        require_once __DIR__ . '/functions.php';
+    }
+
+    /**
      * Figure out all possible locale names and start with the most
      * specific ones.  I.e. for sr_CS.UTF-8@latin, look through all of
      * sr_CS.UTF-8@latin, sr_CS@latin, sr@latin, sr_CS.UTF-8, sr_CS, sr.
@@ -164,10 +174,13 @@ class MoLoader {
 
     public function setlocale($locale)
     {
-        $this->locale = $locale;
-        // Set system locales as well
-        if (function_exists('setlocale')) {
-            setlocale(LC_MESSAGES, $locale);
+        if (!empty($locale)) {
+            $this->locale = $locale;
+            // Set system locales as well
+            if (function_exists('setlocale')) {
+                setlocale(LC_MESSAGES, $locale);
+            }
         }
+        return $this->locale;
     }
 }
