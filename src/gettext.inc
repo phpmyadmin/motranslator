@@ -249,7 +249,7 @@ function _textdomain($domain) {
  */
 function _gettext($msgid) {
     $l10n = _get_reader();
-    return $l10n->translate($msgid);
+    return $l10n->gettext($msgid);
 }
 
 /**
@@ -272,7 +272,7 @@ function _ngettext($singular, $plural, $number) {
  */
 function _dgettext($domain, $msgid) {
     $l10n = _get_reader($domain);
-    return $l10n->translate($msgid);
+    return $l10n->gettext($msgid);
 }
 
 /**
@@ -288,7 +288,7 @@ function _dngettext($domain, $singular, $plural, $number) {
  */
 function _dcgettext($domain, $msgid, $category) {
     $l10n = _get_reader($domain, $category);
-    return $l10n->translate($msgid);
+    return $l10n->gettext($msgid);
 }
 /**
  * Plural version of dcgettext.
