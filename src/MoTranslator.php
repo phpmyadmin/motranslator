@@ -88,7 +88,8 @@ class MoTranslator {
     /**
      * Translates a string
      *
-     * @param string string to be translated
+     * @param string $msgid String to be translated
+     *
      * @return string translated string (or original, if not found)
      */
     public function gettext($msgid)
@@ -102,6 +103,8 @@ class MoTranslator {
 
     /**
      * Sanitize plural form expression for use in PHP eval call.
+     *
+     * @param string $expr Expression to sanitize
      *
      * @return string sanitized plural form expression
      */
@@ -141,6 +144,8 @@ class MoTranslator {
     /**
      * Parse full PO header and extract only plural forms line.
      *
+     * @param string $header Gettext header
+     *
      * @return string verbatim plural form header field
      */
     public static function extract_plural_forms_header_from_po_header($header)
@@ -174,7 +179,8 @@ class MoTranslator {
     /**
      * Detects which plural form to take
      *
-     * @param n count
+     * @param int $n count of objects
+     *
      * @return int array index of the right plural form
      */
     private function select_string($n)
@@ -194,9 +200,10 @@ class MoTranslator {
     /**
      * Plural version of gettext
      *
-     * @param string single
-     * @param string plural
-     * @param string number
+     * @param string $single Single form
+     * @param string $plural Plural form
+     * @param string $number Number of objects
+     *
      * @return translated plural form
      */
     public function ngettext($single, $plural, $number)
@@ -215,6 +222,14 @@ class MoTranslator {
         return $list[$select];
     }
 
+    /**
+     * Translate with context
+     *
+     * @param string $context Context
+     * @param string $msgid   String to be translated
+     *
+     * @return translated plural form
+     */
     public function pgettext($context, $msgid)
     {
         $key = $context . chr(4) . $msgid;
@@ -226,6 +241,16 @@ class MoTranslator {
         }
     }
 
+    /**
+     * Plural version of pgettext
+     *
+     * @param string $context Context
+     * @param string $single  Single form
+     * @param string $plural  Plural form
+     * @param string $number  Number of objects
+     *
+     * @return translated plural form
+     */
     public function npgettext($context, $singular, $plural, $number)
     {
         $key = $context . chr(4) . $singular;
