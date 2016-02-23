@@ -25,3 +25,4 @@ The performance improvements based on individual changes in the code:
 | No offset      | 1.2436759471893 |
 | Less attribs   | 1.1722540855408 |
 | Remove shift   | 1.0970499515533 |
+| Magic order    | 1.0868430137634 |

@@ -60,10 +60,10 @@ class MoTranslator {
 
     $stream = new StringReader($filename);
     $magic = $stream->read(0, 4);
-    if (strcmp($magic, MO_MAGIC_BE) == 0) {
-      $unpack = 'N';
-    } elseif (strcmp($magic, MO_MAGIC_LE) == 0) {
+    if (strcmp($magic, MO_MAGIC_LE) == 0) {
       $unpack = 'V';
+    } elseif (strcmp($magic, MO_MAGIC_BE) == 0) {
+      $unpack = 'N';
     } else {
       $this->error = 1; // not MO file
       $this->short_circuit = true;
