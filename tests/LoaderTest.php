@@ -37,12 +37,67 @@ class LoaderTest extends PHPUnit_Framework_TestCase
         );
     }
 
-    public function test_get_translator()
+    private function get_loader($domain, $locale)
     {
         $loader = new MoTranslator\MoLoader();
+        $loader->setlocale($locale);
+        $loader->textdomain($domain);
+        $loader->bindtextdomain($domain, __DIR__ . '/data/locale/');
+        return $loader;
+    }
+
+    /**
+     * @dataProvider translator_data
+     */
+    public function test_get_translator($domain, $locale, $otherdomain, $expected)
+    {
+        $loader = $this->get_loader($domain, $locale);
+        $translator = $loader->get_translator($otherdomain);
         $this->assertEquals(
-            '',
-            $loader->get_translator()
+            $expected,
+            $translator->gettext('Type')
+        );
+    }
+
+    public function translator_data()
+    {
+        return array(
+            array(
+                'phpmyadmin',
+                'cs',
+                '',
+                'Typ',
+            ),
+            array(
+                'phpmyadmin',
+                'cs_CZ',
+                '',
+                'Typ',
+            ),
+            array(
+                'phpmyadmin',
+                'be_BY',
+                '',
+                'Тып',
+            ),
+            array(
+                'phpmyadmin',
+                'be@latin',
+                '',
+                'Typ',
+            ),
+            array(
+                'phpmyadmin',
+                'cs',
+                'other',
+                'Type',
+            ),
+            array(
+                'other',
+                'cs',
+                'phpmyadmin',
+                'Type',
+            ),
         );
     }
 }

@@ -30,6 +30,11 @@ class MoLoader {
     private $default_domain = '';
 
     /**
+     * @var string Configured locale.
+     */
+    private $locale = '';
+
+    /**
      * @var array Loaded domains
      */
     private $domains = array();
@@ -100,22 +105,43 @@ class MoLoader {
             $domain = $this->default_domain;
         }
 
-        if (isset($this->paths[$domain])) {
-            $base = $this->paths[$domain];
-        } else {
-            $base = './';
+        if (!isset($this->domains[$domain])) {
+
+            if (isset($this->paths[$domain])) {
+                $base = $this->paths[$domain];
+            } else {
+                $base = './';
+            }
+
+            $locale_names = $this->list_locales($this->locale);
+
+            foreach ($locale_names as $locale) {
+                $full_path = "$base/$locale/LC_MESSAGES/$domain.mo";
+                if (file_exists($full_path)) {
+                    break;
+                }
+            }
+
+            // We don't care about invalid path, we will get fallback
+            // translator here
+            $this->domains[$domain] = new MoTranslator($full_path);
         }
 
-        return '';
+        return $this->domains[$domain];
     }
 
-    public function bind_domain($domain, $path)
+    public function bindtextdomain($domain, $path)
     {
         $this->paths[$domain] = $path;
     }
 
-    public function set_default_domain($domain)
+    public function textdomain($domain)
     {
         $this->default_domain = $domain;
+    }
+
+    public function setlocale($locale)
+    {
+        $this->locale = $locale;
     }
 }
