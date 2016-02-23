@@ -125,7 +125,7 @@ function _get_reader($domain=null, $category=5) {
         foreach ($locale_names as $locale) {
           $full_path = $bound_path . $locale . "/" . $subpath;
           if (file_exists($full_path)) {
-            $input = new FileReader($full_path);
+            $input = $full_path;
             break;
           }
         }
