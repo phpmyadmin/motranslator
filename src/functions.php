@@ -24,7 +24,7 @@
 use MoTranslator\MoLoader;
 
 if (!defined('LC_MESSAGES')) {
-  define('LC_MESSAGES',	5);
+    define('LC_MESSAGES', 5);
 }
 
 /**

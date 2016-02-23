@@ -54,9 +54,9 @@ class MoLoader {
     private $paths = array('' => './');
 
     /**
-     * Returns the singleton Response object
+     * Returns the singleton MoLoader object
      *
-     * @return Response object
+     * @return MoLoader object
      */
     public static function getInstance()
     {
@@ -94,10 +94,10 @@ class MoLoader {
         $modifier = NULL;
 
         if ($locale) {
-            if (preg_match("/^(?P<lang>[a-z]{2,3})"              // language code
+            if (preg_match("/^(?P<lang>[a-z]{2,3})"      // language code
                 ."(?:_(?P<country>[A-Z]{2}))?"           // country code
                 ."(?:\.(?P<charset>[-A-Za-z0-9_]+))?"    // charset
-                ."(?:@(?P<modifier>[-A-Za-z0-9_]+))?$/",  // @ modifier
+                ."(?:@(?P<modifier>[-A-Za-z0-9_]+))?$/", // @ modifier
                 $locale, $matches)) {
 
                 extract($matches);
@@ -132,7 +132,7 @@ class MoLoader {
         return $locale_names;
     }
 
-    public function get_translator($domain='')
+    public function get_translator($domain = '')
     {
         if (empty($domain)) {
             $domain = $this->default_domain;
