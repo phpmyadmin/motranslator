@@ -233,18 +233,18 @@ class MoTranslator {
     /**
      * Plural version of gettext
      *
-     * @param string $single Single form
-     * @param string $plural Plural form
-     * @param string $number Number of objects
+     * @param string $msgid        Single form
+     * @param string $msgid_plural Plural form
+     * @param string $number       Number of objects
      *
      * @return string translated plural form
      */
-    public function ngettext($single, $plural, $number)
+    public function ngettext($msgid, $msgid_plural, $number)
     {
         // this should contains all strings separated by NULLs
-        $key = implode(chr(0), array($single, $plural));
+        $key = implode(chr(0), array($msgid, $msgid_plural));
         if (! array_key_exists($key, $this->cache_translations)) {
-            return ($number != 1) ? $plural : $single;
+            return ($number != 1) ? $msgid_plural : $msgid;
         }
 
         // find out the appropriate form
@@ -258,14 +258,14 @@ class MoTranslator {
     /**
      * Translate with context
      *
-     * @param string $context Context
-     * @param string $msgid   String to be translated
+     * @param string $msgctxt      Context
+     * @param string $msgid        String to be translated
      *
      * @return string translated plural form
      */
-    public function pgettext($context, $msgid)
+    public function pgettext($msgctxt, $msgid)
     {
-        $key = implode(chr(4), array($context, $msgid));
+        $key = implode(chr(4), array($msgctxt, $msgid));
         $ret = $this->gettext($key);
         if (strpos($ret, chr(4)) !== false) {
             return $msgid;
@@ -277,19 +277,19 @@ class MoTranslator {
     /**
      * Plural version of pgettext
      *
-     * @param string $context Context
-     * @param string $single  Single form
-     * @param string $plural  Plural form
-     * @param string $number  Number of objects
+     * @param string $msgctxt      Context
+     * @param string $msgid        Single form
+     * @param string $msgid_plural Plural form
+     * @param string $number       Number of objects
      *
      * @return string translated plural form
      */
-    public function npgettext($context, $singular, $plural, $number)
+    public function npgettext($msgctxt, $msgid, $msgid_plural, $number)
     {
-        $key = implode(chr(4), array($context, $singular));
-        $ret = $this->ngettext($key, $plural, $number);
+        $key = implode(chr(4), array($msgctxt, $msgid));
+        $ret = $this->ngettext($key, $msgid_plural, $number);
         if (strpos($ret, chr(4)) !== false) {
-            return $singular;
+            return $msgid;
         } else {
             return $ret;
         }
