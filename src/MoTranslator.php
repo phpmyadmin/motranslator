@@ -44,6 +44,10 @@ class MoTranslator {
      */
     private $pluralheader = NULL;
     /**
+     * @var int|null number of plurals
+     */
+    private $pluralcount = NULL;
+    /**
      * @var array Array with original -> translation mapping
      */
     private $cache_translations = array();
@@ -112,9 +116,10 @@ class MoTranslator {
      *
      * @return string sanitized plural form expression
      */
-    private function sanitize_plural_expression($expr)
+    private static function sanitize_plural_expression($expr)
     {
         // Get rid of disallowed characters.
+        $expr = explode(';', $expr, 2)[1];
         $expr = preg_replace('@[^a-zA-Z0-9_:;\(\)\?\|\&=!<>+*/\%-]@', '', $expr);
 
         // Add parenthesis for tertiary '?' operator.
@@ -139,10 +144,26 @@ class MoTranslator {
                     $res .= $ch;
             }
         }
-        $res = str_replace('nplurals','$total',$res);
         $res = str_replace('n','$n',$res);
         $res = str_replace('plural','$plural',$res);
         return $res;
+    }
+
+    /**
+     * Extracts number of plurals from plurals form expression
+     *
+     * @param string $expr Expression to process
+     *
+     * @return int Total number of plurals
+     */
+    private static function extract_plural_count($expr)
+    {
+        $parts = explode(';', $expr, 2);
+        $nplurals = explode('=', trim($parts[0]), 2);
+        if (strtolower(trim($nplurals[0])) != 'nplurals') {
+            return 1;
+        }
+        return intval($nplurals[1]);
     }
 
     /**
@@ -179,6 +200,7 @@ class MoTranslator {
             $header = $this->cache_translations[""];
             $expr = $this->extract_plural_forms_header_from_po_header($header);
             $this->pluralheader = $this->sanitize_plural_expression($expr);
+            $this->pluralcount = $this->extract_plural_count($expr);
         }
         return $this->pluralheader;
     }
@@ -194,12 +216,11 @@ class MoTranslator {
     {
         $string = $this->get_plural_forms();
 
-        $total = 0;
         $plural = 0;
 
         eval("$string");
-        if ($plural >= $total) {
-            $plural = $total - 1;
+        if ($plural >= $this->pluralcount) {
+            $plural = $this->pluralcount - 1;
         }
         return $plural;
     }
