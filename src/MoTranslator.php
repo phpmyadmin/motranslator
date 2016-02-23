@@ -35,14 +35,18 @@ define('MO_MAGIC_LE', "\xde\x12\x04\x95");
  */
 class MoTranslator {
     /**
-     * @var Public variable that holds error code (0 if no error)
+     * @var int Parse error code (0 if no error)
      */
     public $error = 0;
 
-    //private:
-    private $pluralheader = NULL;    // cache header field for plural forms
-    private $cache_translations = array();  // original -> translation mapping
-
+    /**
+     * @var string|null cache header field for plural forms
+     */
+    private $pluralheader = NULL;
+    /**
+     * @var array Array with original -> translation mapping
+     */
+    private $cache_translations = array();
 
     /**
      * Constructor
