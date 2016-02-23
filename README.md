@@ -2,9 +2,9 @@
 
 PHP Gettext mo files translator
 
-[![Build Status](https://travis-ci.org/nijel/motranslator.svg?branch=master)](https://travis-ci.org/nijel/motranslator)
-[![codecov.io](https://codecov.io/github/nijel/motranslator/coverage.svg?branch=master)](https://codecov.io/github/nijel/motranslator?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nijel/motranslator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/nijel/motranslator/?branch=master)
+[![Build Status](https://travis-ci.org/phpmyadmin/motranslator.svg?branch=master)](https://travis-ci.org/phpmyadmin/motranslator)
+[![codecov.io](https://codecov.io/github/phpmyadmin/motranslator/coverage.svg?branch=master)](https://codecov.io/github/phpmyadmin/motranslator?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/phpmyadmin/motranslator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/phpmyadmin/motranslator/?branch=master)
 
 ## Performance
 
