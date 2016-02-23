@@ -22,7 +22,10 @@ class LoaderTest extends PHPUnit_Framework_TestCase
     public function locale_list()
     {
         return array(
-            array('cs_CZ', array('cs_CZ', 'cs')),
+            array(
+                'cs_CZ',
+                array('cs_CZ', 'cs')
+            ),
             array(
                 'sr_CS.UTF-8@latin',
                 array(
@@ -33,6 +36,55 @@ class LoaderTest extends PHPUnit_Framework_TestCase
                     'sr_CS',
                     'sr',
                 )
+            ),
+            // For a locale containing country code, we prefer
+            // full locale name, but if that's not found, fall back
+            // to the language only locale name.
+            array(
+                'sr_RS',
+                array('sr_RS', 'sr'),
+            ),
+            // If language code is used, it's the only thing returned.
+            array(
+                'sr',
+                array('sr'),
+            ),
+            // There is support for language and charset only.
+            array(
+                'sr.UTF-8',
+                array('sr.UTF-8', 'sr'),
+            ),
+
+            // It can also split out character set from the full locale name.
+            array(
+                'sr_RS.UTF-8',
+                array('sr_RS.UTF-8', 'sr_RS', 'sr'),
+            ),
+
+            // There is support for @modifier in locale names as well.
+            array(
+                'sr_RS.UTF-8@latin',
+                array('sr_RS.UTF-8@latin', 'sr_RS@latin', 'sr@latin',
+                    'sr_RS.UTF-8', 'sr_RS', 'sr'),
+            ),
+
+            // We can pass in only language and modifier.
+            array(
+                'sr@latin',
+                array('sr@latin', 'sr'),
+            ),
+
+            // If locale name is not following the regular POSIX pattern,
+            // it's used verbatim.
+            array(
+                'something',
+                array('something'),
+            ),
+
+            // Passing in an empty string returns an empty array.
+            array(
+                '',
+                array(),
             ),
         );
     }
