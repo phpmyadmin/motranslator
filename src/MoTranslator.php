@@ -37,35 +37,10 @@ class MoTranslator {
     public $error = 0;
 
     //private:
-    private $BYTEORDER = 'V';        // 'V': low endian, 'N': big endian
-    private $STREAM = NULL;
     private $short_circuit = false;
     private $pluralheader = NULL;    // cache header field for plural forms
     private $cache_translations = NULL;  // original -> translation mapping
 
-
-  /* Methods */
-
-
-  /**
-   * Reads a 32bit Integer from the Stream
-   *
-   * @access private
-   * @return Integer from the Stream
-   */
-  private function readint($pos) {
-        return unpack($this->BYTEORDER, $this->STREAM->read($pos, 4))[1];
-    }
-
-  /**
-   * Reads an array of Integers from the Stream
-   *
-   * @param int count How many elements should be read
-   * @return Array of Integers
-   */
-  private function readintarray($pos, $count) {
-        return unpack($this->BYTEORDER.$count, $this->STREAM->read($pos, 4 * $count));
-  }
 
   /**
    * Constructor
@@ -83,31 +58,31 @@ class MoTranslator {
     $MAGIC1 = "\x95\x04\x12\xde";
     $MAGIC2 = "\xde\x12\x04\x95";
 
-    $this->STREAM = new StringReader($filename);
-    $magic = $this->STREAM->read(0, 4);
+    $stream = new StringReader($filename);
+    $magic = $stream->read(0, 4);
     if ($magic == $MAGIC1) {
-      $this->BYTEORDER = 'N';
+      $unpack = 'N';
     } elseif ($magic == $MAGIC2) {
-      $this->BYTEORDER = 'V';
+      $unpack = 'V';
     } else {
       $this->error = 1; // not MO file
       $this->short_circuit = true;
       return;
     }
 
-    $total = $this->readint(8);
-    $originals = $this->readint(12);
-    $translations = $this->readint(16);
+    $total = $stream->readint($unpack, 8);
+    $originals = $stream->readint($unpack, 12);
+    $translations = $stream->readint($unpack, 16);
 
     /* get original and translations tables */
-      $table_originals = $this->readintarray($originals, $total * 2);
-      $table_translations = $this->readintarray($translations, $total * 2);
+      $table_originals = $stream->readintarray($unpack, $originals, $total * 2);
+      $table_translations = $stream->readintarray($unpack, $translations, $total * 2);
 
       $this->cache_translations = array ();
       /* read all strings in the cache */
       for ($i = 0; $i < $total; $i++) {
-        $original = $this->STREAM->read($table_originals[$i * 2 + 2], $table_originals[$i * 2 + 1]);
-        $translation = $this->STREAM->read($table_translations[$i * 2 + 2], $table_translations[$i * 2 + 1]);
+        $original = $stream->read($table_originals[$i * 2 + 2], $table_originals[$i * 2 + 1]);
+        $translation = $stream->read($table_translations[$i * 2 + 2], $table_translations[$i * 2 + 1]);
         $this->cache_translations[$original] = $translation;
       }
   }

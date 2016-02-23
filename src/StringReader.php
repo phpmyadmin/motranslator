@@ -50,4 +50,24 @@ class StringReader {
     public function read($pos, $bytes) {
         return substr($this->_str, $pos, $bytes);
     }
+
+    /**
+     * Reads a 32bit Integer from the Stream
+     *
+     * @return Integer from the Stream
+     */
+    public function readint($unpack, $pos) {
+        return unpack($unpack, $this->read($pos, 4))[1];
+    }
+
+    /**
+    * Reads an array of Integers from the Stream
+    *
+    * @param int count How many elements should be read
+    * @return Array of Integers
+    */
+    public function readintarray($unpack, $pos, $count) {
+        return unpack($unpack.$count, $this->read($pos, 4 * $count));
+    }
+
 }
