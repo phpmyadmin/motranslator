@@ -211,7 +211,7 @@ class MoTranslator {
      * @param string $plural Plural form
      * @param string $number Number of objects
      *
-     * @return translated plural form
+     * @return string translated plural form
      */
     public function ngettext($single, $plural, $number)
     {
