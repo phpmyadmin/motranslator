@@ -132,6 +132,9 @@ class MoTranslator {
                     $res .= $ch;
             }
         }
+        $res = str_replace('nplurals','$total',$res);
+        $res = str_replace('n','$n',$res);
+        $res = str_replace('plural','$plural',$res);
         return $res;
     }
 
@@ -177,15 +180,14 @@ class MoTranslator {
     private function select_string($n)
     {
         $string = $this->get_plural_forms();
-        $string = str_replace('nplurals',"\$total",$string);
-        $string = str_replace("n",$n,$string);
-        $string = str_replace('plural',"\$plural",$string);
 
         $total = 0;
         $plural = 0;
 
         eval("$string");
-        if ($plural >= $total) $plural = $total - 1;
+        if ($plural >= $total) {
+            $plural = $total - 1;
+        }
         return $plural;
     }
 
