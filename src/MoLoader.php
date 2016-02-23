@@ -48,10 +48,7 @@ class MoLoader {
                 ."(?:@(?P<modifier>[-A-Za-z0-9_]+))?$/",  // @ modifier
                 $locale, $matches)) {
 
-                if (isset($matches["lang"])) $lang = $matches["lang"];
-                if (isset($matches["country"])) $country = $matches["country"];
-                if (isset($matches["charset"])) $charset = $matches["charset"];
-                if (isset($matches["modifier"])) $modifier = $matches["modifier"];
+                extract($matches);
 
                 if ($modifier) {
                     if ($country) {
