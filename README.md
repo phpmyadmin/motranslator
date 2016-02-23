@@ -91,7 +91,36 @@ echo __('Type');
 
 ## History
 
-This library is based on [php-gettext](https://launchpad.net/php-gettext). It
-adds some performance improvements and ability to install using [Composer][1].
+This library is based on [php-gettext][2]. It adds some performance
+improvements and ability to install using [Composer][1].
+
+## Motivation
+
+Motivation for this library includes:
+
+* The [php-gettext][2] library is not maintained anymore
+* It's not possible to install it using [Composer][1]
+* There was place for performance improvements in the library
+
+### Why not to use native gettext in PHP?
+
+We've tried that, but it's not a viable solution:
+
+* You can not use locales not known to system, what is something you can not
+  control from web application. This gets even more tricky with minimalist
+  Docker containers.
+* Changing the MO file usually leads to PHP segmentation fault. It (or rather
+  Gettext library) caches headers of MO file and if it's content is changed
+  (for example new version is uploaded to server) it tries to access new data
+  with old references. This is bug known for ages:
+  https://bugs.php.net/bug.php?id=45943
+
+### Why use Gettext and not JSON, YAML or whatever?
+
+We want translators to be able to use their favorite tools and we want us to be
+able to use wide range of tools available with Gettext as well. Using custom
+format usually adds another barrier for translators and we want to make it easy
+for them to contribute.
 
 [1]:https://getcomposer.org/
+[2]:https://launchpad.net/php-gettext
