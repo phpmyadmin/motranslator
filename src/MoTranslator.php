@@ -27,24 +27,21 @@ namespace MoTranslator;
  * Provides a simple gettext replacement that works independently from
  * the system's gettext abilities.
  * It can read MO files and use them for translating strings.
- * The files are passed to MoTranslator as a Stream (see streams.php)
  *
- * This version has the ability to cache all strings and translations to
- * speed up the string lookup.
- * While the cache is enabled by default, it can be switched off with the
- * second parameter in the constructor (e.g. whenusing very large MO files
- * that you don't want to keep in memory)
+ * It caches ll strings and translations to speed up the string lookup.
  */
 class MoTranslator {
-  //public:
-   var $error = 0; // public variable that holds error code (0 if no error)
+    /**
+     * @var Public variable that holds error code (0 if no error)
+     */
+    public $error = 0;
 
-   //private:
-  var $BYTEORDER = 'V';        // 'V': low endian, 'N': big endian
-  var $STREAM = NULL;
-  var $short_circuit = false;
-  var $pluralheader = NULL;    // cache header field for plural forms
-  var $cache_translations = NULL;  // original -> translation mapping
+    //private:
+    private $BYTEORDER = 'V';        // 'V': low endian, 'N': big endian
+    private $STREAM = NULL;
+    private $short_circuit = false;
+    private $pluralheader = NULL;    // cache header field for plural forms
+    private $cache_translations = NULL;  // original -> translation mapping
 
 
   /* Methods */
