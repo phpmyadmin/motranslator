@@ -108,7 +108,7 @@ We've tried that, but it's not a viable solution:
 
 * You can not use locales not known to system, what is something you can not
   control from web application. This gets even more tricky with minimalist
-  Docker containers.
+  virtualisation containers.
 * Changing the MO file usually leads to PHP segmentation fault. It (or rather
   Gettext library) caches headers of MO file and if it's content is changed
   (for example new version is uploaded to server) it tries to access new data
@@ -118,9 +118,11 @@ We've tried that, but it's not a viable solution:
 ### Why use Gettext and not JSON, YAML or whatever?
 
 We want translators to be able to use their favorite tools and we want us to be
-able to use wide range of tools available with Gettext as well. Using custom
-format usually adds another barrier for translators and we want to make it easy
-for them to contribute.
+able to use wide range of tools available with Gettext as well such as 
+[web based translation using Weblate][3]. Using custom format usually adds
+another barrier for translators and we want to make it easy for them to
+contribute.
 
 [1]:https://getcomposer.org/
 [2]:https://launchpad.net/php-gettext
+[3]:https://weblate.org/
