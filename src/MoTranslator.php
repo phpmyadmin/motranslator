@@ -42,7 +42,7 @@ class MoTranslator {
     //private:
     private $short_circuit = false;
     private $pluralheader = NULL;    // cache header field for plural forms
-    private $cache_translations = NULL;  // original -> translation mapping
+    private $cache_translations = array();  // original -> translation mapping
 
 
   /**
@@ -78,7 +78,6 @@ class MoTranslator {
       $table_originals = $stream->readintarray($unpack, $originals, $total * 2);
       $table_translations = $stream->readintarray($unpack, $translations, $total * 2);
 
-      $this->cache_translations = array ();
       /* read all strings in the cache */
       for ($i = 0; $i < $total; $i++) {
         $original = $stream->read($table_originals[$i * 2 + 2], $table_originals[$i * 2 + 1]);
