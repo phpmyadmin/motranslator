@@ -52,22 +52,28 @@ class StringReader {
     }
 
     /**
-     * Reads a 32bit Integer from the Stream
+     * Reads a 32bit integer from the stream
      *
-     * @return Integer from the Stream
+     * @param string $unpack Unpack string
+     * @param int    $pos    Position
+     *
+     * @return int Ingerer from the stream
      */
     public function readint($unpack, $pos) {
         return unpack($unpack, $this->read($pos, 4))[1];
     }
 
     /**
-    * Reads an array of Integers from the Stream
-    *
-    * @param int count How many elements should be read
-    * @return Array of Integers
-    */
+     * Reads an array of integers from the stream
+     *
+     * @param string $unpack Unpack string
+     * @param int    $pos    Position
+     * @param int    $count  How many elements should be read
+     *
+     * @return array Array of Integers
+     */
     public function readintarray($unpack, $pos, $count) {
-        return unpack($unpack.$count, $this->read($pos, 4 * $count));
+        return unpack($unpack . $count, $this->read($pos, 4 * $count));
     }
 
 }
