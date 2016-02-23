@@ -69,6 +69,12 @@ class LoaderTest extends PHPUnit_Framework_TestCase
                     'sr_RS.UTF-8', 'sr_RS', 'sr'
                 ),
             ),
+            array(
+                'sr.UTF-8@latin',
+                array(
+                    'sr.UTF-8@latin', 'sr@latin', 'sr.UTF-8', 'sr',
+                ),
+            ),
 
             // We can pass in only language and modifier.
             array(
