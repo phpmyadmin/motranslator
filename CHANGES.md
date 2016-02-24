@@ -1,3 +1,8 @@
+# Version 0.2
+
+* Released on 2016-02-24.
+* Marked PHP 5.4 and 5.5 as supported.
+
 # Version 0.1
 
 * Released on 2016-02-23.
