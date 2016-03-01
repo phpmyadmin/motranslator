@@ -1,3 +1,8 @@
+# Version 0.3
+
+* Released on 2016-03-01.
+* Added Loader::detectlocale method.
+
 # Version 0.2
 
 * Released on 2016-02-24.
