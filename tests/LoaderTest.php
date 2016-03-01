@@ -192,6 +192,18 @@ class LoaderTest extends PHPUnit_Framework_TestCase
             $loader->detectlocale()
         );
         unset($GLOBALS['lang']);
+    }
+
+    public function test_detect_env()
+    {
+        $loader = MoTranslator\Loader::getInstance();
+        putenv('MOTEST=baz');
+        putenv('MOTEST');
+        if (getenv('MOTEST') == 'baz') {
+            $this->markTestSkipped('Unsetting environment does not work');
+        }
+
+        unset($GLOBALS['lang']);
         putenv('LC_ALL=baz');
         $this->assertEquals(
             'baz',
