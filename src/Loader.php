@@ -222,4 +222,28 @@ class Loader {
         }
         return $this->locale;
     }
+
+    /**
+     * Detects currently configured locale
+     *
+     * It checks:
+     *
+     * - global lang variable
+     * - environment for LC_ALL, LC_MESSAGES and LANG
+     *
+     * @return string with locale name
+     */
+    public function detectlocale()
+    {
+        if (isset($GLOBALS['lang'])) {
+            return $GLOBALS['lang'];
+        } elseif (getenv('LC_ALL')) {
+            return getenv('LC_ALL');
+        } elseif (getenv('LC_MESSAGES')) {
+            return getenv('LC_MESSAGES');
+        } elseif (getenv('LANG')) {
+            return getenv('LANG');
+        }
+        return 'en';
+    }
 }

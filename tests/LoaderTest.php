@@ -182,4 +182,33 @@ class LoaderTest extends PHPUnit_Framework_TestCase
             $translator->gettext('Type')
         );
     }
+
+    public function test_detect()
+    {
+        $GLOBALS['lang'] = 'foo';
+        $loader = MoTranslator\Loader::getInstance();
+        $this->assertEquals(
+            'foo',
+            $loader->detectlocale()
+        );
+        unset($GLOBALS['lang']);
+        putenv('LC_ALL=baz');
+        $this->assertEquals(
+            'baz',
+            $loader->detectlocale()
+        );
+        putenv('LC_ALL');
+        putenv('LC_MESSAGES=bar');
+        $this->assertEquals(
+            'bar',
+            $loader->detectlocale()
+        );
+        putenv('LC_MESSAGES');
+        putenv('LANG=barr');
+        $this->assertEquals(
+            'barr',
+            $loader->detectlocale()
+        );
+        putenv('LANG');
+    }
 }
