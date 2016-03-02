@@ -1,3 +1,8 @@
+# Version 0.4
+
+* Released on 2016-03-02.
+* Fixed test failures with hhvm due to broken putenv.
+
 # Version 0.3
 
 * Released on 2016-03-01.
