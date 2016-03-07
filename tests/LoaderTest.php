@@ -228,5 +228,9 @@ class LoaderTest extends PHPUnit_Framework_TestCase
             $loader->detectlocale()
         );
         putenv('LANG');
+        $this->assertEquals(
+            'en',
+            $loader->detectlocale()
+        );
     }
 }
