@@ -1,6 +1,6 @@
 # motranslator
 
-Traslation API for PHP using Gettext MO files.
+Translation API for PHP using Gettext MO files.
 
 [![Build Status](https://travis-ci.org/phpmyadmin/motranslator.svg?branch=master)](https://travis-ci.org/phpmyadmin/motranslator)
 [![codecov.io](https://codecov.io/github/phpmyadmin/motranslator/coverage.svg?branch=master)](https://codecov.io/github/phpmyadmin/motranslator?branch=master)
