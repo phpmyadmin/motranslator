@@ -1,3 +1,9 @@
+# Version 1.0
+
+* Released on 2016-04-27
+* Documentation improvements
+* Testsuite improvements
+
 # Version 0.4
 
 * Released on 2016-03-02.
