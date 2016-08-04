@@ -12,14 +12,11 @@ matrix:
 
 sudo: false
 
-before_install:
-  - pip install --user codecov
-
 install:
   - composer install
 
 after_success:
-  - codecov
+  - bash <(curl -s https://codecov.io/bash)
 
 cache:
   directories:
