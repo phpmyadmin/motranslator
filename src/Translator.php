@@ -126,14 +126,24 @@ class Translator {
      */
     public static function sanitize_plural_expression($expr)
     {
-        // Get rid of disallowed characters.
+        // Parse equation
         $expr = explode(';', $expr, 2);
         if (count($expr) == 2) {
             $expr = $expr[1];
         } else {
             $expr = $expr[0];
         }
-        $expr = preg_replace('@[^a-zA-Z0-9_:;\(\)\?\|\&=!<>+*/\%-]@', '', $expr);
+        $expr = trim(strtolower($expr));
+        // Strip plural prefix
+        if (substr($expr, 0, 6) === 'plural') {
+            $expr = trim(substr($expr, 6));
+        }
+        // Strip equals
+        if (substr($expr, 0, 1) === '=') {
+            $expr = trim(substr($expr, 1));
+        }
+        // Get rid of disallowed characters.
+        $expr = preg_replace('@[^n0-9:\(\)\?=!<>+*/&|%-]@', '', $expr);
 
         // Add parenthesis for tertiary '?' operator.
         $expr .= ';';
@@ -159,8 +169,10 @@ class Translator {
             }
         }
         $res = str_replace('n', '$n', $res);
-        $res = str_replace('plural', '$plural', $res);
-        return $res;
+        if ($res === ';') {
+            return $res;
+        }
+        return '$plural = ' . $res;
     }
 
     /**
