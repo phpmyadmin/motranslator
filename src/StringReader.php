@@ -28,6 +28,7 @@ namespace MoTranslator;
 class StringReader {
 
     private $_str;
+    private $_len;
 
     /**
      * Constructor
@@ -36,6 +37,7 @@ class StringReader {
      */
     public function __construct($filename) {
         $this->_str = file_get_contents($filename);
+        $this->_len = strlen($this->_str);
     }
 
     /**
@@ -47,6 +49,9 @@ class StringReader {
      * @return string
      */
     public function read($pos, $bytes) {
+        if ($pos + $bytes >= $this->_len) {
+            throw new ReaderException('Not enough bytes!');
+        }
         return substr($this->_str, $pos, $bytes);
     }
 

@@ -74,30 +74,35 @@ class Translator {
 
         $stream = new StringReader($filename);
 
-        $magic = $stream->read(0, 4);
-        if (strcmp($magic, MO_MAGIC_LE) == 0) {
-            $unpack = 'V';
-        } elseif (strcmp($magic, MO_MAGIC_BE) == 0) {
-            $unpack = 'N';
-        } else {
-            $this->error = 1; // not MO file
+        try {
+            $magic = $stream->read(0, 4);
+            if (strcmp($magic, MO_MAGIC_LE) == 0) {
+                $unpack = 'V';
+            } elseif (strcmp($magic, MO_MAGIC_BE) == 0) {
+                $unpack = 'N';
+            } else {
+                $this->error = 1; // not MO file
+                return;
+            }
+
+            /* Parse header */
+            $total = $stream->readint($unpack, 8);
+            $originals = $stream->readint($unpack, 12);
+            $translations = $stream->readint($unpack, 16);
+
+            /* get original and translations tables */
+            $table_originals = $stream->readintarray($unpack, $originals, $total * 2);
+            $table_translations = $stream->readintarray($unpack, $translations, $total * 2);
+
+            /* read all strings to the cache */
+            for ($i = 0; $i < $total; $i++) {
+                $original = $stream->read($table_originals[$i * 2 + 2], $table_originals[$i * 2 + 1]);
+                $translation = $stream->read($table_translations[$i * 2 + 2], $table_translations[$i * 2 + 1]);
+                $this->cache_translations[$original] = $translation;
+            }
+        } catch (ReaderException $e) {
+            $this->error = 3; // error while reading
             return;
-        }
-
-        /* Parse header */
-        $total = $stream->readint($unpack, 8);
-        $originals = $stream->readint($unpack, 12);
-        $translations = $stream->readint($unpack, 16);
-
-        /* get original and translations tables */
-        $table_originals = $stream->readintarray($unpack, $originals, $total * 2);
-        $table_translations = $stream->readintarray($unpack, $translations, $total * 2);
-
-        /* read all strings to the cache */
-        for ($i = 0; $i < $total; $i++) {
-            $original = $stream->read($table_originals[$i * 2 + 2], $table_originals[$i * 2 + 1]);
-            $translation = $stream->read($table_translations[$i * 2 + 2], $table_translations[$i * 2 + 1]);
-            $this->cache_translations[$original] = $translation;
         }
     }
 

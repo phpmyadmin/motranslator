@@ -111,9 +111,22 @@ class MoFilesTest extends PHPUnit_Framework_TestCase
         return $result;
     }
 
-    public function testEmptyMoFile()
+    public function provideErrorMoFiles()
     {
-        $parser = new MoTranslator\Translator('./tests/data/mo.empty');
+        $result = array();
+        foreach (glob('./tests/data/error/*.mo') as $file) {
+            $result[] = array($file);
+        }
+        return $result;
+    }
+
+    /**
+     * @dataProvider provideErrorMoFiles
+     */
+    public function testEmptyMoFile($file)
+    {
+        $parser = new MoTranslator\Translator($file);
+        $this->assertEquals(3, $parser->error);
         $this->assertEquals(
             'Table',
             $parser->pgettext(
