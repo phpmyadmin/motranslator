@@ -1,3 +1,9 @@
+# Version 1.1
+
+* Released on 2016-08-29
+* Improved handling of corrupted mo files
+* Minor performance improvements
+
 # Version 1.0
 
 * Released on 2016-04-27
