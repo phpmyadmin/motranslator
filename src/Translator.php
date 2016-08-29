@@ -190,7 +190,7 @@ class Translator {
     public static function extract_plurals_forms($header)
     {
         $headers = explode("\n", $header);
-        $expr = "nplurals=2; plural=n == 1 ? 0 : 1;";
+        $expr = 'nplurals=2; plural=n == 1 ? 0 : 1;';
         foreach ($headers as $header) {
             if (stripos($header, 'Plural-Forms:') === 0) {
                 $expr = substr($header, 13);
@@ -211,7 +211,7 @@ class Translator {
 
         // cache header field for plural forms
         if (is_null($this->pluralheader)) {
-            $header = $this->cache_translations[""];
+            $header = $this->cache_translations[''];
             $expr = $this->extract_plurals_forms($header);
             $this->pluralheader = $this->sanitize_plural_expression($expr);
             $this->pluralcount = $this->extract_plural_count($expr);
@@ -232,7 +232,7 @@ class Translator {
 
         $plural = 0;
 
-        eval("$string");
+        eval($string);
         if ($plural >= $this->pluralcount) {
             $plural = $this->pluralcount - 1;
         }
