@@ -139,7 +139,8 @@ class Translator {
         $expr .= ';';
         $res = '';
         $p = 0;
-        for ($i = 0; $i < strlen($expr); $i++) {
+        $len = strlen($expr);
+        for ($i = 0; $i < $len; $i++) {
             $ch = $expr[$i];
             switch ($ch) {
                 case '?':
