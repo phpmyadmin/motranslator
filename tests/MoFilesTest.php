@@ -127,9 +127,9 @@ class MoFilesTest extends PHPUnit_Framework_TestCase
     {
         $parser = new MoTranslator\Translator($file);
         if (basename($file) === 'magic.mo') {
-            $this->assertEquals(1, $parser->error);
+            $this->assertEquals(MoTranslator\Translator::ERROR_BAD_MAGIC, $parser->error);
         } else {
-            $this->assertEquals(3, $parser->error);
+            $this->assertEquals(MoTranslator\Translator::ERROR_READING, $parser->error);
         }
         $this->assertEquals(
             'Table',

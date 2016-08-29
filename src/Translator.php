@@ -34,12 +34,30 @@ define('MO_MAGIC_LE', "\xde\x12\x04\x95");
  * It caches ll strings and translations to speed up the string lookup.
  */
 class Translator {
+
+    /**
+     * None error
+     */
+    const ERROR_NONE = 0;
+    /**
+     * File does not exist
+     */
+    const ERROR_DOES_NOT_EXIST = 1;
+    /**
+     * File has bad magic number
+     */
+    const ERROR_BAD_MAGIC = 2;
+    /**
+     * Error while reading file, probably too short
+     */
+    const ERROR_READING = 3;
+
     /**
      * Parse error code (0 if no error)
      *
      * @var int
      */
-    public $error = 0;
+    public $error = Translator::ERROR_NONE;
 
     /**
      * Cache header field for plural forms
@@ -68,7 +86,7 @@ class Translator {
     public function __construct($filename)
     {
         if (!is_readable($filename)) {
-            $this->error = 2; // file does not exist
+            $this->error = Translator::ERROR_DOES_NOT_EXIST;
             return;
         }
 
@@ -81,7 +99,7 @@ class Translator {
             } elseif (strcmp($magic, MO_MAGIC_BE) == 0) {
                 $unpack = 'N';
             } else {
-                $this->error = 1; // not MO file
+                $this->error = Translator::ERROR_BAD_MAGIC;
                 return;
             }
 
@@ -101,7 +119,7 @@ class Translator {
                 $this->cache_translations[$original] = $translation;
             }
         } catch (ReaderException $e) {
-            $this->error = 3; // error while reading
+            $this->error = Translator::ERROR_READING;
             return;
         }
     }
