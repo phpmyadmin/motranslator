@@ -23,9 +23,6 @@
 
 namespace MoTranslator;
 
-define('MO_MAGIC_BE', "\x95\x04\x12\xde");
-define('MO_MAGIC_LE', "\xde\x12\x04\x95");
-
 /**
  * Provides a simple gettext replacement that works independently from
  * the system's gettext abilities.
@@ -51,6 +48,15 @@ class Translator {
      * Error while reading file, probably too short
      */
     const ERROR_READING = 3;
+
+    /**
+     * Big endian mo file magic bytes.
+     */
+    const MAGIC_BE = "\x95\x04\x12\xde";
+    /**
+     * Little endian mo file magic bytes.
+     */
+    const MAGIC_LE = "\xde\x12\x04\x95";
 
     /**
      * Parse error code (0 if no error)
@@ -94,9 +100,9 @@ class Translator {
 
         try {
             $magic = $stream->read(0, 4);
-            if (strcmp($magic, MO_MAGIC_LE) == 0) {
+            if (strcmp($magic, Translator::MAGIC_LE) == 0) {
                 $unpack = 'V';
-            } elseif (strcmp($magic, MO_MAGIC_BE) == 0) {
+            } elseif (strcmp($magic, Translator::MAGIC_BE) == 0) {
                 $unpack = 'N';
             } else {
                 $this->error = Translator::ERROR_BAD_MAGIC;
