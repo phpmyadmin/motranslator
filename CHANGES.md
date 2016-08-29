@@ -3,6 +3,7 @@
 * Released on 2016-08-29
 * Improved handling of corrupted mo files
 * Minor performance improvements
+* Stricter validation of plural expression
 
 # Version 1.0
 
