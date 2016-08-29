@@ -172,7 +172,7 @@ class Translator {
             $expr = trim(substr($expr, 1));
         }
         // Get rid of disallowed characters.
-        $expr = preg_replace('@[^n0-9:\(\)\?=!<>+*/&|%-]@', '', $expr);
+        $expr = preg_replace('@[^n0-9:\(\)\?=!<>/%&|]@', '', $expr);
 
         // Add parenthesis for tertiary '?' operator.
         $expr .= ';';
