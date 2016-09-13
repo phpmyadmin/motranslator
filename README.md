@@ -27,6 +27,12 @@ Please use [Composer][1] to install:
 composer require phpmyadmin/motranslator
 ```
 
+## Documentation
+
+The API documentation is available at 
+<https://develdocs.phpmyadmin.net/motranslator/>.
+
+
 ## Object API usage
 
 ```php
