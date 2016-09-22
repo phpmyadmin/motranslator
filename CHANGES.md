@@ -1,3 +1,8 @@
+# Version 1.2
+
+* Released on 2016-09-22
+* Stricter validation of plural expression
+
 # Version 1.1
 
 * Released on 2016-08-29
