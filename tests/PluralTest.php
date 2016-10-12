@@ -16,9 +16,9 @@ class PluralTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      *
-     * @dataProvider data_provider_test_npgettext
+     * @dataProvider providerTestNpgettext
      */
-    public function test_npgettext($number, $expected)
+    public function testNpgettext($number, $expected)
     {
         $parser = new MoTranslator\Translator(null);
         $result = $parser->npgettext(
@@ -35,7 +35,7 @@ class PluralTest extends PHPUnit_Framework_TestCase
      *
      * @return array
      */
-    public static function data_provider_test_npgettext()
+    public static function providerTestNpgettext()
     {
         return array(
             array(1, "%d pig went to the market\n"),
