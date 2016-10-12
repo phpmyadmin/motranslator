@@ -102,16 +102,16 @@ function __($msgid)
 /**
  * Plural version of gettext
  *
- * @param string $msgid        Single form
- * @param string $msgid_plural Plural form
- * @param string $number       Number of objects
+ * @param string $msgid       Single form
+ * @param string $msgidPlural Plural form
+ * @param string $number      Number of objects
  *
  * @return string translated plural form
  */
-function _ngettext($msgid, $msgid_plural, $number)
+function _ngettext($msgid, $msgidPlural, $number)
 {
     return Loader::getInstance()->getTranslator()->ngettext(
-        $msgid, $msgid_plural, $number
+        $msgid, $msgidPlural, $number
     );
 }
 
@@ -133,17 +133,17 @@ function _pgettext($msgctxt, $msgid)
 /**
  * Plural version of pgettext
  *
- * @param string $msgctxt      Context
- * @param string $msgid        Single form
- * @param string $msgid_plural Plural form
- * @param string $number       Number of objects
+ * @param string $msgctxt     Context
+ * @param string $msgid       Single form
+ * @param string $msgidPlural Plural form
+ * @param string $number      Number of objects
  *
  * @return string translated plural form
  */
-function _npgettext($msgctxt, $msgid, $msgid_plural, $number)
+function _npgettext($msgctxt, $msgid, $msgidPlural, $number)
 {
     return Loader::getInstance()->getTranslator()->npgettext(
-        $msgctxt, $msgid, $msgid_plural, $number
+        $msgctxt, $msgid, $msgidPlural, $number
     );
 }
 
@@ -165,17 +165,17 @@ function _dgettext($domain, $msgid)
 /**
  * Plural version of gettext
  *
- * @param string $domain       Domain to use
- * @param string $msgid        Single form
- * @param string $msgid_plural Plural form
- * @param string $number       Number of objects
+ * @param string $domain      Domain to use
+ * @param string $msgid       Single form
+ * @param string $msgidPlural Plural form
+ * @param string $number      Number of objects
  *
  * @return string translated plural form
  */
-function _dngettext($domain, $msgid, $msgid_plural, $number)
+function _dngettext($domain, $msgid, $msgidPlural, $number)
 {
     return Loader::getInstance()->getTranslator($domain)->ngettext(
-        $msgid, $msgid_plural, $number
+        $msgid, $msgidPlural, $number
     );
 }
 
@@ -198,17 +198,17 @@ function _dpgettext($domain, $msgctxt, $msgid)
 /**
  * Plural version of pgettext
  *
- * @param string $domain       Domain to use
- * @param string $msgctxt      Context
- * @param string $msgid        Single form
- * @param string $msgid_plural Plural form
- * @param string $number       Number of objects
+ * @param string $domain      Domain to use
+ * @param string $msgctxt     Context
+ * @param string $msgid       Single form
+ * @param string $msgidPlural Plural form
+ * @param string $number      Number of objects
  *
  * @return string translated plural form
  */
-function _dnpgettext($domain, $msgctxt, $msgid, $msgid_plural, $number)
+function _dnpgettext($domain, $msgctxt, $msgid, $msgidPlural, $number)
 {
     return Loader::getInstance()->getTranslator($domain)->npgettext(
-        $msgctxt, $msgid, $msgid_plural, $number
+        $msgctxt, $msgid, $msgidPlural, $number
     );
 }
