@@ -68,7 +68,7 @@ class Translator {
     /**
      * Cache header field for plural forms
      *
-     * @var string|null
+     * @var \SimpleMath\Math|null
      */
     private $pluralequation = NULL;
     /**
