@@ -9,17 +9,17 @@
 class LoaderTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @dataProvider locale_list
+     * @dataProvider localeList
      */
-    public function test_list_locales($locale, $expected)
+    public function testListLocales($locale, $expected)
     {
         $this->assertEquals(
             $expected,
-            MoTranslator\Loader::list_locales($locale)
+            MoTranslator\Loader::listLocales($locale)
         );
     }
 
-    public function locale_list()
+    public function localeList()
     {
         return array(
             array(
@@ -97,7 +97,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
         );
     }
 
-    private function get_loader($domain, $locale)
+    private function getLoader($domain, $locale)
     {
         $loader = new MoTranslator\Loader();
         $loader->setlocale($locale);
@@ -107,19 +107,19 @@ class LoaderTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider translator_data
+     * @dataProvider translatorData
      */
-    public function test_get_translator($domain, $locale, $otherdomain, $expected)
+    public function testGetTranslator($domain, $locale, $otherdomain, $expected)
     {
-        $loader = $this->get_loader($domain, $locale);
-        $translator = $loader->get_translator($otherdomain);
+        $loader = $this->getLoader($domain, $locale);
+        $translator = $loader->getTranslator($otherdomain);
         $this->assertEquals(
             $expected,
             $translator->gettext('Type')
         );
     }
 
-    public function translator_data()
+    public function translatorData()
     {
         return array(
             array(
@@ -161,14 +161,14 @@ class LoaderTest extends PHPUnit_Framework_TestCase
         );
     }
 
-    public function test_instance()
+    public function testInstance()
     {
         $loader = MoTranslator\Loader::getInstance();
         $loader->setlocale('cs');
         $loader->textdomain('phpmyadmin');
         $loader->bindtextdomain('phpmyadmin', __DIR__ . '/data/locale/');
 
-        $translator = $loader->get_translator();
+        $translator = $loader->getTranslator();
         $this->assertEquals(
             'Typ',
             $translator->gettext('Type')
@@ -176,14 +176,14 @@ class LoaderTest extends PHPUnit_Framework_TestCase
 
         /* Ensure the object survives */
         $loader = MoTranslator\Loader::getInstance();
-        $translator = $loader->get_translator();
+        $translator = $loader->getTranslator();
         $this->assertEquals(
             'Typ',
             $translator->gettext('Type')
         );
     }
 
-    public function test_detect()
+    public function testDetect()
     {
         $GLOBALS['lang'] = 'foo';
         $loader = MoTranslator\Loader::getInstance();
@@ -194,7 +194,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
         unset($GLOBALS['lang']);
     }
 
-    public function test_detect_env()
+    public function testDetectEnv()
     {
         $loader = MoTranslator\Loader::getInstance();
         // putenv/getenv is broken on hhvm, do not fight with it

@@ -153,7 +153,7 @@ class Translator {
      *
      * @return string sanitized plural form expression
      */
-    public static function sanitize_plural_expression($expr)
+    public static function sanitizePluralExpression($expr)
     {
         // Parse equation
         $expr = explode(';', $expr, 2);
@@ -211,7 +211,7 @@ class Translator {
      *
      * @return int Total number of plurals
      */
-    public static function extract_plural_count($expr)
+    public static function extractPluralCount($expr)
     {
         $parts = explode(';', $expr, 2);
         $nplurals = explode('=', trim($parts[0]), 2);
@@ -228,7 +228,7 @@ class Translator {
      *
      * @return string verbatim plural form header field
      */
-    public static function extract_plurals_forms($header)
+    public static function extractPluralsForms($header)
     {
         $headers = explode("\n", $header);
         $expr = 'nplurals=2; plural=n == 1 ? 0 : 1;';
@@ -245,7 +245,7 @@ class Translator {
      *
      * @return string plural form header
      */
-    private function get_plural_forms()
+    private function getPluralForms()
     {
         // lets assume message number 0 is header
         // this is true, right?
@@ -253,9 +253,9 @@ class Translator {
         // cache header field for plural forms
         if (is_null($this->pluralheader)) {
             $header = $this->cache_translations[''];
-            $expr = $this->extract_plurals_forms($header);
-            $this->pluralheader = $this->sanitize_plural_expression($expr);
-            $this->pluralcount = $this->extract_plural_count($expr);
+            $expr = $this->extractPluralsForms($header);
+            $this->pluralheader = $this->sanitizePluralExpression($expr);
+            $this->pluralcount = $this->extractPluralCount($expr);
         }
         return $this->pluralheader;
     }
@@ -267,9 +267,9 @@ class Translator {
      *
      * @return int array index of the right plural form
      */
-    private function select_string($n)
+    private function selectString($n)
     {
-        $string = $this->get_plural_forms();
+        $string = $this->getPluralForms();
 
         $plural = 0;
 
@@ -298,7 +298,7 @@ class Translator {
         }
 
         // find out the appropriate form
-        $select = $this->select_string($number);
+        $select = $this->selectString($number);
 
         $result = $this->cache_translations[$key];
         $list = explode(chr(0), $result);

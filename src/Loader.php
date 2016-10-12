@@ -79,7 +79,7 @@ class Loader {
      *
      * @return void
      */
-    public static function load_functions()
+    public static function loadFunctions()
     {
         require_once __DIR__ . '/functions.php';
     }
@@ -93,7 +93,7 @@ class Loader {
      *
      * @return array list of locales to try for any POSIX-style locale specification.
      */
-    public static function list_locales($locale) {
+    public static function listLocales($locale) {
         $locale_names = array();
 
         $lang = NULL;
@@ -147,7 +147,7 @@ class Loader {
      *
      * @return Translator
      */
-    public function get_translator($domain = '')
+    public function getTranslator($domain = '')
     {
         if (empty($domain)) {
             $domain = $this->default_domain;
@@ -161,7 +161,7 @@ class Loader {
                 $base = './';
             }
 
-            $locale_names = $this->list_locales($this->locale);
+            $locale_names = $this->listLocales($this->locale);
 
             $filename = '';
             foreach ($locale_names as $locale) {

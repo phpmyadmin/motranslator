@@ -49,7 +49,7 @@ $loader->textdomain('domain');
 $loader->bindtextdomain('domain', __DIR__ . '/data/locale/');
 
 // Get translator
-$translator = $loader->get_translator();
+$translator = $loader->getTranslator();
 
 // Now you can use Translator API (see below)
 ```
@@ -83,7 +83,7 @@ echo $translator->npgettext('Context', 'String', 'Plural string', $count);
 
 ```php
 // Load compatibility layer
-MoTranslator\Loader::load_functions();
+MoTranslator\Loader::loadFunctions();
 
 // Configure
 _setlocale(LC_MESSAGES, 'cs');

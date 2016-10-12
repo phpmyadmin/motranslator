@@ -1,3 +1,8 @@
+# Version 2.0
+
+* Released on ?
+* Consistently use camelCase in API
+
 # Version 1.2
 
 * Released on 2016-09-22

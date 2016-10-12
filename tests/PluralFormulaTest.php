@@ -9,17 +9,17 @@
 class PluralFormlulaTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * Test for extract_plurals_forms
+     * Test for extractPluralsForms
      *
      * @return void
      *
      * @dataProvider plural_extraction_data
      */
-    public function test_extract_plurals_forms($header, $expected)
+    public function test_extractPluralsForms($header, $expected)
     {
         $this->assertEquals(
             $expected,
-            MoTranslator\Translator::extract_plurals_forms($header)
+            MoTranslator\Translator::extractPluralsForms($header)
         );
     }
 
@@ -54,17 +54,17 @@ class PluralFormlulaTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider plural_counts
+     * @dataProvider pluralCounts
      */
-    public function test_plural_counts($expr, $expected)
+    public function testPluralCounts($expr, $expected)
     {
         $this->assertEquals(
             $expected,
-            MoTranslator\Translator::extract_plural_count($expr)
+            MoTranslator\Translator::extractPluralCount($expr)
         );
     }
 
-    public function plural_counts()
+    public function pluralCounts()
     {
         return array(
             array('', 1),
@@ -76,17 +76,17 @@ class PluralFormlulaTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider plural_expressions
+     * @dataProvider pluralExpressions
      */
-    public function test_plural_expression($expr, $expected)
+    public function testPluralExpression($expr, $expected)
     {
         $this->assertEquals(
             $expected,
-            MoTranslator\Translator::sanitize_plural_expression($expr)
+            MoTranslator\Translator::sanitizePluralExpression($expr)
         );
     }
 
-    public function plural_expressions()
+    public function pluralExpressions()
     {
         return array(
             array('', ';'),

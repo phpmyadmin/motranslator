@@ -11,7 +11,7 @@ class FunctionsTest extends PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        MoTranslator\Loader::load_functions();
+        MoTranslator\Loader::loadFunctions();
 
         _setlocale(0, 'cs');
         _textdomain('phpmyadmin');
@@ -19,7 +19,7 @@ class FunctionsTest extends PHPUnit_Framework_TestCase
         _bind_textdomain_codeset('phpmyadmin', 'UTF-8');
     }
 
-    public function test_gettext()
+    public function testGettext()
     {
         $this->assertEquals(
             'Typ',
@@ -59,7 +59,7 @@ class FunctionsTest extends PHPUnit_Framework_TestCase
         );
     }
 
-    public function test_domain()
+    public function testDomain()
     {
         $this->assertEquals(
             'Typ',
