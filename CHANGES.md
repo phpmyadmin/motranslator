@@ -2,6 +2,8 @@
 
 * Released on ?
 * Consistently use camelCase in API
+* No more relies on using eval()
+* Depends on phpmyadmin/simple-math for calculations
 
 # Version 1.2
 
