@@ -180,8 +180,8 @@ class Translator {
         $parenthesis = 0;
         $len = strlen($expr);
         for ($i = 0; $i < $len; $i++) {
-            $ch = $expr[$i];
-            switch ($ch) {
+            $char = $expr[$i];
+            switch ($char) {
                 case '?':
                     $res .= ' ? (';
                     $parenthesis++;
@@ -194,7 +194,7 @@ class Translator {
                     $parenthesis = 0;
                     break;
                 default:
-                    $res .= $ch;
+                    $res .= $char;
             }
         }
         $res = str_replace('n', '$n', $res);
