@@ -177,21 +177,21 @@ class Translator {
         // Add parenthesis for tertiary '?' operator.
         $expr .= ';';
         $res = '';
-        $p = 0;
+        $parenthesis = 0;
         $len = strlen($expr);
         for ($i = 0; $i < $len; $i++) {
             $ch = $expr[$i];
             switch ($ch) {
                 case '?':
                     $res .= ' ? (';
-                    $p++;
+                    $parenthesis++;
                     break;
                 case ':':
                     $res .= ') : (';
                     break;
                 case ';':
-                    $res .= str_repeat(')', $p) . ';';
-                    $p = 0;
+                    $res .= str_repeat(')', $parenthesis) . ';';
+                    $parenthesis = 0;
                     break;
                 default:
                     $res .= $ch;
