@@ -16,7 +16,8 @@
         "source": "https://github.com/phpmyadmin/motranslator"
     },
     "require": {
-        "php": ">=5.4.0"
+        "php": ">=5.4.0",
+        "phpmyadmin/simple-math": "^0.1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~5.2 || ~4.8"

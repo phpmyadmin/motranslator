@@ -89,26 +89,26 @@ class PluralFormlulaTest extends PHPUnit_Framework_TestCase
     public function pluralExpressions()
     {
         return array(
-            array('', ';'),
+            array('', ''),
             array(
                 'nplurals=2; plural=n == 1 ? 0 : 1;',
-                '$plural = $n==1 ? (0) : (1);',
+                'n == 1 ? 0 : 1',
             ),
             array(
                 ' nplurals=1; plural=0;',
-                '$plural = 0;',
+                '0',
             ),
             array(
                 "nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n",
-                '$plural = $n==0 ? (0) : ($n==1 ? (1) : ($n==2 ? (2) : ($n%100>=3&&$n%100<=10 ? (3) : ($n%100>=11 ? (4) : (5)))));'
+                'n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5'
             ),
             array(
                 ' nplurals=1; plural=baz(n);',
-                '$plural = ($n);',
+                'baz(n)',
             ),
             array(
                 ' plural=n',
-                '$plural = $n;',
+                'n',
             ),
         );
     }

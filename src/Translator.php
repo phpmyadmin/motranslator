@@ -70,7 +70,7 @@ class Translator {
      *
      * @var string|null
      */
-    private $pluralheader = NULL;
+    private $pluralequation = NULL;
     /**
      *
      *
@@ -147,7 +147,7 @@ class Translator {
     }
 
     /**
-     * Sanitize plural form expression for use in PHP eval call.
+     * Sanitize plural form expression for use in SimpleMath
      *
      * @param string $expr Expression to sanitize
      *
@@ -156,8 +156,8 @@ class Translator {
     public static function sanitizePluralExpression($expr)
     {
         // Parse equation
-        $expr = explode(';', $expr, 2);
-        if (count($expr) == 2) {
+        $expr = explode(';', $expr);
+        if (count($expr) >= 2) {
             $expr = $expr[1];
         } else {
             $expr = $expr[0];
@@ -171,37 +171,7 @@ class Translator {
         if (substr($expr, 0, 1) === '=') {
             $expr = trim(substr($expr, 1));
         }
-        // Get rid of disallowed characters.
-        $expr = preg_replace('@[^n0-9:\(\)\?=!<>/%&|]@', '', $expr);
-
-        // Add parenthesis for tertiary '?' operator.
-        $expr .= ';';
-        $res = '';
-        $parenthesis = 0;
-        $len = strlen($expr);
-        for ($i = 0; $i < $len; $i++) {
-            $char = $expr[$i];
-            switch ($char) {
-                case '?':
-                    $res .= ' ? (';
-                    $parenthesis++;
-                    break;
-                case ':':
-                    $res .= ') : (';
-                    break;
-                case ';':
-                    $res .= str_repeat(')', $parenthesis) . ';';
-                    $parenthesis = 0;
-                    break;
-                default:
-                    $res .= $char;
-            }
-        }
-        $res = str_replace('n', '$n', $res);
-        if ($res === ';') {
-            return $res;
-        }
-        return '$plural = ' . $res;
+        return $expr;
     }
 
     /**
@@ -251,13 +221,14 @@ class Translator {
         // this is true, right?
 
         // cache header field for plural forms
-        if (is_null($this->pluralheader)) {
+        if (is_null($this->pluralequation)) {
             $header = $this->cache_translations[''];
             $expr = $this->extractPluralsForms($header);
-            $this->pluralheader = $this->sanitizePluralExpression($expr);
+            $this->pluralequation = new \SimpleMath\Math();
+            $this->pluralequation->parse($this->sanitizePluralExpression($expr));
             $this->pluralcount = $this->extractPluralCount($expr);
         }
-        return $this->pluralheader;
+        return $this->pluralequation;
     }
 
     /**
@@ -269,11 +240,11 @@ class Translator {
      */
     private function selectString($n)
     {
-        $string = $this->getPluralForms();
+        $equation = $this->getPluralForms();
+        $equation->registerVariable('n', $n);
 
-        $plural = 0;
+        $plural = $equation->run();
 
-        eval($string);
         if ($plural >= $this->pluralcount) {
             $plural = $this->pluralcount - 1;
         }
