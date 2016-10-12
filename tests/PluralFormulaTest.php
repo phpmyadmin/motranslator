@@ -13,9 +13,9 @@ class PluralFormlulaTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      *
-     * @dataProvider plural_extraction_data
+     * @dataProvider pluralExtractionData
      */
-    public function test_extractPluralsForms($header, $expected)
+    public function testExtractPluralsForms($header, $expected)
     {
         $this->assertEquals(
             $expected,
@@ -23,7 +23,7 @@ class PluralFormlulaTest extends PHPUnit_Framework_TestCase
         );
     }
 
-    public function plural_extraction_data()
+    public function pluralExtractionData()
     {
         return array(
             // It defaults to a "Western-style" plural header.
