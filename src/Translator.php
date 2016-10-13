@@ -23,6 +23,8 @@
 
 namespace MoTranslator;
 
+use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
+
 /**
  * Provides a simple gettext replacement that works independently from
  * the system's gettext abilities.
@@ -68,9 +70,15 @@ class Translator {
     /**
      * Cache header field for plural forms
      *
-     * @var \SimpleMath\Math|null
+     * @var string|null
      */
     private $pluralequation = NULL;
+    /**
+     *
+     *
+     * @var ExpressionLanguage|null Evaluator for plurals
+     */
+    private $pluralexpression = NULL;
     /**
      *
      *
@@ -147,7 +155,7 @@ class Translator {
     }
 
     /**
-     * Sanitize plural form expression for use in SimpleMath
+     * Sanitize plural form expression for use in ExpressionLanguage
      *
      * @param string $expr Expression to sanitize
      *
@@ -224,8 +232,7 @@ class Translator {
         if (is_null($this->pluralequation)) {
             $header = $this->cache_translations[''];
             $expr = $this->extractPluralsForms($header);
-            $this->pluralequation = new \SimpleMath\Math();
-            $this->pluralequation->parse($this->sanitizePluralExpression($expr));
+            $this->pluralequation = $this->sanitizePluralExpression($expr);
             $this->pluralcount = $this->extractPluralCount($expr);
         }
         return $this->pluralequation;
@@ -240,10 +247,12 @@ class Translator {
      */
     private function selectString($n)
     {
-        $equation = $this->getPluralForms();
-        $equation->registerVariable('n', $n);
-
-        $plural = $equation->run();
+        if (is_null($this->pluralexpression)) {
+            $this->pluralexpression = new ExpressionLanguage();
+        }
+        $plural = $this->pluralexpression->evaluate(
+            $this->getPluralForms(), array('n' => $n)
+        );
 
         if ($plural >= $this->pluralcount) {
             $plural = $this->pluralcount - 1;
