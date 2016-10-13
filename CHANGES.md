@@ -1,6 +1,6 @@
 # Version 2.0
 
-* Released on ?
+* Released on 2016-10-13
 * Consistently use camelCase in API
 * No more relies on using eval()
 * Depends on symfony/expression-language for calculations
