@@ -265,7 +265,7 @@ class Translator {
      *
      * @param string $msgid       Single form
      * @param string $msgidPlural Plural form
-     * @param string $number      Number of objects
+     * @param int    $number      Number of objects
      *
      * @return string translated plural form
      */
@@ -310,7 +310,7 @@ class Translator {
      * @param string $msgctxt     Context
      * @param string $msgid       Single form
      * @param string $msgidPlural Plural form
-     * @param string $number      Number of objects
+     * @param int    $number      Number of objects
      *
      * @return string translated plural form
      */
