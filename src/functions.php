@@ -104,7 +104,7 @@ function __($msgid)
  *
  * @param string $msgid       Single form
  * @param string $msgidPlural Plural form
- * @param string $number      Number of objects
+ * @param int    $number      Number of objects
  *
  * @return string translated plural form
  */
@@ -136,7 +136,7 @@ function _pgettext($msgctxt, $msgid)
  * @param string $msgctxt     Context
  * @param string $msgid       Single form
  * @param string $msgidPlural Plural form
- * @param string $number      Number of objects
+ * @param int    $number      Number of objects
  *
  * @return string translated plural form
  */
@@ -168,7 +168,7 @@ function _dgettext($domain, $msgid)
  * @param string $domain      Domain to use
  * @param string $msgid       Single form
  * @param string $msgidPlural Plural form
- * @param string $number      Number of objects
+ * @param int    $number      Number of objects
  *
  * @return string translated plural form
  */
@@ -202,7 +202,7 @@ function _dpgettext($domain, $msgctxt, $msgid)
  * @param string $msgctxt     Context
  * @param string $msgid       Single form
  * @param string $msgidPlural Plural form
- * @param string $number      Number of objects
+ * @param int    $number      Number of objects
  *
  * @return string translated plural form
  */
