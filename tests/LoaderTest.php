@@ -198,7 +198,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
     {
         $loader = MoTranslator\Loader::getInstance();
         // putenv/getenv is broken on hhvm, do not fight with it
-        foreach (array('LC_MESSAGES', 'LC_ALL') as $var) {
+        foreach (array('LC_MESSAGES', 'LC_ALL', 'LANG') as $var) {
             putenv($var . '=baz');
             if (getenv($var) !== 'baz') {
                 $this->markTestSkipped('Setting environment does not work');
