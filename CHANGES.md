@@ -1,3 +1,8 @@
+# Version 2.1
+
+* Released on N/A
+* Various code cleanups
+
 # Version 2.0
 
 * Released on 2016-10-13
