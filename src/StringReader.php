@@ -49,7 +49,7 @@ class StringReader {
      * @return string
      */
     public function read($pos, $bytes) {
-        if ($pos + $bytes >= $this->_len) {
+        if ($pos + $bytes > $this->_len) {
             throw new ReaderException('Not enough bytes!');
         }
         return substr($this->_str, $pos, $bytes);
