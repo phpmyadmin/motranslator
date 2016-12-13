@@ -173,11 +173,11 @@ class Translator {
         $expr = trim(strtolower($expr));
         // Strip plural prefix
         if (substr($expr, 0, 6) === 'plural') {
-            $expr = trim(substr($expr, 6));
+            $expr = ltrim(substr($expr, 6));
         }
         // Strip equals
         if (substr($expr, 0, 1) === '=') {
-            $expr = trim(substr($expr, 1));
+            $expr = ltrim(substr($expr, 1));
         }
         return $expr;
     }
@@ -193,7 +193,7 @@ class Translator {
     {
         $parts = explode(';', $expr, 2);
         $nplurals = explode('=', trim($parts[0]), 2);
-        if (strtolower(trim($nplurals[0])) != 'nplurals') {
+        if (strtolower(rtrim($nplurals[0])) != 'nplurals') {
             return 1;
         }
         return intval($nplurals[1]);
