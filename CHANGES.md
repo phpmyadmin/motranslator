@@ -1,7 +1,8 @@
 # Version 2.1
 
-* Released on N/A
+* Released on 2016-12-21
 * Various code cleanups
+* Added support for PHP 5.3.
 
 # Version 2.0
 
