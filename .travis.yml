@@ -15,7 +15,7 @@ matrix:
 sudo: false
 
 install:
-  - composer install
+  - composer -vvv install
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
