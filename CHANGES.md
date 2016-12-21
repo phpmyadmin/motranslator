@@ -1,3 +1,7 @@
+# Version 2.2
+
+* Released on N/A
+
 # Version 2.1
 
 * Released on 2016-12-21
