@@ -16,7 +16,7 @@
         "source": "https://github.com/phpmyadmin/motranslator"
     },
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=5.3.0",
         "symfony/expression-language": "^3.1 || ^2.8"
     },
     "require-dev": {
