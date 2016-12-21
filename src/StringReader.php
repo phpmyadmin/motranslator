@@ -64,7 +64,8 @@ class StringReader {
      * @return int Ingerer from the stream
      */
     public function readint($unpack, $pos) {
-        return unpack($unpack, $this->read($pos, 4))[1];
+        $data = unpack($unpack, $this->read($pos, 4))
+        return $data[1];
     }
 
     /**
