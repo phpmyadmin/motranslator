@@ -1,17 +1,14 @@
 <?php
+
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
  * Test for gettext parsing.
- *
- * @package PhpMyAdmin-test
  */
-
 class PluralFormlulaTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * Test for extractPluralsForms
+     * Test for extractPluralsForms.
      *
-     * @return void
      *
      * @dataProvider pluralExtractionData
      */
@@ -45,7 +42,7 @@ class PluralFormlulaTest extends PHPUnit_Framework_TestCase
             ),
             // It falls back to default if it's not on a separate line.
             array(
-                "Content-type: text/html; charset=UTF-8" // note the missing \n here
+                'Content-type: text/html; charset=UTF-8' // note the missing \n here
                 . "Plural-Forms: nplurals=1; plural=0;\n"
                 . "Last-Translator: nobody\n",
                 'nplurals=2; plural=n == 1 ? 0 : 1;',
@@ -100,7 +97,7 @@ class PluralFormlulaTest extends PHPUnit_Framework_TestCase
             ),
             array(
                 "nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n",
-                'n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5'
+                'n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5',
             ),
             array(
                 ' nplurals=1; plural=baz(n);',
@@ -112,5 +109,4 @@ class PluralFormlulaTest extends PHPUnit_Framework_TestCase
             ),
         );
     }
-
 }

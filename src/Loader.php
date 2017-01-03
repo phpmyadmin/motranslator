@@ -23,12 +23,13 @@
 
 namespace MoTranslator;
 
-class Loader {
+class Loader
+{
     /**
-     * Loader instance
+     * Loader instance.
      *
-     * @access private
      * @static
+     *
      * @var Loader
      */
     private static $_instance;
@@ -48,36 +49,35 @@ class Loader {
     private $locale = '';
 
     /**
-     * Loaded domains
+     * Loaded domains.
      *
      * @var array
      */
     private $domains = array();
 
     /**
-     * Bound paths for domains
+     * Bound paths for domains.
      *
      * @var array
      */
     private $paths = array('' => './');
 
     /**
-     * Returns the singleton Loader object
+     * Returns the singleton Loader object.
      *
      * @return Loader object
      */
     public static function getInstance()
     {
         if (empty(self::$_instance)) {
-            self::$_instance = new Loader();
+            self::$_instance = new self();
         }
+
         return self::$_instance;
     }
 
     /**
      * Loads global localizaton functions.
-     *
-     * @return void
      */
     public static function loadFunctions()
     {
@@ -91,23 +91,23 @@ class Loader {
      *
      * @param string $locale Locale code
      *
-     * @return array list of locales to try for any POSIX-style locale specification.
+     * @return array list of locales to try for any POSIX-style locale specification
      */
-    public static function listLocales($locale) {
+    public static function listLocales($locale)
+    {
         $locale_names = array();
 
-        $lang = NULL;
-        $country = NULL;
-        $charset = NULL;
-        $modifier = NULL;
+        $lang = null;
+        $country = null;
+        $charset = null;
+        $modifier = null;
 
         if ($locale) {
             if (preg_match('/^(?P<lang>[a-z]{2,3})'      // language code
-                .'(?:_(?P<country>[A-Z]{2}))?'           // country code
-                .'(?:\\.(?P<charset>[-A-Za-z0-9_]+))?'   // charset
-                .'(?:@(?P<modifier>[-A-Za-z0-9_]+))?$/', // @ modifier
+                . '(?:_(?P<country>[A-Z]{2}))?'           // country code
+                . '(?:\\.(?P<charset>[-A-Za-z0-9_]+))?'   // charset
+                . '(?:@(?P<modifier>[-A-Za-z0-9_]+))?$/', // @ modifier
                 $locale, $matches)) {
-
                 extract($matches);
 
                 if ($modifier) {
@@ -137,11 +137,12 @@ class Loader {
                 array_push($locale_names, $locale);
             }
         }
+
         return $locale_names;
     }
 
     /**
-     * Returns Translator object for domain or for default domain
+     * Returns Translator object for domain or for default domain.
      *
      * @param string $domain Translation domain
      *
@@ -154,7 +155,6 @@ class Loader {
         }
 
         if (!isset($this->domains[$domain])) {
-
             if (isset($this->paths[$domain])) {
                 $base = $this->paths[$domain];
             } else {
@@ -184,8 +184,6 @@ class Loader {
      *
      * @param string $domain Domain name
      * @param string $path   Path where to find locales
-     *
-     * @return void
      */
     public function bindtextdomain($domain, $path)
     {
@@ -196,8 +194,6 @@ class Loader {
      * Sets the default domain.
      *
      * @param string $domain Domain name
-     *
-     * @return void
      */
     public function textdomain($domain)
     {
@@ -205,7 +201,7 @@ class Loader {
     }
 
     /**
-     * Sets a requested locale
+     * Sets a requested locale.
      *
      * @param string $locale Locale name
      *
@@ -220,11 +216,12 @@ class Loader {
                 setlocale(0, $locale);
             }
         }
+
         return $this->locale;
     }
 
     /**
-     * Detects currently configured locale
+     * Detects currently configured locale.
      *
      * It checks:
      *
@@ -244,6 +241,7 @@ class Loader {
         } elseif (getenv('LANG')) {
             return getenv('LANG');
         }
+
         return 'en';
     }
 }

@@ -1,12 +1,9 @@
 <?php
+
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
  * Test for functions.
- *
- * @package PhpMyAdmin-test
  */
-
-
 class FunctionsTest extends PHPUnit_Framework_TestCase
 {
     public function setUp()

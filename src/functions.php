@@ -24,7 +24,7 @@
 use MoTranslator\Loader;
 
 /**
- * Sets a requested locale
+ * Sets a requested locale.
  *
  * @param int    $category Locale category, ignored
  * @param string $locale   Locale name
@@ -41,8 +41,6 @@ function _setlocale($category, $locale)
  *
  * @param string $domain Domain name
  * @param string $path   Path where to find locales
- *
- * @return void
  */
 function _bindtextdomain($domain, $path)
 {
@@ -51,11 +49,10 @@ function _bindtextdomain($domain, $path)
 
 /**
  * Dummy compatibility function, MoTranslator assumes
- * everything is UTF-8
- *
- * @return void
+ * everything is UTF-8.
  */
-function _bind_textdomain_codeset($domain, $codeset) {
+function _bind_textdomain_codeset($domain, $codeset)
+{
     return;
 }
 
@@ -63,8 +60,6 @@ function _bind_textdomain_codeset($domain, $codeset) {
  * Sets the default domain.
  *
  * @param string $domain Domain name
- *
- * @return void
  */
 function _textdomain($domain)
 {
@@ -72,7 +67,7 @@ function _textdomain($domain)
 }
 
 /**
- * Translates a string
+ * Translates a string.
  *
  * @param string $msgid String to be translated
  *
@@ -86,7 +81,7 @@ function _gettext($msgid)
 }
 
 /**
- * Translates a string, alias for _gettext
+ * Translates a string, alias for _gettext.
  *
  * @param string $msgid String to be translated
  *
@@ -100,7 +95,7 @@ function __($msgid)
 }
 
 /**
- * Plural version of gettext
+ * Plural version of gettext.
  *
  * @param string $msgid       Single form
  * @param string $msgidPlural Plural form
@@ -116,10 +111,10 @@ function _ngettext($msgid, $msgidPlural, $number)
 }
 
 /**
- * Translate with context
+ * Translate with context.
  *
- * @param string $msgctxt      Context
- * @param string $msgid        String to be translated
+ * @param string $msgctxt Context
+ * @param string $msgid   String to be translated
  *
  * @return string translated plural form
  */
@@ -131,7 +126,7 @@ function _pgettext($msgctxt, $msgid)
 }
 
 /**
- * Plural version of pgettext
+ * Plural version of pgettext.
  *
  * @param string $msgctxt     Context
  * @param string $msgid       Single form
@@ -148,7 +143,7 @@ function _npgettext($msgctxt, $msgid, $msgidPlural, $number)
 }
 
 /**
- * Translates a string
+ * Translates a string.
  *
  * @param string $domain Domain to use
  * @param string $msgid  String to be translated
@@ -163,7 +158,7 @@ function _dgettext($domain, $msgid)
 }
 
 /**
- * Plural version of gettext
+ * Plural version of gettext.
  *
  * @param string $domain      Domain to use
  * @param string $msgid       Single form
@@ -180,7 +175,7 @@ function _dngettext($domain, $msgid, $msgidPlural, $number)
 }
 
 /**
- * Translate with context
+ * Translate with context.
  *
  * @param string $domain  Domain to use
  * @param string $msgctxt Context
@@ -196,7 +191,7 @@ function _dpgettext($domain, $msgctxt, $msgid)
 }
 
 /**
- * Plural version of pgettext
+ * Plural version of pgettext.
  *
  * @param string $domain      Domain to use
  * @param string $msgctxt     Context

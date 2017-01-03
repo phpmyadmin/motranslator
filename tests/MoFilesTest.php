@@ -1,11 +1,9 @@
 <?php
+
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
  * Test for MO files parsing.
- *
- * @package PhpMyAdmin-test
  */
-
 class MoFilesTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -108,6 +106,7 @@ class MoFilesTest extends PHPUnit_Framework_TestCase
         foreach (glob('./tests/data/*.mo') as $file) {
             $result[] = array($file);
         }
+
         return $result;
     }
 
@@ -117,6 +116,7 @@ class MoFilesTest extends PHPUnit_Framework_TestCase
         foreach (glob('./tests/data/error/*.mo') as $file) {
             $result[] = array($file);
         }
+
         return $result;
     }
 

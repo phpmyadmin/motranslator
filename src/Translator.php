@@ -32,22 +32,22 @@ use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
  *
  * It caches ll strings and translations to speed up the string lookup.
  */
-class Translator {
-
+class Translator
+{
     /**
-     * None error
+     * None error.
      */
     const ERROR_NONE = 0;
     /**
-     * File does not exist
+     * File does not exist.
      */
     const ERROR_DOES_NOT_EXIST = 1;
     /**
-     * File has bad magic number
+     * File has bad magic number.
      */
     const ERROR_BAD_MAGIC = 2;
     /**
-     * Error while reading file, probably too short
+     * Error while reading file, probably too short.
      */
     const ERROR_READING = 3;
 
@@ -61,46 +61,43 @@ class Translator {
     const MAGIC_LE = "\xde\x12\x04\x95";
 
     /**
-     * Parse error code (0 if no error)
+     * Parse error code (0 if no error).
      *
      * @var int
      */
-    public $error = Translator::ERROR_NONE;
+    public $error = self::ERROR_NONE;
 
     /**
-     * Cache header field for plural forms
+     * Cache header field for plural forms.
      *
      * @var string|null
      */
-    private $pluralequation = NULL;
+    private $pluralequation = null;
     /**
-     *
-     *
      * @var ExpressionLanguage|null Evaluator for plurals
      */
-    private $pluralexpression = NULL;
+    private $pluralexpression = null;
     /**
-     *
-     *
      * @var int|null number of plurals
      */
-    private $pluralcount = NULL;
+    private $pluralcount = null;
     /**
-     * Array with original -> translation mapping
+     * Array with original -> translation mapping.
      *
      * @var array
      */
     private $cache_translations = array();
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param string $filename Name of mo file to load
      */
     public function __construct($filename)
     {
         if (!is_readable($filename)) {
-            $this->error = Translator::ERROR_DOES_NOT_EXIST;
+            $this->error = self::ERROR_DOES_NOT_EXIST;
+
             return;
         }
 
@@ -108,12 +105,13 @@ class Translator {
 
         try {
             $magic = $stream->read(0, 4);
-            if (strcmp($magic, Translator::MAGIC_LE) == 0) {
+            if (strcmp($magic, self::MAGIC_LE) == 0) {
                 $unpack = 'V';
-            } elseif (strcmp($magic, Translator::MAGIC_BE) == 0) {
+            } elseif (strcmp($magic, self::MAGIC_BE) == 0) {
                 $unpack = 'N';
             } else {
-                $this->error = Translator::ERROR_BAD_MAGIC;
+                $this->error = self::ERROR_BAD_MAGIC;
+
                 return;
             }
 
@@ -127,19 +125,20 @@ class Translator {
             $table_translations = $stream->readintarray($unpack, $translations, $total * 2);
 
             /* read all strings to the cache */
-            for ($i = 0; $i < $total; $i++) {
+            for ($i = 0; $i < $total; ++$i) {
                 $original = $stream->read($table_originals[$i * 2 + 2], $table_originals[$i * 2 + 1]);
                 $translation = $stream->read($table_translations[$i * 2 + 2], $table_translations[$i * 2 + 1]);
                 $this->cache_translations[$original] = $translation;
             }
         } catch (ReaderException $e) {
-            $this->error = Translator::ERROR_READING;
+            $this->error = self::ERROR_READING;
+
             return;
         }
     }
 
     /**
-     * Translates a string
+     * Translates a string.
      *
      * @param string $msgid String to be translated
      *
@@ -155,7 +154,7 @@ class Translator {
     }
 
     /**
-     * Sanitize plural form expression for use in ExpressionLanguage
+     * Sanitize plural form expression for use in ExpressionLanguage.
      *
      * @param string $expr Expression to sanitize
      *
@@ -179,11 +178,12 @@ class Translator {
         if (substr($expr, 0, 1) === '=') {
             $expr = ltrim(substr($expr, 1));
         }
+
         return $expr;
     }
 
     /**
-     * Extracts number of plurals from plurals form expression
+     * Extracts number of plurals from plurals form expression.
      *
      * @param string $expr Expression to process
      *
@@ -196,6 +196,7 @@ class Translator {
         if (strtolower(rtrim($nplurals[0])) != 'nplurals') {
             return 1;
         }
+
         return intval($nplurals[1]);
     }
 
@@ -215,11 +216,12 @@ class Translator {
                 $expr = substr($header, 13);
             }
         }
+
         return $expr;
     }
 
     /**
-     * Get possible plural forms from MO header
+     * Get possible plural forms from MO header.
      *
      * @return string plural form header
      */
@@ -235,11 +237,12 @@ class Translator {
             $this->pluralequation = $this->sanitizePluralExpression($expr);
             $this->pluralcount = $this->extractPluralCount($expr);
         }
+
         return $this->pluralequation;
     }
 
     /**
-     * Detects which plural form to take
+     * Detects which plural form to take.
      *
      * @param int $n count of objects
      *
@@ -257,11 +260,12 @@ class Translator {
         if ($plural >= $this->pluralcount) {
             $plural = $this->pluralcount - 1;
         }
+
         return $plural;
     }
 
     /**
-     * Plural version of gettext
+     * Plural version of gettext.
      *
      * @param string $msgid       Single form
      * @param string $msgidPlural Plural form
@@ -282,14 +286,15 @@ class Translator {
 
         $result = $this->cache_translations[$key];
         $list = explode(chr(0), $result);
+
         return $list[$select];
     }
 
     /**
-     * Translate with context
+     * Translate with context.
      *
-     * @param string $msgctxt      Context
-     * @param string $msgid        String to be translated
+     * @param string $msgctxt Context
+     * @param string $msgid   String to be translated
      *
      * @return string translated plural form
      */
@@ -305,7 +310,7 @@ class Translator {
     }
 
     /**
-     * Plural version of pgettext
+     * Plural version of pgettext.
      *
      * @param string $msgctxt     Context
      * @param string $msgid       Single form

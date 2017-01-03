@@ -1,20 +1,17 @@
 <?php
+
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
  * Test for gettext parsing.
- *
- * @package PhpMyAdmin-test
  */
-
 class PluralTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * Test for npgettext
+     * Test for npgettext.
      *
      * @param int    $number   Number
      * @param string $expected Expected output
      *
-     * @return void
      *
      * @dataProvider providerTestNpgettext
      */
@@ -22,7 +19,7 @@ class PluralTest extends PHPUnit_Framework_TestCase
     {
         $parser = new MoTranslator\Translator(null);
         $result = $parser->npgettext(
-            "context",
+            'context',
             "%d pig went to the market\n",
             "%d pigs went to the market\n",
             $number
@@ -31,7 +28,7 @@ class PluralTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Data provider for test_npgettext
+     * Data provider for test_npgettext.
      *
      * @return array
      */

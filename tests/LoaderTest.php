@@ -1,11 +1,9 @@
 <?php
+
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
  * Test for mo loading.
- *
- * @package PhpMyAdmin-test
  */
-
 class LoaderTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -24,7 +22,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
         return array(
             array(
                 'cs_CZ',
-                array('cs_CZ', 'cs')
+                array('cs_CZ', 'cs'),
             ),
             array(
                 'sr_CS.UTF-8@latin',
@@ -35,7 +33,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
                     'sr_CS.UTF-8',
                     'sr_CS',
                     'sr',
-                )
+                ),
             ),
             // For a locale containing country code, we prefer
             // full locale name, but if that's not found, fall back
@@ -66,7 +64,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
                 'sr_RS.UTF-8@latin',
                 array(
                     'sr_RS.UTF-8@latin', 'sr_RS@latin', 'sr@latin',
-                    'sr_RS.UTF-8', 'sr_RS', 'sr'
+                    'sr_RS.UTF-8', 'sr_RS', 'sr',
                 ),
             ),
             array(
@@ -103,6 +101,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
         $loader->setlocale($locale);
         $loader->textdomain($domain);
         $loader->bindtextdomain($domain, __DIR__ . '/data/locale/');
+
         return $loader;
     }
 
