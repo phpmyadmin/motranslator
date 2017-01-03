@@ -1,6 +1,7 @@
 # Version 2.2
 
 * Released on N/A
+* Coding style cleanup.
 
 # Version 2.1
 
