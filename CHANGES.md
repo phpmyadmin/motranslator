@@ -1,7 +1,8 @@
 # Version 2.2
 
-* Released on N/A
+* Released on 2017-01-07
 * Coding style cleanup.
+* Avoid installing tests using composer.
 
 # Version 2.1
 
