@@ -13,6 +13,7 @@ Translation API for PHP using Gettext MO files.
 * Fast loading of MO files
 * Low level API for reading MO files
 * Emulation of Gettext API
+* No use of `eval()` for plural equation
 
 ## Limitations
 
