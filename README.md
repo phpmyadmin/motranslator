@@ -108,6 +108,7 @@ Motivation for this library includes:
 
 * The [php-gettext][2] library is not maintained anymore
 * It doesn't work with recent PHP version (phpMyAdmin has patched version)
+* It relies on `eval()` function for plural equations what can have severe security implications, see CVE-2016-6175
 * It's not possible to install it using [Composer][1]
 * There was place for performance improvements in the library
 
