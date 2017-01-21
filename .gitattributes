@@ -2,7 +2,6 @@
 .gitignore export-ignore
 .travis.yml export-ignore
 codeconv.yml export-ignore
-phpunit.xml export-ignore
 .php_cs export-ignore
 benchmark-context.php export-ignore
 benchmark-plural.php export-ignore
