@@ -26,3 +26,6 @@ after_success:
 cache:
   directories:
     - $HOME/.composer/cache
+
+script: 
+  - ./vendor/bin/phpunit --configuration phpunit.xml
