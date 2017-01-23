@@ -8,7 +8,7 @@ $start = microtime(true);
 
 for ($i = 0; $i < 200; $i++) {
     foreach ($files as $filename) {
-        $parser = new MoTranslator\Translator($filename);
+        $parser = new PhpMyAdmin\MoTranslator\Translator($filename);
         $parser->gettext('Column');
     }
 }

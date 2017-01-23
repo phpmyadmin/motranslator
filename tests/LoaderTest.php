@@ -13,7 +13,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $expected,
-            MoTranslator\Loader::listLocales($locale)
+            PhpMyAdmin\MoTranslator\Loader::listLocales($locale)
         );
     }
 
@@ -97,7 +97,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
 
     private function getLoader($domain, $locale)
     {
-        $loader = new MoTranslator\Loader();
+        $loader = new PhpMyAdmin\MoTranslator\Loader();
         $loader->setlocale($locale);
         $loader->textdomain($domain);
         $loader->bindtextdomain($domain, __DIR__ . '/data/locale/');
@@ -162,7 +162,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
 
     public function testInstance()
     {
-        $loader = MoTranslator\Loader::getInstance();
+        $loader = PhpMyAdmin\MoTranslator\Loader::getInstance();
         $loader->setlocale('cs');
         $loader->textdomain('phpmyadmin');
         $loader->bindtextdomain('phpmyadmin', __DIR__ . '/data/locale/');
@@ -174,7 +174,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
         );
 
         /* Ensure the object survives */
-        $loader = MoTranslator\Loader::getInstance();
+        $loader = PhpMyAdmin\MoTranslator\Loader::getInstance();
         $translator = $loader->getTranslator();
         $this->assertEquals(
             'Typ',
@@ -185,7 +185,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
     public function testDetect()
     {
         $GLOBALS['lang'] = 'foo';
-        $loader = MoTranslator\Loader::getInstance();
+        $loader = PhpMyAdmin\MoTranslator\Loader::getInstance();
         $this->assertEquals(
             'foo',
             $loader->detectlocale()
@@ -195,7 +195,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
 
     public function testDetectEnv()
     {
-        $loader = MoTranslator\Loader::getInstance();
+        $loader = PhpMyAdmin\MoTranslator\Loader::getInstance();
         // putenv/getenv is broken on hhvm, do not fight with it
         foreach (array('LC_MESSAGES', 'LC_ALL', 'LANG') as $var) {
             putenv($var . '=baz');

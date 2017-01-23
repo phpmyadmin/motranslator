@@ -11,7 +11,7 @@ class MoFilesTest extends PHPUnit_Framework_TestCase
      */
     public function testMoFileTranslate($filename)
     {
-        $parser = new MoTranslator\Translator($filename);
+        $parser = new PhpMyAdmin\MoTranslator\Translator($filename);
         $this->assertEquals(
             'Pole',
             $parser->gettext('Column')
@@ -28,7 +28,7 @@ class MoFilesTest extends PHPUnit_Framework_TestCase
      */
     public function testMoFilePlurals($filename)
     {
-        $parser = new MoTranslator\Translator($filename);
+        $parser = new PhpMyAdmin\MoTranslator\Translator($filename);
         if (strpos($filename, 'plurals.mo') !== false) {
             $expected = '%d sekundy';
         } else {
@@ -90,7 +90,7 @@ class MoFilesTest extends PHPUnit_Framework_TestCase
      */
     public function testMoFileContext($filename)
     {
-        $parser = new MoTranslator\Translator($filename);
+        $parser = new PhpMyAdmin\MoTranslator\Translator($filename);
         $this->assertEquals(
             'Tabulka',
             $parser->pgettext(
@@ -125,11 +125,11 @@ class MoFilesTest extends PHPUnit_Framework_TestCase
      */
     public function testEmptyMoFile($file)
     {
-        $parser = new MoTranslator\Translator($file);
+        $parser = new PhpMyAdmin\MoTranslator\Translator($file);
         if (basename($file) === 'magic.mo') {
-            $this->assertEquals(MoTranslator\Translator::ERROR_BAD_MAGIC, $parser->error);
+            $this->assertEquals(PhpMyAdmin\MoTranslator\Translator::ERROR_BAD_MAGIC, $parser->error);
         } else {
-            $this->assertEquals(MoTranslator\Translator::ERROR_READING, $parser->error);
+            $this->assertEquals(PhpMyAdmin\MoTranslator\Translator::ERROR_READING, $parser->error);
         }
         $this->assertEquals(
             'Table',

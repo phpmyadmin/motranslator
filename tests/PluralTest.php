@@ -17,7 +17,7 @@ class PluralTest extends PHPUnit_Framework_TestCase
      */
     public function testNpgettext($number, $expected)
     {
-        $parser = new MoTranslator\Translator(null);
+        $parser = new PhpMyAdmin\MoTranslator\Translator(null);
         $result = $parser->npgettext(
             'context',
             "%d pig went to the market\n",

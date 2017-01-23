@@ -7,7 +7,7 @@ $files = array('./tests/data/big.mo', './tests/data/little.mo');
 $start = microtime(true);
 
 foreach ($files as $filename) {
-    $parser = new MoTranslator\Translator($filename);
+    $parser = new PhpMyAdmin\MoTranslator\Translator($filename);
     for ($i = 0; $i < 200000; $i++) {
         $parser->pgettext(
             'Display format',

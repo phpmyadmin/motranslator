@@ -38,7 +38,7 @@ The API documentation is available at
 
 ```php
 // Create loader object
-$loader = new MoTranslator\Loader();
+$loader = new PhpMyAdmin\MoTranslator\Loader();
 
 // Set locale
 $loader->setlocale('cs');
@@ -59,7 +59,7 @@ $translator = $loader->getTranslator();
 
 ```php
 // Directly load the mo file
-$translator = new MoTranslator\Translator('./path/to/file.mo');
+$translator = new PhpMyAdmin\MoTranslator\Translator('./path/to/file.mo');
 
 // Now you can use Translator API (see below)
 ```
@@ -84,7 +84,7 @@ echo $translator->npgettext('Context', 'String', 'Plural string', $count);
 
 ```php
 // Load compatibility layer
-MoTranslator\Loader::loadFunctions();
+PhpMyAdmin\MoTranslator\Loader::loadFunctions();
 
 // Configure
 _setlocale(LC_MESSAGES, 'cs');

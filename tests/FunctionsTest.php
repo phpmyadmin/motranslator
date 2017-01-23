@@ -8,7 +8,7 @@ class FunctionsTest extends PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        MoTranslator\Loader::loadFunctions();
+        PhpMyAdmin\MoTranslator\Loader::loadFunctions();
 
         _setlocale(0, 'cs');
         _textdomain('phpmyadmin');

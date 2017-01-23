@@ -21,7 +21,7 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-use MoTranslator\Loader;
+use PhpMyAdmin\MoTranslator\Loader;
 
 /**
  * Sets a requested locale.

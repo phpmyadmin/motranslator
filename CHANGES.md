@@ -1,6 +1,7 @@
-# Version 2.3
+# Version 3.0
   
-* Released on N/A
+* Released on 2017-01-23
+* All classes moved to the PhpMyAdmin namespace.
 
 # Version 2.2
 
