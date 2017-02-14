@@ -11,6 +11,8 @@ class PluralFormlulaTest extends PHPUnit_Framework_TestCase
      *
      *
      * @dataProvider pluralExtractionData
+     * @param mixed $header
+     * @param mixed $expected
      */
     public function testExtractPluralsForms($header, $expected)
     {
@@ -52,6 +54,8 @@ class PluralFormlulaTest extends PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider pluralCounts
+     * @param mixed $expr
+     * @param mixed $expected
      */
     public function testPluralCounts($expr, $expected)
     {
@@ -74,6 +78,8 @@ class PluralFormlulaTest extends PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider pluralExpressions
+     * @param mixed $expr
+     * @param mixed $expected
      */
     public function testPluralExpression($expr, $expected)
     {

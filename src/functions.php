@@ -50,10 +50,11 @@ function _bindtextdomain($domain, $path)
 /**
  * Dummy compatibility function, MoTranslator assumes
  * everything is UTF-8.
+ * @param mixed $domain
+ * @param mixed $codeset
  */
 function _bind_textdomain_codeset($domain, $codeset)
 {
-    return;
 }
 
 /**

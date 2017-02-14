@@ -8,6 +8,7 @@ class MoFilesTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider provideMoFiles
+     * @param mixed $filename
      */
     public function testMoFileTranslate($filename)
     {
@@ -25,6 +26,7 @@ class MoFilesTest extends PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider provideMoFiles
+     * @param mixed $filename
      */
     public function testMoFilePlurals($filename)
     {
@@ -87,6 +89,7 @@ class MoFilesTest extends PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider provideMoFiles
+     * @param mixed $filename
      */
     public function testMoFileContext($filename)
     {
@@ -122,6 +125,7 @@ class MoFilesTest extends PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider provideErrorMoFiles
+     * @param mixed $file
      */
     public function testEmptyMoFile($file)
     {

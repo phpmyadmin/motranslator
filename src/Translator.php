@@ -148,9 +148,9 @@ class Translator
     {
         if (array_key_exists($msgid, $this->cache_translations)) {
             return $this->cache_translations[$msgid];
-        } else {
-            return $msgid;
         }
+
+        return $msgid;
     }
 
     /**
@@ -304,9 +304,9 @@ class Translator
         $ret = $this->gettext($key);
         if (strpos($ret, chr(4)) !== false) {
             return $msgid;
-        } else {
-            return $ret;
         }
+
+        return $ret;
     }
 
     /**
@@ -325,8 +325,8 @@ class Translator
         $ret = $this->ngettext($key, $msgidPlural, $number);
         if (strpos($ret, chr(4)) !== false) {
             return $msgid;
-        } else {
-            return $ret;
         }
+
+        return $ret;
     }
 }

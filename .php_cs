@@ -12,9 +12,13 @@ return PhpCsFixer\Config::create()
         '@PSR2' => true,
         '@Symfony' => true,
         'array_syntax' => array('syntax' => 'long'),
-        'phpdoc_order' => true,
+        'concat_space' => array('spacing' => true),
+        'ordered_imports' => true,
         'no_trailing_whitespace' => true,
-        'concat_space' => array('spacing' => 'one'),
+        'no_useless_return' => true,
+        'no_useless_else' => true,
+        'phpdoc_add_missing_param_annotation' => true,
+        'phpdoc_order' => true,
     ))
     ->setFinder($finder)
 ;
