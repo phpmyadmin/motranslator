@@ -8,6 +8,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider localeList
+     *
      * @param mixed $locale
      * @param mixed $expected
      */
@@ -109,6 +110,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider translatorData
+     *
      * @param mixed $domain
      * @param mixed $locale
      * @param mixed $otherdomain
