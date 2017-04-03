@@ -6,7 +6,7 @@ $files = array('./tests/data/big.mo', './tests/data/little.mo');
 
 $start = microtime(true);
 
-for ($i = 0; $i < 200; $i++) {
+for ($i = 0; $i < 2000; $i++) {
     foreach ($files as $filename) {
         $parser = new PhpMyAdmin\MoTranslator\Translator($filename);
         $parser->gettext('Column');
