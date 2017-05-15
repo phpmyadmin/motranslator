@@ -1,6 +1,7 @@
 # Version 3.1
    
-* Released on N/A
+* Released on 2017-05-15
+* Documentation improvements.
 
 # Version 3.0
   
