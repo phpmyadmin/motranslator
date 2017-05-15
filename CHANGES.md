@@ -1,53 +1,53 @@
 # Version 3.2
-   
+
 * Released on N/A
 
 # Version 3.1
-   
-* Released on 2017-05-15
+
+* Released on 2017-05-15.
 * Documentation improvements.
 
 # Version 3.0
-  
-* Released on 2017-01-23
+
+* Released on 2017-01-23.
 * All classes moved to the PhpMyAdmin namespace.
 
 # Version 2.2
 
-* Released on 2017-01-07
+* Released on 2017-01-07.
 * Coding style cleanup.
 * Avoid installing tests using composer.
 
 # Version 2.1
 
-* Released on 2016-12-21
-* Various code cleanups
+* Released on 2016-12-21.
+* Various code cleanups.
 * Added support for PHP 5.3.
 
 # Version 2.0
 
-* Released on 2016-10-13
-* Consistently use camelCase in API
-* No more relies on using eval()
-* Depends on symfony/expression-language for calculations
+* Released on 2016-10-13.
+* Consistently use camelCase in API.
+* No more relies on using eval().
+* Depends on symfony/expression-language for calculations.
 
 # Version 1.2
 
-* Released on 2016-09-22
-* Stricter validation of plural expression
+* Released on 2016-09-22.
+* Stricter validation of plural expression.
 
 # Version 1.1
 
-* Released on 2016-08-29
-* Improved handling of corrupted mo files
-* Minor performance improvements
-* Stricter validation of plural expression
+* Released on 2016-08-29.
+* Improved handling of corrupted mo files.
+* Minor performance improvements.
+* Stricter validation of plural expression.
 
 # Version 1.0
 
-* Released on 2016-04-27
-* Documentation improvements
-* Testsuite improvements
+* Released on 2016-04-27.
+* Documentation improvements.
+* Testsuite improvements.
 
 # Version 0.4
 
