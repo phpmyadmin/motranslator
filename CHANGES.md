@@ -1,3 +1,7 @@
+# Version 3.2
+   
+* Released on N/A
+
 # Version 3.1
    
 * Released on 2017-05-15
