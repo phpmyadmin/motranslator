@@ -179,6 +179,9 @@ class Translator
             $expr = ltrim(substr($expr, 1));
         }
 
+        // Cleanup from unwanted chars
+        $expr = preg_replace('@[^n0-9:\(\)\?=!<>/%&| ]@', '', $expr);
+
         return $expr;
     }
 

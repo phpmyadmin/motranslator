@@ -110,7 +110,7 @@ class PluralFormlulaTest extends PHPUnit_Framework_TestCase
             ),
             array(
                 ' nplurals=1; plural=baz(n);',
-                'baz(n)',
+                '(n)',
             ),
             array(
                 ' plural=n',
