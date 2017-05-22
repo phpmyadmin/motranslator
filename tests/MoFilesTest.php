@@ -106,6 +106,24 @@ class MoFilesTest extends PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @dataProvider provideNotTranslatedFiles
+     *
+     * @param mixed $filename
+     */
+    public function testMoFileNotTranslated($filename)
+    {
+        $parser = new PhpMyAdmin\MoTranslator\Translator($filename);
+        $this->assertEquals(
+            '%d second',
+            $parser->ngettext(
+                '%d second',
+                '%d seconds',
+                1
+            )
+        );
+    }
+
     public function provideMoFiles()
     {
         $result = array();
@@ -120,6 +138,16 @@ class MoFilesTest extends PHPUnit_Framework_TestCase
     {
         $result = array();
         foreach (glob('./tests/data/error/*.mo') as $file) {
+            $result[] = array($file);
+        }
+
+        return $result;
+    }
+
+    public function provideNotTranslatedFiles()
+    {
+        $result = array();
+        foreach (glob('./tests/data/not-translated/*.mo') as $file) {
             $result[] = array($file);
         }
 

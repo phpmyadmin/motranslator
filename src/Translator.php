@@ -238,7 +238,11 @@ class Translator
 
         // cache header field for plural forms
         if (is_null($this->pluralequation)) {
-            $header = $this->cache_translations[''];
+            if (isset($this->cache_translations[''])) {
+                $header = $this->cache_translations[''];
+            } else {
+                $hader = '';
+            }
             $expr = $this->extractPluralsForms($header);
             $this->pluralequation = $this->sanitizePluralExpression($expr);
             $this->pluralcount = $this->extractPluralCount($expr);
