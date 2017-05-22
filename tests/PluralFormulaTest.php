@@ -75,6 +75,7 @@ class PluralFormlulaTest extends PHPUnit_Framework_TestCase
             array('nplurals=2; epxr', 2),
             array(' nplurals = 3 ; epxr', 3),
             array(' nplurals = 4 ; epxr ; ', 4),
+            array('nplurals', 1),
         );
     }
 
@@ -114,6 +115,10 @@ class PluralFormlulaTest extends PHPUnit_Framework_TestCase
             ),
             array(
                 ' plural=n',
+                'n',
+            ),
+            array(
+                'nplurals',
                 'n',
             ),
         );

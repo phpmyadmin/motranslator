@@ -199,6 +199,9 @@ class Translator
         if (strtolower(rtrim($nplurals[0])) != 'nplurals') {
             return 1;
         }
+        if (count($nplurals) == 1) {
+            return 1;
+        }
 
         return intval($nplurals[1]);
     }
