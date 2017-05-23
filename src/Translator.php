@@ -263,9 +263,13 @@ class Translator
         if (is_null($this->pluralexpression)) {
             $this->pluralexpression = new ExpressionLanguage();
         }
-        $plural = $this->pluralexpression->evaluate(
-            $this->getPluralForms(), array('n' => $n)
-        );
+        try {
+            $plural = $this->pluralexpression->evaluate(
+                $this->getPluralForms(), array('n' => $n)
+            );
+        } catch (\Exception $e) {
+            $plural = 0;
+        }
 
         if ($plural >= $this->pluralcount) {
             $plural = $this->pluralcount - 1;
