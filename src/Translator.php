@@ -301,6 +301,9 @@ class Translator
         $result = $this->cache_translations[$key];
         $list = explode(chr(0), $result);
 
+        if (! isset($list[$select])) {
+            return $list[0];
+        }
         return $list[$select];
     }
 

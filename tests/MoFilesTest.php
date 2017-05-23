@@ -34,11 +34,11 @@ class MoFilesTest extends PHPUnit_Framework_TestCase
     {
         $parser = new PhpMyAdmin\MoTranslator\Translator($filename);
         $expected_2 = '%d sekundy';
-        if (strpos($filename, 'plurals.mo') !== false || strpos($filename, 'noheader.mo') !== false) {
-            $expected_0 = '%d sekundy';
-        } elseif (strpos($filename, 'invalid-formula.mo') !== false) {
+        if (strpos($filename, 'invalid-formula.mo') !== false || strpos($filename, 'lessplurals.mo') !== false) {
             $expected_0 = '%d sekunda';
             $expected_2 = '%d sekunda';
+        } elseif (strpos($filename, 'plurals.mo') !== false || strpos($filename, 'noheader.mo') !== false) {
+            $expected_0 = '%d sekundy';
         } else {
             $expected_0 = '%d sekund';
         }
