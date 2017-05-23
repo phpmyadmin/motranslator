@@ -34,7 +34,7 @@ class MoFilesTest extends PHPUnit_Framework_TestCase
     {
         $parser = new PhpMyAdmin\MoTranslator\Translator($filename);
         $expected_2 = '%d sekundy';
-        if (strpos($filename, 'plurals.mo') !== false) {
+        if (strpos($filename, 'plurals.mo') !== false || strpos($filename, 'noheader.mo') !== false) {
             $expected_0 = '%d sekundy';
         } elseif (strpos($filename, 'invalid-formula.mo') !== false) {
             $expected_0 = '%d sekunda';
