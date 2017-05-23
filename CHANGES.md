@@ -1,6 +1,7 @@
 # Version 3.2
 
-* Released on N/A
+* Released on 2017-05-23.
+* Vairous fixes when handling corrupted mo files.
 
 # Version 3.1
 
