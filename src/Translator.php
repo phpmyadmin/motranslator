@@ -241,7 +241,7 @@ class Translator
             if (isset($this->cache_translations[''])) {
                 $header = $this->cache_translations[''];
             } else {
-                $hader = '';
+                $header = '';
             }
             $expr = $this->extractPluralsForms($header);
             $this->pluralequation = $this->sanitizePluralExpression($expr);
