@@ -188,6 +188,16 @@ class LoaderTest extends PHPUnit_Framework_TestCase
             'Typ',
             $translator->gettext('Type')
         );
+
+        /* Ensure the object can support different locale files for the same domain */
+        $loader = PhpMyAdmin\MoTranslator\Loader::getInstance();
+        $loader->setlocale('be_BY');
+        $loader->bindtextdomain('phpmyadmin', __DIR__ . '/data/locale/');
+        $translator = $loader->getTranslator();
+        $this->assertEquals(
+            'Тып',
+            $translator->gettext('Type')
+        );
     }
 
     public function testDetect()
