@@ -174,7 +174,9 @@ class Loader
                     break;
                 }
             }
-
+            if (!isset($this->domains[$domain])) {
+                $this->domains[$domain] = array();
+            }
             // We don't care about invalid path, we will get fallback
             // translator here
             $this->domains[$this->locale][$domain] = new Translator($filename);
