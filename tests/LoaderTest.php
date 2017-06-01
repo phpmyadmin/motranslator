@@ -108,6 +108,19 @@ class LoaderTest extends PHPUnit_Framework_TestCase
         return $loader;
     }
 
+    public function testLocaleChange()
+    {
+        $loader = new PhpMyAdmin\MoTranslator\Loader();
+        $loader->setlocale('cs');
+        $loader->textdomain('phpmyadmin');
+        $loader->bindtextdomain('phpmyadmin', __DIR__ . '/data/locale/');
+        $translator = $loader->getTranslator('phpmyadmin');
+        $this->assertEquals('Typ', $translator->gettext('Type'));
+        $loader->setlocale('be_BY');
+        $translator = $loader->getTranslator('phpmyadmin');
+        $this->assertEquals('Тып', $translator->gettext('Type'));
+    }
+
     /**
      * @dataProvider translatorData
      *
