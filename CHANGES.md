@@ -1,6 +1,7 @@
 # Version 3.3
 
-* Released on N/A
+* Released on 2017-06-01.
+* Add support for switching locales for Loader instance.
 
 # Version 3.2
 
