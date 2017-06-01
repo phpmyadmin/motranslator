@@ -154,7 +154,11 @@ class Loader
             $domain = $this->default_domain;
         }
 
-        if (!isset($this->domains[$domain])) {
+        if (!isset($this->domains[$this->locale])) {
+            $this->domains[$this->locale] = array();
+        }
+
+        if (!isset($this->domains[$this->locale][$domain])) {
             if (isset($this->paths[$domain])) {
                 $base = $this->paths[$domain];
             } else {
@@ -173,10 +177,10 @@ class Loader
 
             // We don't care about invalid path, we will get fallback
             // translator here
-            $this->domains[$domain] = new Translator($filename);
+            $this->domains[$this->locale][$domain] = new Translator($filename);
         }
 
-        return $this->domains[$domain];
+        return $this->domains[$this->locale][$domain];
     }
 
     /**
