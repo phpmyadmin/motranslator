@@ -187,4 +187,22 @@ class MoFilesTest extends PHPUnit_Framework_TestCase
             )
         );
     }
+
+    /**
+     * @dataProvider provideMoFiles
+     *
+     * @param mixed $file
+     */
+    public function testExists($file)
+    {
+        $parser = new PhpMyAdmin\MoTranslator\Translator($file);
+        $this->assertEquals(
+            true,
+            $parser->exists('Column')
+        );
+        $this->assertEquals(
+            false,
+            $parser->exists('Column parser')
+        );
+    }
 }
