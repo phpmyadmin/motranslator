@@ -154,6 +154,18 @@ class Translator
     }
 
     /**
+     * Check if a string is translated.
+     *
+     * @param string $msgid String to be checked
+     *
+     * @return bool
+     */
+    public function exists($msgid)
+    {
+        return array_key_exists($msgid, $this->cache_translations);
+    }
+
+    /**
      * Sanitize plural form expression for use in ExpressionLanguage.
      *
      * @param string $expr Expression to sanitize
