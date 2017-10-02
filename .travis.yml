@@ -20,11 +20,14 @@ matrix:
   include:
     - dist: precise
       php: "5.3"
+    - php: "7.1"
+      env: DOCS=yes
 
 sudo: false
 
 install:
   - composer install
+  - if [ "$DOCS" = "yes" ] ; then composer require "apigen/apigen dev-master#e381f7c" "roave/better-reflection dev-master#c87d856" ; fi
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
@@ -35,3 +38,4 @@ cache:
 
 script: 
   - ./vendor/bin/phpunit --configuration phpunit.xml
+  - if [ "$DOCS" = "yes" ] ; then ./vendor/bin/apigen generate --destination doc src/ ; fi

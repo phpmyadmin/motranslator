@@ -1,4 +1,5 @@
 composer.phar
 /vendor/
+/doc/
 composer.lock
 .php_cs.cache
