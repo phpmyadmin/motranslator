@@ -1,10 +1,13 @@
 <?php
 
 /* vim: set expandtab sw=4 ts=4 sts=4: */
+
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test for mo loading.
  */
-class LoaderTest extends PHPUnit_Framework_TestCase
+class LoaderTest extends TestCase
 {
     /**
      * @dataProvider localeList

@@ -1,10 +1,13 @@
 <?php
 
 /* vim: set expandtab sw=4 ts=4 sts=4: */
+
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test for gettext parsing.
  */
-class PluralTest extends PHPUnit_Framework_TestCase
+class PluralTest extends TestCase
 {
     /**
      * Test for npgettext.
