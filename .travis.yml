@@ -27,7 +27,7 @@ sudo: false
 
 install:
   - composer install
-  - if [ "$DOCS" = "yes" ] ; then composer require "apigen/apigen dev-master#e381f7c" "roave/better-reflection dev-master#c87d856" ; fi
+  - if [ "$DOCS" = "yes" ] ; then composer require "apigen/apigen:^4.1" ; fi
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
