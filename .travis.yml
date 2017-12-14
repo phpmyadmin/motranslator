@@ -38,4 +38,4 @@ cache:
 
 script: 
   - ./vendor/bin/phpunit --configuration phpunit.xml
-  - if [ "$DOCS" = "yes" ] ; then ./vendor/bin/apigen generate --destination doc src/ ; fi
+  - if [ "$DOCS" = "yes" ] ; then ./vendor/bin/apigen generate --destination doc --source src/ ; fi
