@@ -27,7 +27,6 @@ sudo: false
 
 install:
   - composer install
-  - if [ "$DOCS" = "yes" ] ; then composer require "apigen/apigen:^4.1" ; fi
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
