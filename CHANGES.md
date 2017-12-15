@@ -1,6 +1,6 @@
 # Version 3.4
 
-* Released on N/A
+* Released on 2017-12-15.
 * Added Translator::setTranslation method.
 
 # Version 3.3
