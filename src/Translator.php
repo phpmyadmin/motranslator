@@ -359,4 +359,17 @@ class Translator
 
         return $ret;
     }
+
+    /**
+     * Set translation in place
+     *
+     * @param string $msgid  String to be set
+     * @param string $msgstr Translation
+     *
+     * @return void
+     */
+    public function setTranslation($msgid, $msgstr)
+    {
+        $this->cache_translations[$msgid] = $msgstr;
+    }
 }

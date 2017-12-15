@@ -1,6 +1,7 @@
 # Version 3.4
 
 * Released on N/A
+* Added Translator::setTranslation method.
 
 # Version 3.3
 
