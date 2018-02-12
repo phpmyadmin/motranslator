@@ -1,6 +1,7 @@
-# Version 3.5
+# Version 4.0
 
 * Released on N/A
+* The library no longer changes system locales.
 
 # Version 3.4
 
