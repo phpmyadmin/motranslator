@@ -27,7 +27,7 @@ matrix:
 sudo: false
 
 install:
-  - if [ "$TRAVIS_PHP_VERSION" = "5.3" ] ; then sed -i '/apigen/D' composer.json ; fi
+  - if [ $(php -r "echo PHP_MAJOR_VERSION;") -lt 7 ] ; then sed -i '/sami/D' composer.json ; fi
   - composer install
 
 after_success:
@@ -39,4 +39,4 @@ cache:
 
 script: 
   - ./vendor/bin/phpunit --configuration phpunit.xml
-  - if [ "$DOCS" = "yes" ] ; then ./vendor/bin/apigen generate --destination doc --source src/ ; fi
+  - if [ "$DOCS" = "yes" ] ; then ./vendor/bin/sami.php --no-interaction update ./sami-config.php ; fi
