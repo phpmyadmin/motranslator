@@ -1,5 +1,5 @@
 {
-    "name": "phpmyadmin/motranslator",
+    "name": "marcing/motranslator",
     "description": "Translation API for PHP using Gettext MO files",
     "license": "GPL-2.0-or-later",
     "keywords": ["gettext", "mo", "translator", "i18n"],
