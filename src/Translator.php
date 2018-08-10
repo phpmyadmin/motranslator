@@ -373,23 +373,23 @@ class Translator
         $this->cache_translations[$msgid] = $msgstr;
     }
 
-	/**
-	 * @param array $cachedTranslations
-	 *
-	 * @return $this
-	 */
+    /**
+     * @param array $cachedTranslations
+     *
+     * @return $this
+     */
     public function setCachedTranslations($cachedTranslations)
-	{
-		$this->cache_translations = $cachedTranslations;
+    {
+        $this->cache_translations = $cachedTranslations;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * @return array
-	 */
+    /**
+     * @return array
+     */
     public function getCachedTranslations()
-	{
-		return $this->cache_translations;
-	}
+    {
+        return $this->cache_translations;
+    }
 }
