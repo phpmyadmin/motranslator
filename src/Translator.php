@@ -372,4 +372,24 @@ class Translator
     {
         $this->cache_translations[$msgid] = $msgstr;
     }
+
+	/**
+	 * @param array $cachedTranslations
+	 *
+	 * @return $this
+	 */
+    public function setCachedTranslations($cachedTranslations)
+	{
+		$this->cache_translations = $cachedTranslations;
+
+		return $this;
+	}
+
+	/**
+	 * @return array
+	 */
+    public function getCachedTranslations()
+	{
+		return $this->cache_translations;
+	}
 }
