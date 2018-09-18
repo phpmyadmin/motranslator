@@ -95,6 +95,10 @@ class Loader
      */
     public static function listLocales($locale)
     {
+        if (!$locale) {
+            return array();
+        }
+
         $locale_names = array();
 
         $lang = null;
@@ -102,40 +106,34 @@ class Loader
         $charset = null;
         $modifier = null;
 
-        if ($locale) {
-            if (preg_match('/^(?P<lang>[a-z]{2,3})'      // language code
-                . '(?:_(?P<country>[A-Z]{2}))?'           // country code
-                . '(?:\\.(?P<charset>[-A-Za-z0-9_]+))?'   // charset
-                . '(?:@(?P<modifier>[-A-Za-z0-9_]+))?$/', // @ modifier
-                $locale, $matches)) {
-                extract($matches);
+        if (\preg_match('/^(?P<lang>[a-z]{2,3})'      // language code
+            . '(?:_(?P<country>[A-Z]{2}))?'           // country code
+            . '(?:\\.(?P<charset>[-A-Za-z0-9_]+))?'   // charset
+            . '(?:@(?P<modifier>[-A-Za-z0-9_]+))?$/', // @ modifier
+            $locale, $matches)) {
+            \extract($matches);
 
-                if ($modifier) {
-                    if ($country) {
-                        if ($charset) {
-                            array_push($locale_names, "${lang}_$country.$charset@$modifier");
-                        }
-                        array_push($locale_names, "${lang}_$country@$modifier");
-                    } elseif ($charset) {
-                        array_push($locale_names, "${lang}.$charset@$modifier");
-                    }
-                    array_push($locale_names, "$lang@$modifier");
-                }
-                if ($country) {
+            if ($modifier) {
+                if ($country || $charset) {
                     if ($charset) {
-                        array_push($locale_names, "${lang}_$country.$charset");
+                        $locale_names[] = "${lang}_$country.$charset@$modifier";
                     }
-                    array_push($locale_names, "${lang}_$country");
-                } elseif ($charset) {
-                    array_push($locale_names, "${lang}.$charset");
+                    $locale_names[] = "${lang}_$country@$modifier";
                 }
-                array_push($locale_names, $lang);
+                $locale_names[] = "$lang@$modifier";
             }
+            if ($country || $charset) {
+                if ($charset) {
+                    $locale_names[] = "${lang}_$country.$charset";
+                }
+                $locale_names[] = "${lang}_$country";
+            }
+            $locale_names[] = $lang;
+        }
 
-            // If the locale name doesn't match POSIX style, just include it as-is.
-            if (!in_array($locale, $locale_names)) {
-                array_push($locale_names, $locale);
-            }
+        // If the locale name doesn't match POSIX style, just include it as-is.
+        if (!\in_array($locale, $locale_names)) {
+            $locale_names[] = $locale;
         }
 
         return $locale_names;
