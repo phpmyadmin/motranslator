@@ -2,9 +2,9 @@
 <ruleset
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     name="phpMyAdmin"
-    xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd"
+    xsi:noNamespaceSchemaLocation="./vendor/squizlabs/php_codesniffer/phpcs.xsd"
 >
-    <rule ref="vendor/phpmyadmin/coding-standard/PhpMyAdmin/ruleset.xml">
+    <rule ref="./vendor/phpmyadmin/coding-standard/PhpMyAdmin/ruleset.xml">
         <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
         <exclude name="PEAR.Commenting.FileComment"/>
         <exclude name="PEAR.Commenting.ClassComment"/>
@@ -20,7 +20,7 @@
 
     <arg value="sp"/>
     <arg name="colors"/>
-    <arg name="extensions" value="php"/>pattern> -->
+    <arg name="extensions" value="php"/>
 
     <file>src</file>
     <file>tests</file>
