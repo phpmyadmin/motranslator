@@ -3,25 +3,27 @@ language: php
 dist: trusty
 
 php:
-  - "5.4"
-  - "5.5"
-  - "5.6"
-  - "7.0"
-  - "7.1"
-  - "7.2"
-  - "hhvm-3.12"
-  - "hhvm-3.18"
-  - "hhvm-3.24"
-  - "nightly"
+  - 5.4
+  - 5.5
+  - 5.6
+  - 7.0
+  - 7.1
+  - 7.2
+  - 7.3
+  - hhvm-3.12
+  - hhvm-3.18
+  - hhvm-3.24
+  - hhvm-3.27
+  - nightly
 
 matrix:
   fast_finish: true
   allow_failures:
-    - php: "nightly"
+    - php: nightly
   include:
     - dist: precise
-      php: "5.3"
-    - php: "7.1"
+      php: 5.3
+    - php: 7.1
       env: DOCS=yes
 
 sudo: false
@@ -37,6 +39,6 @@ cache:
   directories:
     - $HOME/.composer/cache
 
-script: 
+script:
   - ./vendor/bin/phpunit --configuration phpunit.xml
   - if [ "$DOCS" = "yes" ] ; then ./vendor/bin/sami.php --no-interaction update ./sami-config.php ; fi
