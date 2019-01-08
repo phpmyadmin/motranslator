@@ -112,7 +112,9 @@ function __($msgid)
 function _ngettext($msgid, $msgidPlural, $number)
 {
     return Loader::getInstance()->getTranslator()->ngettext(
-        $msgid, $msgidPlural, $number
+        $msgid,
+        $msgidPlural,
+        $number
     );
 }
 
@@ -127,7 +129,8 @@ function _ngettext($msgid, $msgidPlural, $number)
 function _pgettext($msgctxt, $msgid)
 {
     return Loader::getInstance()->getTranslator()->pgettext(
-        $msgctxt, $msgid
+        $msgctxt,
+        $msgid
     );
 }
 
@@ -144,7 +147,10 @@ function _pgettext($msgctxt, $msgid)
 function _npgettext($msgctxt, $msgid, $msgidPlural, $number)
 {
     return Loader::getInstance()->getTranslator()->npgettext(
-        $msgctxt, $msgid, $msgidPlural, $number
+        $msgctxt,
+        $msgid,
+        $msgidPlural,
+        $number
     );
 }
 
@@ -176,7 +182,9 @@ function _dgettext($domain, $msgid)
 function _dngettext($domain, $msgid, $msgidPlural, $number)
 {
     return Loader::getInstance()->getTranslator($domain)->ngettext(
-        $msgid, $msgidPlural, $number
+        $msgid,
+        $msgidPlural,
+        $number
     );
 }
 
@@ -192,7 +200,8 @@ function _dngettext($domain, $msgid, $msgidPlural, $number)
 function _dpgettext($domain, $msgctxt, $msgid)
 {
     return Loader::getInstance()->getTranslator($domain)->pgettext(
-        $msgctxt, $msgid
+        $msgctxt,
+        $msgid
     );
 }
 
@@ -210,6 +219,9 @@ function _dpgettext($domain, $msgctxt, $msgid)
 function _dnpgettext($domain, $msgctxt, $msgid, $msgidPlural, $number)
 {
     return Loader::getInstance()->getTranslator($domain)->npgettext(
-        $msgctxt, $msgid, $msgidPlural, $number
+        $msgctxt,
+        $msgid,
+        $msgidPlural,
+        $number
     );
 }

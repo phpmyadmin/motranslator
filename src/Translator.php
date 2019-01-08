@@ -86,7 +86,7 @@ class Translator
      *
      * @var array
      */
-    private $cache_translations = array();
+    private $cache_translations = [];
 
     /**
      * Constructor.
@@ -95,7 +95,7 @@ class Translator
      */
     public function __construct($filename)
     {
-        if (!is_readable($filename)) {
+        if (! is_readable($filename)) {
             $this->error = self::ERROR_DOES_NOT_EXIST;
 
             return;
@@ -277,7 +277,8 @@ class Translator
         }
         try {
             $plural = $this->pluralexpression->evaluate(
-                $this->getPluralForms(), array('n' => $n)
+                $this->getPluralForms(),
+                ['n' => $n]
             );
         } catch (\Exception $e) {
             $plural = 0;
@@ -302,8 +303,8 @@ class Translator
     public function ngettext($msgid, $msgidPlural, $number)
     {
         // this should contains all strings separated by NULLs
-        $key = implode(chr(0), array($msgid, $msgidPlural));
-        if (!array_key_exists($key, $this->cache_translations)) {
+        $key = implode(chr(0), [$msgid, $msgidPlural]);
+        if (! array_key_exists($key, $this->cache_translations)) {
             return ($number != 1) ? $msgidPlural : $msgid;
         }
 
@@ -313,7 +314,7 @@ class Translator
         $result = $this->cache_translations[$key];
         $list = explode(chr(0), $result);
 
-        if (!isset($list[$select])) {
+        if (! isset($list[$select])) {
             return $list[0];
         }
 
@@ -330,7 +331,7 @@ class Translator
      */
     public function pgettext($msgctxt, $msgid)
     {
-        $key = implode(chr(4), array($msgctxt, $msgid));
+        $key = implode(chr(4), [$msgctxt, $msgid]);
         $ret = $this->gettext($key);
         if (strpos($ret, chr(4)) !== false) {
             return $msgid;
@@ -351,7 +352,7 @@ class Translator
      */
     public function npgettext($msgctxt, $msgid, $msgidPlural, $number)
     {
-        $key = implode(chr(4), array($msgctxt, $msgid));
+        $key = implode(chr(4), [$msgctxt, $msgid]);
         $ret = $this->ngettext($key, $msgidPlural, $number);
         if (strpos($ret, chr(4)) !== false) {
             return $msgid;

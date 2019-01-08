@@ -53,14 +53,14 @@ class Loader
      *
      * @var array
      */
-    private $domains = array();
+    private $domains = [];
 
     /**
      * Bound paths for domains.
      *
      * @var array
      */
-    private $paths = array('' => './');
+    private $paths = ['' => './'];
 
     /**
      * Returns the singleton Loader object.
@@ -95,7 +95,7 @@ class Loader
      */
     public static function listLocales($locale)
     {
-        $locale_names = array();
+        $locale_names = [];
 
         $lang = null;
         $country = null;
@@ -103,11 +103,14 @@ class Loader
         $modifier = null;
 
         if ($locale) {
-            if (preg_match('/^(?P<lang>[a-z]{2,3})'      // language code
+            if (preg_match(
+                '/^(?P<lang>[a-z]{2,3})'      // language code
                 . '(?:_(?P<country>[A-Z]{2}))?'           // country code
                 . '(?:\\.(?P<charset>[-A-Za-z0-9_]+))?'   // charset
                 . '(?:@(?P<modifier>[-A-Za-z0-9_]+))?$/', // @ modifier
-                $locale, $matches)) {
+                $locale,
+                $matches
+            )) {
                 extract($matches);
 
                 if ($modifier) {
@@ -133,7 +136,7 @@ class Loader
             }
 
             // If the locale name doesn't match POSIX style, just include it as-is.
-            if (!in_array($locale, $locale_names)) {
+            if (! in_array($locale, $locale_names)) {
                 array_push($locale_names, $locale);
             }
         }
@@ -154,11 +157,11 @@ class Loader
             $domain = $this->default_domain;
         }
 
-        if (!isset($this->domains[$this->locale])) {
-            $this->domains[$this->locale] = array();
+        if (! isset($this->domains[$this->locale])) {
+            $this->domains[$this->locale] = [];
         }
 
-        if (!isset($this->domains[$this->locale][$domain])) {
+        if (! isset($this->domains[$this->locale][$domain])) {
             if (isset($this->paths[$domain])) {
                 $base = $this->paths[$domain];
             } else {
@@ -213,7 +216,7 @@ class Loader
      */
     public function setlocale($locale)
     {
-        if (!empty($locale)) {
+        if (! empty($locale)) {
             $this->locale = $locale;
         }
 

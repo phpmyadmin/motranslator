@@ -25,80 +25,103 @@ class LoaderTest extends TestCase
 
     public function localeList()
     {
-        return array(
-            array(
+        return [
+            [
                 'cs_CZ',
-                array('cs_CZ', 'cs'),
-            ),
-            array(
+                [
+                    'cs_CZ',
+                    'cs',
+                ],
+            ],
+            [
                 'sr_CS.UTF-8@latin',
-                array(
+                [
                     'sr_CS.UTF-8@latin',
                     'sr_CS@latin',
                     'sr@latin',
                     'sr_CS.UTF-8',
                     'sr_CS',
                     'sr',
-                ),
-            ),
+                ],
+            ],
             // For a locale containing country code, we prefer
             // full locale name, but if that's not found, fall back
             // to the language only locale name.
-            array(
+            [
                 'sr_RS',
-                array('sr_RS', 'sr'),
-            ),
+                [
+                    'sr_RS',
+                    'sr',
+                ],
+            ],
             // If language code is used, it's the only thing returned.
-            array(
+            [
                 'sr',
-                array('sr'),
-            ),
+                ['sr'],
+            ],
             // There is support for language and charset only.
-            array(
+            [
                 'sr.UTF-8',
-                array('sr.UTF-8', 'sr'),
-            ),
+                [
+                    'sr.UTF-8',
+                    'sr',
+                ],
+            ],
 
             // It can also split out character set from the full locale name.
-            array(
+            [
                 'sr_RS.UTF-8',
-                array('sr_RS.UTF-8', 'sr_RS', 'sr'),
-            ),
+                [
+                    'sr_RS.UTF-8',
+                    'sr_RS',
+                    'sr',
+                ],
+            ],
 
             // There is support for @modifier in locale names as well.
-            array(
+            [
                 'sr_RS.UTF-8@latin',
-                array(
-                    'sr_RS.UTF-8@latin', 'sr_RS@latin', 'sr@latin',
-                    'sr_RS.UTF-8', 'sr_RS', 'sr',
-                ),
-            ),
-            array(
+                [
+                    'sr_RS.UTF-8@latin',
+                    'sr_RS@latin',
+                    'sr@latin',
+                    'sr_RS.UTF-8',
+                    'sr_RS',
+                    'sr',
+                ],
+            ],
+            [
                 'sr.UTF-8@latin',
-                array(
-                    'sr.UTF-8@latin', 'sr@latin', 'sr.UTF-8', 'sr',
-                ),
-            ),
+                [
+                    'sr.UTF-8@latin',
+                    'sr@latin',
+                    'sr.UTF-8',
+                    'sr',
+                ],
+            ],
 
             // We can pass in only language and modifier.
-            array(
+            [
                 'sr@latin',
-                array('sr@latin', 'sr'),
-            ),
+                [
+                    'sr@latin',
+                    'sr',
+                ],
+            ],
 
             // If locale name is not following the regular POSIX pattern,
             // it's used verbatim.
-            array(
+            [
                 'something',
-                array('something'),
-            ),
+                ['something'],
+            ],
 
             // Passing in an empty string returns an empty array.
-            array(
+            [
                 '',
-                array(),
-            ),
-        );
+                [],
+            ],
+        ];
     }
 
     private function getLoader($domain, $locale)
@@ -144,44 +167,44 @@ class LoaderTest extends TestCase
 
     public function translatorData()
     {
-        return array(
-            array(
+        return [
+            [
                 'phpmyadmin',
                 'cs',
                 '',
                 'Typ',
-            ),
-            array(
+            ],
+            [
                 'phpmyadmin',
                 'cs_CZ',
                 '',
                 'Typ',
-            ),
-            array(
+            ],
+            [
                 'phpmyadmin',
                 'be_BY',
                 '',
                 'Тып',
-            ),
-            array(
+            ],
+            [
                 'phpmyadmin',
                 'be@latin',
                 '',
                 'Typ',
-            ),
-            array(
+            ],
+            [
                 'phpmyadmin',
                 'cs',
                 'other',
                 'Type',
-            ),
-            array(
+            ],
+            [
                 'other',
                 'cs',
                 'phpmyadmin',
                 'Type',
-            ),
-        );
+            ],
+        ];
     }
 
     public function testInstance()
@@ -231,7 +254,7 @@ class LoaderTest extends TestCase
     {
         $loader = PhpMyAdmin\MoTranslator\Loader::getInstance();
         // putenv/getenv is broken on hhvm, do not fight with it
-        foreach (array('LC_MESSAGES', 'LC_ALL', 'LANG') as $var) {
+        foreach (['LC_MESSAGES', 'LC_ALL', 'LANG'] as $var) {
             putenv($var . '=baz');
             if (getenv($var) !== 'baz') {
                 $this->markTestSkipped('Setting environment does not work');

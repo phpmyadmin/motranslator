@@ -37,9 +37,15 @@ class PluralTest extends TestCase
      */
     public static function providerTestNpgettext()
     {
-        return array(
-            array(1, "%d pig went to the market\n"),
-            array(2, "%d pigs went to the market\n"),
-        );
+        return [
+            [
+                1,
+                "%d pig went to the market\n",
+            ],
+            [
+                2,
+                "%d pigs went to the market\n",
+            ],
+        ];
     }
 }

@@ -133,9 +133,9 @@ class MoFilesTest extends TestCase
 
     public function provideMoFiles()
     {
-        $result = array();
+        $result = [];
         foreach (glob('./tests/data/*.mo') as $file) {
-            $result[] = array($file);
+            $result[] = [$file];
         }
 
         return $result;
@@ -143,9 +143,9 @@ class MoFilesTest extends TestCase
 
     public function provideErrorMoFiles()
     {
-        $result = array();
+        $result = [];
         foreach (glob('./tests/data/error/*.mo') as $file) {
-            $result[] = array($file);
+            $result[] = [$file];
         }
 
         return $result;
@@ -153,9 +153,9 @@ class MoFilesTest extends TestCase
 
     public function provideNotTranslatedFiles()
     {
-        $result = array();
+        $result = [];
         foreach (glob('./tests/data/not-translated/*.mo') as $file) {
-            $result[] = array($file);
+            $result[] = [$file];
         }
 
         return $result;
