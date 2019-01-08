@@ -1,6 +1,7 @@
-# Version 4.1
- 
+# Version 5.0
+
 * Released on N/A
+* Drop support for PHP 5.3, PHP 5.4, PHP 5.5, PHP 5.6, PHP 7.0 and HHVM
 
 # Version 4.0
 
