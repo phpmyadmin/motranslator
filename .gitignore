@@ -3,3 +3,4 @@ composer.phar
 /doc/
 composer.lock
 .php_cs.cache
+phpunit.xml

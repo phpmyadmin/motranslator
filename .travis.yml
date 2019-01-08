@@ -40,5 +40,5 @@ cache:
     - $HOME/.composer/cache
 
 script:
-  - ./vendor/bin/phpunit --configuration phpunit.xml
+  - ./vendor/bin/phpunit --configuration phpunit.xml.dist
   - if [ "$DOCS" = "yes" ] ; then ./vendor/bin/sami.php --no-interaction update ./sami-config.php ; fi
