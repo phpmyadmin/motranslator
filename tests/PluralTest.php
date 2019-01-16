@@ -1,6 +1,6 @@
 <?php
-
 /* vim: set expandtab sw=4 ts=4 sts=4: */
+declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 
@@ -20,7 +20,7 @@ class PluralTest extends TestCase
      */
     public function testNpgettext($number, $expected)
     {
-        $parser = new PhpMyAdmin\MoTranslator\Translator(null);
+        $parser = new PhpMyAdmin\MoTranslator\Translator('');
         $result = $parser->npgettext(
             'context',
             "%d pig went to the market\n",

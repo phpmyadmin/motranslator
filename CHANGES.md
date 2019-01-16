@@ -2,6 +2,7 @@
 
 * Released on N/A
 * Drop support for PHP 5.3, PHP 5.4, PHP 5.5, PHP 5.6, PHP 7.0 and HHVM
+* Enabled strict mode on PHP files
 
 # Version 4.0
 

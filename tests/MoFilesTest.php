@@ -1,6 +1,6 @@
 <?php
-
 /* vim: set expandtab sw=4 ts=4 sts=4: */
+declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 

@@ -20,6 +20,7 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
+declare(strict_types=1);
 
 namespace PhpMyAdmin\MoTranslator;
 
@@ -93,7 +94,7 @@ class Translator
      *
      * @param string $filename Name of mo file to load
      */
-    public function __construct($filename)
+    public function __construct(string $filename)
     {
         if (! is_readable($filename)) {
             $this->error = self::ERROR_DOES_NOT_EXIST;
