@@ -98,11 +98,6 @@ class Loader
     {
         $locale_names = [];
 
-        $lang = null;
-        $country = null;
-        $charset = null;
-        $modifier = null;
-
         if ($locale) {
             if (preg_match(
                 '/^(?P<lang>[a-z]{2,3})'      // language code
@@ -112,7 +107,10 @@ class Loader
                 $locale,
                 $matches
             )) {
-                extract($matches);
+                $lang = $matches['lang'] ?? null;
+                $country = $matches['country'] ?? null;
+                $charset = $matches['charset'] ?? null;
+                $modifier = $matches['modifier'] ?? null;
 
                 if ($modifier) {
                     if ($country) {
@@ -238,12 +236,12 @@ class Loader
     {
         if (isset($GLOBALS['lang'])) {
             return $GLOBALS['lang'];
-        } elseif (getenv('LC_ALL')) {
-            return getenv('LC_ALL');
-        } elseif (getenv('LC_MESSAGES')) {
-            return getenv('LC_MESSAGES');
-        } elseif (getenv('LANG')) {
-            return getenv('LANG');
+        } elseif (false !== $locale = getenv('LC_ALL')) {
+            return $locale;
+        } elseif (false !== $locale = getenv('LC_MESSAGES')) {
+            return $locale;
+        } elseif (false !== $locale = getenv('LANG')) {
+            return $locale;
         }
 
         return 'en';

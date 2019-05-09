@@ -2,6 +2,9 @@
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 declare(strict_types=1);
 
+namespace PhpMyAdmin\MoTranslator\Tests;
+
+use PhpMyAdmin\MoTranslator\Translator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -16,7 +19,7 @@ class MoFilesTest extends TestCase
      */
     public function testMoFileTranslate($filename)
     {
-        $parser = new PhpMyAdmin\MoTranslator\Translator($filename);
+        $parser = new Translator($filename);
         $this->assertEquals(
             'Pole',
             $parser->gettext('Column')
@@ -35,7 +38,7 @@ class MoFilesTest extends TestCase
      */
     public function testMoFilePlurals($filename)
     {
-        $parser = new PhpMyAdmin\MoTranslator\Translator($filename);
+        $parser = new Translator($filename);
         $expected_2 = '%d sekundy';
         if (strpos($filename, 'invalid-formula.mo') !== false || strpos($filename, 'lessplurals.mo') !== false) {
             $expected_0 = '%d sekunda';
@@ -103,7 +106,7 @@ class MoFilesTest extends TestCase
      */
     public function testMoFileContext($filename)
     {
-        $parser = new PhpMyAdmin\MoTranslator\Translator($filename);
+        $parser = new Translator($filename);
         $this->assertEquals(
             'Tabulka',
             $parser->pgettext(
@@ -120,7 +123,7 @@ class MoFilesTest extends TestCase
      */
     public function testMoFileNotTranslated($filename)
     {
-        $parser = new PhpMyAdmin\MoTranslator\Translator($filename);
+        $parser = new Translator($filename);
         $this->assertEquals(
             '%d second',
             $parser->ngettext(
@@ -133,32 +136,17 @@ class MoFilesTest extends TestCase
 
     public function provideMoFiles()
     {
-        $result = [];
-        foreach (glob('./tests/data/*.mo') as $file) {
-            $result[] = [$file];
-        }
-
-        return $result;
+        return $this->getFiles('./tests/data/*.mo');
     }
 
     public function provideErrorMoFiles()
     {
-        $result = [];
-        foreach (glob('./tests/data/error/*.mo') as $file) {
-            $result[] = [$file];
-        }
-
-        return $result;
+        return $this->getFiles('./tests/data/error/*.mo');
     }
 
     public function provideNotTranslatedFiles()
     {
-        $result = [];
-        foreach (glob('./tests/data/not-translated/*.mo') as $file) {
-            $result[] = [$file];
-        }
-
-        return $result;
+        return $this->getFiles('./tests/data/not-translated/*.mo');
     }
 
     /**
@@ -168,11 +156,11 @@ class MoFilesTest extends TestCase
      */
     public function testEmptyMoFile($file)
     {
-        $parser = new PhpMyAdmin\MoTranslator\Translator($file);
+        $parser = new Translator($file);
         if (basename($file) === 'magic.mo') {
-            $this->assertEquals(PhpMyAdmin\MoTranslator\Translator::ERROR_BAD_MAGIC, $parser->error);
+            $this->assertEquals(Translator::ERROR_BAD_MAGIC, $parser->error);
         } else {
-            $this->assertEquals(PhpMyAdmin\MoTranslator\Translator::ERROR_READING, $parser->error);
+            $this->assertEquals(Translator::ERROR_READING, $parser->error);
         }
         $this->assertEquals(
             'Table',
@@ -198,7 +186,7 @@ class MoFilesTest extends TestCase
      */
     public function testExists($file)
     {
-        $parser = new PhpMyAdmin\MoTranslator\Translator($file);
+        $parser = new Translator($file);
         $this->assertEquals(
             true,
             $parser->exists('Column')
@@ -207,5 +195,22 @@ class MoFilesTest extends TestCase
             false,
             $parser->exists('Column parser')
         );
+    }
+
+    /**
+     * @param string $pattern path names pattern to match
+     * @return array
+     */
+    private function getFiles(string $pattern): array
+    {
+        $files = glob($pattern);
+        if ($files === false) {
+            return [];
+        }
+        $result = [];
+        foreach ($files as $file) {
+            $result[] = [$file];
+        }
+        return $result;
     }
 }

@@ -2,12 +2,15 @@
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 declare(strict_types=1);
 
+namespace PhpMyAdmin\MoTranslator\Tests;
+
+use PhpMyAdmin\MoTranslator\Translator;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Test for gettext parsing.
  */
-class PluralFormlulaTest extends TestCase
+class PluralFormulaTest extends TestCase
 {
     /**
      * Test for extractPluralsForms.
@@ -22,7 +25,7 @@ class PluralFormlulaTest extends TestCase
     {
         $this->assertEquals(
             $expected,
-            PhpMyAdmin\MoTranslator\Translator::extractPluralsForms($header)
+            Translator::extractPluralsForms($header)
         );
     }
 
@@ -66,7 +69,7 @@ class PluralFormlulaTest extends TestCase
     {
         $this->assertEquals(
             $expected,
-            PhpMyAdmin\MoTranslator\Translator::extractPluralCount($expr)
+            Translator::extractPluralCount($expr)
         );
     }
 
@@ -110,7 +113,7 @@ class PluralFormlulaTest extends TestCase
     {
         $this->assertEquals(
             $expected,
-            PhpMyAdmin\MoTranslator\Translator::sanitizePluralExpression($expr)
+            Translator::sanitizePluralExpression($expr)
         );
     }
 

@@ -39,7 +39,7 @@ class StringReader
      */
     public function __construct($filename)
     {
-        $this->_str = file_get_contents($filename);
+        $this->_str = (string) file_get_contents($filename);
         $this->_len = strlen($this->_str);
     }
 

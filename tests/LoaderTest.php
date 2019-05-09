@@ -2,6 +2,9 @@
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 declare(strict_types=1);
 
+namespace PhpMyAdmin\MoTranslator\Tests;
+
+use PhpMyAdmin\MoTranslator\Loader;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -19,7 +22,7 @@ class LoaderTest extends TestCase
     {
         $this->assertEquals(
             $expected,
-            PhpMyAdmin\MoTranslator\Loader::listLocales($locale)
+            Loader::listLocales($locale)
         );
     }
 
@@ -126,7 +129,7 @@ class LoaderTest extends TestCase
 
     private function getLoader($domain, $locale)
     {
-        $loader = new PhpMyAdmin\MoTranslator\Loader();
+        $loader = new Loader();
         $loader->setlocale($locale);
         $loader->textdomain($domain);
         $loader->bindtextdomain($domain, __DIR__ . '/data/locale/');
@@ -136,7 +139,7 @@ class LoaderTest extends TestCase
 
     public function testLocaleChange()
     {
-        $loader = new PhpMyAdmin\MoTranslator\Loader();
+        $loader = new Loader();
         $loader->setlocale('cs');
         $loader->textdomain('phpmyadmin');
         $loader->bindtextdomain('phpmyadmin', __DIR__ . '/data/locale/');
@@ -209,7 +212,7 @@ class LoaderTest extends TestCase
 
     public function testInstance()
     {
-        $loader = PhpMyAdmin\MoTranslator\Loader::getInstance();
+        $loader = Loader::getInstance();
         $loader->setlocale('cs');
         $loader->textdomain('phpmyadmin');
         $loader->bindtextdomain('phpmyadmin', __DIR__ . '/data/locale/');
@@ -221,7 +224,7 @@ class LoaderTest extends TestCase
         );
 
         /* Ensure the object survives */
-        $loader = PhpMyAdmin\MoTranslator\Loader::getInstance();
+        $loader = Loader::getInstance();
         $translator = $loader->getTranslator();
         $this->assertEquals(
             'Typ',
@@ -229,7 +232,7 @@ class LoaderTest extends TestCase
         );
 
         /* Ensure the object can support different locale files for the same domain */
-        $loader = PhpMyAdmin\MoTranslator\Loader::getInstance();
+        $loader = Loader::getInstance();
         $loader->setlocale('be_BY');
         $loader->bindtextdomain('phpmyadmin', __DIR__ . '/data/locale/');
         $translator = $loader->getTranslator();
@@ -242,7 +245,7 @@ class LoaderTest extends TestCase
     public function testDetect()
     {
         $GLOBALS['lang'] = 'foo';
-        $loader = PhpMyAdmin\MoTranslator\Loader::getInstance();
+        $loader = Loader::getInstance();
         $this->assertEquals(
             'foo',
             $loader->detectlocale()
@@ -252,7 +255,7 @@ class LoaderTest extends TestCase
 
     public function testDetectEnv()
     {
-        $loader = PhpMyAdmin\MoTranslator\Loader::getInstance();
+        $loader = Loader::getInstance();
         // putenv/getenv is broken on hhvm, do not fight with it
         foreach (['LC_MESSAGES', 'LC_ALL', 'LANG'] as $var) {
             putenv($var . '=baz');

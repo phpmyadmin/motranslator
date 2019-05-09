@@ -2,6 +2,9 @@
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 declare(strict_types=1);
 
+namespace PhpMyAdmin\MoTranslator\Tests;
+
+use PhpMyAdmin\MoTranslator\Translator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -16,7 +19,7 @@ class TranslatorTest extends TestCase
      */
     public function testGettext()
     {
-        $translator = new PhpMyAdmin\MoTranslator\Translator('');
+        $translator = new Translator('');
         $this->assertEquals('Test', $translator->gettext('Test'));
     }
 
@@ -27,7 +30,7 @@ class TranslatorTest extends TestCase
      */
     public function testSetTranslation()
     {
-        $translator = new PhpMyAdmin\MoTranslator\Translator('');
+        $translator = new Translator('');
         $translator->setTranslation('Test', 'Translation');
         $this->assertEquals('Translation', $translator->gettext('Test'));
     }

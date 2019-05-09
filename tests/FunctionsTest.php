@@ -2,6 +2,9 @@
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 declare(strict_types=1);
 
+namespace PhpMyAdmin\MoTranslator\Tests;
+
+use PhpMyAdmin\MoTranslator\Loader;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -11,7 +14,7 @@ class FunctionsTest extends TestCase
 {
     public function setUp()
     {
-        PhpMyAdmin\MoTranslator\Loader::loadFunctions();
+        Loader::loadFunctions();
 
         _setlocale(0, 'cs');
         _textdomain('phpmyadmin');

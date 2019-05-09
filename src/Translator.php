@@ -195,7 +195,7 @@ class Translator
         // Cleanup from unwanted chars
         $expr = preg_replace('@[^n0-9:\(\)\?=!<>/%&| ]@', '', $expr);
 
-        return $expr;
+        return (string) $expr;
     }
 
     /**
@@ -314,6 +314,9 @@ class Translator
 
         $result = $this->cache_translations[$key];
         $list = explode(chr(0), $result);
+        if ($list === false) {
+            return '';
+        }
 
         if (! isset($list[$select])) {
             return $list[0];
