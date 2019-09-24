@@ -6,3 +6,4 @@ composer.lock
 phpunit.xml
 coverage.xml
 phpcs.xml
+/.phpunit.result.cache
