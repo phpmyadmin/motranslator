@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 class FunctionsTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         Loader::loadFunctions();
 
