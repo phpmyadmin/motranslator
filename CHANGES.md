@@ -3,6 +3,8 @@
 * Released on N/A
 * Drop support for PHP 5.3, PHP 5.4, PHP 5.5, PHP 5.6, PHP 7.0 and HHVM
 * Enabled strict mode on PHP files
+* Add support for Symfony 5
+* Add support for phpunit 8
 
 # Version 4.0
 

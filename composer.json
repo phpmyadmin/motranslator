@@ -15,6 +15,15 @@
         "issues": "https://github.com/phpmyadmin/motranslator/issues",
         "source": "https://github.com/phpmyadmin/motranslator"
     },
+    "scripts": {
+        "phpcbf": "phpcbf",
+        "phpcs": "phpcs",
+        "phpunit": "phpunit --color=always",
+        "test": [
+            "@phpcs",
+            "@phpunit"
+        ]
+    },
     "require": {
         "php": "^7.1",
         "symfony/expression-language": "^4.0 || ^5.0"

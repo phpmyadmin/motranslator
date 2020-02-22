@@ -26,10 +26,10 @@ them and to run automated tests on the code.
 
 We do follow PSR-1 and PSR-2 coding standards.
 
-You can use php-cs-fixer to fix the code to match our expectations:
+You can use phpcbf to fix the code to match our expectations:
 
 ```
-php-cs-fixer fix .
+composer run phpcbf
 ```
 
 ## Testsuite
@@ -38,5 +38,5 @@ Our code comes with quite comprehensive testsuite, it is automatically executed
 on every commit and pull request, you can also run it locally:
 
 ```
-./vendor/bin/phpunit -c phpunit.xml.dist
+composer run phpunit
 ```
