@@ -1,94 +1,79 @@
-# Version 5.0
+# Change Log
 
-* Released on N/A
+## [Unreleased] -
+
 * Drop support for PHP 5.3, PHP 5.4, PHP 5.5, PHP 5.6, PHP 7.0 and HHVM
 * Enabled strict mode on PHP files
 * Add support for Symfony 5
 * Add support for phpunit 8
 
-# Version 4.0
+## [4.0] - 2018-02-12
 
-* Released on 2018-02-12.
 * The library no longer changes system locales.
 
-# Version 3.4
+## [3.4] -  2017-12-15
 
-* Released on 2017-12-15.
 * Added Translator::setTranslation method.
 
-# Version 3.3
+## [3.3] -  2017-06-01
 
-* Released on 2017-06-01.
 * Add support for switching locales for Loader instance.
 
-# Version 3.2
+## [3.2] -  2017-05-23
 
-* Released on 2017-05-23.
 * Various fixes when handling corrupted mo files.
 
-# Version 3.1
+## [3.1] -  2017-05-15
 
-* Released on 2017-05-15.
 * Documentation improvements.
 
-# Version 3.0
+## [3.0] -  2017-01-23
 
-* Released on 2017-01-23.
 * All classes moved to the PhpMyAdmin namespace.
 
-# Version 2.2
+## [2.2] -  2017-01-07
 
-* Released on 2017-01-07.
 * Coding style cleanup.
 * Avoid installing tests using composer.
 
-# Version 2.1
+## [2.1] -  2016-12-21
 
-* Released on 2016-12-21.
 * Various code cleanups.
 * Added support for PHP 5.3.
 
-# Version 2.0
+## [2.0] -  2016-10-13
 
-* Released on 2016-10-13.
 * Consistently use camelCase in API.
 * No more relies on using eval().
 * Depends on symfony/expression-language for calculations.
 
-# Version 1.2
+## [1.2] -  2016-09-22
 
-* Released on 2016-09-22.
 * Stricter validation of plural expression.
 
-# Version 1.1
+## [1.1] -  2016-08-29
 
-* Released on 2016-08-29.
 * Improved handling of corrupted mo files.
 * Minor performance improvements.
 * Stricter validation of plural expression.
 
-# Version 1.0
+## [1.0] -  2016-04-27
 
-* Released on 2016-04-27.
 * Documentation improvements.
 * Testsuite improvements.
 
-# Version 0.4
+## [0.4] -  2016-03-02
 
-* Released on 2016-03-02.
 * Fixed test failures with hhvm due to broken putenv.
 
-# Version 0.3
+## [0.3] -  2016-03-01
 
-* Released on 2016-03-01.
 * Added Loader::detectlocale method.
 
-# Version 0.2
+## [0.2] -  2016-02-24
 
-* Released on 2016-02-24.
 * Marked PHP 5.4 and 5.5 as supported.
 
-# Version 0.1
+## [0.1] -  2016-02-23
 
-* Released on 2016-02-23.
 * Initial release.
