@@ -17,7 +17,7 @@
     },
     "require": {
         "php": "^7.1",
-        "symfony/expression-language": "^4.0"
+        "symfony/expression-language": "^4.0 || ^5.0"
     },
     "require-dev": {
         "sami/sami": "^4.0",
