@@ -327,7 +327,7 @@ class Translator
         // this should contains all strings separated by NULLs
         $key = implode(chr(0), [$msgid, $msgidPlural]);
         if (! array_key_exists($key, $this->cacheTranslations)) {
-            return ($number !== 1) ? $msgidPlural : $msgid;
+            return $number !== 1 ? $msgidPlural : $msgid;
         }
 
         // find out the appropriate form
