@@ -280,7 +280,7 @@ class Translator
                 $this->getPluralForms(),
                 ['n' => $n]
             );
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             $plural = 0;
         }
 
