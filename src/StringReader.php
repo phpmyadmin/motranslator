@@ -23,6 +23,12 @@ declare(strict_types=1);
 
 namespace PhpMyAdmin\MoTranslator;
 
+use function file_get_contents;
+use function strlen;
+use function substr;
+use function unpack;
+use const PHP_INT_MAX;
+
 /**
  * Simple wrapper around string buffer for
  * random access and values parsing.

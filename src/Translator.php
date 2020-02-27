@@ -25,6 +25,24 @@ declare(strict_types=1);
 namespace PhpMyAdmin\MoTranslator;
 
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
+use Throwable;
+use function array_key_exists;
+use function chr;
+use function count;
+use function explode;
+use function implode;
+use function intval;
+use function is_null;
+use function is_readable;
+use function ltrim;
+use function preg_replace;
+use function rtrim;
+use function strcmp;
+use function stripos;
+use function strpos;
+use function strtolower;
+use function substr;
+use function trim;
 
 /**
  * Provides a simple gettext replacement that works independently from
@@ -280,7 +298,7 @@ class Translator
                 $this->getPluralForms(),
                 ['n' => $n]
             );
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             $plural = 0;
         }
 

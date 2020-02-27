@@ -6,6 +6,8 @@ namespace PhpMyAdmin\MoTranslator\Tests;
 
 use PhpMyAdmin\MoTranslator\Loader;
 use PHPUnit\Framework\TestCase;
+use function getenv;
+use function putenv;
 
 /**
  * Test for mo loading.

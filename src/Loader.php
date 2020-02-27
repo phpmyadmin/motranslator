@@ -24,6 +24,12 @@ declare(strict_types=1);
 
 namespace PhpMyAdmin\MoTranslator;
 
+use function array_push;
+use function file_exists;
+use function getenv;
+use function in_array;
+use function preg_match;
+
 class Loader
 {
     /**

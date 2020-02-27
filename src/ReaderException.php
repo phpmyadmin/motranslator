@@ -23,9 +23,11 @@ declare(strict_types=1);
 
 namespace PhpMyAdmin\MoTranslator;
 
+use Exception;
+
 /**
  * Exception thrown when file can not be read.
  */
-class ReaderException extends \Exception
+class ReaderException extends Exception
 {
 }
