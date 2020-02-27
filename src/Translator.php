@@ -32,7 +32,6 @@ use function count;
 use function explode;
 use function implode;
 use function intval;
-use function is_null;
 use function is_readable;
 use function ltrim;
 use function preg_replace;
@@ -265,7 +264,7 @@ class Translator
         // this is true, right?
 
         // cache header field for plural forms
-        if (is_null($this->pluralequation)) {
+        if ($this->pluralequation === null) {
             if (isset($this->cache_translations[''])) {
                 $header = $this->cache_translations[''];
             } else {
@@ -289,7 +288,7 @@ class Translator
      */
     private function selectString($n)
     {
-        if (is_null($this->pluralexpression)) {
+        if ($this->pluralexpression === null) {
             $this->pluralexpression = new ExpressionLanguage();
         }
 
