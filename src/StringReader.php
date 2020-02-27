@@ -33,8 +33,6 @@ class StringReader
     private $_len;
 
     /**
-     * Constructor.
-     *
      * @param string $filename Name of file to load
      */
     public function __construct($filename)

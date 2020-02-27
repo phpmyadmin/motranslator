@@ -13,10 +13,10 @@ use PHPUnit\Framework\TestCase;
 class LoaderTest extends TestCase
 {
     /**
-     * @dataProvider localeList
-     *
      * @param mixed $locale
      * @param mixed $expected
+     *
+     * @dataProvider localeList
      */
     public function testListLocales($locale, $expected)
     {
@@ -151,12 +151,12 @@ class LoaderTest extends TestCase
     }
 
     /**
-     * @dataProvider translatorData
-     *
      * @param mixed $domain
      * @param mixed $locale
      * @param mixed $otherdomain
      * @param mixed $expected
+     *
+     * @dataProvider translatorData
      */
     public function testGetTranslator($domain, $locale, $otherdomain, $expected)
     {
@@ -262,6 +262,7 @@ class LoaderTest extends TestCase
             if (getenv($var) !== 'baz') {
                 $this->markTestSkipped('Setting environment does not work');
             }
+
             putenv($var);
             if (getenv($var) !== false) {
                 $this->markTestSkipped('Unsetting environment does not work');

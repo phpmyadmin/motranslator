@@ -18,7 +18,6 @@ class PluralTest extends TestCase
      * @param int    $number   Number
      * @param string $expected Expected output
      *
-     *
      * @dataProvider providerTestNpgettext
      */
     public function testNpgettext($number, $expected)

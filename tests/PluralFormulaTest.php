@@ -15,11 +15,10 @@ class PluralFormulaTest extends TestCase
     /**
      * Test for extractPluralsForms.
      *
-     *
-     * @dataProvider pluralExtractionData
-     *
      * @param mixed $header
      * @param mixed $expected
+     *
+     * @dataProvider pluralExtractionData
      */
     public function testExtractPluralsForms($header, $expected)
     {
@@ -60,10 +59,10 @@ class PluralFormulaTest extends TestCase
     }
 
     /**
-     * @dataProvider pluralCounts
-     *
      * @param mixed $expr
      * @param mixed $expected
+     *
+     * @dataProvider pluralCounts
      */
     public function testPluralCounts($expr, $expected)
     {
@@ -104,10 +103,10 @@ class PluralFormulaTest extends TestCase
     }
 
     /**
-     * @dataProvider pluralExpressions
-     *
      * @param mixed $expr
      * @param mixed $expected
+     *
+     * @dataProvider pluralExpressions
      */
     public function testPluralExpression($expr, $expected)
     {

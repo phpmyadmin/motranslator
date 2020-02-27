@@ -13,9 +13,9 @@ use PHPUnit\Framework\TestCase;
 class MoFilesTest extends TestCase
 {
     /**
-     * @dataProvider provideMoFiles
-     *
      * @param mixed $filename
+     *
+     * @dataProvider provideMoFiles
      */
     public function testMoFileTranslate($filename)
     {
@@ -32,9 +32,9 @@ class MoFilesTest extends TestCase
     }
 
     /**
-     * @dataProvider provideMoFiles
-     *
      * @param mixed $filename
+     *
+     * @dataProvider provideMoFiles
      */
     public function testMoFilePlurals($filename)
     {
@@ -48,6 +48,7 @@ class MoFilesTest extends TestCase
         } else {
             $expected_0 = '%d sekund';
         }
+
         $this->assertEquals(
             $expected_0,
             $parser->ngettext(
@@ -100,9 +101,9 @@ class MoFilesTest extends TestCase
     }
 
     /**
-     * @dataProvider provideMoFiles
-     *
      * @param mixed $filename
+     *
+     * @dataProvider provideMoFiles
      */
     public function testMoFileContext($filename)
     {
@@ -117,9 +118,9 @@ class MoFilesTest extends TestCase
     }
 
     /**
-     * @dataProvider provideNotTranslatedFiles
-     *
      * @param mixed $filename
+     *
+     * @dataProvider provideNotTranslatedFiles
      */
     public function testMoFileNotTranslated($filename)
     {
@@ -150,9 +151,9 @@ class MoFilesTest extends TestCase
     }
 
     /**
-     * @dataProvider provideErrorMoFiles
-     *
      * @param mixed $file
+     *
+     * @dataProvider provideErrorMoFiles
      */
     public function testEmptyMoFile($file)
     {
@@ -162,6 +163,7 @@ class MoFilesTest extends TestCase
         } else {
             $this->assertEquals(Translator::ERROR_READING, $parser->error);
         }
+
         $this->assertEquals(
             'Table',
             $parser->pgettext(
@@ -180,9 +182,9 @@ class MoFilesTest extends TestCase
     }
 
     /**
-     * @dataProvider provideMoFiles
-     *
      * @param mixed $file
+     *
+     * @dataProvider provideMoFiles
      */
     public function testExists($file)
     {
@@ -199,6 +201,7 @@ class MoFilesTest extends TestCase
 
     /**
      * @param string $pattern path names pattern to match
+     *
      * @return array
      */
     private function getFiles(string $pattern): array
@@ -207,10 +210,12 @@ class MoFilesTest extends TestCase
         if ($files === false) {
             return [];
         }
+
         $result = [];
         foreach ($files as $file) {
             $result[] = [$file];
         }
+
         return $result;
     }
 }

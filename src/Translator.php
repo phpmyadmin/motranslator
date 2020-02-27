@@ -74,13 +74,9 @@ class Translator
      * @var string|null
      */
     private $pluralequation = null;
-    /**
-     * @var ExpressionLanguage|null Evaluator for plurals
-     */
+    /** @var ExpressionLanguage|null Evaluator for plurals */
     private $pluralexpression = null;
-    /**
-     * @var int|null number of plurals
-     */
+    /** @var int|null number of plurals */
     private $pluralcount = null;
     /**
      * Array with original -> translation mapping.
@@ -90,8 +86,6 @@ class Translator
     private $cache_translations = [];
 
     /**
-     * Constructor.
-     *
      * @param string $filename Name of mo file to load
      */
     public function __construct(string $filename)
@@ -182,11 +176,13 @@ class Translator
         } else {
             $expr = $expr[0];
         }
+
         $expr = trim(strtolower($expr));
         // Strip plural prefix
         if (substr($expr, 0, 6) === 'plural') {
             $expr = ltrim(substr($expr, 6));
         }
+
         // Strip equals
         if (substr($expr, 0, 1) === '=') {
             $expr = ltrim(substr($expr, 1));
@@ -212,6 +208,7 @@ class Translator
         if (strtolower(rtrim($nplurals[0])) != 'nplurals') {
             return 1;
         }
+
         if (count($nplurals) == 1) {
             return 1;
         }
@@ -256,6 +253,7 @@ class Translator
             } else {
                 $header = '';
             }
+
             $expr = $this->extractPluralsForms($header);
             $this->pluralequation = $this->sanitizePluralExpression($expr);
             $this->pluralcount = $this->extractPluralCount($expr);
@@ -276,6 +274,7 @@ class Translator
         if (is_null($this->pluralexpression)) {
             $this->pluralexpression = new ExpressionLanguage();
         }
+
         try {
             $plural = $this->pluralexpression->evaluate(
                 $this->getPluralForms(),

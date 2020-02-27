@@ -30,7 +30,6 @@ class Loader
      * Loader instance.
      *
      * @static
-     *
      * @var Loader
      */
     private static $_instance;
@@ -117,20 +116,25 @@ class Loader
                         if ($charset) {
                             array_push($locale_names, "${lang}_$country.$charset@$modifier");
                         }
+
                         array_push($locale_names, "${lang}_$country@$modifier");
                     } elseif ($charset) {
                         array_push($locale_names, "${lang}.$charset@$modifier");
                     }
+
                     array_push($locale_names, "$lang@$modifier");
                 }
+
                 if ($country) {
                     if ($charset) {
                         array_push($locale_names, "${lang}_$country.$charset");
                     }
+
                     array_push($locale_names, "${lang}_$country");
                 } elseif ($charset) {
                     array_push($locale_names, "${lang}.$charset");
                 }
+
                 array_push($locale_names, $lang);
             }
 
