@@ -38,28 +38,28 @@ class Translator
     /**
      * None error.
      */
-    const ERROR_NONE = 0;
+    public const ERROR_NONE = 0;
     /**
      * File does not exist.
      */
-    const ERROR_DOES_NOT_EXIST = 1;
+    public const ERROR_DOES_NOT_EXIST = 1;
     /**
      * File has bad magic number.
      */
-    const ERROR_BAD_MAGIC = 2;
+    public const ERROR_BAD_MAGIC = 2;
     /**
      * Error while reading file, probably too short.
      */
-    const ERROR_READING = 3;
+    public const ERROR_READING = 3;
 
     /**
      * Big endian mo file magic bytes.
      */
-    const MAGIC_BE = "\x95\x04\x12\xde";
+    public const MAGIC_BE = "\x95\x04\x12\xde";
     /**
      * Little endian mo file magic bytes.
      */
-    const MAGIC_LE = "\xde\x12\x04\x95";
+    public const MAGIC_LE = "\xde\x12\x04\x95";
 
     /**
      * Parse error code (0 if no error).
