@@ -268,11 +268,20 @@ class Loader
     {
         if (isset($GLOBALS['lang'])) {
             return $GLOBALS['lang'];
-        } elseif (false !== $locale = getenv('LC_ALL')) {
+        }
+
+        $locale = getenv('LC_ALL');
+        if ($locale !== false) {
             return $locale;
-        } elseif (false !== $locale = getenv('LC_MESSAGES')) {
+        }
+
+        $locale = getenv('LC_MESSAGES');
+        if ($locale !== false) {
             return $locale;
-        } elseif (false !== $locale = getenv('LANG')) {
+        }
+
+        $locale = getenv('LANG');
+        if ($locale !== false) {
             return $locale;
         }
 

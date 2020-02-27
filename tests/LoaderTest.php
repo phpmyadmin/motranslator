@@ -266,9 +266,11 @@ class LoaderTest extends TestCase
             }
 
             putenv($var);
-            if (getenv($var) !== false) {
-                $this->markTestSkipped('Unsetting environment does not work');
+            if (getenv($var) === false) {
+                continue;
             }
+
+            $this->markTestSkipped('Unsetting environment does not work');
         }
 
         unset($GLOBALS['lang']);

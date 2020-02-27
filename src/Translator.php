@@ -248,9 +248,11 @@ class Translator
         $headers = explode("\n", $header);
         $expr = 'nplurals=2; plural=n == 1 ? 0 : 1;';
         foreach ($headers as $header) {
-            if (stripos($header, 'Plural-Forms:') === 0) {
-                $expr = substr($header, 13);
+            if (stripos($header, 'Plural-Forms:') !== 0) {
+                continue;
             }
+
+            $expr = substr($header, 13);
         }
 
         return $expr;
