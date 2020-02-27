@@ -30,4 +30,4 @@ $end = microtime(true);
 
 $diff = $end - $start;
 
-echo "Execution took $diff seconds\n";
+echo 'Execution took ' . $diff . ' seconds' . "\n";

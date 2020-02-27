@@ -29,6 +29,7 @@ use function file_exists;
 use function getenv;
 use function in_array;
 use function preg_match;
+use function sprintf;
 
 class Loader
 {
@@ -120,25 +121,46 @@ class Loader
                 if ($modifier) {
                     if ($country) {
                         if ($charset) {
-                            array_push($locale_names, "${lang}_$country.$charset@$modifier");
+                            array_push(
+                                $locale_names,
+                                sprintf('%s_%s.%s@%s', $lang, $country, $charset, $modifier)
+                            );
                         }
 
-                        array_push($locale_names, "${lang}_$country@$modifier");
+                        array_push(
+                            $locale_names,
+                            sprintf('%s_%s@%s', $lang, $country, $modifier)
+                        );
                     } elseif ($charset) {
-                        array_push($locale_names, "${lang}.$charset@$modifier");
+                        array_push(
+                            $locale_names,
+                            sprintf('%s.%s@%s', $lang, $charset, $modifier)
+                        );
                     }
 
-                    array_push($locale_names, "$lang@$modifier");
+                    array_push(
+                        $locale_names,
+                        sprintf('%s@%s', $lang, $modifier)
+                    );
                 }
 
                 if ($country) {
                     if ($charset) {
-                        array_push($locale_names, "${lang}_$country.$charset");
+                        array_push(
+                            $locale_names,
+                            sprintf('%s_%s.%s', $lang, $country, $charset)
+                        );
                     }
 
-                    array_push($locale_names, "${lang}_$country");
+                    array_push(
+                        $locale_names,
+                        sprintf('%s_%s', $lang, $country)
+                    );
                 } elseif ($charset) {
-                    array_push($locale_names, "${lang}.$charset");
+                    array_push(
+                        $locale_names,
+                        sprintf('%s.%s', $lang, $charset)
+                    );
                 }
 
                 array_push($locale_names, $lang);
@@ -181,7 +203,7 @@ class Loader
 
             $filename = '';
             foreach ($locale_names as $locale) {
-                $filename = "$base/$locale/LC_MESSAGES/$domain.mo";
+                $filename = $base . '/' . $locale . '/LC_MESSAGES/' . $domain . '.mo';
                 if (file_exists($filename)) {
                     break;
                 }
