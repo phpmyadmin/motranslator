@@ -39,14 +39,14 @@ class Loader
      * @static
      * @var Loader
      */
-    private static $_instance;
+    private static $instance;
 
     /**
      * Default gettext domain to use.
      *
      * @var string
      */
-    private $default_domain = '';
+    private $defaultDomain = '';
 
     /**
      * Configured locale.
@@ -76,11 +76,11 @@ class Loader
      */
     public static function getInstance()
     {
-        if (empty(self::$_instance)) {
-            self::$_instance = new self();
+        if (empty(self::$instance)) {
+            self::$instance = new self();
         }
 
-        return self::$_instance;
+        return self::$instance;
     }
 
     /**
@@ -102,7 +102,7 @@ class Loader
      */
     public static function listLocales($locale)
     {
-        $locale_names = [];
+        $localeNames = [];
 
         if ($locale) {
             if (preg_match(
@@ -122,24 +122,24 @@ class Loader
                     if ($country) {
                         if ($charset) {
                             array_push(
-                                $locale_names,
+                                $localeNames,
                                 sprintf('%s_%s.%s@%s', $lang, $country, $charset, $modifier)
                             );
                         }
 
                         array_push(
-                            $locale_names,
+                            $localeNames,
                             sprintf('%s_%s@%s', $lang, $country, $modifier)
                         );
                     } elseif ($charset) {
                         array_push(
-                            $locale_names,
+                            $localeNames,
                             sprintf('%s.%s@%s', $lang, $charset, $modifier)
                         );
                     }
 
                     array_push(
-                        $locale_names,
+                        $localeNames,
                         sprintf('%s@%s', $lang, $modifier)
                     );
                 }
@@ -147,32 +147,32 @@ class Loader
                 if ($country) {
                     if ($charset) {
                         array_push(
-                            $locale_names,
+                            $localeNames,
                             sprintf('%s_%s.%s', $lang, $country, $charset)
                         );
                     }
 
                     array_push(
-                        $locale_names,
+                        $localeNames,
                         sprintf('%s_%s', $lang, $country)
                     );
                 } elseif ($charset) {
                     array_push(
-                        $locale_names,
+                        $localeNames,
                         sprintf('%s.%s', $lang, $charset)
                     );
                 }
 
-                array_push($locale_names, $lang);
+                array_push($localeNames, $lang);
             }
 
             // If the locale name doesn't match POSIX style, just include it as-is.
-            if (! in_array($locale, $locale_names)) {
-                array_push($locale_names, $locale);
+            if (! in_array($locale, $localeNames)) {
+                array_push($localeNames, $locale);
             }
         }
 
-        return $locale_names;
+        return $localeNames;
     }
 
     /**
@@ -185,7 +185,7 @@ class Loader
     public function getTranslator($domain = '')
     {
         if (empty($domain)) {
-            $domain = $this->default_domain;
+            $domain = $this->defaultDomain;
         }
 
         if (! isset($this->domains[$this->locale])) {
@@ -199,10 +199,10 @@ class Loader
                 $base = './';
             }
 
-            $locale_names = $this->listLocales($this->locale);
+            $localeNames = $this->listLocales($this->locale);
 
             $filename = '';
-            foreach ($locale_names as $locale) {
+            foreach ($localeNames as $locale) {
                 $filename = $base . '/' . $locale . '/LC_MESSAGES/' . $domain . '.mo';
                 if (file_exists($filename)) {
                     break;
@@ -235,7 +235,7 @@ class Loader
      */
     public function textdomain($domain)
     {
-        $this->default_domain = $domain;
+        $this->defaultDomain = $domain;
     }
 
     /**

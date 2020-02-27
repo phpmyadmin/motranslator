@@ -35,16 +35,16 @@ use const PHP_INT_MAX;
  */
 class StringReader
 {
-    private $_str;
-    private $_len;
+    private $string;
+    private $length;
 
     /**
      * @param string $filename Name of file to load
      */
     public function __construct($filename)
     {
-        $this->_str = (string) file_get_contents($filename);
-        $this->_len = strlen($this->_str);
+        $this->string = (string) file_get_contents($filename);
+        $this->length = strlen($this->string);
     }
 
     /**
@@ -57,11 +57,11 @@ class StringReader
      */
     public function read($pos, $bytes)
     {
-        if ($pos + $bytes > $this->_len) {
+        if ($pos + $bytes > $this->length) {
             throw new ReaderException('Not enough bytes!');
         }
 
-        return substr($this->_str, $pos, $bytes);
+        return substr($this->string, $pos, $bytes);
     }
 
     /**

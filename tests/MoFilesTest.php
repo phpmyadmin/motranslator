@@ -42,18 +42,18 @@ class MoFilesTest extends TestCase
     public function testMoFilePlurals($filename)
     {
         $parser = new Translator($filename);
-        $expected_2 = '%d sekundy';
+        $expected2 = '%d sekundy';
         if (strpos($filename, 'invalid-formula.mo') !== false || strpos($filename, 'lessplurals.mo') !== false) {
-            $expected_0 = '%d sekunda';
-            $expected_2 = '%d sekunda';
+            $expected0 = '%d sekunda';
+            $expected2 = '%d sekunda';
         } elseif (strpos($filename, 'plurals.mo') !== false || strpos($filename, 'noheader.mo') !== false) {
-            $expected_0 = '%d sekundy';
+            $expected0 = '%d sekundy';
         } else {
-            $expected_0 = '%d sekund';
+            $expected0 = '%d sekund';
         }
 
         $this->assertEquals(
-            $expected_0,
+            $expected0,
             $parser->ngettext(
                 '%d second',
                 '%d seconds',
@@ -69,7 +69,7 @@ class MoFilesTest extends TestCase
             )
         );
         $this->assertEquals(
-            $expected_2,
+            $expected2,
             $parser->ngettext(
                 '%d second',
                 '%d seconds',
@@ -77,7 +77,7 @@ class MoFilesTest extends TestCase
             )
         );
         $this->assertEquals(
-            $expected_0,
+            $expected0,
             $parser->ngettext(
                 '%d second',
                 '%d seconds',
@@ -85,7 +85,7 @@ class MoFilesTest extends TestCase
             )
         );
         $this->assertEquals(
-            $expected_0,
+            $expected0,
             $parser->ngettext(
                 '%d second',
                 '%d seconds',
