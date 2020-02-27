@@ -120,9 +120,9 @@ class Translator
 
         try {
             $magic = $stream->read(0, 4);
-            if (strcmp($magic, self::MAGIC_LE) == 0) {
+            if (strcmp($magic, self::MAGIC_LE) === 0) {
                 $unpack = 'V';
-            } elseif (strcmp($magic, self::MAGIC_BE) == 0) {
+            } elseif (strcmp($magic, self::MAGIC_BE) === 0) {
                 $unpack = 'N';
             } else {
                 $this->error = self::ERROR_BAD_MAGIC;
@@ -225,11 +225,11 @@ class Translator
     {
         $parts = explode(';', $expr, 2);
         $nplurals = explode('=', trim($parts[0]), 2);
-        if (strtolower(rtrim($nplurals[0])) != 'nplurals') {
+        if (strtolower(rtrim($nplurals[0])) !== 'nplurals') {
             return 1;
         }
 
-        if (count($nplurals) == 1) {
+        if (count($nplurals) === 1) {
             return 1;
         }
 
@@ -327,7 +327,7 @@ class Translator
         // this should contains all strings separated by NULLs
         $key = implode(chr(0), [$msgid, $msgidPlural]);
         if (! array_key_exists($key, $this->cacheTranslations)) {
-            return ($number != 1) ? $msgidPlural : $msgid;
+            return ($number !== 1) ? $msgidPlural : $msgid;
         }
 
         // find out the appropriate form
