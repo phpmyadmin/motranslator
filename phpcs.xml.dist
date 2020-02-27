@@ -5,17 +5,9 @@
     xsi:noNamespaceSchemaLocation="./vendor/squizlabs/php_codesniffer/phpcs.xsd"
 >
     <rule ref="./vendor/phpmyadmin/coding-standard/PhpMyAdmin/ruleset.xml">
-        <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
         <exclude name="PEAR.Commenting.FileComment"/>
         <exclude name="PEAR.Commenting.ClassComment"/>
         <exclude name="PEAR.Commenting.FunctionComment"/>
-    </rule>
-
-    <rule ref="PSR2.Classes.PropertyDeclaration.Underscore">
-        <severity>4</severity>
-    </rule>
-    <rule ref="Squiz.NamingConventions.ValidVariableName">
-        <severity>4</severity>
     </rule>
 
     <arg value="sp"/>
