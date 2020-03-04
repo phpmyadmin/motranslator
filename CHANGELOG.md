@@ -1,6 +1,7 @@
 # Change Log
 
 ## [Unreleased] -
+* Allow PHPUnit 9 (pull request #35)
 
 ## [5.0] - 2020-02-28
 
