@@ -8,7 +8,7 @@ use Doctum\Doctum;
 use Symfony\Component\Finder\Finder;
 use Doctum\RemoteRepository\GitHubRemoteRepository;
 
-$root = realpath(__DIR__ . '/../') . '/';
+$root = realpath(__DIR__) . '/';
 
 $iterator = Finder::create()
     ->files()
