@@ -1,5 +1,5 @@
 <?php
-/* vim: set expandtab sw=4 ts=4 sts=4: */
+
 declare(strict_types=1);
 
 namespace PhpMyAdmin\MoTranslator\Tests;
@@ -20,7 +20,7 @@ class PluralFormulaTest extends TestCase
      *
      * @dataProvider pluralExtractionData
      */
-    public function testExtractPluralsForms($header, $expected)
+    public function testExtractPluralsForms($header, $expected): void
     {
         $this->assertEquals(
             $expected,
@@ -28,7 +28,7 @@ class PluralFormulaTest extends TestCase
         );
     }
 
-    public function pluralExtractionData()
+    public function pluralExtractionData(): array
     {
         return [
             // It defaults to a "Western-style" plural header.
@@ -64,7 +64,7 @@ class PluralFormulaTest extends TestCase
      *
      * @dataProvider pluralCounts
      */
-    public function testPluralCounts($expr, $expected)
+    public function testPluralCounts($expr, $expected): void
     {
         $this->assertEquals(
             $expected,
@@ -72,7 +72,7 @@ class PluralFormulaTest extends TestCase
         );
     }
 
-    public function pluralCounts()
+    public function pluralCounts(): array
     {
         return [
             [
@@ -108,7 +108,7 @@ class PluralFormulaTest extends TestCase
      *
      * @dataProvider pluralExpressions
      */
-    public function testPluralExpression($expr, $expected)
+    public function testPluralExpression($expr, $expected): void
     {
         $this->assertEquals(
             $expected,
@@ -116,7 +116,7 @@ class PluralFormulaTest extends TestCase
         );
     }
 
-    public function pluralExpressions()
+    public function pluralExpressions(): array
     {
         return [
             [

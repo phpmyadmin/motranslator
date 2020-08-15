@@ -1,5 +1,5 @@
 <?php
-/* vim: set expandtab sw=4 ts=4 sts=4: */
+
 declare(strict_types=1);
 
 namespace PhpMyAdmin\MoTranslator\Tests;
@@ -20,7 +20,7 @@ class LoaderTest extends TestCase
      *
      * @dataProvider localeList
      */
-    public function testListLocales($locale, $expected)
+    public function testListLocales($locale, $expected): void
     {
         $this->assertEquals(
             $expected,
@@ -28,7 +28,7 @@ class LoaderTest extends TestCase
         );
     }
 
-    public function localeList()
+    public function localeList(): array
     {
         return [
             [
@@ -129,7 +129,7 @@ class LoaderTest extends TestCase
         ];
     }
 
-    private function getLoader($domain, $locale)
+    private function getLoader(string $domain, string $locale): Loader
     {
         $loader = new Loader();
         $loader->setlocale($locale);
@@ -139,7 +139,7 @@ class LoaderTest extends TestCase
         return $loader;
     }
 
-    public function testLocaleChange()
+    public function testLocaleChange(): void
     {
         $loader = new Loader();
         $loader->setlocale('cs');
@@ -160,7 +160,7 @@ class LoaderTest extends TestCase
      *
      * @dataProvider translatorData
      */
-    public function testGetTranslator($domain, $locale, $otherdomain, $expected)
+    public function testGetTranslator($domain, $locale, $otherdomain, $expected): void
     {
         $loader = $this->getLoader($domain, $locale);
         $translator = $loader->getTranslator($otherdomain);
@@ -170,7 +170,7 @@ class LoaderTest extends TestCase
         );
     }
 
-    public function translatorData()
+    public function translatorData(): array
     {
         return [
             [
@@ -212,7 +212,7 @@ class LoaderTest extends TestCase
         ];
     }
 
-    public function testInstance()
+    public function testInstance(): void
     {
         $loader = Loader::getInstance();
         $loader->setlocale('cs');
@@ -244,7 +244,7 @@ class LoaderTest extends TestCase
         );
     }
 
-    public function testDetect()
+    public function testDetect(): void
     {
         $GLOBALS['lang'] = 'foo';
         $loader = Loader::getInstance();
@@ -255,7 +255,7 @@ class LoaderTest extends TestCase
         unset($GLOBALS['lang']);
     }
 
-    public function testDetectEnv()
+    public function testDetectEnv(): void
     {
         $loader = Loader::getInstance();
         // putenv/getenv is broken on hhvm, do not fight with it

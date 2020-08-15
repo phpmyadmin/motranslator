@@ -1,5 +1,5 @@
 <?php
-/* vim: set expandtab sw=4 ts=4 sts=4: */
+
 declare(strict_types=1);
 
 namespace PhpMyAdmin\MoTranslator\Tests;
@@ -20,7 +20,7 @@ class MoFilesTest extends TestCase
      *
      * @dataProvider provideMoFiles
      */
-    public function testMoFileTranslate($filename)
+    public function testMoFileTranslate($filename): void
     {
         $parser = new Translator($filename);
         $this->assertEquals(
@@ -39,7 +39,7 @@ class MoFilesTest extends TestCase
      *
      * @dataProvider provideMoFiles
      */
-    public function testMoFilePlurals($filename)
+    public function testMoFilePlurals($filename): void
     {
         $parser = new Translator($filename);
         $expected2 = '%d sekundy';
@@ -108,7 +108,7 @@ class MoFilesTest extends TestCase
      *
      * @dataProvider provideMoFiles
      */
-    public function testMoFileContext($filename)
+    public function testMoFileContext($filename): void
     {
         $parser = new Translator($filename);
         $this->assertEquals(
@@ -125,7 +125,7 @@ class MoFilesTest extends TestCase
      *
      * @dataProvider provideNotTranslatedFiles
      */
-    public function testMoFileNotTranslated($filename)
+    public function testMoFileNotTranslated($filename): void
     {
         $parser = new Translator($filename);
         $this->assertEquals(
@@ -138,17 +138,17 @@ class MoFilesTest extends TestCase
         );
     }
 
-    public function provideMoFiles()
+    public function provideMoFiles(): array
     {
         return $this->getFiles('./tests/data/*.mo');
     }
 
-    public function provideErrorMoFiles()
+    public function provideErrorMoFiles(): array
     {
         return $this->getFiles('./tests/data/error/*.mo');
     }
 
-    public function provideNotTranslatedFiles()
+    public function provideNotTranslatedFiles(): array
     {
         return $this->getFiles('./tests/data/not-translated/*.mo');
     }
@@ -158,7 +158,7 @@ class MoFilesTest extends TestCase
      *
      * @dataProvider provideErrorMoFiles
      */
-    public function testEmptyMoFile($file)
+    public function testEmptyMoFile($file): void
     {
         $parser = new Translator($file);
         if (basename($file) === 'magic.mo') {
@@ -189,7 +189,7 @@ class MoFilesTest extends TestCase
      *
      * @dataProvider provideMoFiles
      */
-    public function testExists($file)
+    public function testExists($file): void
     {
         $parser = new Translator($file);
         $this->assertEquals(
@@ -204,8 +204,6 @@ class MoFilesTest extends TestCase
 
     /**
      * @param string $pattern path names pattern to match
-     *
-     * @return array
      */
     private function getFiles(string $pattern): array
     {

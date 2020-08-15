@@ -1,5 +1,5 @@
 <?php
-/* vim: set expandtab sw=4 ts=4 sts=4: */
+
 declare(strict_types=1);
 
 namespace PhpMyAdmin\MoTranslator\Tests;
@@ -14,10 +14,8 @@ class TranslatorTest extends TestCase
 {
     /**
      * Test on empty gettext
-     *
-     * @return void
      */
-    public function testGettext()
+    public function testGettext(): void
     {
         $translator = new Translator('');
         $this->assertEquals('Test', $translator->gettext('Test'));
@@ -25,10 +23,8 @@ class TranslatorTest extends TestCase
 
     /**
      * Test on empty gettext
-     *
-     * @return void
      */
-    public function testSetTranslation()
+    public function testSetTranslation(): void
     {
         $translator = new Translator('');
         $translator->setTranslation('Test', 'Translation');

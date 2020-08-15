@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
     Copyright (c) 2003, 2005, 2006, 2009 Danilo Segan <danilo@kvota.net>.
     Copyright (c) 2016 Michal Čihař <michal@cihar.com>
@@ -19,15 +22,13 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
-declare(strict_types=1);
-
 namespace PhpMyAdmin\MoTranslator;
 
+use const PHP_INT_MAX;
 use function file_get_contents;
 use function strlen;
 use function substr;
 use function unpack;
-use const PHP_INT_MAX;
 
 /**
  * Simple wrapper around string buffer for
@@ -35,13 +36,15 @@ use const PHP_INT_MAX;
  */
 class StringReader
 {
+    /** @var string */
     private $string;
+    /** @var int */
     private $length;
 
     /**
      * @param string $filename Name of file to load
      */
-    public function __construct($filename)
+    public function __construct(string $filename)
     {
         $this->string = (string) file_get_contents($filename);
         $this->length = strlen($this->string);
@@ -52,10 +55,8 @@ class StringReader
      *
      * @param int $pos   Offset
      * @param int $bytes Number of bytes to read
-     *
-     * @return string
      */
-    public function read($pos, $bytes)
+    public function read(int $pos, int $bytes): string
     {
         if ($pos + $bytes > $this->length) {
             throw new ReaderException('Not enough bytes!');
@@ -72,7 +73,7 @@ class StringReader
      *
      * @return int Ingerer from the stream
      */
-    public function readint($unpack, $pos)
+    public function readint(string $unpack, int $pos): int
     {
         $data = unpack($unpack, $this->read($pos, 4));
         $result = $data[1];
@@ -95,7 +96,7 @@ class StringReader
      *
      * @return array Array of Integers
      */
-    public function readintarray($unpack, $pos, $count)
+    public function readintarray(string $unpack, int $pos, int $count): array
     {
         return unpack($unpack . $count, $this->read($pos, 4 * $count));
     }

@@ -1,5 +1,5 @@
 <?php
-/* vim: set expandtab sw=4 ts=4 sts=4: */
+
 declare(strict_types=1);
 
 namespace PhpMyAdmin\MoTranslator\Tests;
@@ -20,7 +20,7 @@ class PluralTest extends TestCase
      *
      * @dataProvider providerTestNpgettext
      */
-    public function testNpgettext($number, $expected)
+    public function testNpgettext(int $number, string $expected): void
     {
         $parser = new Translator('');
         $result = $parser->npgettext(
@@ -34,10 +34,8 @@ class PluralTest extends TestCase
 
     /**
      * Data provider for test_npgettext.
-     *
-     * @return array
      */
-    public static function providerTestNpgettext()
+    public static function providerTestNpgettext(): array
     {
         return [
             [

@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
     Copyright (c) 2003, 2005, 2006, 2009 Danilo Segan <danilo@kvota.net>.
     Copyright (c) 2016 Michal Čihař <michal@cihar.com>
@@ -19,8 +22,6 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
-declare(strict_types=1);
-
 namespace PhpMyAdmin\MoTranslator;
 
 use Exception;

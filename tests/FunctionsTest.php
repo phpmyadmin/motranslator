@@ -1,5 +1,5 @@
 <?php
-/* vim: set expandtab sw=4 ts=4 sts=4: */
+
 declare(strict_types=1);
 
 namespace PhpMyAdmin\MoTranslator\Tests;
@@ -22,7 +22,7 @@ class FunctionsTest extends TestCase
         _bind_textdomain_codeset('phpmyadmin', 'UTF-8');
     }
 
-    public function testGettext()
+    public function testGettext(): void
     {
         $this->assertEquals(
             'Typ',
@@ -62,7 +62,7 @@ class FunctionsTest extends TestCase
         );
     }
 
-    public function testDomain()
+    public function testDomain(): void
     {
         $this->assertEquals(
             'Typ',

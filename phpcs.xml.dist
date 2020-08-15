@@ -8,6 +8,12 @@
         <exclude name="PEAR.Commenting.FileComment"/>
         <exclude name="PEAR.Commenting.ClassComment"/>
         <exclude name="PEAR.Commenting.FunctionComment"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableReturnTypeHintSpecification"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversablePropertyTypeHintSpecification"/>
+    </rule>
+
+    <rule ref="Squiz.Functions.GlobalFunction.Found">
+        <exclude-pattern>src/functions.php</exclude-pattern>
     </rule>
 
     <arg value="sp"/>
