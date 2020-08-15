@@ -1,6 +1,6 @@
 composer.phar
 /vendor/
-/doc/
+/build/
 composer.lock
 .php_cs.cache
 phpunit.xml
