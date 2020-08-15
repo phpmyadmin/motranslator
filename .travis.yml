@@ -1,5 +1,4 @@
 language: php
-
 dist: xenial
 
 php:
@@ -7,7 +6,6 @@ php:
   - 7.2
   - 7.3
   - 7.4
-  - nightly
 
 matrix:
   fast_finish: true
@@ -15,12 +13,25 @@ matrix:
     - php: nightly
   include:
     - php: 7.1
-      env: DOCS=yes
-
-sudo: false
+      name: "Coding standard check"
+      script: vendor/bin/phpcs
+      before_install: phpenv config-rm xdebug.ini
+      after_success: skip
+    - php: 7.2
+      name: "API docs"
+      before_install: phpenv config-rm xdebug.ini
+      after_success: skip
+      install:
+        - composer global require "code-lts/doctum:^5.0"
+        - composer install --no-interaction
+      script:
+        - $HOME/.composer/vendor/bin/doctum.php --no-interaction update ./tools/doctum-config.php
+    - php: nightly
+      install:
+        - composer install --no-interaction --ignore-platform-reqs
 
 install:
-  - composer install
+  - composer install --no-interaction
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
@@ -30,5 +41,4 @@ cache:
     - $HOME/.composer/cache
 
 script:
-  - ./vendor/bin/phpunit --configuration phpunit.xml.dist
-  - if [ "$DOCS" = "yes" ] ; then ./vendor/bin/sami.php --no-interaction update ./sami-config.php ; fi
+  - vendor/bin/phpunit --configuration phpunit.xml.dist
