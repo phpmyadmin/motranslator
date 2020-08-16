@@ -1,22 +1,9 @@
 <?xml version="1.0"?>
-<ruleset
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    name="phpMyAdmin"
-    xsi:noNamespaceSchemaLocation="./vendor/squizlabs/php_codesniffer/phpcs.xsd"
->
-    <rule ref="./vendor/phpmyadmin/coding-standard/PhpMyAdmin/ruleset.xml">
-        <exclude name="PEAR.Commenting.FileComment"/>
-        <exclude name="PEAR.Commenting.ClassComment"/>
-        <exclude name="PEAR.Commenting.FunctionComment"/>
-        <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableReturnTypeHintSpecification"/>
-        <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversablePropertyTypeHintSpecification"/>
-    </rule>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd">
+    <!-- Show progress and sniff codes -->
+    <arg value="ps"/>
 
-    <rule ref="Squiz.Functions.GlobalFunction.Found">
-        <exclude-pattern>src/functions.php</exclude-pattern>
-    </rule>
-
-    <arg value="sp"/>
+    <arg name="cache" value=".php_cs.cache"/>
     <arg name="colors"/>
     <arg name="extensions" value="php"/>
 
@@ -25,4 +12,13 @@
     <file>benchmark.php</file>
     <file>benchmark-context.php</file>
     <file>benchmark-plural.php</file>
+
+    <rule ref="PhpMyAdmin">
+        <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableReturnTypeHintSpecification"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversablePropertyTypeHintSpecification"/>
+    </rule>
+
+    <rule ref="Squiz.Functions.GlobalFunction.Found">
+        <exclude-pattern>src/functions.php</exclude-pattern>
+    </rule>
 </ruleset>
