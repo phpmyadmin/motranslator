@@ -24,15 +24,13 @@ Translation API for PHP using Gettext MO files.
 
 Please use [Composer][1] to install:
 
-```
+```sh
 composer require phpmyadmin/motranslator
 ```
 
 ## Documentation
 
-The API documentation is available at 
-<https://develdocs.phpmyadmin.net/motranslator/>.
-
+The API documentation is available at <https://develdocs.phpmyadmin.net/motranslator/>.
 
 ## Object API usage
 

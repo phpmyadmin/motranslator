@@ -1,7 +1,11 @@
 # Change Log
 
-## [Unreleased] -
-* Allow PHPUnit 9 (pull request #35)
+## [Unreleased] - YYYY-MM-DD
+
+* Allow PHPUnit 9 (#35)
+* Fix some typos
+* Sync config files
+* Allow PHP 8.0
 
 ## [5.0] - 2020-02-28
 
