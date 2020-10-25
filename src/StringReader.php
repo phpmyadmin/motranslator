@@ -71,7 +71,7 @@ class StringReader
      * @param string $unpack Unpack string
      * @param int    $pos    Position
      *
-     * @return int Ingerer from the stream
+     * @return int Integer from the stream
      */
     public function readint(string $unpack, int $pos): int
     {

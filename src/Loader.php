@@ -85,7 +85,7 @@ class Loader
     }
 
     /**
-     * Loads global localizaton functions.
+     * Loads global localization functions.
      */
     public static function loadFunctions(): void
     {
