@@ -99,7 +99,7 @@ class Loader
      *
      * @param string $locale Locale code
      *
-     * @return array list of locales to try for any POSIX-style locale specification
+     * @return string[] list of locales to try for any POSIX-style locale specification
      */
     public static function listLocales(string $locale): array
     {
