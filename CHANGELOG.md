@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - YYYY-MM-DD
+## [5.1.0] - 2020-11-15
 
 * Allow PHPUnit 9 (#35)
 * Fix some typos
