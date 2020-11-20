@@ -312,6 +312,9 @@ class Translator
                 $this->getPluralForms(),
                 ['n' => $n]
             );
+            if ($plural === false) {
+                $plural = 0;
+            }
         } catch (Throwable $e) {
             $plural = 0;
         }

@@ -68,4 +68,38 @@ class PluralTest extends TestCase
         );
         $this->assertSame('', $result);
     }
+
+    /**
+     * Test for ngettext
+     *
+     * @see https://github.com/phpmyadmin/motranslator/issues/37
+     */
+    public function testNgettextSelectString(): void
+    {
+        $parser = new Translator('');
+        $parser->setTranslation(
+            '',
+            "Project-Id-Version: phpMyAdmin 5.1.0-dev\n"
+            . "Report-Msgid-Bugs-To: translators@phpmyadmin.net\n"
+            . "PO-Revision-Date: 2020-09-01 09:12+0000\n"
+            . "Last-Translator: William Desportes <williamdes@wdes.fr>\n"
+            . 'Language-Team: English (United Kingdom) '
+            . "<https:\/\/hosted.weblate.org\/projects\/phpmyadmin\/master\/en_GB\/>\n"
+            . "Language: en_GB\n"
+            . "MIME-Version: 1.0\n"
+            . "Content-Type: text\/plain; charset=UTF-8\n"
+            . "Content-Transfer-Encoding: 8bit\n"
+            . "Plural-Forms: nplurals=2; plural=n != 1;\n"
+            . "X-Generator: Weblate 4.2.1-dev\n"
+            . ''
+        );
+        $translationKey = implode(chr(0), ["%d pig went to the market\n", "%d pigs went to the market\n"]);
+        $parser->setTranslation($translationKey, 'ok');
+        $result = $parser->ngettext(
+            "%d pig went to the market\n",
+            "%d pigs went to the market\n",
+            1
+        );
+        $this->assertSame('ok', $result);
+    }
 }
