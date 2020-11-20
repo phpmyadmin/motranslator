@@ -108,10 +108,15 @@ class Translator
     private $cacheTranslations = [];
 
     /**
-     * @param string $filename Name of mo file to load
+     * @param string|null $filename Name of mo file to load (null to not load a file)
      */
-    public function __construct(string $filename)
+    public function __construct(?string $filename)
     {
+        // The user can load the translations manually
+        if ($filename === null) {
+            return;
+        }
+
         $this->loadTranslationsFromFile($filename);
     }
 
@@ -412,5 +417,25 @@ class Translator
     public function setTranslation(string $msgid, string $msgstr): void
     {
         $this->cacheTranslations[$msgid] = $msgstr;
+    }
+
+    /**
+     * Set the translations
+     *
+     * @param array<string,string> $translations The translations "key => value" array
+     */
+    public function setTranslations(array $translations): void
+    {
+        $this->cacheTranslations = $translations;
+    }
+
+    /**
+     * Get the translations
+     *
+     * @return array<string,string> The translations "key => value" array
+     */
+    public function getTranslations(): array
+    {
+        return $this->cacheTranslations;
     }
 }
