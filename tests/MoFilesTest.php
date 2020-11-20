@@ -138,16 +138,25 @@ class MoFilesTest extends TestCase
         );
     }
 
+    /**
+     * @return array[]
+     */
     public function provideMoFiles(): array
     {
         return $this->getFiles('./tests/data/*.mo');
     }
 
+    /**
+     * @return array[]
+     */
     public function provideErrorMoFiles(): array
     {
         return $this->getFiles('./tests/data/error/*.mo');
     }
 
+    /**
+     * @return array[]
+     */
     public function provideNotTranslatedFiles(): array
     {
         return $this->getFiles('./tests/data/not-translated/*.mo');
@@ -204,6 +213,8 @@ class MoFilesTest extends TestCase
 
     /**
      * @param string $pattern path names pattern to match
+     *
+     * @return array[]
      */
     private function getFiles(string $pattern): array
     {

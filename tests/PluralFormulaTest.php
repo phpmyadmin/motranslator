@@ -28,6 +28,9 @@ class PluralFormulaTest extends TestCase
         );
     }
 
+    /**
+     * @return array[]
+     */
     public function pluralExtractionData(): array
     {
         return [
@@ -72,6 +75,9 @@ class PluralFormulaTest extends TestCase
         );
     }
 
+    /**
+     * @return array[]
+     */
     public function pluralCounts(): array
     {
         return [
@@ -116,6 +122,9 @@ class PluralFormulaTest extends TestCase
         );
     }
 
+    /**
+     * @return array[]
+     */
     public function pluralExpressions(): array
     {
         return [

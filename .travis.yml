@@ -6,6 +6,7 @@ php:
   - 7.2
   - 7.3
   - 7.4
+  - 8.0
 
 matrix:
   fast_finish: true
@@ -14,7 +15,12 @@ matrix:
   include:
     - php: 7.1
       name: "Coding standard check"
-      script: vendor/bin/phpcs
+      script: composer run phpcs
+      before_install: phpenv config-rm xdebug.ini
+      after_success: skip
+    - php: 7.4
+      name: "PHPStan"
+      script: composer run phpstan
       before_install: phpenv config-rm xdebug.ini
       after_success: skip
     - php: 7.3
@@ -42,4 +48,4 @@ cache:
     - $HOME/.composer/cache
 
 script:
-  - vendor/bin/phpunit --configuration phpunit.xml.dist
+  - composer run phpunit

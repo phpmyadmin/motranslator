@@ -95,7 +95,7 @@ class StringReader
      * @param int    $pos    Position
      * @param int    $count  How many elements should be read
      *
-     * @return array Array of Integers
+     * @return int[] Array of Integers
      */
     public function readintarray(string $unpack, int $pos, int $count): array
     {

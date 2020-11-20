@@ -60,14 +60,14 @@ class Loader
     /**
      * Loaded domains.
      *
-     * @var array
+     * @var array<string,array<string,Translator>>
      */
     private $domains = [];
 
     /**
      * Bound paths for domains.
      *
-     * @var array
+     * @var array<string,string>
      */
     private $paths = ['' => './'];
 

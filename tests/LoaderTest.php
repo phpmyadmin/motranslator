@@ -28,6 +28,9 @@ class LoaderTest extends TestCase
         );
     }
 
+    /**
+     * @return array[]
+     */
     public function localeList(): array
     {
         return [
@@ -170,6 +173,9 @@ class LoaderTest extends TestCase
         );
     }
 
+    /**
+     * @return array[]
+     */
     public function translatorData(): array
     {
         return [
@@ -258,13 +264,7 @@ class LoaderTest extends TestCase
     public function testDetectEnv(): void
     {
         $loader = Loader::getInstance();
-        // putenv/getenv is broken on hhvm, do not fight with it
         foreach (['LC_MESSAGES', 'LC_ALL', 'LANG'] as $var) {
-            putenv($var . '=baz');
-            if (getenv($var) !== 'baz') {
-                $this->markTestSkipped('Setting environment does not work');
-            }
-
             putenv($var);
             if (getenv($var) === false) {
                 continue;

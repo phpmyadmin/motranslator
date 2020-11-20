@@ -103,7 +103,7 @@ class Translator
     /**
      * Array with original -> translation mapping.
      *
-     * @var array
+     * @var array<string,string>
      */
     private $cacheTranslations = [];
 
@@ -111,6 +111,16 @@ class Translator
      * @param string $filename Name of mo file to load
      */
     public function __construct(string $filename)
+    {
+        $this->loadTranslationsFromFile($filename);
+    }
+
+    /**
+     * Load a Mo file translations
+     *
+     * @param string $filename Name of mo file to load
+     */
+    private function loadTranslationsFromFile(string $filename): void
     {
         if (! is_readable($filename)) {
             $this->error = self::ERROR_DOES_NOT_EXIST;

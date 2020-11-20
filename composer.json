@@ -16,11 +16,13 @@
         "source": "https://github.com/phpmyadmin/motranslator"
     },
     "scripts": {
-        "phpcbf": "phpcbf",
-        "phpcs": "phpcs",
-        "phpunit": "phpunit --color=always",
+        "phpcbf": "./vendor/bin/phpcbf",
+        "phpcs": "./vendor/bin/phpcs",
+        "phpstan": "./vendor/bin/phpstan analyse",
+        "phpunit": "./vendor/bin/phpunit --color=always",
         "test": [
             "@phpcs",
+            "@phpstan",
             "@phpunit"
         ]
     },
@@ -30,7 +32,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^7.4 || ^8 || ^9",
-        "phpmyadmin/coding-standard": "^2.1.1"
+        "phpmyadmin/coding-standard": "^2.1.1",
+        "phpstan/phpstan": "^0.12.56"
     },
     "autoload": {
         "psr-4": {
