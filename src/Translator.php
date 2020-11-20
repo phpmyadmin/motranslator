@@ -148,13 +148,17 @@ class Translator
             $translations = $stream->readint($unpack, 16);
 
             /* get original and translations tables */
-            $tableOriginals = $stream->readintarray($unpack, $originals, $total * 2);
-            $tableTranslations = $stream->readintarray($unpack, $translations, $total * 2);
+            $totalTimesTwo = (int) ($total * 2);// Fix for issue #36 on ARM
+            $tableOriginals = $stream->readintarray($unpack, $originals, $totalTimesTwo);
+            $tableTranslations = $stream->readintarray($unpack, $translations, $totalTimesTwo);
 
             /* read all strings to the cache */
             for ($i = 0; $i < $total; ++$i) {
-                $original = $stream->read($tableOriginals[$i * 2 + 2], $tableOriginals[$i * 2 + 1]);
-                $translation = $stream->read($tableTranslations[$i * 2 + 2], $tableTranslations[$i * 2 + 1]);
+                $iTimesTwo = $i * 2;
+                $iPlusOne = $iTimesTwo + 1;
+                $iPlusTwo = $iTimesTwo + 2;
+                $original = $stream->read($tableOriginals[$iPlusTwo], $tableOriginals[$iPlusOne]);
+                $translation = $stream->read($tableTranslations[$iPlusTwo], $tableTranslations[$iPlusOne]);
                 $this->cacheTranslations[$original] = $translation;
             }
         } catch (ReaderException $e) {
