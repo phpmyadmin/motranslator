@@ -16,11 +16,9 @@ use function strpos;
 class MoFilesTest extends TestCase
 {
     /**
-     * @param mixed $filename
-     *
      * @dataProvider provideMoFiles
      */
-    public function testMoFileTranslate($filename): void
+    public function testMoFileTranslate(string $filename): void
     {
         $parser = new Translator($filename);
         $this->assertEquals(
@@ -35,11 +33,9 @@ class MoFilesTest extends TestCase
     }
 
     /**
-     * @param mixed $filename
-     *
      * @dataProvider provideMoFiles
      */
-    public function testMoFilePlurals($filename): void
+    public function testMoFilePlurals(string $filename): void
     {
         $parser = new Translator($filename);
         $expected2 = '%d sekundy';
@@ -104,11 +100,9 @@ class MoFilesTest extends TestCase
     }
 
     /**
-     * @param mixed $filename
-     *
      * @dataProvider provideMoFiles
      */
-    public function testMoFileContext($filename): void
+    public function testMoFileContext(string $filename): void
     {
         $parser = new Translator($filename);
         $this->assertEquals(
@@ -121,11 +115,9 @@ class MoFilesTest extends TestCase
     }
 
     /**
-     * @param mixed $filename
-     *
      * @dataProvider provideNotTranslatedFiles
      */
-    public function testMoFileNotTranslated($filename): void
+    public function testMoFileNotTranslated(string $filename): void
     {
         $parser = new Translator($filename);
         $this->assertEquals(
@@ -163,11 +155,9 @@ class MoFilesTest extends TestCase
     }
 
     /**
-     * @param mixed $file
-     *
      * @dataProvider provideErrorMoFiles
      */
-    public function testEmptyMoFile($file): void
+    public function testEmptyMoFile(string $file): void
     {
         $parser = new Translator($file);
         if (basename($file) === 'magic.mo') {
@@ -194,11 +184,9 @@ class MoFilesTest extends TestCase
     }
 
     /**
-     * @param mixed $file
-     *
      * @dataProvider provideMoFiles
      */
-    public function testExists($file): void
+    public function testExists(string $file): void
     {
         $parser = new Translator($file);
         $this->assertEquals(

@@ -15,12 +15,11 @@ use function putenv;
 class LoaderTest extends TestCase
 {
     /**
-     * @param mixed $locale
-     * @param mixed $expected
+     * @param array[] $expected
      *
      * @dataProvider localeList
      */
-    public function testListLocales($locale, $expected): void
+    public function testListLocales(string $locale, array $expected): void
     {
         $this->assertEquals(
             $expected,
@@ -156,14 +155,9 @@ class LoaderTest extends TestCase
     }
 
     /**
-     * @param mixed $domain
-     * @param mixed $locale
-     * @param mixed $otherdomain
-     * @param mixed $expected
-     *
      * @dataProvider translatorData
      */
-    public function testGetTranslator($domain, $locale, $otherdomain, $expected): void
+    public function testGetTranslator(string $domain, string $locale, string $otherdomain, string $expected): void
     {
         $loader = $this->getLoader($domain, $locale);
         $translator = $loader->getTranslator($otherdomain);

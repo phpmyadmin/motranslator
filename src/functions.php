@@ -58,8 +58,8 @@ function _bindtextdomain(string $domain, string $path): void
  * Generally it is wise to output in UTF-8 and have
  * mo files in UTF-8.
  *
- * @param mixed $domain  Domain where to set character set
- * @param mixed $codeset Character set to set
+ * @param string $domain  Domain where to set character set
+ * @param string $codeset Character set to set
  */
 function _bind_textdomain_codeset($domain, $codeset): void
 {

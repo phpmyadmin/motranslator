@@ -15,12 +15,9 @@ class PluralFormulaTest extends TestCase
     /**
      * Test for extractPluralsForms.
      *
-     * @param mixed $header
-     * @param mixed $expected
-     *
      * @dataProvider pluralExtractionData
      */
-    public function testExtractPluralsForms($header, $expected): void
+    public function testExtractPluralsForms(string $header, string $expected): void
     {
         $this->assertEquals(
             $expected,
@@ -62,12 +59,9 @@ class PluralFormulaTest extends TestCase
     }
 
     /**
-     * @param mixed $expr
-     * @param mixed $expected
-     *
      * @dataProvider pluralCounts
      */
-    public function testPluralCounts($expr, $expected): void
+    public function testPluralCounts(string $expr, int $expected): void
     {
         $this->assertEquals(
             $expected,
@@ -109,12 +103,9 @@ class PluralFormulaTest extends TestCase
     }
 
     /**
-     * @param mixed $expr
-     * @param mixed $expected
-     *
      * @dataProvider pluralExpressions
      */
-    public function testPluralExpression($expr, $expected): void
+    public function testPluralExpression(string $expr, string $expected): void
     {
         $this->assertEquals(
             $expected,
