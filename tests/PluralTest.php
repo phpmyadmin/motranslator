@@ -6,6 +6,8 @@ namespace PhpMyAdmin\MoTranslator\Tests;
 
 use PhpMyAdmin\MoTranslator\Translator;
 use PHPUnit\Framework\TestCase;
+use function implode;
+use function chr;
 
 /**
  * Test for gettext parsing.
@@ -49,5 +51,21 @@ class PluralTest extends TestCase
                 "%d pigs went to the market\n",
             ],
         ];
+    }
+
+    /**
+     * Test for ngettext
+     */
+    public function testNgettext(): void
+    {
+        $parser = new Translator('');
+        $translationKey = implode(chr(0), ["%d pig went to the market\n", "%d pigs went to the market\n"]);
+        $parser->setTranslation($translationKey, '');
+        $result = $parser->ngettext(
+            "%d pig went to the market\n",
+            "%d pigs went to the market\n",
+            1
+        );
+        $this->assertSame('', $result);
     }
 }

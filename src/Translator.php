@@ -345,9 +345,13 @@ class Translator
 
         $result = $this->cacheTranslations[$key];
         $list = explode(chr(0), $result);
+        // @codeCoverageIgnoreStart
         if ($list === false) {
+            // This was added in 3ff2c63bcf85f81b3a205ce7222de11b33e2bf56 for phpstan
+            // But according to the php manual it should never happen
             return '';
         }
+        // @codeCoverageIgnoreEnd
 
         if (! isset($list[$select])) {
             return $list[0];
