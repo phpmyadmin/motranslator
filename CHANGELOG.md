@@ -2,6 +2,8 @@
 
 ## [Unreleased] - YYYY-MM-DD
 
+* Fix "Translator::selectString() must be of the type integer, boolean returned" (#37)
+
 ## [5.1.0] - 2020-11-15
 
 * Allow PHPUnit 9 (#35)
