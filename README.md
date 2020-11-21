@@ -57,6 +57,7 @@ $translator = $loader->getTranslator();
 
 ```php
 // Directly load the mo file
+// You can use null to not load a file and the use a setter to set the translations
 $translator = new PhpMyAdmin\MoTranslator\Translator('./path/to/file.mo');
 
 // Now you can use Translator API (see below)
@@ -76,6 +77,24 @@ echo $translator->pgettext('Context', 'String');
 
 // Translate plural string with context
 echo $translator->npgettext('Context', 'String', 'Plural string', $count);
+
+// Get the translations
+echo $translator->getTranslations();
+
+// All getters and setters below are more to be used if you are using a manual loading mode
+// Example: $translator = new PhpMyAdmin\MoTranslator\Translator(null);
+
+// Set a translation
+echo $translator->setTranslation('Test', 'Translation for "Test" key');
+
+// Set translations
+echo $translator->setTranslations([
+  'Test' => 'Translation for "Test" key',
+  'Test 2' => 'Translation for "Test 2" key',
+]);
+
+// Use the translation
+echo $translator->gettext('Test 2'); // -> Translation for "Test 2" key
 ```
 
 ## Gettext compatibility usage
