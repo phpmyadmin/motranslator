@@ -70,11 +70,36 @@ class PluralTest extends TestCase
     }
 
     /**
+     * @return array[]
+     */
+    public function dataProviderPluralForms(): array
+    {
+        return [
+            ['Plural-Forms: nplurals=2; plural=n != 1;'],
+            ['Plural-Forms: nplurals=1; plural=0;'],
+            ['Plural-Forms: nplurals=2; plural=(n > 1);'],
+            [
+                'Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n'
+                . '%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;',
+            ],
+            ['Plural-Forms: nplurals=2; plural=n >= 2 && (n < 11 || n > 99);'],
+            ['Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3;'],
+            ['Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;'],
+            [
+                'Plural-Forms: nplurals=2; plural=n != 1 && n != 2 && n != 3 &'
+            . '& (n % 10 == 4 || n % 10 == 6 || n % 10 == 9);',
+            ],
+        ];
+    }
+
+    /**
      * Test for ngettext
      *
      * @see https://github.com/phpmyadmin/motranslator/issues/37
+     *
+     * @dataProvider dataProviderPluralForms
      */
-    public function testNgettextSelectString(): void
+    public function testNgettextSelectString(string $pluralForms): void
     {
         $parser = new Translator('');
         $parser->setTranslation(
@@ -89,7 +114,7 @@ class PluralTest extends TestCase
             . "MIME-Version: 1.0\n"
             . "Content-Type: text\/plain; charset=UTF-8\n"
             . "Content-Transfer-Encoding: 8bit\n"
-            . "Plural-Forms: nplurals=2; plural=n != 1;\n"
+            . $pluralForms . "\n"
             . "X-Generator: Weblate 4.2.1-dev\n"
             . ''
         );

@@ -317,13 +317,10 @@ class Translator
         }
 
         try {
-            $plural = $this->pluralExpression->evaluate(
+            $plural = (int) $this->pluralExpression->evaluate(
                 $this->getPluralForms(),
                 ['n' => $n]
             );
-            if ($plural === false) {
-                $plural = 0;
-            }
         } catch (Throwable $e) {
             $plural = 0;
         }
