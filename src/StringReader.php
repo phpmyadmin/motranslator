@@ -77,6 +77,10 @@ class StringReader
     public function readint(string $unpack, int $pos): int
     {
         $data = unpack($unpack, $this->read($pos, 4));
+        if ($data === false) {
+            return PHP_INT_MAX;
+        }
+
         $result = $data[1];
 
         /* We're reading unsigned int, but PHP will happily
@@ -99,6 +103,11 @@ class StringReader
      */
     public function readintarray(string $unpack, int $pos, int $count): array
     {
-        return unpack($unpack . $count, $this->read($pos, 4 * $count));
+        $data = unpack($unpack . $count, $this->read($pos, 4 * $count));
+        if ($data === false) {
+            return [];
+        }
+
+        return $data;
     }
 }
