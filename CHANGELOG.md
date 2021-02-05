@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - YYYY-MM-DD
+## [5.2.0] - 2021-02-05
 
 * Fix "Translator::selectString() must be of the type integer, boolean returned" (#37)
 * Fix "TypeError: StringReader::readintarray() ($count) must be of type int, float given" failing tests on ARM (#36)
