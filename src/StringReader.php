@@ -25,11 +25,12 @@ declare(strict_types=1);
 
 namespace PhpMyAdmin\MoTranslator;
 
-use const PHP_INT_MAX;
 use function file_get_contents;
 use function strlen;
 use function substr;
 use function unpack;
+
+use const PHP_INT_MAX;
 
 /**
  * Simple wrapper around string buffer for

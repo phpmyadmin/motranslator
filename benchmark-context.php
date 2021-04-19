@@ -14,10 +14,7 @@ $start = microtime(true);
 foreach ($files as $filename) {
     $parser = new PhpMyAdmin\MoTranslator\Translator($filename);
     for ($i = 0; $i < 200000; ++$i) {
-        $parser->pgettext(
-            'Display format',
-            'Table'
-        );
+        $parser->pgettext('Display format', 'Table');
     }
 }
 

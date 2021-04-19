@@ -28,6 +28,7 @@ namespace PhpMyAdmin\MoTranslator;
 
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Throwable;
+
 use function array_key_exists;
 use function chr;
 use function count;
@@ -360,6 +361,7 @@ class Translator
             // But according to the php manual it should never happen
             return '';
         }
+
         // @codeCoverageIgnoreEnd
 
         if (! isset($list[$select])) {

@@ -6,8 +6,9 @@ namespace PhpMyAdmin\MoTranslator\Tests;
 
 use PhpMyAdmin\MoTranslator\Translator;
 use PHPUnit\Framework\TestCase;
-use function implode;
+
 use function chr;
+use function implode;
 
 /**
  * Test for gettext parsing.
@@ -25,12 +26,7 @@ class PluralTest extends TestCase
     public function testNpgettext(int $number, string $expected): void
     {
         $parser = new Translator('');
-        $result = $parser->npgettext(
-            'context',
-            "%d pig went to the market\n",
-            "%d pigs went to the market\n",
-            $number
-        );
+        $result = $parser->npgettext('context', "%d pig went to the market\n", "%d pigs went to the market\n", $number);
         $this->assertSame($expected, $result);
     }
 
@@ -61,11 +57,7 @@ class PluralTest extends TestCase
         $parser = new Translator('');
         $translationKey = implode(chr(0), ["%d pig went to the market\n", "%d pigs went to the market\n"]);
         $parser->setTranslation($translationKey, '');
-        $result = $parser->ngettext(
-            "%d pig went to the market\n",
-            "%d pigs went to the market\n",
-            1
-        );
+        $result = $parser->ngettext("%d pig went to the market\n", "%d pigs went to the market\n", 1);
         $this->assertSame('', $result);
     }
 
@@ -120,11 +112,7 @@ class PluralTest extends TestCase
         );
         $translationKey = implode(chr(0), ["%d pig went to the market\n", "%d pigs went to the market\n"]);
         $parser->setTranslation($translationKey, 'ok');
-        $result = $parser->ngettext(
-            "%d pig went to the market\n",
-            "%d pigs went to the market\n",
-            1
-        );
+        $result = $parser->ngettext("%d pig went to the market\n", "%d pigs went to the market\n", 1);
         $this->assertSame('ok', $result);
     }
 }

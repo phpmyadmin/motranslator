@@ -107,14 +107,16 @@ class Loader
         $localeNames = [];
 
         if ($locale) {
-            if (preg_match(
-                '/^(?P<lang>[a-z]{2,3})'      // language code
-                . '(?:_(?P<country>[A-Z]{2}))?'           // country code
-                . '(?:\\.(?P<charset>[-A-Za-z0-9_]+))?'   // charset
-                . '(?:@(?P<modifier>[-A-Za-z0-9_]+))?$/', // @ modifier
-                $locale,
-                $matches
-            )) {
+            if (
+                preg_match(
+                    '/^(?P<lang>[a-z]{2,3})' // language code
+                    . '(?:_(?P<country>[A-Z]{2}))?' // country code
+                    . '(?:\\.(?P<charset>[-A-Za-z0-9_]+))?' // charset
+                    . '(?:@(?P<modifier>[-A-Za-z0-9_]+))?$/', // @ modifier
+                    $locale,
+                    $matches
+                )
+            ) {
                 $lang = $matches['lang'] ?? null;
                 $country = $matches['country'] ?? null;
                 $charset = $matches['charset'] ?? null;

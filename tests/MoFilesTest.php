@@ -6,6 +6,7 @@ namespace PhpMyAdmin\MoTranslator\Tests;
 
 use PhpMyAdmin\MoTranslator\Translator;
 use PHPUnit\Framework\TestCase;
+
 use function basename;
 use function glob;
 use function strpos;
