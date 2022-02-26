@@ -1,11 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Static property PhpMyAdmin\\\\MoTranslator\\\\Loader\\:\\:\\$instance \\(PhpMyAdmin\\\\MoTranslator\\\\Loader\\) in empty\\(\\) is not falsy\\.$#"
-			count: 1
-			path: src/Loader.php
-
-		-
 			message: "#^Cannot cast mixed to int\\.$#"
 			count: 1
 			path: src/Translator.php

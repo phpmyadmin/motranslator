@@ -41,7 +41,7 @@ class Loader
      * @static
      * @var Loader
      */
-    private static $instance;
+    private static $instance = null;
 
     /**
      * Default gettext domain to use.
@@ -78,7 +78,7 @@ class Loader
      */
     public static function getInstance(): Loader
     {
-        if (empty(self::$instance)) {
+        if (self::$instance === null) {
             self::$instance = new self();
         }
 
