@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Add support for Symfony 6
+
 ## [5.2.0] - 2021-02-05
 
 * Fix "Translator::selectString() must be of the type integer, boolean returned" (#37)
