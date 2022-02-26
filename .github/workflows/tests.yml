@@ -9,12 +9,17 @@ on:
 
 jobs:
     test-php:
-        name: Test on php ${{ matrix.php-version }} and ${{ matrix.os }}
+        name: Test on PHP ${{ matrix.php-version }} and ${{ matrix.os }}
         runs-on: ${{ matrix.os }}
+        continue-on-error: ${{ matrix.experimental }}
         strategy:
             matrix:
-                php-version: ["7.1", "7.2", "7.3", "7.4", "8.0"]
+                php-version: ["7.1", "7.2", "7.3", "7.4", "8.0", "8.1"]
                 os: [ubuntu-latest]
+                experimental: [false]
+                composer-options: ['']
+                include:
+                  - { php-version: 'nightly', experimental: true, os: ubuntu-latest, composer-options: '--ignore-platform-reqs' }
         steps:
             - uses: actions/checkout@v2
             - name: Use php ${{ matrix.php-version }}
@@ -23,13 +28,19 @@ jobs:
                   php-version: ${{ matrix.php-version }}
                   extensions: mbstring
                   coverage: xdebug
-            - name: Cache module
+            - name: Get Composer Cache Directory
+              id: composer-cache
+              run: |
+                echo "::set-output name=dir::$(composer config cache-files-dir)"
+            - name: Restore cache
               uses: actions/cache@v2
               with:
-                  path: ~/.composer/cache/
-                  key: composer-cache
+                path: ${{ steps.composer-cache.outputs.dir }}
+                key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+                restore-keys: |
+                  ${{ runner.os }}-composer-
             - name: Install dependencies
-              run: composer install
+              run: composer install --no-interaction ${{ matrix.composer-options }}
             - name: Run php tests
               run: composer run phpunit
             - name: Send coverage
