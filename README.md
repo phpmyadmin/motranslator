@@ -17,7 +17,7 @@ Translation API for PHP using Gettext MO files.
 
 ## Limitations
 
-* Not suitable for huge MO files which you don't want to store in memory
+* Default `InMemoryCache` not suitable for huge MO files which you don't want to store in memory
 * Input and output encoding has to match (preferably UTF-8)
 
 ## Installation
@@ -58,7 +58,8 @@ $translator = $loader->getTranslator();
 ```php
 // Directly load the mo file
 // You can use null to not load a file and the use a setter to set the translations
-$translator = new PhpMyAdmin\MoTranslator\Translator('./path/to/file.mo');
+$cache = new PhpMyAdmin\MoTranslator\Cache\InMemoryCache(new PhpMyAdmin\MoTranslator\MoParser('./path/to/file.mo'));
+$translator = new PhpMyAdmin\MoTranslator\Translator($cache);
 
 // Now you can use Translator API (see below)
 ```

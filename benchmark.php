@@ -13,8 +13,10 @@ $start = microtime(true);
 
 for ($i = 0; $i < 2000; ++$i) {
     foreach ($files as $filename) {
-        $parser = new PhpMyAdmin\MoTranslator\Translator($filename);
-        $parser->gettext('Column');
+        $translator = new PhpMyAdmin\MoTranslator\Translator(
+            new PhpMyAdmin\MoTranslator\Cache\InMemoryCache(new PhpMyAdmin\MoTranslator\MoParser($filename))
+        );
+        $translator->gettext('Column');
     }
 }
 

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace PhpMyAdmin\MoTranslator\Tests;
 
+use PhpMyAdmin\MoTranslator\Cache\InMemoryCache;
+use PhpMyAdmin\MoTranslator\MoParser;
 use PhpMyAdmin\MoTranslator\Translator;
 use PHPUnit\Framework\TestCase;
 
@@ -25,7 +27,7 @@ class PluralTest extends TestCase
      */
     public function testNpgettext(int $number, string $expected): void
     {
-        $parser = new Translator('');
+        $parser = $this->getTranslator('');
         $result = $parser->npgettext('context', "%d pig went to the market\n", "%d pigs went to the market\n", $number);
         $this->assertSame($expected, $result);
     }
@@ -54,7 +56,7 @@ class PluralTest extends TestCase
      */
     public function testNgettext(): void
     {
-        $parser = new Translator('');
+        $parser = $this->getTranslator('');
         $translationKey = implode(chr(0), ["%d pig went to the market\n", "%d pigs went to the market\n"]);
         $parser->setTranslation($translationKey, '');
         $result = $parser->ngettext("%d pig went to the market\n", "%d pigs went to the market\n", 1);
@@ -93,7 +95,7 @@ class PluralTest extends TestCase
      */
     public function testNgettextSelectString(string $pluralForms): void
     {
-        $parser = new Translator('');
+        $parser = $this->getTranslator('');
         $parser->setTranslation(
             '',
             "Project-Id-Version: phpMyAdmin 5.1.0-dev\n"
@@ -114,5 +116,10 @@ class PluralTest extends TestCase
         $parser->setTranslation($translationKey, 'ok');
         $result = $parser->ngettext("%d pig went to the market\n", "%d pigs went to the market\n", 1);
         $this->assertSame('ok', $result);
+    }
+
+    private function getTranslator(string $filename): Translator
+    {
+        return new Translator(new InMemoryCache(new MoParser($filename)));
     }
 }

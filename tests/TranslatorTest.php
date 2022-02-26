@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace PhpMyAdmin\MoTranslator\Tests;
 
+use PhpMyAdmin\MoTranslator\Cache\InMemoryCache;
+use PhpMyAdmin\MoTranslator\MoParser;
 use PhpMyAdmin\MoTranslator\Translator;
 use PHPUnit\Framework\TestCase;
 
@@ -17,7 +19,7 @@ class TranslatorTest extends TestCase
      */
     public function testGettext(): void
     {
-        $translator = new Translator('');
+        $translator = $this->getTranslator('');
         $this->assertEquals('Test', $translator->gettext('Test'));
     }
 
@@ -26,7 +28,7 @@ class TranslatorTest extends TestCase
      */
     public function testSetTranslation(): void
     {
-        $translator = new Translator('');
+        $translator = $this->getTranslator('');
         $translator->setTranslation('Test', 'Translation');
         $this->assertEquals('Translation', $translator->gettext('Test'));
     }
@@ -37,11 +39,11 @@ class TranslatorTest extends TestCase
     public function testGetSetTranslations(): void
     {
         $transTable = ['Test' => 'Translation'];
-        $translator = new Translator('');
+        $translator = $this->getTranslator('');
         $translator->setTranslations($transTable);
         $this->assertEquals('Translation', $translator->gettext('Test'));
         $this->assertSame($transTable, $translator->getTranslations());
-        $translator = new Translator(null);
+        $translator = $this->getTranslator(null);
         $translator->setTranslations($transTable);
         $this->assertSame($transTable, $translator->getTranslations());
         $this->assertEquals('Translation', $translator->gettext('Test'));
@@ -50,13 +52,18 @@ class TranslatorTest extends TestCase
             'shouldIWriteTests' => 'as much as possible',
             'is it hard' => 'it depends',
         ];
-        $translator = new Translator('');
+        $translator = $this->getTranslator('');
         $translator->setTranslations($transTable);
         $this->assertSame($transTable, $translator->getTranslations());
         $this->assertEquals('as much as possible', $translator->gettext('shouldIWriteTests'));
-        $translator = new Translator(null);
+        $translator = $this->getTranslator(null);
         $translator->setTranslations($transTable);
         $this->assertSame($transTable, $translator->getTranslations());
         $this->assertEquals('it depends', $translator->gettext('is it hard'));
+    }
+
+    private function getTranslator(?string $filename): Translator
+    {
+        return new Translator(new InMemoryCache(new MoParser($filename)));
     }
 }

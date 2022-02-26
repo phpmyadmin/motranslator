@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace PhpMyAdmin\MoTranslator\Tests;
 
+use PhpMyAdmin\MoTranslator\Cache\CacheFactoryInterface;
+use PhpMyAdmin\MoTranslator\Cache\CacheInterface;
 use PhpMyAdmin\MoTranslator\Loader;
+use PhpMyAdmin\MoTranslator\MoParser;
 use PHPUnit\Framework\TestCase;
 
 use function getenv;
@@ -291,5 +294,30 @@ class LoaderTest extends TestCase
             'en',
             $loader->detectlocale()
         );
+    }
+
+    public function testSetCacheFactory(): void
+    {
+        $expected = 'Foo';
+        $locale = 'be_BY';
+        $domain = 'apcu';
+
+        $cache = $this->createStub(CacheInterface::class);
+        $cache->method('get')
+            ->willReturn($expected);
+        $factory = $this->createMock(CacheFactoryInterface::class);
+        $factory->expects($this->once())
+            ->method('getInstance')
+            ->with($this->isInstanceOf(MoParser::class), $locale, $domain)
+            ->willReturn($cache);
+
+        $loader = Loader::getInstance();
+        $loader->setCacheFactory($factory);
+        $loader->setlocale($locale);
+        $loader->bindtextdomain($domain, __DIR__ . '/data/locale/');
+        $translator = $loader->getTranslator($domain);
+
+        $actual = $translator->gettext('Type');
+        $this->assertEquals($expected, $actual);
     }
 }

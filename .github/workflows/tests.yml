@@ -21,7 +21,7 @@ jobs:
               uses: shivammathur/setup-php@v2
               with:
                   php-version: ${{ matrix.php-version }}
-                  extensions: mbstring
+                  extensions: apcu, mbstring
                   coverage: xdebug
             - name: Cache module
               uses: actions/cache@v2
