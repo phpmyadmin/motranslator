@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Add support for Symfony 6
 * Split out `.mo` parsing to separate `MoParser` class
 * Added `CacheInterface` so alternate cache implementations are pluggable
 * Added `ApcuCache` implementation to leverage shared in-memory translation cache

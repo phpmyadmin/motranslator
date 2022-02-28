@@ -126,7 +126,7 @@ _pgettext($msgctxt, $msgid);
 
 ## Using APCu-backed cache
 
-If you have the [APCu][4] extension installed you can use it for storing the translation cache. The `.mo` file
+If you have the [APCu][5] extension installed you can use it for storing the translation cache. The `.mo` file
 will then only be loaded once and all processes will share the same cache, reducing memory usage and resulting in
 performance comparable to the native `gettext` extension.
 
@@ -183,7 +183,7 @@ $translator = new PhpMyAdmin\MoTranslator\Translator($cache);
 
 You should ensure APCu has enough memory to store all your translations, along with any other entries you use it 
 for. If an entry is evicted from cache, the `.mo` file will be re-parsed, impacting performance. See the 
-`apc.shm_size` and `apc.shm_segments` [documentation][5] and monitor cache usage when first rolling out.
+`apc.shm_size` and `apc.shm_segments` [documentation][6] and monitor cache usage when first rolling out.
 
 If your `.mo` files are missing lots of translations, the first time a missing entry is requested the `.mo` file 
 will be re-parsed. Again, this will impact performance until all the missing entries are hit once. You can turn off this
@@ -201,7 +201,7 @@ Motivation for this library includes:
 
 * The [php-gettext][2] library is not maintained anymore
 * It doesn't work with recent PHP version (phpMyAdmin has patched version)
-* It relies on `eval()` function for plural equations what can have severe security implications, see CVE-2016-6175
+* It relies on `eval()` function for plural equations what can have severe security implications, see [CVE-2016-6175][4]
 * It's not possible to install it using [Composer][1]
 * There was place for performance improvements in the library
 
@@ -229,5 +229,6 @@ contribute.
 [1]:https://getcomposer.org/
 [2]:https://launchpad.net/php-gettext
 [3]:https://weblate.org/
-[4]:https://www.php.net/manual/en/book.apcu.php
-[5]:https://www.php.net/manual/en/apcu.configuration.php
+[4]: https://www.cve.org/CVERecord?id=CVE-2016-6175
+[5]:https://www.php.net/manual/en/book.apcu.php
+[6]:https://www.php.net/manual/en/apcu.configuration.php
