@@ -27,6 +27,7 @@ jobs:
               with:
                   php-version: ${{ matrix.php-version }}
                   extensions: apcu, mbstring
+                  ini_values: apc.enable_cli=1
                   coverage: xdebug
             - name: Get Composer Cache Directory
               id: composer-cache

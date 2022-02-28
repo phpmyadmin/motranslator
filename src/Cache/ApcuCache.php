@@ -18,6 +18,7 @@ use function array_map;
 use function assert;
 use function function_exists;
 use function is_array;
+use function is_string;
 
 final class ApcuCache implements CacheInterface
 {
@@ -64,7 +65,7 @@ final class ApcuCache implements CacheInterface
     public function get(string $msgid): string
     {
         $msgstr = apcu_fetch($this->getKey($msgid), $success);
-        if ($success) {
+        if ($success && is_string($msgstr)) {
             return $msgstr;
         }
 
@@ -79,7 +80,7 @@ final class ApcuCache implements CacheInterface
 
         $msgstr = apcu_fetch($this->getKey($msgid), $success);
 
-        return $success ? $msgstr : $msgid;
+        return $success && is_string($msgstr) ? $msgstr : $msgid;
     }
 
     public function set(string $msgid, string $msgstr): void
