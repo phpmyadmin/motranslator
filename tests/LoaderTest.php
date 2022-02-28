@@ -8,6 +8,7 @@ use PhpMyAdmin\MoTranslator\Cache\CacheFactoryInterface;
 use PhpMyAdmin\MoTranslator\Cache\CacheInterface;
 use PhpMyAdmin\MoTranslator\Loader;
 use PhpMyAdmin\MoTranslator\MoParser;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 use function getenv;
@@ -305,6 +306,7 @@ class LoaderTest extends TestCase
         $cache = $this->createMock(CacheInterface::class);
         $cache->method('get')
             ->willReturn($expected);
+        /** @var CacheFactoryInterface&MockObject $factory */
         $factory = $this->createMock(CacheFactoryInterface::class);
         $factory->expects($this->once())
             ->method('getInstance')
