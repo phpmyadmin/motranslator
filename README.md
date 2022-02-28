@@ -124,6 +124,72 @@ _dgettext($domain, $msgid);
 _pgettext($msgctxt, $msgid);
 ```
 
+## Using APCu-backed cache
+
+If you have the [APCu][4] extension installed you can use it for storing the translation cache. The `.mo` file
+will then only be loaded once and all processes will share the same cache, reducing memory usage and resulting in
+performance comparable to the native `gettext` extension.
+
+If you are using `Loader`, pass it an `ApcuCacheFactory` _before_ getting the translator instance:
+
+```php
+PhpMyAdmin\MoTranslator\Loader::setCacheFactory(
+    new PhpMyAdmin\MoTranslator\Cache\AcpuCacheFactory()
+);
+$loader = new PhpMyAdmin\MoTranslator\Loader();
+
+// Proceed as before 
+```
+
+If you are using the low level API, instantiate the `ApcuCache` directly:
+
+```php
+$cache = new PhpMyAdmin\MoTranslator\Cache\ApcuCache(
+    new PhpMyAdmin\MoTranslator\MoParser('./path/to/file.mo'),
+    'de_DE',     // the locale
+    'phpmyadmin' // the domain
+);
+$translator = new PhpMyAdmin\MoTranslator\Translator($cache);
+
+// Proceed as before
+```
+
+By default, APCu will cache the translations until next server restart and prefix the cache entries with `mo_` to
+avoid clashes with other cache entries. You can control this behaviour by passing `$ttl` and `$prefix` arguments, either
+to the `ApcuCacheFactory` or when instantiating `ApcuCache`:
+
+```php
+PhpMyAdmin\MoTranslator\Loader::setCacheFactory(
+    new PhpMyAdmin\MoTranslator\Cache\AcpuCacheFactory(
+        3600,     // cache for 1 hour
+        true,     // reload on cache miss
+        'custom_' // custom prefix for cache entries
+    )
+);
+$loader = new PhpMyAdmin\MoTranslator\Loader();
+
+// or...
+
+$cache = new PhpMyAdmin\MoTranslator\Cache\ApcuCache(
+    new PhpMyAdmin\MoTranslator\MoParser('./path/to/file.mo'),
+    'de_DE',
+    'phpmyadmin',
+    3600,     // cache for 1 hour
+    true,     // reload on cache miss
+    'custom_' // custom prefix for cache entries
+);
+$translator = new PhpMyAdmin\MoTranslator\Translator($cache);
+```
+
+You should ensure APCu has enough memory to store all your translations, along with any other entries you use it 
+for. If an entry is evicted from cache, the `.mo` file will be re-parsed, impacting performance. See the 
+`apc.shm_size` and `apc.shm_segments` [documentation][5] and monitor cache usage when first rolling out.
+
+If your `.mo` files are missing lots of translations, the first time a missing entry is requested the `.mo` file 
+will be re-parsed. Again, this will impact performance until all the missing entries are hit once. You can turn off this
+behaviour by setting the `$reloadOnMiss` argument to `false`. If you do this it is _critical_ that APCu has enough 
+memory, or users will see untranslated text when entries are evicted.
+
 ## History
 
 This library is based on [php-gettext][2]. It adds some performance
@@ -163,3 +229,5 @@ contribute.
 [1]:https://getcomposer.org/
 [2]:https://launchpad.net/php-gettext
 [3]:https://weblate.org/
+[4]:https://www.php.net/manual/en/book.apcu.php
+[5]:https://www.php.net/manual/en/apcu.configuration.php

@@ -311,8 +311,8 @@ class LoaderTest extends TestCase
             ->with($this->isInstanceOf(MoParser::class), $locale, $domain)
             ->willReturn($cache);
 
+        Loader::setCacheFactory($factory);
         $loader = Loader::getInstance();
-        $loader->setCacheFactory($factory);
         $loader->setlocale($locale);
         $loader->bindtextdomain($domain, __DIR__ . '/data/locale/');
         $translator = $loader->getTranslator($domain);
