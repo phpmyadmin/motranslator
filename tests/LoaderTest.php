@@ -302,7 +302,7 @@ class LoaderTest extends TestCase
         $locale = 'be_BY';
         $domain = 'apcu';
 
-        $cache = $this->createStub(CacheInterface::class);
+        $cache = $this->createMock(CacheInterface::class);
         $cache->method('get')
             ->willReturn($expected);
         $factory = $this->createMock(CacheFactoryInterface::class);
