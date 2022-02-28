@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace PhpMyAdmin\MoTranslator\Tests;
 
+use PhpMyAdmin\MoTranslator\Cache\CacheInterface;
 use PhpMyAdmin\MoTranslator\Cache\InMemoryCache;
+use PhpMyAdmin\MoTranslator\CacheException;
 use PhpMyAdmin\MoTranslator\MoParser;
 use PhpMyAdmin\MoTranslator\Translator;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -60,6 +63,16 @@ class TranslatorTest extends TestCase
         $translator->setTranslations($transTable);
         $this->assertSame($transTable, $translator->getTranslations());
         $this->assertEquals('it depends', $translator->gettext('is it hard'));
+    }
+
+    public function testGetTranslationsThrowsException(): void
+    {
+        /** @var CacheInterface&MockObject $cache */
+        $cache = $this->createMock(CacheInterface::class);
+        $translator = new Translator($cache);
+
+        $this->expectException(CacheException::class);
+        $translator->getTranslations();
     }
 
     private function getTranslator(?string $filename): Translator

@@ -15,6 +15,7 @@ jobs:
         strategy:
             matrix:
                 php-version: ["7.1", "7.2", "7.3", "7.4", "8.0", "8.1"]
+                apcu-enable-cli: ["1", "0"]
                 os: [ubuntu-latest]
                 experimental: [false]
                 composer-options: ['']
@@ -27,7 +28,7 @@ jobs:
               with:
                   php-version: ${{ matrix.php-version }}
                   extensions: apcu, mbstring
-                  ini_values: apc.enable_cli=1
+                  ini_values: apc.enable_cli=${{ matrix.apcu-enable-cli }}
                   coverage: xdebug
             - name: Get Composer Cache Directory
               id: composer-cache

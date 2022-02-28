@@ -45,12 +45,9 @@ final class ApcuCache implements CacheInterface
         bool $reloadOnMiss = true,
         string $prefix = 'mo_'
     ) {
-        // @codeCoverageIgnoreStart
         if (! (function_exists('apcu_enabled') && apcu_enabled())) {
             throw new CacheException('ACPu extension must be installed and enabled');
         }
-
-        // @codeCoverageIgnoreEnd
 
         $this->parser = $parser;
         $this->locale = $locale;
