@@ -31,7 +31,6 @@
         "symfony/expression-language": "^4.0 || ^5.0 || ^6.0"
     },
     "require-dev": {
-        "ext-apcu": "*",
         "phpunit/phpunit": "^7.4 || ^8 || ^9",
         "phpmyadmin/coding-standard": "^3.0.0",
         "phpstan/phpstan": "^1.4.6"
