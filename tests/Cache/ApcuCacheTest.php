@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestCase;
 use function apcu_clear_cache;
 use function apcu_delete;
 use function apcu_enabled;
+use function apcu_entry;
 use function apcu_fetch;
 use function function_exists;
 use function sleep;
@@ -113,6 +114,27 @@ class ApcuCacheTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
+    public function testEnsureTranslationsLoadedHonorsLock(): void
+    {
+        $locale = 'foo';
+        $domain = 'bar';
+        $msgid = 'Column';
+
+        $lock = 'mo_' . $locale . '.' . $domain . '.' . ApcuCache::LOADED_KEY;
+        apcu_entry($lock, static function () {
+            sleep(1);
+
+            return 1;
+        });
+
+        new ApcuCache(new MoParser(__DIR__ . '/../data/little.mo'), $locale, $domain);
+
+        $actual = apcu_fetch($lock);
+        $this->assertSame(1, $actual);
+        apcu_fetch('mo_' . $locale . '.' . $domain . '.' . $msgid, $success);
+        $this->assertFalse($success);
+    }
+
     public function testGetReturnsMsgstr(): void
     {
         $expected = 'Pole';
@@ -141,7 +163,7 @@ class ApcuCacheTest extends TestCase
         $domain = 'bar';
         $msgid = 'Column';
 
-        $cache = new ApcuCache(new MoParser(__DIR__ . '/../data/little.mo'), 'foo', 'bar');
+        $cache = new ApcuCache(new MoParser(__DIR__ . '/../data/little.mo'), $locale, $domain);
 
         apcu_delete('mo_' . $locale . '.' . $domain . '.' . ApcuCache::LOADED_KEY);
         $actual = $cache->get($msgid);
@@ -188,5 +210,19 @@ class ApcuCacheTest extends TestCase
             $actual = $cache->get($msgid);
             $this->assertEquals($expected, $actual);
         }
+    }
+
+    public function testCacheStoresPluralForms(): void
+    {
+        $expected = ['first', 'second'];
+        $plural = ["%d pig went to the market\n", "%d pigs went to the market\n"];
+        $msgid = implode(chr(0), $plural);
+
+        $cache = new ApcuCache(new MoParser(null), 'foo', 'bar');
+        $cache->set($msgid, implode(chr(0), $expected));
+
+        $msgstr = $cache->get($msgid);
+        $actual = explode(chr(0), $msgstr);
+        $this->assertSame($expected, $actual);
     }
 }
