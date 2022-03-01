@@ -70,8 +70,20 @@ final class ApcuCache implements CacheInterface
             return $msgid;
         }
 
-        // store original in case translation is not present
-        apcu_store($msgid, $msgid);
+        return $this->reloadOnMiss($msgid);
+    }
+
+    private function reloadOnMiss(string $msgid): string
+    {
+        // store original if translation is not present
+        $cached = apcu_entry($msgid, static function () use ($msgid) {
+            return $msgid;
+        }, $this->ttl);
+        // if another process has updated cache, return early
+        if ($cached !== $msgid && is_string($cached)) {
+            return $cached;
+        }
+
         // reload .mo file, in case entry has been evicted
         $this->parser->parseIntoCache($this);
 

@@ -7,13 +7,17 @@ namespace PhpMyAdmin\MoTranslator\Tests\Cache;
 use PhpMyAdmin\MoTranslator\Cache\ApcuCache;
 use PhpMyAdmin\MoTranslator\MoParser;
 use PHPUnit\Framework\TestCase;
+use ReflectionMethod;
 
 use function apcu_clear_cache;
 use function apcu_delete;
 use function apcu_enabled;
 use function apcu_entry;
 use function apcu_fetch;
+use function chr;
+use function explode;
 use function function_exists;
+use function implode;
 use function sleep;
 
 /**
@@ -169,6 +173,28 @@ class ApcuCacheTest extends TestCase
 
         apcu_delete('mo_' . $locale . '.' . $domain . '.' . ApcuCache::LOADED_KEY);
         $actual = $cache->get($msgid);
+        $this->assertSame($expected, $actual);
+    }
+
+    public function testReloadOnMissHonorsLock(): void
+    {
+        $expected = 'Pole';
+        $locale = 'foo';
+        $domain = 'bar';
+        $msgid = 'Column';
+
+        $cache = new ApcuCache(new MoParser(null), $locale, $domain);
+
+        $method = new ReflectionMethod($cache, 'reloadOnMiss');
+        $method->setAccessible(true);
+
+        apcu_entry($msgid, static function () use ($expected): string {
+            sleep(1);
+
+            return $expected;
+        });
+        $actual = $method->invoke($cache, $msgid);
+
         $this->assertSame($expected, $actual);
     }
 
