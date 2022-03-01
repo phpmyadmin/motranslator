@@ -21,6 +21,7 @@ final class ApcuDisabledTest extends TestCase
         }
 
         $this->expectException(CacheException::class);
+        $this->expectExceptionMessage('ACPu extension must be installed and enabled');
         new ApcuCache(new MoParser(null), 'foo', 'bar');
     }
 }
