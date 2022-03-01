@@ -113,7 +113,7 @@ final class ApcuCache implements CacheInterface
         $key = $this->getKey(self::LOADED_KEY);
         $loaded = apcu_exists($key) || apcu_entry($key, static function (): int {
             return 0;
-        });
+        }, $this->ttl);
         if ($loaded) {
             return;
         }

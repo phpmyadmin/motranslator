@@ -64,6 +64,8 @@ class ApcuCacheTest extends TestCase
 
         apcu_fetch('mo_' . $locale . '.' . $domain . '.' . $msgid, $success);
         $this->assertFalse($success);
+        apcu_fetch('mo_' . $locale . '.' . $domain . '.' . ApcuCache::LOADED_KEY, $success);
+        $this->assertFalse($success);
     }
 
     public function testConstructorSetsReloadOnMiss(): void
