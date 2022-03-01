@@ -181,6 +181,14 @@ $cache = new PhpMyAdmin\MoTranslator\Cache\ApcuCache(
 $translator = new PhpMyAdmin\MoTranslator\Translator($cache);
 ```
 
+If you receive updated translation files you can load them without restarting the server using the low-level API:
+
+```php
+$parser = new PhpMyAdmin\MoTranslator\MoParser('./path/to/file.mo');
+$cache = new PhpMyAdmin\MoTranslator\Cache\ApcuCache($parser, 'de_DE', 'phpmyadmin');
+$parser->parseIntoCache($cache);
+```
+
 You should ensure APCu has enough memory to store all your translations, along with any other entries you use it 
 for. If an entry is evicted from cache, the `.mo` file will be re-parsed, impacting performance. See the 
 `apc.shm_size` and `apc.shm_segments` [documentation][6] and monitor cache usage when first rolling out.
