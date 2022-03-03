@@ -162,6 +162,19 @@ class ApcuCacheTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
+    public function testStoresMsgidOnCacheMiss(): void
+    {
+        $expected = 'Column';
+        $locale = 'foo';
+        $domain = 'bar';
+
+        $cache = new ApcuCache(new MoParser(null), $locale, $domain);
+        $cache->get($expected);
+
+        $actual = apcu_fetch('mo_' . $locale . '.' . $domain . '.' . $expected);
+        $this->assertSame($expected, $actual);
+    }
+
     public function testGetReloadsOnCacheMiss(): void
     {
         $expected = 'Pole';
@@ -188,7 +201,8 @@ class ApcuCacheTest extends TestCase
         $method = new ReflectionMethod($cache, 'reloadOnMiss');
         $method->setAccessible(true);
 
-        apcu_entry($msgid, static function () use ($expected): string {
+        $key = 'mo_' . $locale . '.' . $domain . '.' . $msgid;
+        apcu_entry($key, static function () use ($expected): string {
             sleep(1);
 
             return $expected;

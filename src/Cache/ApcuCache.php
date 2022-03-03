@@ -76,7 +76,7 @@ final class ApcuCache implements CacheInterface
     private function reloadOnMiss(string $msgid): string
     {
         // store original if translation is not present
-        $cached = apcu_entry($msgid, static function () use ($msgid) {
+        $cached = apcu_entry($this->getKey($msgid), static function () use ($msgid) {
             return $msgid;
         }, $this->ttl);
         // if another process has updated cache, return early
