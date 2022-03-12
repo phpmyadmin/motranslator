@@ -28,6 +28,7 @@ namespace PhpMyAdmin\MoTranslator;
 
 use PhpMyAdmin\MoTranslator\Cache\CacheInterface;
 use PhpMyAdmin\MoTranslator\Cache\GetAllInterface;
+use PhpMyAdmin\MoTranslator\Cache\InMemoryCache;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Throwable;
 
@@ -105,8 +106,15 @@ class Translator
     /** @var CacheInterface */
     private $cache;
 
-    public function __construct(CacheInterface $cache)
+    /**
+     * @param CacheInterface|string|null $cache
+     */
+    public function __construct($cache)
     {
+        if (! $cache instanceof CacheInterface) {
+            $cache = new InMemoryCache(new MoParser($cache));
+        }
+
         $this->cache = $cache;
     }
 

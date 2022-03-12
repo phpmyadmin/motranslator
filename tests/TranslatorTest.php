@@ -17,6 +17,22 @@ use PHPUnit\Framework\TestCase;
  */
 class TranslatorTest extends TestCase
 {
+    public function testConstructorWithFilenameParam(): void
+    {
+        $expected = 'Pole';
+        $translator = new Translator(__DIR__ . '/data/little.mo');
+        $actual = $translator->gettext('Column');
+        $this->assertSame($expected, $actual);
+    }
+
+    public function testConstructorWithNullParam(): void
+    {
+        $expected = 'Column';
+        $translator = new Translator(null);
+        $actual = $translator->gettext($expected);
+        $this->assertSame($expected, $actual);
+    }
+
     /**
      * Test on empty gettext
      */
