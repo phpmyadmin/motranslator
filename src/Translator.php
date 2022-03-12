@@ -107,7 +107,7 @@ class Translator
     private $cache;
 
     /**
-     * @param CacheInterface|string|null $cache
+     * @param CacheInterface|string|null $cache Name of mo file to load (null to not load a file) or a CacheInterface implementation
      */
     public function __construct($cache)
     {
