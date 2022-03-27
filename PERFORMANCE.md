@@ -9,6 +9,7 @@ There are two benchmark scripts in the code:
 * ``benchmark-context.php`` - benchmarks context usage
 * ``benchmark-plural.php`` - benchmarks plural evaluation
 * ``benchmark.php`` - benchmarks file parsing
+* ``benchmark-apcu.php`` - benchmarks file parsing with APCu cache enabled
 
 ## Performance measurements
 

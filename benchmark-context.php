@@ -12,9 +12,11 @@ $files = [
 $start = microtime(true);
 
 foreach ($files as $filename) {
-    $parser = new PhpMyAdmin\MoTranslator\Translator($filename);
+    $translator = new PhpMyAdmin\MoTranslator\Translator(
+        new PhpMyAdmin\MoTranslator\Cache\InMemoryCache(new PhpMyAdmin\MoTranslator\MoParser($filename))
+    );
     for ($i = 0; $i < 200000; ++$i) {
-        $parser->pgettext('Display format', 'Table');
+        $translator->pgettext('Display format', 'Table');
     }
 }
 

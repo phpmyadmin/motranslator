@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace PhpMyAdmin\MoTranslator\Tests;
 
+use PhpMyAdmin\MoTranslator\Cache\InMemoryCache;
+use PhpMyAdmin\MoTranslator\MoParser;
 use PhpMyAdmin\MoTranslator\Translator;
 use PHPUnit\Framework\TestCase;
 
@@ -21,7 +23,7 @@ class MoFilesTest extends TestCase
      */
     public function testMoFileTranslate(string $filename): void
     {
-        $parser = new Translator($filename);
+        $parser = $this->getTranslator($filename);
         $this->assertEquals(
             'Pole',
             $parser->gettext('Column')
@@ -38,7 +40,7 @@ class MoFilesTest extends TestCase
      */
     public function testMoFilePlurals(string $filename): void
     {
-        $parser = new Translator($filename);
+        $parser = $this->getTranslator($filename);
         $expected2 = '%d sekundy';
         if (strpos($filename, 'invalid-formula.mo') !== false || strpos($filename, 'lessplurals.mo') !== false) {
             $expected0 = '%d sekunda';
@@ -105,7 +107,7 @@ class MoFilesTest extends TestCase
      */
     public function testMoFileContext(string $filename): void
     {
-        $parser = new Translator($filename);
+        $parser = $this->getTranslator($filename);
         $this->assertEquals(
             'Tabulka',
             $parser->pgettext(
@@ -120,7 +122,7 @@ class MoFilesTest extends TestCase
      */
     public function testMoFileNotTranslated(string $filename): void
     {
-        $parser = new Translator($filename);
+        $parser = $this->getTranslator($filename);
         $this->assertEquals(
             '%d second',
             $parser->ngettext(
@@ -160,7 +162,8 @@ class MoFilesTest extends TestCase
      */
     public function testEmptyMoFile(string $file): void
     {
-        $parser = new Translator($file);
+        $parser = new MoParser($file);
+        $translator = new Translator(new InMemoryCache($parser));
         if (basename($file) === 'magic.mo') {
             $this->assertEquals(Translator::ERROR_BAD_MAGIC, $parser->error);
         } else {
@@ -169,14 +172,14 @@ class MoFilesTest extends TestCase
 
         $this->assertEquals(
             'Table',
-            $parser->pgettext(
+            $translator->pgettext(
                 'Display format',
                 'Table'
             )
         );
         $this->assertEquals(
             '"%d" seconds',
-            $parser->ngettext(
+            $translator->ngettext(
                 '"%d" second',
                 '"%d" seconds',
                 10
@@ -189,7 +192,7 @@ class MoFilesTest extends TestCase
      */
     public function testExists(string $file): void
     {
-        $parser = new Translator($file);
+        $parser = $this->getTranslator($file);
         $this->assertEquals(
             true,
             $parser->exists('Column')
@@ -218,5 +221,10 @@ class MoFilesTest extends TestCase
         }
 
         return $result;
+    }
+
+    private function getTranslator(string $filename): Translator
+    {
+        return new Translator(new InMemoryCache(new MoParser($filename)));
     }
 }

@@ -5,16 +5,18 @@ declare(strict_types=1);
 require './vendor/autoload.php';
 
 $files = [
-    './tests/data/big.mo',
-    './tests/data/little.mo',
+    'big' => './tests/data/big.mo',
+    'little' => './tests/data/little.mo',
 ];
 
 $start = microtime(true);
 
 for ($i = 0; $i < 2000; ++$i) {
-    foreach ($files as $filename) {
+    foreach ($files as $domain => $filename) {
         $translator = new PhpMyAdmin\MoTranslator\Translator(
-            new PhpMyAdmin\MoTranslator\Cache\InMemoryCache(new PhpMyAdmin\MoTranslator\MoParser($filename))
+            new PhpMyAdmin\MoTranslator\Cache\ApcuCache(
+                new PhpMyAdmin\MoTranslator\MoParser($filename), 'foo', $domain
+            )
         );
         $translator->gettext('Column');
     }

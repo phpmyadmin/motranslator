@@ -49,5 +49,8 @@
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
+    },
+    "suggest": {
+        "ext-apcu": "Needed for ACPu-backed translation cache"
     }
 }
