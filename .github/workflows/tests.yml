@@ -20,7 +20,8 @@ jobs:
                 experimental: [false]
                 composer-options: ['']
                 include:
-                  - { php-version: 'nightly', experimental: true, os: ubuntu-latest, composer-options: '--ignore-platform-reqs' }
+                  - { php-version: 'nightly', experimental: true, os: ubuntu-latest, composer-options: '--ignore-platform-reqs', extensions: 'apcu, mbstring' }
+                  - { php-version: 'nightly', experimental: true, os: ubuntu-latest, composer-options: '--ignore-platform-reqs', extensions: ':apcu, mbstring' }
         steps:
             - uses: actions/checkout@v2
               with:
