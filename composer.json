@@ -18,8 +18,8 @@
     "scripts": {
         "phpcbf": "@php phpcbf",
         "phpcs": "@php phpcs",
-        "phpstan": "@php phpstan analyse",
-        "phpunit": "@php phpunit --color=always",
+        "phpstan": "@php phpstan",
+        "phpunit": "@php phpunit",
         "test": [
             "@phpcs",
             "@phpstan",
