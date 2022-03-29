@@ -9,7 +9,7 @@ on:
 
 jobs:
     test-php:
-        name: Test on PHP ${{ matrix.php-version }} and ${{ matrix.os }}
+        name: Test on PHP ${{ matrix.php-version }} (${{ matrix.extensions }})
         runs-on: ${{ matrix.os }}
         continue-on-error: ${{ matrix.experimental }}
         strategy:

@@ -11,7 +11,7 @@ checks:
   php: true
 tools:
   external_code_coverage:
-    runs: 4 # php 7.x versions
+    runs: 14 # for all matrix PHP versions to upload
     timeout: 480 # 8 min
 build:
   nodes:
