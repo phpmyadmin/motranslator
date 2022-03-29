@@ -64,7 +64,9 @@ class StringReader
             throw new ReaderException('Not enough bytes!');
         }
 
-        return substr($this->string, $pos, $bytes);
+        $data = substr($this->string, $pos, $bytes);
+
+        return $data === false ? '' : $data;
     }
 
     /**
