@@ -16,10 +16,10 @@
         "source": "https://github.com/phpmyadmin/motranslator"
     },
     "scripts": {
-        "phpcbf": "./vendor/bin/phpcbf",
-        "phpcs": "./vendor/bin/phpcs",
-        "phpstan": "./vendor/bin/phpstan analyse",
-        "phpunit": "./vendor/bin/phpunit --color=always",
+        "phpcbf": "@php phpcbf",
+        "phpcs": "@php phpcs",
+        "phpstan": "@php phpstan analyse",
+        "phpunit": "@php phpunit --color=always",
         "test": [
             "@phpcs",
             "@phpstan",
