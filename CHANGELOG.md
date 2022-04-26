@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased]
+## [5.3.0] - 2022-04-26
 
 * Add support for Symfony 6
 * Split out `.mo` parsing to separate `MoParser` class
