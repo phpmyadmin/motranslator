@@ -136,25 +136,25 @@ class MoFilesTest extends TestCase
     /**
      * @return array[]
      */
-    public function provideMoFiles(): array
+    public static function provideMoFiles(): array
     {
-        return $this->getFiles('./tests/data/*.mo');
+        return self::getFiles('./tests/data/*.mo');
     }
 
     /**
      * @return array[]
      */
-    public function provideErrorMoFiles(): array
+    public static function provideErrorMoFiles(): array
     {
-        return $this->getFiles('./tests/data/error/*.mo');
+        return self::getFiles('./tests/data/error/*.mo');
     }
 
     /**
      * @return array[]
      */
-    public function provideNotTranslatedFiles(): array
+    public static function provideNotTranslatedFiles(): array
     {
-        return $this->getFiles('./tests/data/not-translated/*.mo');
+        return self::getFiles('./tests/data/not-translated/*.mo');
     }
 
     /**
@@ -208,7 +208,7 @@ class MoFilesTest extends TestCase
      *
      * @return array[]
      */
-    private function getFiles(string $pattern): array
+    private static function getFiles(string $pattern): array
     {
         $files = glob($pattern);
         if ($files === false) {

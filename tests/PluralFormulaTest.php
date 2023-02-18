@@ -28,7 +28,7 @@ class PluralFormulaTest extends TestCase
     /**
      * @return array[]
      */
-    public function pluralExtractionData(): array
+    public static function pluralExtractionData(): array
     {
         return [
             // It defaults to a "Western-style" plural header.
@@ -72,7 +72,7 @@ class PluralFormulaTest extends TestCase
     /**
      * @return array[]
      */
-    public function pluralCounts(): array
+    public static function pluralCounts(): array
     {
         return [
             [
@@ -116,7 +116,7 @@ class PluralFormulaTest extends TestCase
     /**
      * @return array[]
      */
-    public function pluralExpressions(): array
+    public static function pluralExpressions(): array
     {
         return [
             [

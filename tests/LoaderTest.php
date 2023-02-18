@@ -35,7 +35,7 @@ class LoaderTest extends TestCase
     /**
      * @return array[]
      */
-    public function localeList(): array
+    public static function localeList(): array
     {
         return [
             [
@@ -175,7 +175,7 @@ class LoaderTest extends TestCase
     /**
      * @return array[]
      */
-    public function translatorData(): array
+    public static function translatorData(): array
     {
         return [
             [
