@@ -257,7 +257,7 @@ class Translator
         try {
             $evaluatedPlural = $this->pluralExpression->evaluate($this->getPluralForms(), ['n' => $n]);
             $plural = is_numeric($evaluatedPlural) ? (int) $evaluatedPlural : 0;
-        } catch (Throwable $e) {
+        } catch (Throwable) {
             $plural = 0;
         }
 

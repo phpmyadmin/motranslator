@@ -100,7 +100,7 @@ final class MoParser
                 $translation = $stream->read($tableTranslations[$iPlusTwo], $tableTranslations[$iPlusOne]);
                 $cache->set($original, $translation);
             }
-        } catch (ReaderException $e) {
+        } catch (ReaderException) {
             $this->error = self::ERROR_READING;
 
             return;
