@@ -35,7 +35,7 @@ class PluralTest extends TestCase
     /**
      * Data provider for test_npgettext.
      *
-     * @return array[]
+     * @return list<array{int, string}>
      */
     public static function providerTestNpgettext(): array
     {
@@ -64,7 +64,7 @@ class PluralTest extends TestCase
     }
 
     /**
-     * @return array[]
+     * @return list<array{string}>
      */
     public static function dataProviderPluralForms(): array
     {

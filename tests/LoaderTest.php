@@ -20,7 +20,7 @@ use function putenv;
 class LoaderTest extends TestCase
 {
     /**
-     * @param array[] $expected
+     * @param list<string> $expected
      *
      * @dataProvider localeList
      */
@@ -33,7 +33,7 @@ class LoaderTest extends TestCase
     }
 
     /**
-     * @return array[]
+     * @return list<array{string, list<string>}>
      */
     public static function localeList(): array
     {
@@ -173,7 +173,7 @@ class LoaderTest extends TestCase
     }
 
     /**
-     * @return array[]
+     * @return list<array{string, string, string, string}>
      */
     public static function translatorData(): array
     {

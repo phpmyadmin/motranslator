@@ -26,7 +26,7 @@ class PluralFormulaTest extends TestCase
     }
 
     /**
-     * @return array[]
+     * @return list<array{string, string}>
      */
     public static function pluralExtractionData(): array
     {
@@ -70,7 +70,7 @@ class PluralFormulaTest extends TestCase
     }
 
     /**
-     * @return array[]
+     * @return list<array{string, int}>
      */
     public static function pluralCounts(): array
     {
@@ -114,7 +114,7 @@ class PluralFormulaTest extends TestCase
     }
 
     /**
-     * @return array[]
+     * @return list<array{string, string}>
      */
     public static function pluralExpressions(): array
     {

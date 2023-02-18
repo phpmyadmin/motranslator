@@ -178,7 +178,9 @@ class Loader
                     );
                 }
 
-                array_push($localeNames, $lang);
+                if ($lang !== null) {
+                    array_push($localeNames, $lang);
+                }
             }
 
             // If the locale name doesn't match POSIX style, just include it as-is.

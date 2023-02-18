@@ -38,6 +38,7 @@ use function explode;
 use function get_class;
 use function implode;
 use function intval;
+use function is_numeric;
 use function ltrim;
 use function preg_replace;
 use function rtrim;
@@ -254,10 +255,8 @@ class Translator
         }
 
         try {
-            $plural = (int) $this->pluralExpression->evaluate(
-                $this->getPluralForms(),
-                ['n' => $n]
-            );
+            $evaluatedPlural = $this->pluralExpression->evaluate($this->getPluralForms(), ['n' => $n]);
+            $plural = is_numeric($evaluatedPlural) ? (int) $evaluatedPlural : 0;
         } catch (Throwable $e) {
             $plural = 0;
         }
@@ -292,14 +291,6 @@ class Translator
         $select = $this->selectString($number);
 
         $list = explode(chr(0), $result);
-        // @codeCoverageIgnoreStart
-        if ($list === false) {
-            // This was added in 3ff2c63bcf85f81b3a205ce7222de11b33e2bf56 for phpstan
-            // But according to the php manual it should never happen
-            return '';
-        }
-
-        // @codeCoverageIgnoreEnd
 
         if (! isset($list[$select])) {
             return $list[0];

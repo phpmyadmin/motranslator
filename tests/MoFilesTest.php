@@ -134,7 +134,7 @@ class MoFilesTest extends TestCase
     }
 
     /**
-     * @return array[]
+     * @return list<array{string}>
      */
     public static function provideMoFiles(): array
     {
@@ -142,7 +142,7 @@ class MoFilesTest extends TestCase
     }
 
     /**
-     * @return array[]
+     * @return list<array{string}>
      */
     public static function provideErrorMoFiles(): array
     {
@@ -150,7 +150,7 @@ class MoFilesTest extends TestCase
     }
 
     /**
-     * @return array[]
+     * @return list<array{string}>
      */
     public static function provideNotTranslatedFiles(): array
     {
@@ -206,7 +206,7 @@ class MoFilesTest extends TestCase
     /**
      * @param string $pattern path names pattern to match
      *
-     * @return array[]
+     * @return list<array{string}>
      */
     private static function getFiles(string $pattern): array
     {
