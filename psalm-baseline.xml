@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="5.6.0@e784128902dfe01d489c4123d69918a9f3c1eac5">
+  <file src="src/Cache/ApcuCache.php">
+    <MixedAssignment>
+      <code>$cached</code>
+      <code>$msgstr</code>
+      <code>$msgstr</code>
+    </MixedAssignment>
+    <RedundantConditionGivenDocblockType>
+      <code>assert(is_array($translations))</code>
+      <code>is_array($translations)</code>
+    </RedundantConditionGivenDocblockType>
+  </file>
+  <file src="src/Loader.php">
+    <MixedInferredReturnType>
+      <code>string</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement>
+      <code>$GLOBALS['lang']</code>
+    </MixedReturnStatement>
+    <PossiblyNullArgument>
+      <code>$lang</code>
+      <code>$lang</code>
+      <code>$lang</code>
+      <code>$lang</code>
+      <code>$lang</code>
+      <code>$lang</code>
+      <code>$lang</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="src/StringReader.php">
+    <MixedAssignment>
+      <code>$result</code>
+    </MixedAssignment>
+    <MixedInferredReturnType>
+      <code>int</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement>
+      <code>$result &lt; 0 ? PHP_INT_MAX : $result</code>
+      <code>$result &lt; 0 ? PHP_INT_MAX : $result</code>
+    </MixedReturnStatement>
+    <MixedReturnTypeCoercion>
+      <code>$data</code>
+      <code>int[]</code>
+    </MixedReturnTypeCoercion>
+  </file>
+  <file src="src/Translator.php">
+    <MixedAssignment>
+      <code>$evaluatedPlural</code>
+    </MixedAssignment>
+    <PossiblyNullOperand>
+      <code>$this-&gt;pluralCount</code>
+    </PossiblyNullOperand>
+    <PossiblyUndefinedArrayOffset>
+      <code>$nplurals[1]</code>
+    </PossiblyUndefinedArrayOffset>
+  </file>
+</files>

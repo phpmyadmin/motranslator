@@ -42,7 +42,7 @@ class Loader
      * Loader instance.
      *
      * @static
-     * @var Loader
+     * @var Loader|null
      */
     private static $instance = null;
 
