@@ -125,7 +125,7 @@ class Loader
                     . '(?:\\.(?P<charset>[-A-Za-z0-9_]+))?' // charset
                     . '(?:@(?P<modifier>[-A-Za-z0-9_]+))?$/', // @ modifier
                     $locale,
-                    $matches
+                    $matches,
                 )
             ) {
                 $lang = $matches['lang'] ?? null;
@@ -138,24 +138,24 @@ class Loader
                         if ($charset) {
                             array_push(
                                 $localeNames,
-                                sprintf('%s_%s.%s@%s', $lang, $country, $charset, $modifier)
+                                sprintf('%s_%s.%s@%s', $lang, $country, $charset, $modifier),
                             );
                         }
 
                         array_push(
                             $localeNames,
-                            sprintf('%s_%s@%s', $lang, $country, $modifier)
+                            sprintf('%s_%s@%s', $lang, $country, $modifier),
                         );
                     } elseif ($charset) {
                         array_push(
                             $localeNames,
-                            sprintf('%s.%s@%s', $lang, $charset, $modifier)
+                            sprintf('%s.%s@%s', $lang, $charset, $modifier),
                         );
                     }
 
                     array_push(
                         $localeNames,
-                        sprintf('%s@%s', $lang, $modifier)
+                        sprintf('%s@%s', $lang, $modifier),
                     );
                 }
 
@@ -163,18 +163,18 @@ class Loader
                     if ($charset) {
                         array_push(
                             $localeNames,
-                            sprintf('%s_%s.%s', $lang, $country, $charset)
+                            sprintf('%s_%s.%s', $lang, $country, $charset),
                         );
                     }
 
                     array_push(
                         $localeNames,
-                        sprintf('%s_%s', $lang, $country)
+                        sprintf('%s_%s', $lang, $country),
                     );
                 } elseif ($charset) {
                     array_push(
                         $localeNames,
-                        sprintf('%s.%s', $lang, $charset)
+                        sprintf('%s.%s', $lang, $charset),
                     );
                 }
 

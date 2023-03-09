@@ -26,12 +26,12 @@ class FunctionsTest extends TestCase
     {
         $this->assertEquals(
             'Typ',
-            _gettext('Type')
+            _gettext('Type'),
         );
 
         $this->assertEquals(
             'Typ',
-            __('Type')
+            __('Type'),
         );
 
         $this->assertEquals(
@@ -39,8 +39,8 @@ class FunctionsTest extends TestCase
             _ngettext(
                 '%d second',
                 '%d seconds',
-                2
-            )
+                2,
+            ),
         );
 
         $this->assertEquals(
@@ -49,16 +49,16 @@ class FunctionsTest extends TestCase
                 'context',
                 '%d second',
                 '%d seconds',
-                2
-            )
+                2,
+            ),
         );
 
         $this->assertEquals(
             'Tabulka',
             _pgettext(
                 'Display format',
-                'Table'
-            )
+                'Table',
+            ),
         );
     }
 
@@ -66,7 +66,7 @@ class FunctionsTest extends TestCase
     {
         $this->assertEquals(
             'Typ',
-            _dgettext('phpmyadmin', 'Type')
+            _dgettext('phpmyadmin', 'Type'),
         );
 
         $this->assertEquals(
@@ -75,8 +75,8 @@ class FunctionsTest extends TestCase
                 'phpmyadmin',
                 '%d second',
                 '%d seconds',
-                2
-            )
+                2,
+            ),
         );
 
         $this->assertEquals(
@@ -86,8 +86,8 @@ class FunctionsTest extends TestCase
                 'context',
                 '%d second',
                 '%d seconds',
-                2
-            )
+                2,
+            ),
         );
 
         $this->assertEquals(
@@ -95,8 +95,8 @@ class FunctionsTest extends TestCase
             _dpgettext(
                 'phpmyadmin',
                 'Display format',
-                'Table'
-            )
+                'Table',
+            ),
         );
     }
 }

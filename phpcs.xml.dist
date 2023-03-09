@@ -27,12 +27,6 @@
         <exclude-pattern>src/functions.php</exclude-pattern>
     </rule>
 
-    <rule ref="SlevomatCodingStandard.Functions.RequireTrailingCommaInCall.MissingTrailingComma">
-        <severity>3</severity>
-    </rule>
-    <rule ref="SlevomatCodingStandard.Functions.RequireTrailingCommaInDeclaration.MissingTrailingComma">
-        <severity>3</severity>
-    </rule>
     <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint">
         <severity>3</severity>
     </rule>

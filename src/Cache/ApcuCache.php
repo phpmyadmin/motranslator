@@ -43,7 +43,7 @@ final class ApcuCache implements CacheInterface
         string $domain,
         int $ttl = 0,
         bool $reloadOnMiss = true,
-        string $prefix = 'mo_'
+        string $prefix = 'mo_',
     ) {
         if (! (function_exists('apcu_enabled') && apcu_enabled())) {
             throw new CacheException('ACPu extension must be installed and enabled');

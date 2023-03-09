@@ -24,12 +24,12 @@ class MoFilesTest extends TestCase
         $parser = $this->getTranslator($filename);
         $this->assertEquals(
             'Pole',
-            $parser->gettext('Column')
+            $parser->gettext('Column'),
         );
         // Non existing string
         $this->assertEquals(
             'Column parser',
-            $parser->gettext('Column parser')
+            $parser->gettext('Column parser'),
         );
     }
 
@@ -52,40 +52,40 @@ class MoFilesTest extends TestCase
             $parser->ngettext(
                 '%d second',
                 '%d seconds',
-                0
-            )
+                0,
+            ),
         );
         $this->assertEquals(
             '%d sekunda',
             $parser->ngettext(
                 '%d second',
                 '%d seconds',
-                1
-            )
+                1,
+            ),
         );
         $this->assertEquals(
             $expected2,
             $parser->ngettext(
                 '%d second',
                 '%d seconds',
-                2
-            )
+                2,
+            ),
         );
         $this->assertEquals(
             $expected0,
             $parser->ngettext(
                 '%d second',
                 '%d seconds',
-                5
-            )
+                5,
+            ),
         );
         $this->assertEquals(
             $expected0,
             $parser->ngettext(
                 '%d second',
                 '%d seconds',
-                10
-            )
+                10,
+            ),
         );
         // Non existing string
         $this->assertEquals(
@@ -93,8 +93,8 @@ class MoFilesTest extends TestCase
             $parser->ngettext(
                 '"%d" second',
                 '"%d" seconds',
-                10
-            )
+                10,
+            ),
         );
     }
 
@@ -106,8 +106,8 @@ class MoFilesTest extends TestCase
             'Tabulka',
             $parser->pgettext(
                 'Display format',
-                'Table'
-            )
+                'Table',
+            ),
         );
     }
 
@@ -120,8 +120,8 @@ class MoFilesTest extends TestCase
             $parser->ngettext(
                 '%d second',
                 '%d seconds',
-                1
-            )
+                1,
+            ),
         );
     }
 
@@ -158,16 +158,16 @@ class MoFilesTest extends TestCase
             'Table',
             $translator->pgettext(
                 'Display format',
-                'Table'
-            )
+                'Table',
+            ),
         );
         $this->assertEquals(
             '"%d" seconds',
             $translator->ngettext(
                 '"%d" second',
                 '"%d" seconds',
-                10
-            )
+                10,
+            ),
         );
     }
 
@@ -177,11 +177,11 @@ class MoFilesTest extends TestCase
         $parser = $this->getTranslator($file);
         $this->assertEquals(
             true,
-            $parser->exists('Column')
+            $parser->exists('Column'),
         );
         $this->assertEquals(
             false,
-            $parser->exists('Column parser')
+            $parser->exists('Column parser'),
         );
     }
 

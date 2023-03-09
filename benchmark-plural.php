@@ -13,7 +13,7 @@ $start = microtime(true);
 
 foreach ($files as $filename) {
     $translator = new PhpMyAdmin\MoTranslator\Translator(
-        new PhpMyAdmin\MoTranslator\Cache\InMemoryCache(new PhpMyAdmin\MoTranslator\MoParser($filename))
+        new PhpMyAdmin\MoTranslator\Cache\InMemoryCache(new PhpMyAdmin\MoTranslator\MoParser($filename)),
     );
     for ($i = 0; $i < 20000; ++$i) {
         $translator->ngettext('%d second', '%d seconds', 10);

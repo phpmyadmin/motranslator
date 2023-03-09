@@ -84,7 +84,7 @@ class ApcuCacheTest extends TestCase
             $domain,
             0,
             false,
-            $prefix
+            $prefix,
         );
 
         apcu_delete($prefix . $locale . '.' . $domain . '.' . $msgid);

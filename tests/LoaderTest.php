@@ -28,7 +28,7 @@ class LoaderTest extends TestCase
     {
         $this->assertEquals(
             $expected,
-            Loader::listLocales($locale)
+            Loader::listLocales($locale),
         );
     }
 
@@ -164,7 +164,7 @@ class LoaderTest extends TestCase
         $translator = $loader->getTranslator($otherdomain);
         $this->assertEquals(
             $expected,
-            $translator->gettext('Type')
+            $translator->gettext('Type'),
         );
     }
 
@@ -221,7 +221,7 @@ class LoaderTest extends TestCase
         $translator = $loader->getTranslator();
         $this->assertEquals(
             'Typ',
-            $translator->gettext('Type')
+            $translator->gettext('Type'),
         );
 
         /* Ensure the object survives */
@@ -229,7 +229,7 @@ class LoaderTest extends TestCase
         $translator = $loader->getTranslator();
         $this->assertEquals(
             'Typ',
-            $translator->gettext('Type')
+            $translator->gettext('Type'),
         );
 
         /* Ensure the object can support different locale files for the same domain */
@@ -239,7 +239,7 @@ class LoaderTest extends TestCase
         $translator = $loader->getTranslator();
         $this->assertEquals(
             'Тып',
-            $translator->gettext('Type')
+            $translator->gettext('Type'),
         );
     }
 
@@ -249,7 +249,7 @@ class LoaderTest extends TestCase
         $loader = Loader::getInstance();
         $this->assertEquals(
             'foo',
-            $loader->detectlocale()
+            $loader->detectlocale(),
         );
         unset($GLOBALS['lang']);
     }
@@ -270,24 +270,24 @@ class LoaderTest extends TestCase
         putenv('LC_ALL=baz');
         $this->assertEquals(
             'baz',
-            $loader->detectlocale()
+            $loader->detectlocale(),
         );
         putenv('LC_ALL');
         putenv('LC_MESSAGES=bar');
         $this->assertEquals(
             'bar',
-            $loader->detectlocale()
+            $loader->detectlocale(),
         );
         putenv('LC_MESSAGES');
         putenv('LANG=barr');
         $this->assertEquals(
             'barr',
-            $loader->detectlocale()
+            $loader->detectlocale(),
         );
         putenv('LANG');
         $this->assertEquals(
             'en',
-            $loader->detectlocale()
+            $loader->detectlocale(),
         );
     }
 

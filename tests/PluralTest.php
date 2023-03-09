@@ -108,7 +108,7 @@ class PluralTest extends TestCase
             . "Content-Transfer-Encoding: 8bit\n"
             . $pluralForms . "\n"
             . "X-Generator: Weblate 4.2.1-dev\n"
-            . ''
+            . '',
         );
         $translationKey = implode(chr(0), ["%d pig went to the market\n", "%d pigs went to the market\n"]);
         $parser->setTranslation($translationKey, 'ok');

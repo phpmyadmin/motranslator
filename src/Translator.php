@@ -375,7 +375,7 @@ class Translator
 
         throw new CacheException(sprintf(
             "Cache '%s' does not support getting translations",
-            get_class($this->cache)
+            get_class($this->cache),
         ));
     }
 }
