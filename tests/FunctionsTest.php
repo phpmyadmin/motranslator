@@ -7,6 +7,20 @@ namespace PhpMyAdmin\MoTranslator\Tests;
 use PhpMyAdmin\MoTranslator\Loader;
 use PHPUnit\Framework\TestCase;
 
+use function __;
+use function _bind_textdomain_codeset;
+use function _bindtextdomain;
+use function _dgettext;
+use function _dngettext;
+use function _dnpgettext;
+use function _dpgettext;
+use function _gettext;
+use function _ngettext;
+use function _npgettext;
+use function _pgettext;
+use function _setlocale;
+use function _textdomain;
+
 /**
  * Test for functions.
  */

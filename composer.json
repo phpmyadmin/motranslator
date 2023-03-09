@@ -43,7 +43,8 @@
     "autoload": {
         "psr-4": {
             "PhpMyAdmin\\MoTranslator\\": "src"
-        }
+        },
+        "files": ["src/functions.php"]
     },
     "autoload-dev": {
         "psr-4": {

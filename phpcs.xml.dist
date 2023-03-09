@@ -23,10 +23,6 @@
         </properties>
     </rule>
 
-    <rule ref="Squiz.Functions.GlobalFunction.Found">
-        <exclude-pattern>src/functions.php</exclude-pattern>
-    </rule>
-
     <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint">
         <severity>3</severity>
     </rule>

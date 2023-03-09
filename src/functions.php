@@ -26,6 +26,8 @@ declare(strict_types=1);
 
 use PhpMyAdmin\MoTranslator\Loader;
 
+// phpcs:disable Squiz.Functions.GlobalFunction
+
 /**
  * Sets a requested locale.
  *
