@@ -63,9 +63,7 @@ class PluralTest extends TestCase
         $this->assertSame('', $result);
     }
 
-    /**
-     * @return list<array{string}>
-     */
+    /** @return list<array{string}> */
     public static function dataProviderPluralForms(): array
     {
         return [

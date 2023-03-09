@@ -32,9 +32,7 @@ class LoaderTest extends TestCase
         );
     }
 
-    /**
-     * @return list<array{string, list<string>}>
-     */
+    /** @return list<array{string, list<string>}> */
     public static function localeList(): array
     {
         return [
@@ -159,9 +157,7 @@ class LoaderTest extends TestCase
         $this->assertEquals('Тып', $translator->gettext('Type'));
     }
 
-    /**
-     * @dataProvider translatorData
-     */
+    /** @dataProvider translatorData */
     public function testGetTranslator(string $domain, string $locale, string $otherdomain, string $expected): void
     {
         $loader = $this->getLoader($domain, $locale);
@@ -172,9 +168,7 @@ class LoaderTest extends TestCase
         );
     }
 
-    /**
-     * @return list<array{string, string, string, string}>
-     */
+    /** @return list<array{string, string, string, string}> */
     public static function translatorData(): array
     {
         return [

@@ -39,9 +39,7 @@ final class InMemoryCache implements CacheInterface, GetAllInterface
         $this->cache = $translations;
     }
 
-    /**
-     * @inheritDoc
-     */
+    /** @inheritDoc */
     public function getAll(): array
     {
         return $this->cache;

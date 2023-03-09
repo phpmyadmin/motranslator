@@ -8,9 +8,7 @@ use PhpMyAdmin\MoTranslator\Cache\InMemoryCache;
 use PhpMyAdmin\MoTranslator\MoParser;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \PhpMyAdmin\MoTranslator\Cache\InMemoryCache
- */
+/** @covers \PhpMyAdmin\MoTranslator\Cache\InMemoryCache */
 class InMemoryCacheTest extends TestCase
 {
     public function testConstructorParsesCache(): void

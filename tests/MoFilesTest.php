@@ -18,9 +18,7 @@ use function strpos;
  */
 class MoFilesTest extends TestCase
 {
-    /**
-     * @dataProvider provideMoFiles
-     */
+    /** @dataProvider provideMoFiles */
     public function testMoFileTranslate(string $filename): void
     {
         $parser = $this->getTranslator($filename);
@@ -35,9 +33,7 @@ class MoFilesTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider provideMoFiles
-     */
+    /** @dataProvider provideMoFiles */
     public function testMoFilePlurals(string $filename): void
     {
         $parser = $this->getTranslator($filename);
@@ -102,9 +98,7 @@ class MoFilesTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider provideMoFiles
-     */
+    /** @dataProvider provideMoFiles */
     public function testMoFileContext(string $filename): void
     {
         $parser = $this->getTranslator($filename);
@@ -117,9 +111,7 @@ class MoFilesTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider provideNotTranslatedFiles
-     */
+    /** @dataProvider provideNotTranslatedFiles */
     public function testMoFileNotTranslated(string $filename): void
     {
         $parser = $this->getTranslator($filename);
@@ -133,33 +125,25 @@ class MoFilesTest extends TestCase
         );
     }
 
-    /**
-     * @return list<array{string}>
-     */
+    /** @return list<array{string}> */
     public static function provideMoFiles(): array
     {
         return self::getFiles('./tests/data/*.mo');
     }
 
-    /**
-     * @return list<array{string}>
-     */
+    /** @return list<array{string}> */
     public static function provideErrorMoFiles(): array
     {
         return self::getFiles('./tests/data/error/*.mo');
     }
 
-    /**
-     * @return list<array{string}>
-     */
+    /** @return list<array{string}> */
     public static function provideNotTranslatedFiles(): array
     {
         return self::getFiles('./tests/data/not-translated/*.mo');
     }
 
-    /**
-     * @dataProvider provideErrorMoFiles
-     */
+    /** @dataProvider provideErrorMoFiles */
     public function testEmptyMoFile(string $file): void
     {
         $parser = new MoParser($file);
@@ -187,9 +171,7 @@ class MoFilesTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider provideMoFiles
-     */
+    /** @dataProvider provideMoFiles */
     public function testExists(string $file): void
     {
         $parser = $this->getTranslator($file);

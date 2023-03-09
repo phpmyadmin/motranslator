@@ -16,9 +16,7 @@ use function apcu_fetch;
 use function function_exists;
 use function sleep;
 
-/**
- * @covers \PhpMyAdmin\MoTranslator\Cache\ApcuCacheFactory
- */
+/** @covers \PhpMyAdmin\MoTranslator\Cache\ApcuCacheFactory */
 class ApcuCacheFactoryTest extends TestCase
 {
     protected function setUp(): void

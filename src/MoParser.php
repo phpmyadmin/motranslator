@@ -15,14 +15,17 @@ final class MoParser
      * None error.
      */
     public const ERROR_NONE = 0;
+
     /**
      * File does not exist.
      */
     public const ERROR_DOES_NOT_EXIST = 1;
+
     /**
      * File has bad magic number.
      */
     public const ERROR_BAD_MAGIC = 2;
+
     /**
      * Error while reading file, probably too short.
      */
@@ -32,6 +35,7 @@ final class MoParser
      * Big endian mo file magic bytes.
      */
     public const MAGIC_BE = "\x95\x04\x12\xde";
+
     /**
      * Little endian mo file magic bytes.
      */

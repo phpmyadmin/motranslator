@@ -25,9 +25,7 @@ class PluralFormulaTest extends TestCase
         );
     }
 
-    /**
-     * @return list<array{string, string}>
-     */
+    /** @return list<array{string, string}> */
     public static function pluralExtractionData(): array
     {
         return [
@@ -58,9 +56,7 @@ class PluralFormulaTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider pluralCounts
-     */
+    /** @dataProvider pluralCounts */
     public function testPluralCounts(string $expr, int $expected): void
     {
         $this->assertEquals(
@@ -69,9 +65,7 @@ class PluralFormulaTest extends TestCase
         );
     }
 
-    /**
-     * @return list<array{string, int}>
-     */
+    /** @return list<array{string, int}> */
     public static function pluralCounts(): array
     {
         return [
@@ -102,9 +96,7 @@ class PluralFormulaTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider pluralExpressions
-     */
+    /** @dataProvider pluralExpressions */
     public function testPluralExpression(string $expr, string $expected): void
     {
         $this->assertEquals(
@@ -113,9 +105,7 @@ class PluralFormulaTest extends TestCase
         );
     }
 
-    /**
-     * @return list<array{string, string}>
-     */
+    /** @return list<array{string, string}> */
     public static function pluralExpressions(): array
     {
         return [

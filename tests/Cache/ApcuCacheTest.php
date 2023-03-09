@@ -20,9 +20,7 @@ use function function_exists;
 use function implode;
 use function sleep;
 
-/**
- * @covers \PhpMyAdmin\MoTranslator\Cache\ApcuCache
- */
+/** @covers \PhpMyAdmin\MoTranslator\Cache\ApcuCache */
 class ApcuCacheTest extends TestCase
 {
     protected function setUp(): void

@@ -43,9 +43,7 @@ class StringReader
     /** @var int */
     private $length;
 
-    /**
-     * @param string $filename Name of file to load
-     */
+    /** @param string $filename Name of file to load */
     public function __construct(string $filename)
     {
         $this->string = (string) file_get_contents($filename);
