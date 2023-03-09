@@ -91,7 +91,7 @@ class TranslatorTest extends TestCase
         $translator->getTranslations();
     }
 
-    private function getTranslator(?string $filename): Translator
+    private function getTranslator(string|null $filename): Translator
     {
         return new Translator(new InMemoryCache(new MoParser($filename)));
     }

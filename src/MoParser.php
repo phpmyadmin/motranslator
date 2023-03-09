@@ -51,7 +51,7 @@ final class MoParser
     /** @var string|null */
     private $filename;
 
-    public function __construct(?string $filename)
+    public function __construct(string|null $filename)
     {
         $this->filename = $filename;
     }

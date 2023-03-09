@@ -195,7 +195,7 @@ class Loader
     /**
      * Sets factory responsible for composing a `CacheInterface`
      */
-    public static function setCacheFactory(?CacheFactoryInterface $cacheFactory): void
+    public static function setCacheFactory(CacheFactoryInterface|null $cacheFactory): void
     {
         self::$cacheFactory = $cacheFactory;
     }

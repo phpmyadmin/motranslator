@@ -36,7 +36,4 @@
     <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification">
         <severity>3</severity>
     </rule>
-    <rule ref="SlevomatCodingStandard.TypeHints.UnionTypeHintFormat.DisallowedShortNullable">
-        <severity>3</severity>
-    </rule>
 </ruleset>
