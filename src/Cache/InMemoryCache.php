@@ -11,7 +11,7 @@ use function array_key_exists;
 final class InMemoryCache implements CacheInterface, GetAllInterface
 {
     /** @var array<string, string> */
-    private $cache;
+    private array $cache;
 
     public function __construct(MoParser $parser)
     {
@@ -34,6 +34,7 @@ final class InMemoryCache implements CacheInterface, GetAllInterface
         return array_key_exists($msgid, $this->cache);
     }
 
+    /** @inheritDoc */
     public function setAll(array $translations): void
     {
         $this->cache = $translations;

@@ -43,17 +43,11 @@ final class MoParser
 
     /**
      * Parse error code (0 if no error).
-     *
-     * @var int
      */
-    public $error = self::ERROR_NONE;
+    public int $error = self::ERROR_NONE;
 
-    /** @var string|null */
-    private $filename;
-
-    public function __construct(string|null $filename)
+    public function __construct(private readonly string|null $filename = null)
     {
-        $this->filename = $filename;
     }
 
     /**

@@ -38,10 +38,8 @@ use const PHP_INT_MAX;
  */
 class StringReader
 {
-    /** @var string */
-    private $string;
-    /** @var int */
-    private $length;
+    private string $string;
+    private int $length;
 
     /** @param string $filename Name of file to load */
     public function __construct(string $filename)

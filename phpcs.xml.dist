@@ -22,14 +22,4 @@
             <property name="ignoreSpacesInComment" value="true"/>
         </properties>
     </rule>
-
-    <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint">
-        <severity>3</severity>
-    </rule>
-    <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint">
-        <severity>3</severity>
-    </rule>
-    <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification">
-        <severity>3</severity>
-    </rule>
 </ruleset>

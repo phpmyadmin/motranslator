@@ -42,45 +42,39 @@ class Loader
      * Loader instance.
      *
      * @static
-     * @var Loader|null
      */
-    private static $instance = null;
+    private static Loader|null $instance = null;
 
     /**
      * Factory to return a factory responsible for returning a `CacheInterface`
      *
      * @static
-     * @var CacheFactoryInterface|null
      */
-    private static $cacheFactory = null;
+    private static CacheFactoryInterface|null $cacheFactory = null;
 
     /**
      * Default gettext domain to use.
-     *
-     * @var string
      */
-    private $defaultDomain = '';
+    private string $defaultDomain = '';
 
     /**
      * Configured locale.
-     *
-     * @var string
      */
-    private $locale = '';
+    private string $locale = '';
 
     /**
      * Loaded domains.
      *
      * @var array<string,array<string,Translator>>
      */
-    private $domains = [];
+    private array $domains = [];
 
     /**
      * Bound paths for domains.
      *
      * @var array<string,string>
      */
-    private $paths = ['' => './'];
+    private array $paths = ['' => './'];
 
     /**
      * Returns the singleton Loader object.

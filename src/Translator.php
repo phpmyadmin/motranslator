@@ -90,29 +90,28 @@ class Translator
 
     /**
      * Parse error code (0 if no error).
-     *
-     * @var int
      */
-    public $error = self::ERROR_NONE;
+    public int $error = self::ERROR_NONE;
 
     /**
      * Cache header field for plural forms.
-     *
-     * @var string|null
      */
-    private $pluralEquation = null;
+    private string|null $pluralEquation = null;
 
-    /** @var ExpressionLanguage|null Evaluator for plurals */
-    private $pluralExpression = null;
+    /**
+     * Evaluator for plurals
+     */
+    private ExpressionLanguage|null $pluralExpression = null;
 
-    /** @var int|null number of plurals */
-    private $pluralCount = null;
+    /**
+     * number of plurals
+     */
+    private int|null $pluralCount = null;
 
-    /** @var CacheInterface */
-    private $cache;
+    private CacheInterface $cache;
 
     /** @param CacheInterface|string|null $cache Mo file to load (null for no file) or a CacheInterface implementation */
-    public function __construct($cache)
+    public function __construct(CacheInterface|string|null $cache)
     {
         if (! $cache instanceof CacheInterface) {
             $cache = new InMemoryCache(new MoParser($cache));
