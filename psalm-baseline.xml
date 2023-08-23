@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.6.0@e784128902dfe01d489c4123d69918a9f3c1eac5">
+<files psalm-version="5.15.0@5c774aca4746caf3d239d9c8cadb9f882ca29352">
   <file src="src/Cache/ApcuCache.php">
     <MixedAssignment>
       <code>$cached</code>
@@ -16,7 +16,7 @@
       <code>string</code>
     </MixedInferredReturnType>
     <MixedReturnStatement>
-      <code>$GLOBALS['lang']</code>
+      <code><![CDATA[$GLOBALS['lang']]]></code>
     </MixedReturnStatement>
     <PossiblyNullArgument>
       <code>$lang</code>
@@ -36,8 +36,8 @@
       <code>int</code>
     </MixedInferredReturnType>
     <MixedReturnStatement>
-      <code>$result &lt; 0 ? PHP_INT_MAX : $result</code>
-      <code>$result &lt; 0 ? PHP_INT_MAX : $result</code>
+      <code><![CDATA[$result < 0 ? PHP_INT_MAX : $result]]></code>
+      <code><![CDATA[$result < 0 ? PHP_INT_MAX : $result]]></code>
     </MixedReturnStatement>
     <MixedReturnTypeCoercion>
       <code>$data</code>
@@ -49,7 +49,7 @@
       <code>$evaluatedPlural</code>
     </MixedAssignment>
     <PossiblyNullOperand>
-      <code>$this-&gt;pluralCount</code>
+      <code><![CDATA[$this->pluralCount]]></code>
     </PossiblyNullOperand>
     <PossiblyUndefinedArrayOffset>
       <code>$nplurals[1]</code>
