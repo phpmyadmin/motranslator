@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+* Add function guards to the global functions (#44)
+
 ## [5.3.0] - 2022-04-26
 
 * Add support for Symfony 6
