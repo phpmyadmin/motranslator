@@ -4,6 +4,10 @@
 
 * Drop support for PHP 7.1, PHP 7.2, PHP 7.3, PHP 7.4, PHP 8.0.
 
+## [5.3.1] - 2023-08-23
+
+* Add function guards to the global functions (#44)
+
 ## [5.3.0] - 2022-04-26
 
 * Add support for Symfony 6
