@@ -1,57 +1,55 @@
-name: Lint and analyse php files
+name: Lint and analyse PHP files
 
 on:
   push:
   pull_request:
-    types: [opened, synchronize, reopened]
-    branches:
-      - master
 
 jobs:
-    lint-php:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
-            - name: Use php 8.1
-              uses: shivammathur/setup-php@v2
-              with:
-                  php-version: 8.1
-                  tools: composer:v2
-            - name: Validate composer.json and composer.lock
-              run: composer validate
-            - name: Cache module
-              uses: actions/cache@v3
-              with:
-                  path: ~/.composer/cache/
-                  key: composer-cache
-            - name: Install dependencies
-              run: composer install
-            - name: Lint files
-              run: composer run phpcs
+  lint-php:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    analyse-php:
-      runs-on: ubuntu-latest
-      strategy:
-        matrix:
-          php-version: ["8.1"]
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v3
+      - name: Set up PHP 8.1
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
 
-        - name: Set up PHP ${{ matrix.php-version }}
-          uses: shivammathur/setup-php@v2
-          with:
-            php-version: ${{ matrix.php-version }}
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
 
-        - name: Install Composer dependencies
-          uses: ramsey/composer-install@v2
-          with:
-            dependency-versions: highest
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v2
+        with:
+          dependency-versions: highest
 
-        - name: Analyse files with PHPStan
-          run: composer run phpstan
+      - name: Lint files
+        run: composer run phpcs
 
-        - name: Analyse files with Psalm
-          # Allow the previous check to fail but not abort
-          if: always()
-          run: vendor/bin/psalm --shepherd
+  analyse-php:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version: [ '8.1' ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v2
+        with:
+          dependency-versions: highest
+
+      - name: Analyse files with PHPStan
+        run: composer run phpstan
+
+      - name: Analyse files with Psalm
+        # Allow the previous check to fail but not abort
+        if: always()
+        run: vendor/bin/psalm --shepherd
