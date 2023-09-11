@@ -68,7 +68,7 @@ if (! function_exists('_bind_textdomain_codeset')) {
      * @param string $domain  Domain where to set character set
      * @param string $codeset Character set to set
      */
-    function _bind_textdomain_codeset($domain, $codeset): void
+    function _bind_textdomain_codeset(string $domain, string $codeset): void
     {
     }
 }

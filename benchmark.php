@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+use PhpMyAdmin\MoTranslator\Cache\InMemoryCache;
+use PhpMyAdmin\MoTranslator\MoParser;
+use PhpMyAdmin\MoTranslator\Translator;
+
 require './vendor/autoload.php';
 
 $files = [
@@ -13,9 +17,7 @@ $start = microtime(true);
 
 for ($i = 0; $i < 2000; ++$i) {
     foreach ($files as $filename) {
-        $translator = new PhpMyAdmin\MoTranslator\Translator(
-            new PhpMyAdmin\MoTranslator\Cache\InMemoryCache(new PhpMyAdmin\MoTranslator\MoParser($filename)),
-        );
+        $translator = new Translator(new InMemoryCache(new MoParser($filename)));
         $translator->gettext('Column');
     }
 }
