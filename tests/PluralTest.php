@@ -66,7 +66,7 @@ class PluralTest extends TestCase
     /**
      * @return array[]
      */
-    public function dataProviderPluralForms(): array
+    public static function dataProviderPluralForms(): array
     {
         return [
             ['Plural-Forms: nplurals=2; plural=n != 1;'],
