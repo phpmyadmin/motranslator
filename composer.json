@@ -33,7 +33,7 @@
     "require-dev": {
         "phpmyadmin/coding-standard": "^4.0",
         "phpstan/phpstan": "^1.9",
-        "phpunit/phpunit": "^10.0",
+        "phpunit/phpunit": "^10.3",
         "psalm/plugin-phpunit": "^0.18.4",
         "vimeo/psalm": "^5.6"
     },

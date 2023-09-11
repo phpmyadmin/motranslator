@@ -41,7 +41,7 @@ jobs:
           composer-options: ${{ matrix.composer-options }}
 
       - name: Run php tests
-        run: composer run phpunit
+        run: composer run phpunit -- --display-deprecations --display-notices --display-warnings --display-errors --display-skipped
 
       - name: Send coverage
         uses: codecov/codecov-action@v3
