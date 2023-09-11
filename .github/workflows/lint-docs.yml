@@ -1,18 +1,17 @@
-name: Lint php documentation
+name: Lint PHP documentation
 
 on:
   push:
   pull_request:
-    types: [opened, synchronize, reopened]
-    branches:
-      - master
 
 jobs:
     lint-docs:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
-            - name: lint php documentation
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Lint PHP documentation
               uses: sudo-bot/action-doctum@v5
               with:
                   config-file: doctum-config.php

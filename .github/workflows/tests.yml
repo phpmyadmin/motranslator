@@ -3,9 +3,6 @@ name: Run tests
 on:
   push:
   pull_request:
-    types: [opened, synchronize, reopened]
-    branches:
-      - master
 
 jobs:
     test-php:
@@ -14,46 +11,44 @@ jobs:
         continue-on-error: ${{ matrix.experimental }}
         strategy:
             matrix:
-                php-version: ["7.1", "7.2", "7.3", "7.4", "8.0", "8.1", "8.2"]
-                extensions: [":apcu, mbstring", "apcu, mbstring"]
+                php-version: ['7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
+                extensions: [':apcu, mbstring', 'apcu, mbstring']
                 os: [ubuntu-latest]
                 experimental: [false]
                 composer-options: ['']
                 include:
-                  - { php-version: 'nightly', experimental: true, os: ubuntu-latest, composer-options: '--ignore-platform-reqs', extensions: 'apcu, mbstring' }
-                  - { php-version: 'nightly', experimental: true, os: ubuntu-latest, composer-options: '--ignore-platform-reqs', extensions: ':apcu, mbstring' }
+                  - { php-version: '8.4', experimental: true, os: ubuntu-latest, composer-options: '--ignore-platform-req=php+', extensions: 'apcu, mbstring' }
+                  - { php-version: '8.4', experimental: true, os: ubuntu-latest, composer-options: '--ignore-platform-req=php+', extensions: ':apcu, mbstring' }
         steps:
-            - uses: actions/checkout@v3
+            - name: Checkout code
+              uses: actions/checkout@v4
               with:
                   # Fetch some commits for Scrutinizer coverage upload
                   fetch-depth: 15
-            - name: Use php ${{ matrix.php-version }}
+
+            - name: Set up PHP ${{ matrix.php-version }}
               uses: shivammathur/setup-php@v2
               with:
                   php-version: ${{ matrix.php-version }}
                   extensions: ${{ matrix.extensions }}
                   ini-values: "apc.enable_cli=1"
                   coverage: xdebug
-            - name: Get Composer Cache Directory
-              id: composer-cache
-              run: |
-                echo "::set-output name=dir::$(composer config cache-files-dir)"
-            - name: Restore cache
-              uses: actions/cache@v3
+
+            - name: Install Composer dependencies
+              uses: ramsey/composer-install@v2
               with:
-                path: ${{ steps.composer-cache.outputs.dir }}
-                key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-                restore-keys: |
-                  ${{ runner.os }}-composer-
-            - name: Install dependencies
-              run: composer install --no-interaction ${{ matrix.composer-options }}
-            - name: Run php tests
+                dependency-versions: highest
+                composer-options: ${{ matrix.composer-options }}
+
+            - name: Run PHP tests
               run: composer run phpunit
+
             - name: Send coverage
               uses: codecov/codecov-action@v3
               with:
                 flags: unit-${{ matrix.php-version }}-${{ matrix.os }}
                 name: phpunit-${{ matrix.php-version }}-${{ matrix.os }}
+
             - name: Send coverage to Scrutinizer
               uses: sudo-bot/action-scrutinizer@latest
               # Do not run this step on forked versions of the main repository (example: contributor forks)
