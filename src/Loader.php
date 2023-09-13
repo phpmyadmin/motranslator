@@ -216,7 +216,7 @@ class Loader
                 $base = './';
             }
 
-            $localeNames = $this->listLocales($this->locale);
+            $localeNames = self::listLocales($this->locale);
 
             $filename = '';
             foreach ($localeNames as $locale) {

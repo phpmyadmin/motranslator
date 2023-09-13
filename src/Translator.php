@@ -234,9 +234,9 @@ class Translator
         if ($this->pluralEquation === null) {
             $header = $this->cache->get('');
 
-            $expr = $this->extractPluralsForms($header);
-            $this->pluralEquation = $this->sanitizePluralExpression($expr);
-            $this->pluralCount = $this->extractPluralCount($expr);
+            $expr = self::extractPluralsForms($header);
+            $this->pluralEquation = self::sanitizePluralExpression($expr);
+            $this->pluralCount = self::extractPluralCount($expr);
         }
 
         return $this->pluralEquation;

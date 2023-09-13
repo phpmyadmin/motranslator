@@ -1,6 +1,12 @@
+includes:
+    - phpstan-baseline.neon
 parameters:
     level: max
     paths:
         - src
         - tests
+    checkBenevolentUnionTypes: true
+    checkImplicitMixed: true
+    checkTooWideReturnTypesInProtectedAndPublicMethods: true
+    checkUninitializedProperties: true
     reportUnmatchedIgnoredErrors: true
