@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 use function basename;
 use function glob;
-use function strpos;
+use function str_contains;
 
 /**
  * Test for MO files parsing.
@@ -38,10 +38,10 @@ class MoFilesTest extends TestCase
     {
         $parser = $this->getTranslator($filename);
         $expected2 = '%d sekundy';
-        if (strpos($filename, 'invalid-formula.mo') !== false || strpos($filename, 'lessplurals.mo') !== false) {
+        if (str_contains($filename, 'invalid-formula.mo') || str_contains($filename, 'lessplurals.mo')) {
             $expected0 = '%d sekunda';
             $expected2 = '%d sekunda';
-        } elseif (strpos($filename, 'plurals.mo') !== false || strpos($filename, 'noheader.mo') !== false) {
+        } elseif (str_contains($filename, 'plurals.mo') || str_contains($filename, 'noheader.mo')) {
             $expected0 = '%d sekundy';
         } else {
             $expected0 = '%d sekund';
