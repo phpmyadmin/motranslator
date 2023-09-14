@@ -11,11 +11,10 @@ use function array_key_exists;
 final class InMemoryCache implements CacheInterface, GetAllInterface
 {
     /** @var array<string, string> */
-    private array $cache;
+    private array $cache = [];
 
     public function __construct(MoParser $parser)
     {
-        $this->cache = [];
         $parser->parseIntoCache($this);
     }
 
