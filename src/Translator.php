@@ -32,19 +32,17 @@ use PhpMyAdmin\MoTranslator\Cache\InMemoryCache;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Throwable;
 
-use function chr;
+use function array_key_exists;
 use function count;
 use function explode;
-use function get_class;
-use function implode;
-use function intval;
 use function is_numeric;
 use function ltrim;
 use function preg_replace;
 use function rtrim;
 use function sprintf;
+use function str_contains;
+use function str_starts_with;
 use function stripos;
-use function strpos;
 use function strtolower;
 use function substr;
 use function trim;
@@ -153,20 +151,16 @@ class Translator
     {
         // Parse equation
         $expr = explode(';', $expr);
-        if (count($expr) >= 2) {
-            $expr = $expr[1];
-        } else {
-            $expr = $expr[0];
-        }
+        $expr = count($expr) >= 2 ? $expr[1] : $expr[0];
 
         $expr = trim(strtolower($expr));
         // Strip plural prefix
-        if (substr($expr, 0, 6) === 'plural') {
+        if (str_starts_with($expr, 'plural')) {
             $expr = ltrim(substr($expr, 6));
         }
 
         // Strip equals
-        if (substr($expr, 0, 1) === '=') {
+        if (str_starts_with($expr, '=')) {
             $expr = ltrim(substr($expr, 1));
         }
 
@@ -195,7 +189,7 @@ class Translator
             return 1;
         }
 
-        return intval($nplurals[1]);
+        return (int) $nplurals[1];
     }
 
     /**
@@ -281,7 +275,7 @@ class Translator
     public function ngettext(string $msgid, string $msgidPlural, int $number): string
     {
         // this should contains all strings separated by NULLs
-        $key = implode(chr(0), [$msgid, $msgidPlural]);
+        $key = $msgid . "\u{0}" . $msgidPlural;
         if (! $this->cache->has($key)) {
             return $number !== 1 ? $msgidPlural : $msgid;
         }
@@ -291,13 +285,13 @@ class Translator
         // find out the appropriate form
         $select = $this->selectString($number);
 
-        $list = explode(chr(0), $result);
+        $list = explode("\u{0}", $result);
 
-        if (! isset($list[$select])) {
-            return $list[0];
+        if (array_key_exists($select, $list)) {
+            return $list[$select];
         }
 
-        return $list[$select];
+        return $list[0];
     }
 
     /**
@@ -310,9 +304,9 @@ class Translator
      */
     public function pgettext(string $msgctxt, string $msgid): string
     {
-        $key = implode(chr(4), [$msgctxt, $msgid]);
+        $key = $msgctxt . "\u{4}" . $msgid;
         $ret = $this->gettext($key);
-        if (strpos($ret, chr(4)) !== false) {
+        if ($ret === $key) {
             return $msgid;
         }
 
@@ -331,9 +325,9 @@ class Translator
      */
     public function npgettext(string $msgctxt, string $msgid, string $msgidPlural, int $number): string
     {
-        $key = implode(chr(4), [$msgctxt, $msgid]);
+        $key = $msgctxt . "\u{4}" . $msgid;
         $ret = $this->ngettext($key, $msgidPlural, $number);
-        if (strpos($ret, chr(4)) !== false) {
+        if (str_contains($ret, "\u{4}")) {
             return $msgid;
         }
 
@@ -374,7 +368,7 @@ class Translator
 
         throw new CacheException(sprintf(
             "Cache '%s' does not support getting translations",
-            get_class($this->cache),
+            $this->cache::class,
         ));
     }
 }
