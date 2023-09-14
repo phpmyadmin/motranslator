@@ -179,20 +179,14 @@ class Loader
      */
     public function getTranslator(string $domain = ''): Translator
     {
-        if (empty($domain)) {
+        if ($domain === '') {
             $domain = $this->defaultDomain;
         }
 
-        if (! isset($this->domains[$this->locale])) {
-            $this->domains[$this->locale] = [];
-        }
+        $this->domains[$this->locale] ??= [];
 
         if (! isset($this->domains[$this->locale][$domain])) {
-            if (isset($this->paths[$domain])) {
-                $base = $this->paths[$domain];
-            } else {
-                $base = './';
-            }
+            $base = $this->paths[$domain] ?? './';
 
             $localeNames = self::listLocales($this->locale);
 
