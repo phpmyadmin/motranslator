@@ -7,7 +7,6 @@ namespace PhpMyAdmin\MoTranslator;
 use PhpMyAdmin\MoTranslator\Cache\CacheInterface;
 
 use function is_readable;
-use function strcmp;
 
 final class MoParser
 {
@@ -69,9 +68,9 @@ final class MoParser
 
         try {
             $magic = $stream->read(0, 4);
-            if (strcmp($magic, self::MAGIC_LE) === 0) {
+            if ($magic === self::MAGIC_LE) {
                 $unpack = 'V';
-            } elseif (strcmp($magic, self::MAGIC_BE) === 0) {
+            } elseif ($magic === self::MAGIC_BE) {
                 $unpack = 'N';
             } else {
                 $this->error = self::ERROR_BAD_MAGIC;
