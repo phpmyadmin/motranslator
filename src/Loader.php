@@ -29,7 +29,6 @@ namespace PhpMyAdmin\MoTranslator;
 use PhpMyAdmin\MoTranslator\Cache\CacheFactoryInterface;
 use PhpMyAdmin\MoTranslator\Cache\InMemoryCache;
 
-use function array_push;
 use function file_exists;
 use function getenv;
 use function in_array;
@@ -130,56 +129,35 @@ class Loader
                 if ($modifier) {
                     if ($country) {
                         if ($charset) {
-                            array_push(
-                                $localeNames,
-                                sprintf('%s_%s.%s@%s', $lang, $country, $charset, $modifier),
-                            );
+                            $localeNames[] = sprintf('%s_%s.%s@%s', $lang, $country, $charset, $modifier);
                         }
 
-                        array_push(
-                            $localeNames,
-                            sprintf('%s_%s@%s', $lang, $country, $modifier),
-                        );
+                        $localeNames[] = sprintf('%s_%s@%s', $lang, $country, $modifier);
                     } elseif ($charset) {
-                        array_push(
-                            $localeNames,
-                            sprintf('%s.%s@%s', $lang, $charset, $modifier),
-                        );
+                        $localeNames[] = sprintf('%s.%s@%s', $lang, $charset, $modifier);
                     }
 
-                    array_push(
-                        $localeNames,
-                        sprintf('%s@%s', $lang, $modifier),
-                    );
+                    $localeNames[] = sprintf('%s@%s', $lang, $modifier);
                 }
 
                 if ($country) {
                     if ($charset) {
-                        array_push(
-                            $localeNames,
-                            sprintf('%s_%s.%s', $lang, $country, $charset),
-                        );
+                        $localeNames[] = sprintf('%s_%s.%s', $lang, $country, $charset);
                     }
 
-                    array_push(
-                        $localeNames,
-                        sprintf('%s_%s', $lang, $country),
-                    );
+                    $localeNames[] = sprintf('%s_%s', $lang, $country);
                 } elseif ($charset) {
-                    array_push(
-                        $localeNames,
-                        sprintf('%s.%s', $lang, $charset),
-                    );
+                    $localeNames[] = sprintf('%s.%s', $lang, $charset);
                 }
 
                 if ($lang !== null) {
-                    array_push($localeNames, $lang);
+                    $localeNames[] = $lang;
                 }
             }
 
             // If the locale name doesn't match POSIX style, just include it as-is.
             if (! in_array($locale, $localeNames)) {
-                array_push($localeNames, $locale);
+                $localeNames[] = $locale;
             }
         }
 
@@ -201,20 +179,14 @@ class Loader
      */
     public function getTranslator(string $domain = ''): Translator
     {
-        if (empty($domain)) {
+        if ($domain === '') {
             $domain = $this->defaultDomain;
         }
 
-        if (! isset($this->domains[$this->locale])) {
-            $this->domains[$this->locale] = [];
-        }
+        $this->domains[$this->locale] ??= [];
 
         if (! isset($this->domains[$this->locale][$domain])) {
-            if (isset($this->paths[$domain])) {
-                $base = $this->paths[$domain];
-            } else {
-                $base = './';
-            }
+            $base = $this->paths[$domain] ?? './';
 
             $localeNames = self::listLocales($this->locale);
 
