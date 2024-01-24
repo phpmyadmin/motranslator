@@ -105,12 +105,13 @@ class Loader
      * @param string $locale Locale code
      *
      * @return string[] list of locales to try for any POSIX-style locale specification
+     * @psalm-return list<string>
      */
     public static function listLocales(string $locale): array
     {
         $localeNames = [];
 
-        if ($locale) {
+        if ($locale !== '') {
             if (
                 preg_match(
                     '/^(?P<lang>[a-z]{2,3})' // language code
@@ -119,44 +120,44 @@ class Loader
                     . '(?:@(?P<modifier>[-A-Za-z0-9_]+))?$/', // @ modifier
                     $locale,
                     $matches,
-                )
+                ) === 1
             ) {
-                $lang = $matches['lang'] ?? null;
-                $country = $matches['country'] ?? null;
-                $charset = $matches['charset'] ?? null;
-                $modifier = $matches['modifier'] ?? null;
+                $lang = $matches['lang'] ?? '';
+                $country = $matches['country'] ?? '';
+                $charset = $matches['charset'] ?? '';
+                $modifier = $matches['modifier'] ?? '';
 
-                if ($modifier) {
-                    if ($country) {
-                        if ($charset) {
+                if ($modifier !== '') {
+                    if ($country !== '') {
+                        if ($charset !== '') {
                             $localeNames[] = sprintf('%s_%s.%s@%s', $lang, $country, $charset, $modifier);
                         }
 
                         $localeNames[] = sprintf('%s_%s@%s', $lang, $country, $modifier);
-                    } elseif ($charset) {
+                    } elseif ($charset !== '') {
                         $localeNames[] = sprintf('%s.%s@%s', $lang, $charset, $modifier);
                     }
 
                     $localeNames[] = sprintf('%s@%s', $lang, $modifier);
                 }
 
-                if ($country) {
-                    if ($charset) {
+                if ($country !== '') {
+                    if ($charset !== '') {
                         $localeNames[] = sprintf('%s_%s.%s', $lang, $country, $charset);
                     }
 
                     $localeNames[] = sprintf('%s_%s', $lang, $country);
-                } elseif ($charset) {
+                } elseif ($charset !== '') {
                     $localeNames[] = sprintf('%s.%s', $lang, $charset);
                 }
 
-                if ($lang !== null) {
+                if ($lang !== '') {
                     $localeNames[] = $lang;
                 }
             }
 
             // If the locale name doesn't match POSIX style, just include it as-is.
-            if (! in_array($locale, $localeNames)) {
+            if (! in_array($locale, $localeNames, true)) {
                 $localeNames[] = $locale;
             }
         }
