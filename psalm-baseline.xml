@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.15.0@5c774aca4746caf3d239d9c8cadb9f882ca29352">
+<files psalm-version="5.20.0@3f284e96c9d9be6fe6b15c79416e1d1903dcfef4">
   <file src="src/Cache/ApcuCache.php">
     <MixedAssignment>
       <code>$cached</code>
@@ -18,15 +18,6 @@
     <MixedReturnStatement>
       <code><![CDATA[$GLOBALS['lang']]]></code>
     </MixedReturnStatement>
-    <PossiblyNullArgument>
-      <code>$lang</code>
-      <code>$lang</code>
-      <code>$lang</code>
-      <code>$lang</code>
-      <code>$lang</code>
-      <code>$lang</code>
-      <code>$lang</code>
-    </PossiblyNullArgument>
   </file>
   <file src="src/StringReader.php">
     <MixedAssignment>
