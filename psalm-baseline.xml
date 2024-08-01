@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.20.0@3f284e96c9d9be6fe6b15c79416e1d1903dcfef4">
+<files psalm-version="5.25.0@01a8eb06b9e9cc6cfb6a320bf9fb14331919d505">
   <file src="src/Cache/ApcuCache.php">
     <MixedAssignment>
-      <code>$cached</code>
-      <code>$msgstr</code>
-      <code>$msgstr</code>
+      <code><![CDATA[$cached]]></code>
+      <code><![CDATA[$msgstr]]></code>
+      <code><![CDATA[$msgstr]]></code>
     </MixedAssignment>
     <RedundantConditionGivenDocblockType>
-      <code>assert(is_array($translations))</code>
-      <code>is_array($translations)</code>
+      <code><![CDATA[assert(is_array($translations))]]></code>
+      <code><![CDATA[is_array($translations)]]></code>
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/Loader.php">
     <MixedInferredReturnType>
-      <code>string</code>
+      <code><![CDATA[string]]></code>
     </MixedInferredReturnType>
     <MixedReturnStatement>
       <code><![CDATA[$GLOBALS['lang']]]></code>
@@ -21,29 +21,29 @@
   </file>
   <file src="src/StringReader.php">
     <MixedAssignment>
-      <code>$result</code>
+      <code><![CDATA[$result]]></code>
     </MixedAssignment>
     <MixedInferredReturnType>
-      <code>int</code>
+      <code><![CDATA[int]]></code>
     </MixedInferredReturnType>
     <MixedReturnStatement>
       <code><![CDATA[$result < 0 ? PHP_INT_MAX : $result]]></code>
       <code><![CDATA[$result < 0 ? PHP_INT_MAX : $result]]></code>
     </MixedReturnStatement>
     <MixedReturnTypeCoercion>
-      <code>$data</code>
-      <code>int[]</code>
+      <code><![CDATA[$data]]></code>
+      <code><![CDATA[int[]]]></code>
     </MixedReturnTypeCoercion>
   </file>
   <file src="src/Translator.php">
     <MixedAssignment>
-      <code>$evaluatedPlural</code>
+      <code><![CDATA[$evaluatedPlural]]></code>
     </MixedAssignment>
     <PossiblyNullOperand>
       <code><![CDATA[$this->pluralCount]]></code>
     </PossiblyNullOperand>
     <PossiblyUndefinedArrayOffset>
-      <code>$nplurals[1]</code>
+      <code><![CDATA[$nplurals[1]]]></code>
     </PossiblyUndefinedArrayOffset>
   </file>
 </files>
