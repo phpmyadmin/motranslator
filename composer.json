@@ -28,7 +28,7 @@
     },
     "require": {
         "php": "^8.2",
-        "symfony/expression-language": "^6.2"
+        "symfony/expression-language": "^6.4 || ^7.0"
     },
     "require-dev": {
         "phpmyadmin/coding-standard": "^4.0",
