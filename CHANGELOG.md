@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+* Bump PHP minimum version to 7.2
+* Add support for Symfony 7
+
 ## [5.3.1] - 2023-08-23
 
 * Add function guards to the global functions (#44)

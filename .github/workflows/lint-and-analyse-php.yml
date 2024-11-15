@@ -11,10 +11,10 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
 
-            - name: Set up PHP 7.1
+            - name: Set up PHP 7.2
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: 7.1
+                  php-version: 7.2
                   tools: composer:v2
 
             - name: Validate composer.json and composer.lock
@@ -34,10 +34,10 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
 
-            - name: Set up PHP 7.1
+            - name: Set up PHP 7.2
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: 7.1
+                  php-version: 7.2
                   tools: composer:v2
 
             - name: Install Composer dependencies
