@@ -1,12 +1,17 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Strict comparison using \\=\\=\\= between string and false will always evaluate to false\\.$#"
+			message: "#^Offset 'lang' on array\\{0\\: string, lang\\: non\\-falsy\\-string, 1\\: non\\-falsy\\-string, country\\?\\: string, 2\\?\\: string, charset\\?\\: string, 3\\?\\: string, modifier\\?\\: non\\-empty\\-string, \\.\\.\\.\\} on left side of \\?\\? always exists and is not nullable\\.$#"
 			count: 1
-			path: src/StringReader.php
+			path: src/Loader.php
 
 		-
 			message: "#^Cannot cast mixed to int\\.$#"
+			count: 1
+			path: src/Translator.php
+
+		-
+			message: "#^Parameter \\#1 \\$str of function ltrim expects string, string\\|false given\\.$#"
 			count: 1
 			path: src/Translator.php
 
