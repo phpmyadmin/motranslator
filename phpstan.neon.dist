@@ -5,4 +5,8 @@ parameters:
     paths:
         - src
         - tests
-    reportUnmatchedIgnoredErrors: true
+    checkBenevolentUnionTypes: true
+    checkUninitializedProperties: true
+    checkDynamicProperties: true
+    checkTooWideReturnTypesInProtectedAndPublicMethods: true
+    checkImplicitMixed: true
