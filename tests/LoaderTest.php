@@ -26,10 +26,7 @@ class LoaderTest extends TestCase
      */
     public function testListLocales(string $locale, array $expected): void
     {
-        $this->assertEquals(
-            $expected,
-            Loader::listLocales($locale)
-        );
+        self::assertSame($expected, Loader::listLocales($locale));
     }
 
     /**
@@ -153,10 +150,10 @@ class LoaderTest extends TestCase
         $loader->textdomain('phpmyadmin');
         $loader->bindtextdomain('phpmyadmin', __DIR__ . '/data/locale/');
         $translator = $loader->getTranslator('phpmyadmin');
-        $this->assertEquals('Typ', $translator->gettext('Type'));
+        self::assertSame('Typ', $translator->gettext('Type'));
         $loader->setlocale('be_BY');
         $translator = $loader->getTranslator('phpmyadmin');
-        $this->assertEquals('Тып', $translator->gettext('Type'));
+        self::assertSame('Тып', $translator->gettext('Type'));
     }
 
     /**
@@ -166,10 +163,7 @@ class LoaderTest extends TestCase
     {
         $loader = $this->getLoader($domain, $locale);
         $translator = $loader->getTranslator($otherdomain);
-        $this->assertEquals(
-            $expected,
-            $translator->gettext('Type')
-        );
+        self::assertSame($expected, $translator->gettext('Type'));
     }
 
     /**
@@ -225,38 +219,26 @@ class LoaderTest extends TestCase
         $loader->bindtextdomain('phpmyadmin', __DIR__ . '/data/locale/');
 
         $translator = $loader->getTranslator();
-        $this->assertEquals(
-            'Typ',
-            $translator->gettext('Type')
-        );
+        self::assertSame('Typ', $translator->gettext('Type'));
 
         /* Ensure the object survives */
         $loader = Loader::getInstance();
         $translator = $loader->getTranslator();
-        $this->assertEquals(
-            'Typ',
-            $translator->gettext('Type')
-        );
+        self::assertSame('Typ', $translator->gettext('Type'));
 
         /* Ensure the object can support different locale files for the same domain */
         $loader = Loader::getInstance();
         $loader->setlocale('be_BY');
         $loader->bindtextdomain('phpmyadmin', __DIR__ . '/data/locale/');
         $translator = $loader->getTranslator();
-        $this->assertEquals(
-            'Тып',
-            $translator->gettext('Type')
-        );
+        self::assertSame('Тып', $translator->gettext('Type'));
     }
 
     public function testDetect(): void
     {
         $GLOBALS['lang'] = 'foo';
         $loader = Loader::getInstance();
-        $this->assertEquals(
-            'foo',
-            $loader->detectlocale()
-        );
+        self::assertSame('foo', $loader->detectlocale());
         unset($GLOBALS['lang']);
     }
 
@@ -274,27 +256,15 @@ class LoaderTest extends TestCase
 
         unset($GLOBALS['lang']);
         putenv('LC_ALL=baz');
-        $this->assertEquals(
-            'baz',
-            $loader->detectlocale()
-        );
+        self::assertSame('baz', $loader->detectlocale());
         putenv('LC_ALL');
         putenv('LC_MESSAGES=bar');
-        $this->assertEquals(
-            'bar',
-            $loader->detectlocale()
-        );
+        self::assertSame('bar', $loader->detectlocale());
         putenv('LC_MESSAGES');
         putenv('LANG=barr');
-        $this->assertEquals(
-            'barr',
-            $loader->detectlocale()
-        );
+        self::assertSame('barr', $loader->detectlocale());
         putenv('LANG');
-        $this->assertEquals(
-            'en',
-            $loader->detectlocale()
-        );
+        self::assertSame('en', $loader->detectlocale());
     }
 
     public function testSetCacheFactory(): void
@@ -320,6 +290,6 @@ class LoaderTest extends TestCase
         $translator = $loader->getTranslator($domain);
 
         $actual = $translator->gettext('Type');
-        $this->assertEquals($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 }

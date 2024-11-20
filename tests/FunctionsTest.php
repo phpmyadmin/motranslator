@@ -24,79 +24,25 @@ class FunctionsTest extends TestCase
 
     public function testGettext(): void
     {
-        $this->assertEquals(
-            'Typ',
-            _gettext('Type')
-        );
+        self::assertSame('Typ', _gettext('Type'));
 
-        $this->assertEquals(
-            'Typ',
-            __('Type')
-        );
+        self::assertSame('Typ', __('Type'));
 
-        $this->assertEquals(
-            '%d sekundy',
-            _ngettext(
-                '%d second',
-                '%d seconds',
-                2
-            )
-        );
+        self::assertSame('%d sekundy', _ngettext('%d second', '%d seconds', 2));
 
-        $this->assertEquals(
-            '%d seconds',
-            _npgettext(
-                'context',
-                '%d second',
-                '%d seconds',
-                2
-            )
-        );
+        self::assertSame('%d seconds', _npgettext('context', '%d second', '%d seconds', 2));
 
-        $this->assertEquals(
-            'Tabulka',
-            _pgettext(
-                'Display format',
-                'Table'
-            )
-        );
+        self::assertSame('Tabulka', _pgettext('Display format', 'Table'));
     }
 
     public function testDomain(): void
     {
-        $this->assertEquals(
-            'Typ',
-            _dgettext('phpmyadmin', 'Type')
-        );
+        self::assertSame('Typ', _dgettext('phpmyadmin', 'Type'));
 
-        $this->assertEquals(
-            '%d sekundy',
-            _dngettext(
-                'phpmyadmin',
-                '%d second',
-                '%d seconds',
-                2
-            )
-        );
+        self::assertSame('%d sekundy', _dngettext('phpmyadmin', '%d second', '%d seconds', 2));
 
-        $this->assertEquals(
-            '%d seconds',
-            _dnpgettext(
-                'phpmyadmin',
-                'context',
-                '%d second',
-                '%d seconds',
-                2
-            )
-        );
+        self::assertSame('%d seconds', _dnpgettext('phpmyadmin', 'context', '%d second', '%d seconds', 2));
 
-        $this->assertEquals(
-            'Tabulka',
-            _dpgettext(
-                'phpmyadmin',
-                'Display format',
-                'Table'
-            )
-        );
+        self::assertSame('Tabulka', _dpgettext('phpmyadmin', 'Display format', 'Table'));
     }
 }

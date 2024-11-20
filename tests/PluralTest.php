@@ -29,7 +29,7 @@ class PluralTest extends TestCase
     {
         $parser = $this->getTranslator('');
         $result = $parser->npgettext('context', "%d pig went to the market\n", "%d pigs went to the market\n", $number);
-        $this->assertSame($expected, $result);
+        self::assertSame($expected, $result);
     }
 
     /**
@@ -60,7 +60,7 @@ class PluralTest extends TestCase
         $translationKey = implode(chr(0), ["%d pig went to the market\n", "%d pigs went to the market\n"]);
         $parser->setTranslation($translationKey, '');
         $result = $parser->ngettext("%d pig went to the market\n", "%d pigs went to the market\n", 1);
-        $this->assertSame('', $result);
+        self::assertSame('', $result);
     }
 
     /**
@@ -115,7 +115,7 @@ class PluralTest extends TestCase
         $translationKey = implode(chr(0), ["%d pig went to the market\n", "%d pigs went to the market\n"]);
         $parser->setTranslation($translationKey, 'ok');
         $result = $parser->ngettext("%d pig went to the market\n", "%d pigs went to the market\n", 1);
-        $this->assertSame('ok', $result);
+        self::assertSame('ok', $result);
     }
 
     private function getTranslator(string $filename): Translator
