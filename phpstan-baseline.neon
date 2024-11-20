@@ -116,44 +116,9 @@ parameters:
 			path: src/Translator.php
 
 		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertFalse\\(\\)\\.$#"
-			count: 1
-			path: tests/Cache/ApcuCacheFactoryTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertInstanceOf\\(\\)\\.$#"
-			count: 1
-			path: tests/Cache/ApcuCacheFactoryTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\)\\.$#"
-			count: 2
-			path: tests/Cache/ApcuCacheFactoryTest.php
-
-		-
 			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:markTestSkipped\\(\\)\\.$#"
 			count: 1
 			path: tests/Cache/ApcuCacheFactoryTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
-			count: 2
-			path: tests/Cache/ApcuCacheTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertFalse\\(\\)\\.$#"
-			count: 4
-			path: tests/Cache/ApcuCacheTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\)\\.$#"
-			count: 11
-			path: tests/Cache/ApcuCacheTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\)\\.$#"
-			count: 1
-			path: tests/Cache/ApcuCacheTest.php
 
 		-
 			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:markTestSkipped\\(\\)\\.$#"
@@ -166,33 +131,8 @@ parameters:
 			path: tests/Cache/ApcuDisabledTest.php
 
 		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
+			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\) with array\\<array\\> and array\\<string\\> will always evaluate to false\\.$#"
 			count: 1
-			path: tests/Cache/InMemoryCacheTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertFalse\\(\\)\\.$#"
-			count: 1
-			path: tests/Cache/InMemoryCacheTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\)\\.$#"
-			count: 4
-			path: tests/Cache/InMemoryCacheTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\)\\.$#"
-			count: 1
-			path: tests/Cache/InMemoryCacheTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
-			count: 9
-			path: tests/FunctionsTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
-			count: 13
 			path: tests/LoaderTest.php
 
 		-
@@ -226,11 +166,6 @@ parameters:
 			path: tests/LoaderTest.php
 
 		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
-			count: 16
-			path: tests/MoFilesTest.php
-
-		-
 			message: "#^Method PhpMyAdmin\\\\MoTranslator\\\\Tests\\\\MoFilesTest\\:\\:getFiles\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: tests/MoFilesTest.php
@@ -251,11 +186,6 @@ parameters:
 			path: tests/MoFilesTest.php
 
 		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
-			count: 3
-			path: tests/PluralFormulaTest.php
-
-		-
 			message: "#^Method PhpMyAdmin\\\\MoTranslator\\\\Tests\\\\PluralFormulaTest\\:\\:pluralCounts\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: tests/PluralFormulaTest.php
@@ -271,11 +201,6 @@ parameters:
 			path: tests/PluralFormulaTest.php
 
 		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\)\\.$#"
-			count: 3
-			path: tests/PluralTest.php
-
-		-
 			message: "#^Method PhpMyAdmin\\\\MoTranslator\\\\Tests\\\\PluralTest\\:\\:dataProviderPluralForms\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: tests/PluralTest.php
@@ -284,24 +209,4 @@ parameters:
 			message: "#^Method PhpMyAdmin\\\\MoTranslator\\\\Tests\\\\PluralTest\\:\\:providerTestNpgettext\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: tests/PluralTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertFileExists\\(\\)\\.$#"
-			count: 2
-			path: tests/StringReaderTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\)\\.$#"
-			count: 2
-			path: tests/StringReaderTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
-			count: 6
-			path: tests/TranslatorTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\)\\.$#"
-			count: 6
-			path: tests/TranslatorTest.php
 

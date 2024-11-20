@@ -19,7 +19,7 @@ class InMemoryCacheTest extends TestCase
         $parser = new MoParser(__DIR__ . '/../data/little.mo');
         $cache = new InMemoryCache($parser);
         $actual = $cache->get('Column');
-        $this->assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 
     public function testGetReturnsMsgidForCacheMiss(): void
@@ -27,7 +27,7 @@ class InMemoryCacheTest extends TestCase
         $expected = 'Column';
         $cache = new InMemoryCache(new MoParser(null));
         $actual = $cache->get($expected);
-        $this->assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 
     public function testSetSetsMsgstr(): void
@@ -37,21 +37,21 @@ class InMemoryCacheTest extends TestCase
         $cache = new InMemoryCache(new MoParser(null));
         $cache->set($msgid, $expected);
         $actual = $cache->get($msgid);
-        $this->assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 
     public function testHasReturnsFalse(): void
     {
         $cache = new InMemoryCache(new MoParser(null));
         $actual = $cache->has('Column');
-        $this->assertFalse($actual);
+        self::assertFalse($actual);
     }
 
     public function testHasReturnsTrue(): void
     {
         $cache = new InMemoryCache(new MoParser(__DIR__ . '/../data/little.mo'));
         $actual = $cache->has('Column');
-        $this->assertTrue($actual);
+        self::assertTrue($actual);
     }
 
     public function testSetAllSetsTranslations(): void
@@ -64,7 +64,7 @@ class InMemoryCacheTest extends TestCase
         $cache->setAll($translations);
         foreach ($translations as $msgid => $expected) {
             $actual = $cache->get($msgid);
-            $this->assertEquals($expected, $actual);
+            self::assertSame($expected, $actual);
         }
     }
 
@@ -77,6 +77,6 @@ class InMemoryCacheTest extends TestCase
         $cache = new InMemoryCache(new MoParser(null));
         $cache->setAll($expected);
         $actual = $cache->getAll();
-        $this->assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 }

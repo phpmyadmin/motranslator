@@ -43,7 +43,7 @@ class ApcuCacheFactoryTest extends TestCase
     {
         $factory = new ApcuCacheFactory();
         $instance = $factory->getInstance(new MoParser(null), 'foo', 'bar');
-        $this->assertInstanceOf(ApcuCache::class, $instance);
+        self::assertInstanceOf(ApcuCache::class, $instance);
     }
 
     public function testConstructorSetsTtl(): void
@@ -59,7 +59,7 @@ class ApcuCacheFactoryTest extends TestCase
         sleep($ttl * 2);
 
         apcu_fetch('mo_' . $locale . '.' . $domain . '.' . $msgid, $success);
-        $this->assertFalse($success);
+        self::assertFalse($success);
     }
 
     public function testConstructorSetsReloadOnMiss(): void
@@ -76,7 +76,7 @@ class ApcuCacheFactoryTest extends TestCase
 
         apcu_delete('mo_' . $locale . '.' . $domain . '.' . $msgid);
         $actual = $instance->get($msgid);
-        $this->assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 
     public function testConstructorSetsPrefix(): void
@@ -93,6 +93,6 @@ class ApcuCacheFactoryTest extends TestCase
         $factory->getInstance($parser, $locale, $domain);
 
         $actual = apcu_fetch($prefix . $locale . '.' . $domain . '.' . $msgid);
-        $this->assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 }

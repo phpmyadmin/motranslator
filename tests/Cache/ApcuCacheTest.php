@@ -53,7 +53,7 @@ class ApcuCacheTest extends TestCase
         new ApcuCache(new MoParser(__DIR__ . '/../data/little.mo'), $locale, $domain);
 
         $actual = apcu_fetch('mo_' . $locale . '.' . $domain . '.' . $msgid);
-        $this->assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 
     public function testConstructorSetsTtl(): void
@@ -67,9 +67,9 @@ class ApcuCacheTest extends TestCase
         sleep($ttl * 2);
 
         apcu_fetch('mo_' . $locale . '.' . $domain . '.' . $msgid, $success);
-        $this->assertFalse($success);
+        self::assertFalse($success);
         apcu_fetch('mo_' . $locale . '.' . $domain . '.' . ApcuCache::LOADED_KEY, $success);
-        $this->assertFalse($success);
+        self::assertFalse($success);
     }
 
     public function testConstructorSetsReloadOnMiss(): void
@@ -91,7 +91,7 @@ class ApcuCacheTest extends TestCase
 
         apcu_delete($prefix . $locale . '.' . $domain . '.' . $msgid);
         $actual = $cache->get($msgid);
-        $this->assertEquals($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 
     public function testConstructorSetsPrefix(): void
@@ -105,7 +105,7 @@ class ApcuCacheTest extends TestCase
         new ApcuCache(new MoParser(__DIR__ . '/../data/little.mo'), $locale, $domain, 0, true, $prefix);
 
         $actual = apcu_fetch($prefix . $locale . '.' . $domain . '.' . $msgid);
-        $this->assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 
     public function testEnsureTranslationsLoadedSetsLoadedKey(): void
@@ -117,7 +117,7 @@ class ApcuCacheTest extends TestCase
         new ApcuCache(new MoParser(__DIR__ . '/../data/little.mo'), $locale, $domain);
 
         $actual = apcu_fetch('mo_' . $locale . '.' . $domain . '.' . ApcuCache::LOADED_KEY);
-        $this->assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 
     public function testEnsureTranslationsLoadedHonorsLock(): void
@@ -136,9 +136,9 @@ class ApcuCacheTest extends TestCase
         new ApcuCache(new MoParser(__DIR__ . '/../data/little.mo'), $locale, $domain);
 
         $actual = apcu_fetch($lock);
-        $this->assertSame(1, $actual);
+        self::assertSame(1, $actual);
         apcu_fetch('mo_' . $locale . '.' . $domain . '.' . $msgid, $success);
-        $this->assertFalse($success);
+        self::assertFalse($success);
     }
 
     public function testGetReturnsMsgstr(): void
@@ -149,7 +149,7 @@ class ApcuCacheTest extends TestCase
         $cache = new ApcuCache(new MoParser(__DIR__ . '/../data/little.mo'), 'foo', 'bar');
 
         $actual = $cache->get($msgid);
-        $this->assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 
     public function testGetReturnsMsgidForCacheMiss(): void
@@ -159,7 +159,7 @@ class ApcuCacheTest extends TestCase
         $cache = new ApcuCache(new MoParser(null), 'foo', 'bar');
 
         $actual = $cache->get($expected);
-        $this->assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 
     public function testStoresMsgidOnCacheMiss(): void
@@ -172,7 +172,7 @@ class ApcuCacheTest extends TestCase
         $cache->get($expected);
 
         $actual = apcu_fetch('mo_' . $locale . '.' . $domain . '.' . $expected);
-        $this->assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 
     public function testGetReloadsOnCacheMiss(): void
@@ -186,7 +186,7 @@ class ApcuCacheTest extends TestCase
 
         apcu_delete('mo_' . $locale . '.' . $domain . '.' . ApcuCache::LOADED_KEY);
         $actual = $cache->get($msgid);
-        $this->assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 
     public function testReloadOnMissHonorsLock(): void
@@ -209,7 +209,7 @@ class ApcuCacheTest extends TestCase
         });
         $actual = $method->invoke($cache, $msgid);
 
-        $this->assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 
     public function testSetSetsMsgstr(): void
@@ -221,21 +221,21 @@ class ApcuCacheTest extends TestCase
         $cache->set($msgid, $expected);
 
         $actual = $cache->get($msgid);
-        $this->assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 
     public function testHasReturnsFalse(): void
     {
         $cache = new ApcuCache(new MoParser(null), 'foo', 'bar');
         $actual = $cache->has('Column');
-        $this->assertFalse($actual);
+        self::assertFalse($actual);
     }
 
     public function testHasReturnsTrue(): void
     {
         $cache = new ApcuCache(new MoParser(__DIR__ . '/../data/little.mo'), 'foo', 'bar');
         $actual = $cache->has('Column');
-        $this->assertTrue($actual);
+        self::assertTrue($actual);
     }
 
     public function testSetAllSetsTranslations(): void
@@ -250,7 +250,7 @@ class ApcuCacheTest extends TestCase
 
         foreach ($translations as $msgid => $expected) {
             $actual = $cache->get($msgid);
-            $this->assertEquals($expected, $actual);
+            self::assertSame($expected, $actual);
         }
     }
 
@@ -265,6 +265,6 @@ class ApcuCacheTest extends TestCase
 
         $msgstr = $cache->get($msgid);
         $actual = explode(chr(0), $msgstr);
-        $this->assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 }
