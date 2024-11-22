@@ -22,7 +22,7 @@ class TranslatorTest extends TestCase
         $expected = 'Pole';
         $translator = new Translator(__DIR__ . '/data/little.mo');
         $actual = $translator->gettext('Column');
-        $this->assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 
     public function testConstructorWithNullParam(): void
@@ -30,7 +30,7 @@ class TranslatorTest extends TestCase
         $expected = 'Column';
         $translator = new Translator(null);
         $actual = $translator->gettext($expected);
-        $this->assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 
     /**
@@ -39,7 +39,7 @@ class TranslatorTest extends TestCase
     public function testGettext(): void
     {
         $translator = $this->getTranslator('');
-        $this->assertEquals('Test', $translator->gettext('Test'));
+        self::assertSame('Test', $translator->gettext('Test'));
     }
 
     /**
@@ -49,7 +49,7 @@ class TranslatorTest extends TestCase
     {
         $translator = $this->getTranslator('');
         $translator->setTranslation('Test', 'Translation');
-        $this->assertEquals('Translation', $translator->gettext('Test'));
+        self::assertSame('Translation', $translator->gettext('Test'));
     }
 
     /**
@@ -60,12 +60,12 @@ class TranslatorTest extends TestCase
         $transTable = ['Test' => 'Translation'];
         $translator = $this->getTranslator('');
         $translator->setTranslations($transTable);
-        $this->assertEquals('Translation', $translator->gettext('Test'));
-        $this->assertSame($transTable, $translator->getTranslations());
+        self::assertSame('Translation', $translator->gettext('Test'));
+        self::assertSame($transTable, $translator->getTranslations());
         $translator = $this->getTranslator(null);
         $translator->setTranslations($transTable);
-        $this->assertSame($transTable, $translator->getTranslations());
-        $this->assertEquals('Translation', $translator->gettext('Test'));
+        self::assertSame($transTable, $translator->getTranslations());
+        self::assertSame('Translation', $translator->gettext('Test'));
         $transTable = [
             'Test' => 'Translation',
             'shouldIWriteTests' => 'as much as possible',
@@ -73,12 +73,12 @@ class TranslatorTest extends TestCase
         ];
         $translator = $this->getTranslator('');
         $translator->setTranslations($transTable);
-        $this->assertSame($transTable, $translator->getTranslations());
-        $this->assertEquals('as much as possible', $translator->gettext('shouldIWriteTests'));
+        self::assertSame($transTable, $translator->getTranslations());
+        self::assertSame('as much as possible', $translator->gettext('shouldIWriteTests'));
         $translator = $this->getTranslator(null);
         $translator->setTranslations($transTable);
-        $this->assertSame($transTable, $translator->getTranslations());
-        $this->assertEquals('it depends', $translator->gettext('is it hard'));
+        self::assertSame($transTable, $translator->getTranslations());
+        self::assertSame('it depends', $translator->gettext('is it hard'));
     }
 
     public function testGetTranslationsThrowsException(): void

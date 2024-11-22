@@ -26,6 +26,16 @@ parameters:
 			path: src/Loader.php
 
 		-
+			message: "#^Offset 'lang' on array\\{0\\: string, lang\\: non\\-falsy\\-string, 1\\: non\\-falsy\\-string, country\\?\\: string, 2\\?\\: string, charset\\?\\: string, 3\\?\\: string, modifier\\?\\: non\\-empty\\-string, \\.\\.\\.\\} on left side of \\?\\? always exists and is not nullable\\.$#"
+			count: 1
+			path: src/Loader.php
+
+		-
+			message: "#^Strict comparison using \\!\\=\\= between non\\-falsy\\-string and '' will always evaluate to true\\.$#"
+			count: 1
+			path: src/Loader.php
+
+		-
 			message: "#^Casting to int something that's already int\\.$#"
 			count: 1
 			path: src/MoParser.php
@@ -51,44 +61,9 @@ parameters:
 			path: src/Translator.php
 
 		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertFalse\\(\\)\\.$#"
-			count: 1
-			path: tests/Cache/ApcuCacheFactoryTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertInstanceOf\\(\\)\\.$#"
-			count: 1
-			path: tests/Cache/ApcuCacheFactoryTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\)\\.$#"
-			count: 2
-			path: tests/Cache/ApcuCacheFactoryTest.php
-
-		-
 			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:markTestSkipped\\(\\)\\.$#"
 			count: 1
 			path: tests/Cache/ApcuCacheFactoryTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
-			count: 2
-			path: tests/Cache/ApcuCacheTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertFalse\\(\\)\\.$#"
-			count: 4
-			path: tests/Cache/ApcuCacheTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\)\\.$#"
-			count: 11
-			path: tests/Cache/ApcuCacheTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\)\\.$#"
-			count: 1
-			path: tests/Cache/ApcuCacheTest.php
 
 		-
 			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:markTestSkipped\\(\\)\\.$#"
@@ -99,36 +74,6 @@ parameters:
 			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:markTestSkipped\\(\\)\\.$#"
 			count: 1
 			path: tests/Cache/ApcuDisabledTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
-			count: 1
-			path: tests/Cache/InMemoryCacheTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertFalse\\(\\)\\.$#"
-			count: 1
-			path: tests/Cache/InMemoryCacheTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\)\\.$#"
-			count: 4
-			path: tests/Cache/InMemoryCacheTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\)\\.$#"
-			count: 1
-			path: tests/Cache/InMemoryCacheTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
-			count: 9
-			path: tests/FunctionsTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
-			count: 13
-			path: tests/LoaderTest.php
 
 		-
 			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:isInstanceOf\\(\\)\\.$#"
@@ -144,38 +89,3 @@ parameters:
 			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\TestCase\\:\\:once\\(\\)\\.$#"
 			count: 1
 			path: tests/LoaderTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
-			count: 16
-			path: tests/MoFilesTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
-			count: 3
-			path: tests/PluralFormulaTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\)\\.$#"
-			count: 3
-			path: tests/PluralTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertFileExists\\(\\)\\.$#"
-			count: 2
-			path: tests/StringReaderTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\)\\.$#"
-			count: 2
-			path: tests/StringReaderTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertEquals\\(\\)\\.$#"
-			count: 6
-			path: tests/TranslatorTest.php
-
-		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\)\\.$#"
-			count: 6
-			path: tests/TranslatorTest.php

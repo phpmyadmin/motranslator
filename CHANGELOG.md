@@ -2,7 +2,12 @@
 
 ## [Unreleased]
 
-* Drop support for PHP 7.1, PHP 7.2, PHP 7.3, PHP 7.4, PHP 8.0 and PHP 8.1.
+* Drop support for PHP 7.2, PHP 7.3, PHP 7.4, PHP 8.0 and PHP 8.1.
+
+## [Unreleased]
+
+* Bump PHP minimum version to 7.2
+* Add support for Symfony 7
 
 ## [5.3.1] - 2023-08-23
 

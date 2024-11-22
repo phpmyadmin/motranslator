@@ -19,7 +19,7 @@ class PluralFormulaTest extends TestCase
      */
     public function testExtractPluralsForms(string $header, string $expected): void
     {
-        $this->assertEquals(
+        self::assertSame(
             $expected,
             Translator::extractPluralsForms($header),
         );
@@ -59,7 +59,7 @@ class PluralFormulaTest extends TestCase
     /** @dataProvider pluralCounts */
     public function testPluralCounts(string $expr, int $expected): void
     {
-        $this->assertEquals(
+        self::assertSame(
             $expected,
             Translator::extractPluralCount($expr),
         );
@@ -99,7 +99,7 @@ class PluralFormulaTest extends TestCase
     /** @dataProvider pluralExpressions */
     public function testPluralExpression(string $expr, string $expected): void
     {
-        $this->assertEquals(
+        self::assertSame(
             $expected,
             Translator::sanitizePluralExpression($expr),
         );

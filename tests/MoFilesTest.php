@@ -22,12 +22,12 @@ class MoFilesTest extends TestCase
     public function testMoFileTranslate(string $filename): void
     {
         $parser = $this->getTranslator($filename);
-        $this->assertEquals(
+        self::assertSame(
             'Pole',
             $parser->gettext('Column'),
         );
         // Non existing string
-        $this->assertEquals(
+        self::assertSame(
             'Column parser',
             $parser->gettext('Column parser'),
         );
@@ -47,82 +47,27 @@ class MoFilesTest extends TestCase
             $expected0 = '%d sekund';
         }
 
-        $this->assertEquals(
-            $expected0,
-            $parser->ngettext(
-                '%d second',
-                '%d seconds',
-                0,
-            ),
-        );
-        $this->assertEquals(
-            '%d sekunda',
-            $parser->ngettext(
-                '%d second',
-                '%d seconds',
-                1,
-            ),
-        );
-        $this->assertEquals(
-            $expected2,
-            $parser->ngettext(
-                '%d second',
-                '%d seconds',
-                2,
-            ),
-        );
-        $this->assertEquals(
-            $expected0,
-            $parser->ngettext(
-                '%d second',
-                '%d seconds',
-                5,
-            ),
-        );
-        $this->assertEquals(
-            $expected0,
-            $parser->ngettext(
-                '%d second',
-                '%d seconds',
-                10,
-            ),
-        );
+        self::assertSame($expected0, $parser->ngettext('%d second', '%d seconds', 0));
+        self::assertSame('%d sekunda', $parser->ngettext('%d second', '%d seconds', 1));
+        self::assertSame($expected2, $parser->ngettext('%d second', '%d seconds', 2));
+        self::assertSame($expected0, $parser->ngettext('%d second', '%d seconds', 5));
+        self::assertSame($expected0, $parser->ngettext('%d second', '%d seconds', 10));
         // Non existing string
-        $this->assertEquals(
-            '"%d" seconds',
-            $parser->ngettext(
-                '"%d" second',
-                '"%d" seconds',
-                10,
-            ),
-        );
+        self::assertSame('"%d" seconds', $parser->ngettext('"%d" second', '"%d" seconds', 10));
     }
 
     /** @dataProvider provideMoFiles */
     public function testMoFileContext(string $filename): void
     {
         $parser = $this->getTranslator($filename);
-        $this->assertEquals(
-            'Tabulka',
-            $parser->pgettext(
-                'Display format',
-                'Table',
-            ),
-        );
+        self::assertSame('Tabulka', $parser->pgettext('Display format', 'Table'));
     }
 
     /** @dataProvider provideNotTranslatedFiles */
     public function testMoFileNotTranslated(string $filename): void
     {
         $parser = $this->getTranslator($filename);
-        $this->assertEquals(
-            '%d second',
-            $parser->ngettext(
-                '%d second',
-                '%d seconds',
-                1,
-            ),
-        );
+        self::assertSame('%d second', $parser->ngettext('%d second', '%d seconds', 1));
     }
 
     /** @return list<array{string}> */
@@ -149,40 +94,21 @@ class MoFilesTest extends TestCase
         $parser = new MoParser($file);
         $translator = new Translator(new InMemoryCache($parser));
         if (basename($file) === 'magic.mo') {
-            $this->assertEquals(Translator::ERROR_BAD_MAGIC, $parser->error);
+            self::assertSame(Translator::ERROR_BAD_MAGIC, $parser->error);
         } else {
-            $this->assertEquals(Translator::ERROR_READING, $parser->error);
+            self::assertSame(Translator::ERROR_READING, $parser->error);
         }
 
-        $this->assertEquals(
-            'Table',
-            $translator->pgettext(
-                'Display format',
-                'Table',
-            ),
-        );
-        $this->assertEquals(
-            '"%d" seconds',
-            $translator->ngettext(
-                '"%d" second',
-                '"%d" seconds',
-                10,
-            ),
-        );
+        self::assertSame('Table', $translator->pgettext('Display format', 'Table'));
+        self::assertSame('"%d" seconds', $translator->ngettext('"%d" second', '"%d" seconds', 10));
     }
 
     /** @dataProvider provideMoFiles */
     public function testExists(string $file): void
     {
         $parser = $this->getTranslator($file);
-        $this->assertEquals(
-            true,
-            $parser->exists('Column'),
-        );
-        $this->assertEquals(
-            false,
-            $parser->exists('Column parser'),
-        );
+        self::assertTrue($parser->exists('Column'));
+        self::assertFalse($parser->exists('Column parser'));
     }
 
     /**

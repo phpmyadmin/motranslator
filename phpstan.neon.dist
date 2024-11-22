@@ -6,7 +6,7 @@ parameters:
         - src
         - tests
     checkBenevolentUnionTypes: true
+    checkDynamicProperties: true
     checkImplicitMixed: true
     checkTooWideReturnTypesInProtectedAndPublicMethods: true
     checkUninitializedProperties: true
-    reportUnmatchedIgnoredErrors: true
