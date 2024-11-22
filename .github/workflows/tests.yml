@@ -11,14 +11,14 @@ jobs:
         continue-on-error: ${{ matrix.experimental }}
         strategy:
             matrix:
-                php-version: ['7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
+                php-version: ['7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4']
                 extensions: [':apcu, mbstring', 'apcu, mbstring']
                 os: [ubuntu-latest]
                 experimental: [false]
                 composer-options: ['']
                 include:
-                  - { php-version: '8.4', experimental: true, os: ubuntu-latest, composer-options: '--ignore-platform-req=php+', extensions: 'apcu, mbstring' }
-                  - { php-version: '8.4', experimental: true, os: ubuntu-latest, composer-options: '--ignore-platform-req=php+', extensions: ':apcu, mbstring' }
+                  - { php-version: '8.5', experimental: true, os: ubuntu-latest, composer-options: '--ignore-platform-req=php+', extensions: 'apcu, mbstring' }
+                  - { php-version: '8.5', experimental: true, os: ubuntu-latest, composer-options: '--ignore-platform-req=php+', extensions: ':apcu, mbstring' }
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
