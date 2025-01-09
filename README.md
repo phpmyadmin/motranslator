@@ -2,7 +2,7 @@
 
 Translation API for PHP using Gettext MO files.
 
-![Test-suite](https://github.com/phpmyadmin/motranslator/workflows/Run%20tests/badge.svg?branch=master)
+[![Test-suite](https://github.com/phpmyadmin/motranslator/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/phpmyadmin/motranslator/actions/workflows/tests.yml?query=branch%3Amaster)
 [![codecov.io](https://codecov.io/github/phpmyadmin/motranslator/coverage.svg?branch=master)](https://codecov.io/github/phpmyadmin/motranslator?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/phpmyadmin/motranslator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/phpmyadmin/motranslator/?branch=master)
 [![Packagist](https://img.shields.io/packagist/dt/phpmyadmin/motranslator.svg)](https://packagist.org/packages/phpmyadmin/motranslator)
