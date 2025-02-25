@@ -1,91 +1,109 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Call to function assert\\(\\) with true will always evaluate to true\\.$#"
+			message: '#^Call to function assert\(\) with true will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
 			count: 1
 			path: src/Cache/ApcuCache.php
 
 		-
-			message: "#^Call to function is_array\\(\\) with array\\<string, string\\> will always evaluate to true\\.$#"
+			message: '#^Call to function is_array\(\) with array\<string, string\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
 			count: 1
 			path: src/Cache/ApcuCache.php
 
 		-
-			message: "#^Only booleans are allowed in \\|\\|, mixed given on the right side\\.$#"
+			message: '#^Only booleans are allowed in \|\|, mixed given on the right side\.$#'
+			identifier: booleanOr.rightNotBoolean
 			count: 1
 			path: src/Cache/ApcuCache.php
 
 		-
-			message: "#^Construct empty\\(\\) is not allowed\\. Use more strict comparison\\.$#"
+			message: '#^Construct empty\(\) is not allowed\. Use more strict comparison\.$#'
+			identifier: empty.notAllowed
 			count: 1
 			path: src/Loader.php
 
 		-
-			message: "#^Method PhpMyAdmin\\\\MoTranslator\\\\Loader\\:\\:detectlocale\\(\\) should return string but returns mixed\\.$#"
+			message: '#^Method PhpMyAdmin\\MoTranslator\\Loader\:\:detectlocale\(\) should return string but returns mixed\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Loader.php
 
 		-
-			message: "#^Offset 'lang' on array\\{0\\: string, lang\\: non\\-falsy\\-string, 1\\: non\\-falsy\\-string, country\\?\\: string, 2\\?\\: string, charset\\?\\: string, 3\\?\\: string, modifier\\?\\: non\\-empty\\-string, \\.\\.\\.\\} on left side of \\?\\? always exists and is not nullable\\.$#"
+			message: '#^Offset ''lang'' on array\{0\: string, lang\: non\-falsy\-string, 1\: non\-falsy\-string, country\?\: string, 2\?\: string, charset\?\: string, 3\?\: string, modifier\?\: non\-empty\-string, \.\.\.\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
 			count: 1
 			path: src/Loader.php
 
 		-
-			message: "#^Strict comparison using \\!\\=\\= between non\\-falsy\\-string and '' will always evaluate to true\\.$#"
+			message: '#^Strict comparison using \!\=\= between non\-falsy\-string and '''' will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
 			count: 1
 			path: src/Loader.php
 
 		-
-			message: "#^Casting to int something that's already int\\.$#"
+			message: '#^Casting to int something that''s already int\.$#'
+			identifier: cast.useless
 			count: 1
 			path: src/MoParser.php
 
 		-
-			message: "#^Method PhpMyAdmin\\\\MoTranslator\\\\StringReader\\:\\:readint\\(\\) should return int but returns mixed\\.$#"
+			message: '#^Method PhpMyAdmin\\MoTranslator\\StringReader\:\:readint\(\) should return int but returns mixed\.$#'
+			identifier: return.type
 			count: 1
 			path: src/StringReader.php
 
 		-
-			message: "#^Method PhpMyAdmin\\\\MoTranslator\\\\StringReader\\:\\:readintarray\\(\\) should return array\\<int\\> but returns array\\.$#"
+			message: '#^Method PhpMyAdmin\\MoTranslator\\StringReader\:\:readintarray\(\) should return array\<int\> but returns array\.$#'
+			identifier: return.type
 			count: 1
 			path: src/StringReader.php
 
 		-
-			message: "#^Foreach overwrites \\$header with its value variable\\.$#"
+			message: '#^Foreach overwrites \$header with its value variable\.$#'
+			identifier: foreach.valueOverwrite
 			count: 1
 			path: src/Translator.php
 
 		-
-			message: "#^Only numeric types are allowed in \\-, int\\|null given on the left side\\.$#"
+			message: '#^Only numeric types are allowed in \-, int\|null given on the left side\.$#'
+			identifier: minus.leftNonNumeric
 			count: 1
 			path: src/Translator.php
 
 		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:markTestSkipped\\(\\)\\.$#"
+			message: '#^Dynamic call to static method PHPUnit\\Framework\\Assert\:\:markTestSkipped\(\)\.$#'
+			identifier: staticMethod.dynamicCall
 			count: 1
 			path: tests/Cache/ApcuCacheFactoryTest.php
 
 		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:markTestSkipped\\(\\)\\.$#"
+			message: '#^Dynamic call to static method PHPUnit\\Framework\\Assert\:\:markTestSkipped\(\)\.$#'
+			identifier: staticMethod.dynamicCall
 			count: 1
 			path: tests/Cache/ApcuCacheTest.php
 
 		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:markTestSkipped\\(\\)\\.$#"
+			message: '#^Dynamic call to static method PHPUnit\\Framework\\Assert\:\:markTestSkipped\(\)\.$#'
+			identifier: staticMethod.dynamicCall
 			count: 1
 			path: tests/Cache/ApcuDisabledTest.php
 
 		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:isInstanceOf\\(\\)\\.$#"
+			message: '#^Dynamic call to static method PHPUnit\\Framework\\Assert\:\:isInstanceOf\(\)\.$#'
+			identifier: staticMethod.dynamicCall
 			count: 1
 			path: tests/LoaderTest.php
 
 		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:markTestSkipped\\(\\)\\.$#"
+			message: '#^Dynamic call to static method PHPUnit\\Framework\\Assert\:\:markTestSkipped\(\)\.$#'
+			identifier: staticMethod.dynamicCall
 			count: 1
 			path: tests/LoaderTest.php
 
 		-
-			message: "#^Dynamic call to static method PHPUnit\\\\Framework\\\\TestCase\\:\\:once\\(\\)\\.$#"
+			message: '#^Dynamic call to static method PHPUnit\\Framework\\TestCase\:\:once\(\)\.$#'
+			identifier: staticMethod.dynamicCall
 			count: 1
 			path: tests/LoaderTest.php
