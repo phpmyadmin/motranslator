@@ -7,6 +7,7 @@ namespace PhpMyAdmin\MoTranslator\Tests;
 use PhpMyAdmin\MoTranslator\Cache\InMemoryCache;
 use PhpMyAdmin\MoTranslator\MoParser;
 use PhpMyAdmin\MoTranslator\Translator;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 use function chr;
@@ -22,9 +23,8 @@ class PluralTest extends TestCase
      *
      * @param int    $number   Number
      * @param string $expected Expected output
-     *
-     * @dataProvider providerTestNpgettext
      */
+    #[DataProvider('providerTestNpgettext')]
     public function testNpgettext(int $number, string $expected): void
     {
         $parser = $this->getTranslator('');
@@ -88,9 +88,8 @@ class PluralTest extends TestCase
      * Test for ngettext
      *
      * @see https://github.com/phpmyadmin/motranslator/issues/37
-     *
-     * @dataProvider dataProviderPluralForms
      */
+    #[DataProvider('dataProviderPluralForms')]
     public function testNgettextSelectString(string $pluralForms): void
     {
         $parser = $this->getTranslator('');

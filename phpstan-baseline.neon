@@ -101,9 +101,3 @@ parameters:
 			identifier: staticMethod.dynamicCall
 			count: 1
 			path: tests/LoaderTest.php
-
-		-
-			message: '#^Dynamic call to static method PHPUnit\\Framework\\TestCase\:\:once\(\)\.$#'
-			identifier: staticMethod.dynamicCall
-			count: 1
-			path: tests/LoaderTest.php

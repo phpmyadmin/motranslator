@@ -6,9 +6,10 @@ namespace PhpMyAdmin\MoTranslator\Tests\Cache;
 
 use PhpMyAdmin\MoTranslator\Cache\InMemoryCache;
 use PhpMyAdmin\MoTranslator\MoParser;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \PhpMyAdmin\MoTranslator\Cache\InMemoryCache */
+#[CoversClass(InMemoryCache::class)]
 class InMemoryCacheTest extends TestCase
 {
     public function testConstructorParsesCache(): void
