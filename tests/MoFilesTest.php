@@ -7,6 +7,7 @@ namespace PhpMyAdmin\MoTranslator\Tests;
 use PhpMyAdmin\MoTranslator\Cache\InMemoryCache;
 use PhpMyAdmin\MoTranslator\MoParser;
 use PhpMyAdmin\MoTranslator\Translator;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 use function basename;
@@ -18,7 +19,7 @@ use function str_contains;
  */
 class MoFilesTest extends TestCase
 {
-    /** @dataProvider provideMoFiles */
+    #[DataProvider('provideMoFiles')]
     public function testMoFileTranslate(string $filename): void
     {
         $parser = $this->getTranslator($filename);
@@ -33,7 +34,7 @@ class MoFilesTest extends TestCase
         );
     }
 
-    /** @dataProvider provideMoFiles */
+    #[DataProvider('provideMoFiles')]
     public function testMoFilePlurals(string $filename): void
     {
         $parser = $this->getTranslator($filename);
@@ -56,14 +57,14 @@ class MoFilesTest extends TestCase
         self::assertSame('"%d" seconds', $parser->ngettext('"%d" second', '"%d" seconds', 10));
     }
 
-    /** @dataProvider provideMoFiles */
+    #[DataProvider('provideMoFiles')]
     public function testMoFileContext(string $filename): void
     {
         $parser = $this->getTranslator($filename);
         self::assertSame('Tabulka', $parser->pgettext('Display format', 'Table'));
     }
 
-    /** @dataProvider provideNotTranslatedFiles */
+    #[DataProvider('provideNotTranslatedFiles')]
     public function testMoFileNotTranslated(string $filename): void
     {
         $parser = $this->getTranslator($filename);
@@ -88,7 +89,7 @@ class MoFilesTest extends TestCase
         return self::getFiles('./tests/data/not-translated/*.mo');
     }
 
-    /** @dataProvider provideErrorMoFiles */
+    #[DataProvider('provideErrorMoFiles')]
     public function testEmptyMoFile(string $file): void
     {
         $parser = new MoParser($file);
@@ -103,7 +104,7 @@ class MoFilesTest extends TestCase
         self::assertSame('"%d" seconds', $translator->ngettext('"%d" second', '"%d" seconds', 10));
     }
 
-    /** @dataProvider provideMoFiles */
+    #[DataProvider('provideMoFiles')]
     public function testExists(string $file): void
     {
         $parser = $this->getTranslator($file);

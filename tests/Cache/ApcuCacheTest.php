@@ -6,6 +6,7 @@ namespace PhpMyAdmin\MoTranslator\Tests\Cache;
 
 use PhpMyAdmin\MoTranslator\Cache\ApcuCache;
 use PhpMyAdmin\MoTranslator\MoParser;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
 
@@ -20,7 +21,7 @@ use function function_exists;
 use function implode;
 use function sleep;
 
-/** @covers \PhpMyAdmin\MoTranslator\Cache\ApcuCache */
+#[CoversClass(ApcuCache::class)]
 class ApcuCacheTest extends TestCase
 {
     protected function setUp(): void

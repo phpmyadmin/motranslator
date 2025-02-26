@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PhpMyAdmin\MoTranslator\Tests;
 
 use PhpMyAdmin\MoTranslator\Translator;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,9 +15,8 @@ class PluralFormulaTest extends TestCase
 {
     /**
      * Test for extractPluralsForms.
-     *
-     * @dataProvider pluralExtractionData
      */
+    #[DataProvider('pluralExtractionData')]
     public function testExtractPluralsForms(string $header, string $expected): void
     {
         self::assertSame(
@@ -56,7 +56,7 @@ class PluralFormulaTest extends TestCase
         ];
     }
 
-    /** @dataProvider pluralCounts */
+    #[DataProvider('pluralCounts')]
     public function testPluralCounts(string $expr, int $expected): void
     {
         self::assertSame(
@@ -96,7 +96,7 @@ class PluralFormulaTest extends TestCase
         ];
     }
 
-    /** @dataProvider pluralExpressions */
+    #[DataProvider('pluralExpressions')]
     public function testPluralExpression(string $expr, string $expected): void
     {
         self::assertSame(

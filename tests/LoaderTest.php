@@ -8,6 +8,7 @@ use PhpMyAdmin\MoTranslator\Cache\CacheFactoryInterface;
 use PhpMyAdmin\MoTranslator\Cache\CacheInterface;
 use PhpMyAdmin\MoTranslator\Loader;
 use PhpMyAdmin\MoTranslator\MoParser;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -19,11 +20,8 @@ use function putenv;
  */
 class LoaderTest extends TestCase
 {
-    /**
-     * @param list<string> $expected
-     *
-     * @dataProvider localeList
-     */
+    /** @param list<string> $expected */
+    #[DataProvider('localeList')]
     public function testListLocales(string $locale, array $expected): void
     {
         self::assertSame($expected, Loader::listLocales($locale));
@@ -154,7 +152,7 @@ class LoaderTest extends TestCase
         self::assertSame('Тып', $translator->gettext('Type'));
     }
 
-    /** @dataProvider translatorData */
+    #[DataProvider('translatorData')]
     public function testGetTranslator(string $domain, string $locale, string $otherdomain, string $expected): void
     {
         $loader = $this->getLoader($domain, $locale);
