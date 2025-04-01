@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased]
+## [5.4.0] - 2025-03-16
 
 * Drop support for PHP 7.2, PHP 7.3, PHP 7.4, PHP 8.0 and PHP 8.1.
 
@@ -111,3 +111,6 @@
 ## [0.1] -  2016-02-23
 
 * Initial release.
+
+[5.4.0]: https://github.com/phpmyadmin/motranslator/compare/5.3.1...5.4.0
+[5.3.1]: https://github.com/phpmyadmin/motranslator/compare/5.3.0...5.3.1
