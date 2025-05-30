@@ -39,6 +39,9 @@
         "phpstan/phpstan-strict-rules": "^1.6",
         "phpunit/phpunit": "^8.5 || ^9.6 || ^10.5 || ^11.5 || ^12.5 || ^13.3"
     },
+    "suggest": {
+        "ext-apcu": "Needed for APCu-backed translation cache"
+    },
     "autoload": {
         "psr-4": {
             "PhpMyAdmin\\MoTranslator\\": "src"
@@ -55,8 +58,5 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "phpstan/extension-installer": true
         }
-    },
-    "suggest": {
-        "ext-apcu": "Needed for ACPu-backed translation cache"
     }
 }

@@ -37,7 +37,7 @@ class ApcuCacheTest extends TestCase
             return;
         }
 
-        $this->markTestSkipped('ACPu extension is not installed and enabled for CLI');
+        $this->markTestSkipped('APCu extension is not installed and enabled for CLI');
     }
 
     protected function tearDown(): void
