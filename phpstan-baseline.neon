@@ -31,7 +31,7 @@ parameters:
 			path: src/Loader.php
 
 		-
-			message: '#^Offset ''lang'' on array\{0\: string, lang\: non\-falsy\-string, 1\: non\-falsy\-string, country\?\: string, 2\?\: string, charset\?\: string, 3\?\: string, modifier\?\: non\-empty\-string, \.\.\.\} on left side of \?\? always exists and is not nullable\.$#'
+			message: '#^Offset ''lang'' on array\{0\: non\-falsy\-string, lang\: non\-falsy\-string, 1\: non\-falsy\-string, country\?\: string, 2\?\: string, charset\?\: string, 3\?\: string, modifier\?\: non\-empty\-string, \.\.\.\} on left side of \?\? always exists and is not nullable\.$#'
 			identifier: nullCoalesce.offset
 			count: 1
 			path: src/Loader.php
@@ -83,12 +83,6 @@ parameters:
 			identifier: staticMethod.dynamicCall
 			count: 1
 			path: tests/Cache/ApcuCacheTest.php
-
-		-
-			message: '#^Dynamic call to static method PHPUnit\\Framework\\Assert\:\:markTestSkipped\(\)\.$#'
-			identifier: staticMethod.dynamicCall
-			count: 1
-			path: tests/Cache/ApcuDisabledTest.php
 
 		-
 			message: '#^Dynamic call to static method PHPUnit\\Framework\\Assert\:\:isInstanceOf\(\)\.$#'

@@ -32,8 +32,12 @@ final class ApcuCache implements CacheInterface
         private bool $reloadOnMiss = true,
         private string $prefix = 'mo_',
     ) {
-        if (! (function_exists('apcu_enabled') && apcu_enabled())) {
-            throw new CacheException('APCu extension must be installed and enabled');
+        if (! function_exists('apcu_enabled')) {
+            throw new CacheException('The APCu extension must be installed.');
+        }
+
+        if (! apcu_enabled()) {
+            throw new CacheException('The APCu extension must be enabled (apc.enabled=1) or (apc.enable_cli=1)');
         }
 
         $this->ensureTranslationsLoaded();

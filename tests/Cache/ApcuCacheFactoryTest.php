@@ -8,27 +8,28 @@ use PhpMyAdmin\MoTranslator\Cache\ApcuCache;
 use PhpMyAdmin\MoTranslator\Cache\ApcuCacheFactory;
 use PhpMyAdmin\MoTranslator\MoParser;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use PHPUnit\Framework\TestCase;
 
 use function apcu_clear_cache;
 use function apcu_delete;
 use function apcu_enabled;
 use function apcu_fetch;
-use function function_exists;
 use function sleep;
 
 #[CoversClass(ApcuCacheFactory::class)]
+#[RequiresPhpExtension('apcu')]
 class ApcuCacheFactoryTest extends TestCase
 {
     protected function setUp(): void
     {
         parent::setUp();
 
-        if (function_exists('apcu_enabled') && apcu_enabled()) {
+        if (apcu_enabled()) {
             return;
         }
 
-        $this->markTestSkipped('APCu extension is not installed and enabled for CLI');
+        $this->markTestSkipped('The APCu extension is not enabled for the CLI (apc.enable_cli=1)');
     }
 
     protected function tearDown(): void

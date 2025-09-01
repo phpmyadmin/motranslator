@@ -7,6 +7,7 @@ namespace PhpMyAdmin\MoTranslator\Tests\Cache;
 use PhpMyAdmin\MoTranslator\Cache\ApcuCache;
 use PhpMyAdmin\MoTranslator\MoParser;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
 
@@ -17,22 +18,22 @@ use function apcu_entry;
 use function apcu_fetch;
 use function chr;
 use function explode;
-use function function_exists;
 use function implode;
 use function sleep;
 
 #[CoversClass(ApcuCache::class)]
+#[RequiresPhpExtension('apcu')]
 class ApcuCacheTest extends TestCase
 {
     protected function setUp(): void
     {
         parent::setUp();
 
-        if (function_exists('apcu_enabled') && apcu_enabled()) {
+        if (apcu_enabled()) {
             return;
         }
 
-        $this->markTestSkipped('APCu extension is not installed and enabled for CLI');
+        $this->markTestSkipped('The APCu extension is not enabled for the CLI (apc.enable_cli=1)');
     }
 
     protected function tearDown(): void
