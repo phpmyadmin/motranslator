@@ -11,15 +11,19 @@ checks:
   php: true
 tools:
   external_code_coverage:
-    runs: 14 # for all matrix PHP versions to upload
+    runs: 3 # php 8.x versions * 3
     timeout: 480 # 8 min
 build:
+  image: default-bionic # Needed to make PHP 8.x compile
   nodes:
     analysis:
       environment:
-        php: 8.2
+        php:
+          version: 8.2.29 # vimeo/psalm needs a newer version
       dependencies:
         before:
+          - sudo /home/scrutinizer/.phpenv/shims/php -f /usr/bin/composer.phar self-update --2
+          - composer --version
           - composer install
       tests:
         override:
