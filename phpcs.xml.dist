@@ -7,27 +7,40 @@
     <arg name="colors"/>
     <arg name="extensions" value="php"/>
 
+    <!-- Make sniff report relative -->
+    <arg name="basepath" value="."/>
+
     <file>src</file>
     <file>tests</file>
     <file>benchmark.php</file>
     <file>benchmark-context.php</file>
     <file>benchmark-plural.php</file>
 
-    <rule ref="PhpMyAdmin">
-        <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint"/>
-        <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification"/>
-        <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingTraversableTypeHintSpecification"/>
-    </rule>
+    <rule ref="PhpMyAdmin"/>
 
-    <rule ref="SlevomatCodingStandard.ControlStructures.RequireSingleLineCondition"/>
-    <rule ref="SlevomatCodingStandard.Functions.RequireSingleLineCall"/>
-    <rule ref="SlevomatCodingStandard.Whitespaces.DuplicateSpaces">
-        <properties>
-            <property name="ignoreSpacesInComment" value="true"/>
-        </properties>
+    <rule ref="SlevomatCodingStandard.Classes.ConstantSpacing.IncorrectCountOfBlankLinesAfterConstant">
+        <exclude-pattern>src/MoParser.php</exclude-pattern>
+        <exclude-pattern>src/Translator.php</exclude-pattern>
     </rule>
-
+    <rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly.ReferenceViaFullyQualifiedName">
+        <exclude-pattern>benchmark.php</exclude-pattern>
+        <exclude-pattern>benchmark-context.php</exclude-pattern>
+        <exclude-pattern>benchmark-plural.php</exclude-pattern>
+    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint">
+        <exclude-pattern>src/functions.php</exclude-pattern>
+    </rule>
     <rule ref="Squiz.Functions.GlobalFunction.Found">
         <exclude-pattern>src/functions.php</exclude-pattern>
+    </rule>
+
+    <rule ref="SlevomatCodingStandard.Commenting.RequireOneLineDocComment.MultiLineDocComment">
+        <severity>4</severity>
+    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification">
+        <severity>4</severity>
+    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingTraversableTypeHintSpecification">
+        <severity>4</severity>
     </rule>
 </ruleset>
