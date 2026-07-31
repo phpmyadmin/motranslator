@@ -21,7 +21,7 @@ jobs:
                   - { php-version: '8.5', experimental: true, os: ubuntu-latest, composer-options: '--ignore-platform-req=php+', extensions: ':apcu, mbstring' }
         steps:
             - name: Checkout code
-              uses: actions/checkout@v4
+              uses: actions/checkout@v7
               with:
                   # Fetch some commits for Scrutinizer coverage upload
                   fetch-depth: 15
@@ -35,7 +35,7 @@ jobs:
                   coverage: xdebug
 
             - name: Install Composer dependencies
-              uses: ramsey/composer-install@v2
+              uses: ramsey/composer-install@v4
               with:
                 dependency-versions: highest
                 composer-options: ${{ matrix.composer-options }}
@@ -44,10 +44,11 @@ jobs:
               run: composer run phpunit
 
             - name: Send coverage
-              uses: codecov/codecov-action@v3
+              uses: codecov/codecov-action@v7
               with:
                 flags: unit-${{ matrix.php-version }}-${{ matrix.os }}
                 name: phpunit-${{ matrix.php-version }}-${{ matrix.os }}
+                token: ${{ secrets.CODECOV_TOKEN }}
 
             - name: Send coverage to Scrutinizer
               uses: sudo-bot/action-scrutinizer@latest
