@@ -44,10 +44,11 @@ jobs:
               run: composer run phpunit
 
             - name: Send coverage
-              uses: codecov/codecov-action@v3
+              uses: codecov/codecov-action@v7
               with:
                 flags: unit-${{ matrix.php-version }}-${{ matrix.os }}
                 name: phpunit-${{ matrix.php-version }}-${{ matrix.os }}
+                token: ${{ secrets.CODECOV_TOKEN }}
 
             - name: Send coverage to Scrutinizer
               uses: sudo-bot/action-scrutinizer@latest
