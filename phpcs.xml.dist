@@ -7,6 +7,9 @@
     <arg name="colors"/>
     <arg name="extensions" value="php"/>
 
+    <!-- Make sniff report relative -->
+    <arg name="basepath" value="."/>
+
     <file>src</file>
     <file>tests</file>
     <file>benchmark.php</file>

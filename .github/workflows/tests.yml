@@ -24,7 +24,7 @@ jobs:
           - { php-version: '8.5', experimental: true, os: ubuntu-latest, composer-options: '--ignore-platform-req=php+', extensions: ':apcu, mbstring' }
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           # Fetch some commits for Scrutinizer coverage upload
           fetch-depth: 15
@@ -47,7 +47,7 @@ jobs:
         run: composer run phpunit -- --display-deprecations --display-notices --display-warnings --display-errors --display-skipped
 
       - name: Send coverage
-        uses: codecov/codecov-action@v6
+        uses: codecov/codecov-action@v7
         # Do not run this step on forked versions of the main repository (example: contributor forks)
         if: github.repository == 'phpmyadmin/motranslator'
         with:
