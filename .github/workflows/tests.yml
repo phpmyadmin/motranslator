@@ -21,7 +21,7 @@ jobs:
                   - { php-version: '8.5', experimental: true, os: ubuntu-latest, composer-options: '--ignore-platform-req=php+', extensions: ':apcu, mbstring' }
         steps:
             - name: Checkout code
-              uses: actions/checkout@v4
+              uses: actions/checkout@v7
               with:
                   # Fetch some commits for Scrutinizer coverage upload
                   fetch-depth: 15
