@@ -5,5 +5,4 @@ composer.lock
 .php_cs.cache
 phpunit.xml
 coverage.xml
-phpcs.xml
 /.phpunit.result.cache

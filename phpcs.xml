@@ -18,11 +18,8 @@
 
     <rule ref="PhpMyAdmin"/>
 
-    <rule ref="SlevomatCodingStandard.ControlStructures.RequireSingleLineCondition"/>
-    <rule ref="SlevomatCodingStandard.Functions.RequireSingleLineCall"/>
-    <rule ref="SlevomatCodingStandard.Whitespaces.DuplicateSpaces">
-        <properties>
-            <property name="ignoreSpacesInComment" value="true"/>
-        </properties>
+    <!-- Rules that should be followed, but are not required -->
+    <rule ref="SlevomatCodingStandard.PHP.RequireExplicitAssertion">
+        <severity>4</severity>
     </rule>
 </ruleset>
