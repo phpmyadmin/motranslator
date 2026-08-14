@@ -1,5 +1,12 @@
 # Change Log
 
+## [6.0.1] - 2026-08-14
+
+### Added
+
+- [#64](https://github.com/phpmyadmin/motranslator/pull/64): Add support for PHP 8.6
+- [#63](https://github.com/phpmyadmin/motranslator/pull/63): Add support for PHPUnit 13
+
 ## [6.0.0] - 2025-10-31
 
 ### Changed
@@ -129,6 +136,7 @@
 
 * Initial release.
 
+[6.0.1]: https://github.com/phpmyadmin/motranslator/compare/6.0.0...6.0.1
 [6.0.0]: https://github.com/phpmyadmin/motranslator/compare/5.4.0...6.0.0
 [5.4.1]: https://github.com/phpmyadmin/motranslator/compare/5.4.0...5.4.1
 [5.4.0]: https://github.com/phpmyadmin/motranslator/compare/5.3.1...5.4.0
