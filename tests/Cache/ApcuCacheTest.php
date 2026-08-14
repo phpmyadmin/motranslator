@@ -20,6 +20,8 @@ use function function_exists;
 use function implode;
 use function sleep;
 
+use const PHP_VERSION_ID;
+
 /**
  * @covers \PhpMyAdmin\MoTranslator\Cache\ApcuCache
  */
@@ -199,7 +201,9 @@ class ApcuCacheTest extends TestCase
         $cache = new ApcuCache(new MoParser(null), $locale, $domain);
 
         $method = new ReflectionMethod($cache, 'reloadOnMiss');
-        $method->setAccessible(true);
+        if (PHP_VERSION_ID < 80100) {
+            $method->setAccessible(true);
+        }
 
         $key = 'mo_' . $locale . '.' . $domain . '.' . $msgid;
         apcu_entry($key, static function () use ($expected): string {
