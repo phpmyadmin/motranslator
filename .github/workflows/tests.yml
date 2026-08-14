@@ -10,30 +10,29 @@ on:
 jobs:
   test-php:
     name: Test on PHP ${{ matrix.php-version }} (${{ matrix.extensions }})
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental }}
     strategy:
       matrix:
-        php-version: ['8.2', '8.3', '8.4']
-        extensions: [':apcu, mbstring', 'apcu, mbstring']
-        os: [ubuntu-latest]
+        php-version: ['8.2', '8.3', '8.4', '8.5']
+        extensions: [':apcu', 'apcu']
         experimental: [false]
         composer-options: ['']
         include:
-          - { php-version: '8.5', experimental: true, os: ubuntu-latest, composer-options: '--ignore-platform-req=php+', extensions: 'apcu, mbstring' }
-          - { php-version: '8.5', experimental: true, os: ubuntu-latest, composer-options: '--ignore-platform-req=php+', extensions: ':apcu, mbstring' }
+          - {php-version: '8.6', experimental: true, composer-options: '--ignore-platform-req=php+', extensions: 'apcu'}
+          - {php-version: '8.6', experimental: true, composer-options: '--ignore-platform-req=php+', extensions: ':apcu'}
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
         with:
-          # Fetch some commits for Scrutinizer coverage upload
-          fetch-depth: 15
+          fetch-depth: 15 # Fetch some commits for Scrutinizer coverage upload
+          persist-credentials: false
 
       - name: Set up PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
-          extensions: ${{ matrix.extensions }}
+          extensions: mbstring, ${{ matrix.extensions }}
           ini-values: "apc.enable_cli=1"
           coverage: xdebug
 
@@ -44,7 +43,7 @@ jobs:
           composer-options: ${{ matrix.composer-options }}
 
       - name: Run PHP tests
-        run: composer run phpunit -- --display-deprecations --display-notices --display-warnings --display-errors --display-skipped
+        run: composer run phpunit -- --display-all-issues
 
       - name: Send coverage
         uses: codecov/codecov-action@v7
@@ -53,8 +52,8 @@ jobs:
         with:
           fail_ci_if_error: true
           token: ${{ secrets.CODECOV_TOKEN }}
-          flags: unit-${{ matrix.php-version }}-${{ matrix.os }}
-          name: phpunit-${{ matrix.php-version }}-${{ matrix.os }}
+          flags: unit-${{ matrix.php-version }}
+          name: phpunit-${{ matrix.php-version }}
           report_type: coverage
 
       - name: Upload test results
@@ -64,8 +63,8 @@ jobs:
         with:
           fail_ci_if_error: true
           token: ${{ secrets.CODECOV_TOKEN }}
-          flags: unit-${{ matrix.php-version }}-${{ matrix.os }}
-          name: phpunit-${{ matrix.php-version }}-${{ matrix.os }}
+          flags: unit-${{ matrix.php-version }}
+          name: phpunit-${{ matrix.php-version }}
           report_type: test_results
 
       - name: Send coverage to Scrutinizer

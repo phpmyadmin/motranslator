@@ -15,6 +15,7 @@ use function apcu_clear_cache;
 use function apcu_delete;
 use function apcu_enabled;
 use function apcu_fetch;
+use function function_exists;
 use function sleep;
 
 #[CoversClass(ApcuCacheFactory::class)]
@@ -35,6 +36,10 @@ class ApcuCacheFactoryTest extends TestCase
     protected function tearDown(): void
     {
         parent::tearDown();
+
+        if (! function_exists('apcu_clear_cache')) {
+            return;
+        }
 
         apcu_clear_cache();
     }

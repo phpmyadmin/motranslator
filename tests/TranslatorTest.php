@@ -9,7 +9,6 @@ use PhpMyAdmin\MoTranslator\Cache\InMemoryCache;
 use PhpMyAdmin\MoTranslator\CacheException;
 use PhpMyAdmin\MoTranslator\MoParser;
 use PhpMyAdmin\MoTranslator\Translator;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -83,8 +82,7 @@ class TranslatorTest extends TestCase
 
     public function testGetTranslationsThrowsException(): void
     {
-        /** @var CacheInterface&MockObject $cache */
-        $cache = $this->createMock(CacheInterface::class);
+        $cache = self::createStub(CacheInterface::class);
         $translator = new Translator($cache);
 
         $this->expectException(CacheException::class);

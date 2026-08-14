@@ -9,10 +9,13 @@ on:
 
 jobs:
   lint-php:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Set up PHP 8.2
         uses: shivammathur/setup-php@v2
@@ -31,13 +34,16 @@ jobs:
         run: composer run phpcs
 
   analyse-php:
+    name: Analyse
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-version: [ '8.2' ]
+        php-version: ['8.2']
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Set up PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
