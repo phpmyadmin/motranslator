@@ -18,6 +18,7 @@ use function apcu_entry;
 use function apcu_fetch;
 use function chr;
 use function explode;
+use function function_exists;
 use function implode;
 use function sleep;
 
@@ -39,6 +40,10 @@ class ApcuCacheTest extends TestCase
     protected function tearDown(): void
     {
         parent::tearDown();
+
+        if (! function_exists('apcu_clear_cache')) {
+            return;
+        }
 
         apcu_clear_cache();
     }
@@ -199,7 +204,6 @@ class ApcuCacheTest extends TestCase
         $cache = new ApcuCache(new MoParser(null), $locale, $domain);
 
         $method = new ReflectionMethod($cache, 'reloadOnMiss');
-        $method->setAccessible(true);
 
         $key = 'mo_' . $locale . '.' . $domain . '.' . $msgid;
         apcu_entry($key, static function () use ($expected): string {
