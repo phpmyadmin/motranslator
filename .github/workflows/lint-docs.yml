@@ -9,10 +9,13 @@ on:
 
 jobs:
   lint-docs:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Lint PHP documentation
         uses: sudo-bot/action-doctum@v5
