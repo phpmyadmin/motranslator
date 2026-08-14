@@ -46,7 +46,7 @@ final class ApcuCache implements CacheInterface
         string $prefix = 'mo_'
     ) {
         if (! (function_exists('apcu_enabled') && apcu_enabled())) {
-            throw new CacheException('ACPu extension must be installed and enabled');
+            throw new CacheException('APCu extension must be installed and enabled');
         }
 
         $this->parser = $parser;

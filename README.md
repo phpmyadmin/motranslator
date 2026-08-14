@@ -134,7 +134,7 @@ If you are using `Loader`, pass it an `ApcuCacheFactory` _before_ getting the tr
 
 ```php
 PhpMyAdmin\MoTranslator\Loader::setCacheFactory(
-    new PhpMyAdmin\MoTranslator\Cache\AcpuCacheFactory()
+    new PhpMyAdmin\MoTranslator\Cache\ApcuCacheFactory()
 );
 $loader = new PhpMyAdmin\MoTranslator\Loader();
 
@@ -160,7 +160,7 @@ to the `ApcuCacheFactory` or when instantiating `ApcuCache`:
 
 ```php
 PhpMyAdmin\MoTranslator\Loader::setCacheFactory(
-    new PhpMyAdmin\MoTranslator\Cache\AcpuCacheFactory(
+    new PhpMyAdmin\MoTranslator\Cache\ApcuCacheFactory(
         3600,     // cache for 1 hour
         true,     // reload on cache miss
         'custom_' // custom prefix for cache entries
