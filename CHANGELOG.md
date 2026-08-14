@@ -1,5 +1,16 @@
 # Change Log
 
+## [5.4.1] - 2026-08-14
+
+### Added
+
+- [#64](https://github.com/phpmyadmin/motranslator/pull/64): Add support for PHP 8.6
+- [#63](https://github.com/phpmyadmin/motranslator/pull/63): Add support for PHPUnit 13
+
+### Changed
+
+- [#65](https://github.com/phpmyadmin/motranslator/pull/65): Fix misspelling of APCu
+
 ## [5.4.0] - 2025-03-16
 
 * Bump PHP minimum version to 7.2
@@ -108,5 +119,6 @@
 
 * Initial release.
 
+[5.4.1]: https://github.com/phpmyadmin/motranslator/compare/5.4.0...5.4.1
 [5.4.0]: https://github.com/phpmyadmin/motranslator/compare/5.3.1...5.4.0
 [5.3.1]: https://github.com/phpmyadmin/motranslator/compare/5.3.0...5.3.1
