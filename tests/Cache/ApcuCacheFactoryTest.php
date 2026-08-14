@@ -7,6 +7,7 @@ namespace PhpMyAdmin\MoTranslator\Tests\Cache;
 use PhpMyAdmin\MoTranslator\Cache\ApcuCache;
 use PhpMyAdmin\MoTranslator\Cache\ApcuCacheFactory;
 use PhpMyAdmin\MoTranslator\MoParser;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 use function apcu_clear_cache;
@@ -19,6 +20,7 @@ use function sleep;
 /**
  * @covers \PhpMyAdmin\MoTranslator\Cache\ApcuCacheFactory
  */
+#[CoversClass(ApcuCacheFactory::class)]
 class ApcuCacheFactoryTest extends TestCase
 {
     protected function setUp(): void
@@ -35,6 +37,10 @@ class ApcuCacheFactoryTest extends TestCase
     protected function tearDown(): void
     {
         parent::tearDown();
+
+        if (! function_exists('apcu_clear_cache')) {
+            return;
+        }
 
         apcu_clear_cache();
     }
