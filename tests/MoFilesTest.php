@@ -7,6 +7,7 @@ namespace PhpMyAdmin\MoTranslator\Tests;
 use PhpMyAdmin\MoTranslator\Cache\InMemoryCache;
 use PhpMyAdmin\MoTranslator\MoParser;
 use PhpMyAdmin\MoTranslator\Translator;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 use function basename;
@@ -21,6 +22,7 @@ class MoFilesTest extends TestCase
     /**
      * @dataProvider provideMoFiles
      */
+    #[DataProvider('provideMoFiles')]
     public function testMoFileTranslate(string $filename): void
     {
         $parser = $this->getTranslator($filename);
@@ -32,6 +34,7 @@ class MoFilesTest extends TestCase
     /**
      * @dataProvider provideMoFiles
      */
+    #[DataProvider('provideMoFiles')]
     public function testMoFilePlurals(string $filename): void
     {
         $parser = $this->getTranslator($filename);
@@ -57,6 +60,7 @@ class MoFilesTest extends TestCase
     /**
      * @dataProvider provideMoFiles
      */
+    #[DataProvider('provideMoFiles')]
     public function testMoFileContext(string $filename): void
     {
         $parser = $this->getTranslator($filename);
@@ -66,6 +70,7 @@ class MoFilesTest extends TestCase
     /**
      * @dataProvider provideNotTranslatedFiles
      */
+    #[DataProvider('provideNotTranslatedFiles')]
     public function testMoFileNotTranslated(string $filename): void
     {
         $parser = $this->getTranslator($filename);
@@ -99,6 +104,7 @@ class MoFilesTest extends TestCase
     /**
      * @dataProvider provideErrorMoFiles
      */
+    #[DataProvider('provideErrorMoFiles')]
     public function testEmptyMoFile(string $file): void
     {
         $parser = new MoParser($file);
@@ -116,6 +122,7 @@ class MoFilesTest extends TestCase
     /**
      * @dataProvider provideMoFiles
      */
+    #[DataProvider('provideMoFiles')]
     public function testExists(string $file): void
     {
         $parser = $this->getTranslator($file);

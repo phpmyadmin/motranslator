@@ -8,6 +8,7 @@ use PhpMyAdmin\MoTranslator\Cache\CacheFactoryInterface;
 use PhpMyAdmin\MoTranslator\Cache\CacheInterface;
 use PhpMyAdmin\MoTranslator\Loader;
 use PhpMyAdmin\MoTranslator\MoParser;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -24,6 +25,7 @@ class LoaderTest extends TestCase
      *
      * @dataProvider localeList
      */
+    #[DataProvider('localeList')]
     public function testListLocales(string $locale, array $expected): void
     {
         self::assertSame($expected, Loader::listLocales($locale));
@@ -159,6 +161,7 @@ class LoaderTest extends TestCase
     /**
      * @dataProvider translatorData
      */
+    #[DataProvider('translatorData')]
     public function testGetTranslator(string $domain, string $locale, string $otherdomain, string $expected): void
     {
         $loader = $this->getLoader($domain, $locale);
@@ -273,7 +276,7 @@ class LoaderTest extends TestCase
         $locale = 'be_BY';
         $domain = 'apcu';
 
-        $cache = $this->createMock(CacheInterface::class);
+        $cache = self::createStub(CacheInterface::class);
         $cache->method('get')
             ->willReturn($expected);
         /** @var CacheFactoryInterface&MockObject $factory */
