@@ -133,10 +133,18 @@ class Translator
     /**
      * Check if a string is translated.
      *
-     * @param string $msgid String to be checked
+     * A string with plural forms is stored under its singular and plural msgids
+     * together, so pass the plural msgid as well to check it, as for ngettext().
+     *
+     * @param string      $msgid       String to be checked
+     * @param string|null $msgidPlural Plural form of the string, if it has one
      */
-    public function exists(string $msgid): bool
+    public function exists(string $msgid, string|null $msgidPlural = null): bool
     {
+        if ($msgidPlural !== null) {
+            $msgid .= "\u{0}" . $msgidPlural;
+        }
+
         return $this->cache->has($msgid);
     }
 
