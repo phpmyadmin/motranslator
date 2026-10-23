@@ -207,12 +207,12 @@ class Translator
     {
         $headers = explode("\n", $header);
         $expr = 'nplurals=2; plural=n == 1 ? 0 : 1;';
-        foreach ($headers as $header) {
-            if (stripos($header, 'Plural-Forms:') !== 0) {
+        foreach ($headers as $line) {
+            if (stripos($line, 'Plural-Forms:') !== 0) {
                 continue;
             }
 
-            $expr = substr($header, 13);
+            $expr = substr($line, 13);
         }
 
         return $expr;
