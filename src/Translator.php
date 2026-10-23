@@ -35,6 +35,7 @@ use Throwable;
 use function array_key_exists;
 use function count;
 use function explode;
+use function is_bool;
 use function is_numeric;
 use function ltrim;
 use function preg_replace;
@@ -271,7 +272,7 @@ class Translator
 
         try {
             $evaluatedPlural = $this->pluralExpression->evaluate($this->getPluralForms(), ['n' => $n]);
-            $plural = is_numeric($evaluatedPlural) ? (int) $evaluatedPlural : 0;
+            $plural = is_numeric($evaluatedPlural) || is_bool($evaluatedPlural) ? (int) $evaluatedPlural : 0;
         } catch (Throwable) {
             $plural = 0;
         }

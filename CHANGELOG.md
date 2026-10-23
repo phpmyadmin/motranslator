@@ -7,6 +7,14 @@
 - [#57](https://github.com/phpmyadmin/motranslator/pull/57): Add the `Translator::ERROR_KEY_DOES_NOT_EXIST` error code, set on `Translator::$error` when `gettext()` or `ngettext()` does not find the string
 - [#67](https://github.com/phpmyadmin/motranslator/pull/67): Allow checking plural strings with `Translator::exists()`, by passing the plural msgid as a second parameter ([#59](https://github.com/phpmyadmin/motranslator/issues/59))
 
+### Fixed
+
+- [#58](https://github.com/phpmyadmin/motranslator/issues/58): Fix the plural form selection when the plural expression is evaluated to a boolean
+
+### Security
+
+- [#66](https://github.com/phpmyadmin/motranslator/issues/66): Require patched `symfony/expression-language` versions (6.4.48, 7.4.21) for CVE-2026-109449
+
 ## [6.0.1] - 2026-08-14
 
 ### Added
