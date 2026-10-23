@@ -61,12 +61,6 @@ parameters:
 			path: src/StringReader.php
 
 		-
-			message: '#^Foreach overwrites \$header with its value variable\.$#'
-			identifier: foreach.valueOverwrite
-			count: 1
-			path: src/Translator.php
-
-		-
 			message: '#^Only numeric types are allowed in \-, int\|null given on the left side\.$#'
 			identifier: minus.leftNonNumeric
 			count: 1
