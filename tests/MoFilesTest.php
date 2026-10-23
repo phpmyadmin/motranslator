@@ -112,6 +112,15 @@ class MoFilesTest extends TestCase
         self::assertFalse($parser->exists('Column parser'));
     }
 
+    #[DataProvider('provideMoFiles')]
+    public function testExistsWithPlural(string $file): void
+    {
+        $parser = $this->getTranslator($file);
+        self::assertTrue($parser->exists('%d second', '%d seconds'));
+        self::assertFalse($parser->exists('%d second', '%d minutes'));
+        self::assertFalse($parser->exists('%d second'));
+    }
+
     /**
      * @param string $pattern path names pattern to match
      *
