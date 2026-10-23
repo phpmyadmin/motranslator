@@ -92,7 +92,7 @@ class Translator
     public const MAGIC_LE = "\xde\x12\x04\x95";
 
     /**
-     * Parse error code (0 if no error).
+     * Error code (0 if no error).
      */
     public int $error = self::ERROR_NONE;
 
@@ -138,6 +138,7 @@ class Translator
         if (! $this->exists($msgid)) {
             $this->error = self::ERROR_KEY_DOES_NOT_EXIST;
         }
+
         return $this->cache->get($msgid);
     }
 
@@ -292,6 +293,7 @@ class Translator
         $key = $msgid . "\u{0}" . $msgidPlural;
         if (! $this->exists($key)) {
             $this->error = self::ERROR_KEY_DOES_NOT_EXIST;
+
             return $number !== 1 ? $msgidPlural : $msgid;
         }
 

@@ -42,6 +42,56 @@ class TranslatorTest extends TestCase
     }
 
     /**
+     * Test on gettext with a missing translation
+     */
+    public function testGettextSetsErrorOnMissingTranslation(): void
+    {
+        $translator = $this->getTranslator('');
+        self::assertSame('Missing', $translator->gettext('Missing'));
+        self::assertSame(Translator::ERROR_KEY_DOES_NOT_EXIST, $translator->error);
+    }
+
+    /**
+     * Test the error is reset by gettext
+     */
+    public function testGettextResetsError(): void
+    {
+        $translator = $this->getTranslator('');
+        $translator->setTranslation('Test', 'Translation');
+
+        $translator->gettext('Missing');
+        self::assertSame(Translator::ERROR_KEY_DOES_NOT_EXIST, $translator->error);
+
+        self::assertSame('Translation', $translator->gettext('Test'));
+        self::assertSame(Translator::ERROR_NONE, $translator->error);
+    }
+
+    /**
+     * Test on ngettext with a missing translation
+     */
+    public function testNgettextSetsErrorOnMissingTranslation(): void
+    {
+        $translator = $this->getTranslator('');
+        self::assertSame('Missing', $translator->ngettext('Missing', 'Missings', 1));
+        self::assertSame(Translator::ERROR_KEY_DOES_NOT_EXIST, $translator->error);
+    }
+
+    /**
+     * Test the error is reset by ngettext
+     */
+    public function testNgettextResetsError(): void
+    {
+        $translator = $this->getTranslator('');
+        $translator->setTranslation("Test\u{0}Tests", "Translation\u{0}Translations");
+
+        $translator->ngettext('Missing', 'Missings', 1);
+        self::assertSame(Translator::ERROR_KEY_DOES_NOT_EXIST, $translator->error);
+
+        self::assertSame('Translations', $translator->ngettext('Test', 'Tests', 2));
+        self::assertSame(Translator::ERROR_NONE, $translator->error);
+    }
+
+    /**
      * Test set a translation
      */
     public function testSetTranslation(): void
