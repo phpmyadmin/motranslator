@@ -77,6 +77,11 @@ class Translator
     public const ERROR_READING = 3;
 
     /**
+     * Error on translating because key not found.
+     */
+    public const ERROR_KEY_DOES_NOT_EXIST = 4;
+
+    /**
      * Big endian mo file magic bytes.
      */
     public const MAGIC_BE = "\x95\x04\x12\xde";
@@ -87,7 +92,7 @@ class Translator
     public const MAGIC_LE = "\xde\x12\x04\x95";
 
     /**
-     * Parse error code (0 if no error).
+     * Error code (0 if no error).
      */
     public int $error = self::ERROR_NONE;
 
@@ -127,6 +132,13 @@ class Translator
      */
     public function gettext(string $msgid): string
     {
+        // reset error
+        $this->error = self::ERROR_NONE;
+
+        if (! $this->exists($msgid)) {
+            $this->error = self::ERROR_KEY_DOES_NOT_EXIST;
+        }
+
         return $this->cache->get($msgid);
     }
 
@@ -274,9 +286,14 @@ class Translator
      */
     public function ngettext(string $msgid, string $msgidPlural, int $number): string
     {
+        // reset error
+        $this->error = self::ERROR_NONE;
+
         // this should contains all strings separated by NULLs
         $key = $msgid . "\u{0}" . $msgidPlural;
-        if (! $this->cache->has($key)) {
+        if (! $this->exists($key)) {
+            $this->error = self::ERROR_KEY_DOES_NOT_EXIST;
+
             return $number !== 1 ? $msgidPlural : $msgid;
         }
 
