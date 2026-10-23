@@ -1,5 +1,11 @@
 # Change Log
 
+## [Unreleased]
+
+### Security
+
+- [#66](https://github.com/phpmyadmin/motranslator/issues/66): Require patched `symfony/expression-language` versions (5.4.54, 6.4.48, 7.4.21) for CVE-2026-109449
+
 ## [5.4.1] - 2026-08-14
 
 ### Added

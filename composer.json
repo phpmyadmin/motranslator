@@ -28,7 +28,7 @@
     },
     "require": {
         "php": "^7.2 || ^8.0",
-        "symfony/expression-language": "^5.0 || ^6.0 || ^7.0"
+        "symfony/expression-language": "^5.4.54 || ^6.4.48 || ^7.4.21"
     },
     "require-dev": {
         "phpmyadmin/coding-standard": "^3.1",
