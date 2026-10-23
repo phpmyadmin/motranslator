@@ -1,5 +1,15 @@
 # Change Log
 
+## [Unreleased]
+
+### Fixed
+
+- [#58](https://github.com/phpmyadmin/motranslator/issues/58): Fix the plural form selection when the plural expression is evaluated to a boolean
+
+### Security
+
+- [#66](https://github.com/phpmyadmin/motranslator/issues/66): Require patched `symfony/expression-language` versions (6.4.48, 7.4.21) for CVE-2026-109449
+
 ## [6.0.1] - 2026-08-14
 
 ### Added

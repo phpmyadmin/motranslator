@@ -115,6 +115,27 @@ class PluralTest extends TestCase
         self::assertSame('ok', $result);
     }
 
+    /**
+     * Test that a plural expression evaluated to a boolean selects the right form
+     *
+     * @see https://github.com/phpmyadmin/motranslator/issues/58
+     */
+    public function testNgettextWithBooleanPluralExpression(): void
+    {
+        $singular = "%d pig went to the market\n";
+        $plural = "%d pigs went to the market\n";
+
+        $parser = $this->getTranslator('');
+        $parser->setTranslation('', "Plural-Forms: nplurals=2; plural=n != 1;\n");
+        $parser->setTranslation(
+            implode(chr(0), [$singular, $plural]),
+            implode(chr(0), ["one pig went to the market\n", "many pigs went to the market\n"]),
+        );
+
+        self::assertSame("one pig went to the market\n", $parser->ngettext($singular, $plural, 1));
+        self::assertSame("many pigs went to the market\n", $parser->ngettext($singular, $plural, 2));
+    }
+
     private function getTranslator(string $filename): Translator
     {
         return new Translator(new InMemoryCache(new MoParser($filename)));
