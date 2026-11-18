@@ -1,9 +1,10 @@
 # Change Log
 
-## [Unreleased]
+## [5.4.2] - 2026-11-18
 
 ### Security
 
+- [#68](https://github.com/phpmyadmin/motranslator/pull/68): Fix handling of locale with path
 - [#66](https://github.com/phpmyadmin/motranslator/issues/66): Require patched `symfony/expression-language` versions (5.4.54, 6.4.48, 7.4.21) for CVE-2026-109449
 
 ## [5.4.1] - 2026-08-14
@@ -125,6 +126,7 @@
 
 * Initial release.
 
+[5.4.2]: https://github.com/phpmyadmin/motranslator/compare/5.4.1...5.4.2
 [5.4.1]: https://github.com/phpmyadmin/motranslator/compare/5.4.0...5.4.1
 [5.4.0]: https://github.com/phpmyadmin/motranslator/compare/5.3.1...5.4.0
 [5.3.1]: https://github.com/phpmyadmin/motranslator/compare/5.3.0...5.3.1
