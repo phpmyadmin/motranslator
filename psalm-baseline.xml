@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="6.8.7@4258dc813b28c2b03865f34a17ddf072f006b357">
+<files psalm-version="6.20.13@9dd07528c4f058df1572d40ab2db5c1566a728f2">
   <file src="src/Cache/ApcuCache.php">
     <MixedAssignment>
       <code><![CDATA[$cached]]></code>

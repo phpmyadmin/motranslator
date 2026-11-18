@@ -29,11 +29,14 @@ namespace PhpMyAdmin\MoTranslator;
 use PhpMyAdmin\MoTranslator\Cache\CacheFactoryInterface;
 use PhpMyAdmin\MoTranslator\Cache\InMemoryCache;
 
-use function file_exists;
 use function getenv;
 use function in_array;
 use function preg_match;
+use function realpath;
 use function sprintf;
+use function str_starts_with;
+
+use const DIRECTORY_SEPARATOR;
 
 class Loader
 {
@@ -192,9 +195,20 @@ class Loader
             $localeNames = self::listLocales($this->locale);
 
             $filename = '';
-            foreach ($localeNames as $locale) {
-                $filename = $base . '/' . $locale . '/LC_MESSAGES/' . $domain . '.mo';
-                if (file_exists($filename)) {
+            $realBase = realpath($base);
+            if ($realBase !== false) {
+                foreach ($localeNames as $candidate) {
+                    $path = $base . '/' . $candidate . '/LC_MESSAGES/' . $domain . '.mo';
+                    $real = realpath($path);
+                    if ($real === false) {
+                        continue;
+                    }
+
+                    if ($real !== $realBase && ! str_starts_with($real, $realBase . DIRECTORY_SEPARATOR)) {
+                        continue;
+                    }
+
+                    $filename = $real;
                     break;
                 }
             }
