@@ -32,6 +32,13 @@
 
 * [#48](https://github.com/phpmyadmin/motranslator/pull/48): Drop support for PHP 7.2, PHP 7.3, PHP 7.4, PHP 8.0 and PHP 8.1
 
+## [5.4.2] - 2026-11-18
+
+### Security
+
+- [#68](https://github.com/phpmyadmin/motranslator/pull/68): Fix handling of locale with path
+- [#66](https://github.com/phpmyadmin/motranslator/issues/66): Require patched `symfony/expression-language` versions (6.4.48, 7.4.21) for CVE-2026-109449
+
 ## [5.4.1] - 2026-08-14
 
 ### Added
@@ -153,6 +160,7 @@
 
 [6.0.1]: https://github.com/phpmyadmin/motranslator/compare/6.0.0...6.0.1
 [6.0.0]: https://github.com/phpmyadmin/motranslator/compare/5.4.0...6.0.0
+[5.4.2]: https://github.com/phpmyadmin/motranslator/compare/5.4.1...5.4.2
 [5.4.1]: https://github.com/phpmyadmin/motranslator/compare/5.4.0...5.4.1
 [5.4.0]: https://github.com/phpmyadmin/motranslator/compare/5.3.1...5.4.0
 [5.3.1]: https://github.com/phpmyadmin/motranslator/compare/5.3.0...5.3.1
