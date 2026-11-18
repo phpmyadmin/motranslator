@@ -1,11 +1,13 @@
 # Change Log
 
-## [Unreleased]
+## [6.1.0] - Unreleased
 
 ### Added
 
 - [#57](https://github.com/phpmyadmin/motranslator/pull/57): Add the `Translator::ERROR_KEY_DOES_NOT_EXIST` error code, set on `Translator::$error` when `gettext()` or `ngettext()` does not find the string
 - [#67](https://github.com/phpmyadmin/motranslator/pull/67): Allow checking plural strings with `Translator::exists()`, by passing the plural msgid as a second parameter ([#59](https://github.com/phpmyadmin/motranslator/issues/59))
+
+## [6.0.2] - 2026-11-18
 
 ### Fixed
 
@@ -13,6 +15,7 @@
 
 ### Security
 
+- [#68](https://github.com/phpmyadmin/motranslator/pull/68): Fix handling of locale with path
 - [#66](https://github.com/phpmyadmin/motranslator/issues/66): Require patched `symfony/expression-language` versions (6.4.48, 7.4.21) for CVE-2026-109449
 
 ## [6.0.1] - 2026-08-14
@@ -158,6 +161,8 @@
 
 * Initial release.
 
+[6.1.0]: https://github.com/phpmyadmin/motranslator/compare/6.0.x...master
+[6.0.2]: https://github.com/phpmyadmin/motranslator/compare/6.0.1...6.0.2
 [6.0.1]: https://github.com/phpmyadmin/motranslator/compare/6.0.0...6.0.1
 [6.0.0]: https://github.com/phpmyadmin/motranslator/compare/5.4.0...6.0.0
 [5.4.2]: https://github.com/phpmyadmin/motranslator/compare/5.4.1...5.4.2
