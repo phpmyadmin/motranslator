@@ -158,6 +158,31 @@ class LoaderTest extends TestCase
         self::assertSame('Тып', $translator->gettext('Type'));
     }
 
+    /** @dataProvider providerFoTestLocaleWithPath */
+    #[DataProvider('providerFoTestLocaleWithPath')]
+    public function testLocaleWithPath(string $expected, string $locale): void
+    {
+        $loader = new Loader();
+        $loader->setlocale($locale);
+        $loader->textdomain('phpmyadmin');
+        $loader->bindtextdomain('phpmyadmin', __DIR__ . '/data/locale/');
+        $translator = $loader->getTranslator('phpmyadmin');
+        self::assertSame($expected, $translator->gettext('Type'));
+    }
+
+    /** @return iterable<int, array{string, string}> */
+    public static function providerFoTestLocaleWithPath(): iterable
+    {
+        yield ['Typ', '../locale/cs'];
+        yield ['Typ', './../locale/cs'];
+        yield ['Typ', 'cs/../../locale/cs'];
+        yield ['Typ', '../locale/cs/../../locale/cs'];
+        yield ['Type', '../other/cs'];
+        yield ['Type', './../other/cs'];
+        yield ['Type', 'cs/../../other/cs'];
+        yield ['Type', '../locale/cs/../../other/cs'];
+    }
+
     /**
      * @dataProvider translatorData
      */
