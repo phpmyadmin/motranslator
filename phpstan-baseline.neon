@@ -86,11 +86,6 @@ parameters:
 			path: src/Translator.php
 
 		-
-			message: "#^Foreach overwrites \\$header with its value variable\\.$#"
-			count: 1
-			path: src/Translator.php
-
-		-
 			message: "#^Method PhpMyAdmin\\\\MoTranslator\\\\Translator\\:\\:extractPluralsForms\\(\\) should return string but returns \\(string\\|false\\)\\.$#"
 			count: 1
 			path: src/Translator.php
